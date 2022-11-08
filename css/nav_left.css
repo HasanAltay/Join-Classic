@@ -5,36 +5,59 @@
     background-color: #2A3647;
     width: 232px;
     height: 100vh;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nav_logo img {
+.nav_logo {
     width: 100px;
     padding-top: 66px;
-    padding-bottom: 66px;
+    padding-bottom: 100px;
 }
 
 .nav_btn {
     display: flex;
+    float: right;
     color: #CDCDCD;
     cursor: pointer;
     width: 100%;
     align-items: center;
     justify-content: center;
     height: 46px;
+    transition: all 125ms ease-in-out;
 }
 
-.nav_btn:hover {
+.nav_btn:hover  {
     background-color: #091931;
+    color: white;
+    filter: brightness(105%);
+    transition: all 125ms ease-in-out;
 }
 
-.nav_btn_center {
-    display: flex;
-    width: 120px;
-    align-items: center;
+.nav_btn a {
+    width: 80px;
 }
 
 .nav_btn img {
+    display: flex;
+    align-items: center;
+    justify-content: left;
     margin-right: 20px;
+    height: 20px;
+    filter: brightness(80%);
+}
 
+.nav_menu_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 220px;
+}
+
+.nav_menu_box_info {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 105px;
 }

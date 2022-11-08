@@ -8,6 +8,7 @@
     <link rel="icon" href="./img/logo.png">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./css/nav_left.css">
+    <link rel="stylesheet" href="./css/top_bar.css">
     <link rel="stylesheet" href="./css/summary.css">
     <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="./css/contacts.css">
@@ -22,7 +23,8 @@
 
 <body onload="includeHTML()">
     <div class="main">
-        <div w3-include-html="./content/nav_left.html"></div>
+        <div w3-include-html="./content/nav_left.html" style="z-index: 12;"></div>
+        <div w3-include-html="./content/top_bar.html"></div>
         <div id="includeHTML">
             <div w3-include-html="./content/summary.html"></div>
         </div>
