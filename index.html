@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Project Management Tool</title>
+    <link rel="icon" href="./img/logo.png">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/nav_left.css">
+    <link rel="stylesheet" href="./css/summary.css">
+    <link rel="stylesheet" href="./css/board.css">
+    <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="stylesheet" href="./css/add_task.css">
+    <script src="./script.js"></script>
+    <script src="./js/add_task.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/summary.js"></script>
+
+</head>
+
+<body onload="includeHTML()">
+    <div class="main">
+        <div w3-include-html="./content/nav_left.html"></div>
+        <div w3-include-html="./content/summary.html"></div>
+    </div>
+</body>
+
+</html>
