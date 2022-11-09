@@ -45,6 +45,10 @@
     filter: brightness(80%);
 }
 
+.nav_btn img:hover {
+    filter: brightness(105%);
+}
+
 .nav_menu_box {
     display: flex;
     flex-direction: column;

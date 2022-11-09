@@ -13,15 +13,19 @@
     <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="./css/contacts.css">
     <link rel="stylesheet" href="./css/add_task.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/login.css">
     <script src="./script.js"></script>
     <script src="./js/add_task.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/contacts.js"></script>
     <script src="./js/summary.js"></script>
     <script src="./js/nav_left.js"></script>
+    <script src="./js/login.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); login();">
+
     <div class="main">
         <div w3-include-html="./content/nav_left.html" style="z-index: 12;"></div>
         <div w3-include-html="./content/top_bar.html"></div>
@@ -29,6 +33,7 @@
             <div w3-include-html="./content/summary.html"></div>
         </div>
     </div>
+    <div id="login"></div>
 </body>
 
 </html>
