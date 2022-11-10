@@ -6,11 +6,12 @@ function renderAddTask() {
 }
 
 
-function renderContacts() {
+async function renderContacts() {
     document.getElementById('includeHTML').innerHTML = `
     <div w3-include-html="./content/contacts.html"></div>
     `;
-    includeHTML();
+    await includeHTML();
+    initContacts();
 }
 
 

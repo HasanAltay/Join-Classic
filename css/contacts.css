@@ -1,0 +1,26 @@
+.con_contacts {
+    position: absolute;
+    top: 200px;
+    left: 232px;
+    right: 0;
+    display: flex;
+}
+
+.con_contactsList {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.con_contactListElement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.con_contactInformation {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+

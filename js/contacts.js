@@ -5,19 +5,19 @@ let contacts = {
      "mail" : "abcd@mail.de"    
 },
 
-"Anna" :
+"A" :
     {"name": "Anna",
      "phone" : "+49123456789",
      "mail" : "abcd@mail.de"    
 },
 
-"Max" :
+"M" :
     {"name": "Max",
      "phone" : "+49123456789",
      "mail" : "abcd@mail.de"    
 },
 
-"Susan" :
+"S" :
     {"name": "Susan",
      "phone" : "+49123456789",
      "mail" : "abcd@mail.de"    
@@ -27,7 +27,13 @@ let contacts = {
 
 
 function initContacts() {
-    document.getElementById('contacts-id').innerHTML = drawContactHTML();
+    document.getElementById('contacts-id').innerHTML += drawContactHTML();
+    console.log(contacts['John']);
+
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[index];
+        insertContactToContactList(contact);        
+    }
 }
 
 
@@ -39,5 +45,12 @@ function drawContactHTML() {
         <div class="con_contactInformationName"></div>
         <div class="con_contactInformationDetails"></div>
     </div>
+    `;
+}
+
+
+function insertContactToContactList(contact) {
+    document.getElementById('contacts-list').innerHTML += /*html*/ `
+    <span>$ {contact['name']}</span>
     `;
 }
