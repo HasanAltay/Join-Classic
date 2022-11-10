@@ -16,6 +16,7 @@
     font-size: 21px;
     font-weight: 400;
     padding: 20px 36px 20px 348px;
+    white-space: nowrap;
 }
 
 .nav_top_bar_right {
