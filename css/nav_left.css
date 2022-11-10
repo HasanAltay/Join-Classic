@@ -26,14 +26,41 @@
 }
 
 .nav_btn:hover  {
+    background-color: hsla(212, 74%, 66%, 0.25);
+    /* color: white; */
+    /* filter: brightness(105%); */
+    transition: all 125ms ease-in-out;
+}
+
+.nav_btn a {
+    width: 80px;
+}
+
+.nav_btn_picked {
+    display: flex;
+    float: right;
+    cursor: pointer;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
     background-color: #091931;
     color: white;
     filter: brightness(105%);
     transition: all 125ms ease-in-out;
 }
 
-.nav_btn a {
+.nav_btn_picked a {
     width: 80px;
+}
+
+.nav_btn_picked img {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-right: 20px;
+    height: 20px;
+    filter: brightness(105%);
 }
 
 .nav_btn img {
@@ -45,9 +72,9 @@
     filter: brightness(80%);
 }
 
-.nav_btn img:hover {
+/* .nav_btn img:hover {
     filter: brightness(105%);
-}
+} */
 
 .nav_menu_box {
     display: flex;
