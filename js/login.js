@@ -3,7 +3,6 @@ function init() {
     logoAnimation();
 }
 
-
 function logoAnimation() {
     document.getElementById('animation').innerHTML = /*html*/`
         <img src="./img/logo_dark.png" class="login_logo_animation">
