@@ -1,13 +1,34 @@
 <div class="navigation_left">
     <img src="../img/logo.png" class="nav_logo">
     <div class="nav_menu_box">
-        <div class="nav_btn" onclick="renderSummary()"><img src="../img/summary.png"><a>Summary</a></div>
-        <div class="nav_btn" onclick="renderBoard()"><img src="../img/board.png"><a>Board</a></div>
-        <div class="nav_btn" onclick="renderAddTask()"><img src="../img/add_task.png"><a>Add Task</a></div>
-        <div class="nav_btn" onclick="renderContacts()"><img src="../img/contacts.png"><a>Contacts</a></div>
+
+        <div id="nav_summary">
+            <div class="nav_btn" onclick="NavRenderSummary()"><img src="../img/summary.png"><a>Summary</a></div>
+        </div>
+
+        <div id="nav_board">
+            <div class="nav_btn" onclick="NavRenderBoard()"><img src="../img/board.png"><a>Board</a></div>
+        </div>
+
+        <div id="nav_add_task">
+            <div class="nav_btn" onclick="NavRenderAddTask()"><img src="../img/add_task.png"><a>Add Task</a></div>
+        </div>
+
+        <div id="nav_contacts">
+            <div class="nav_btn" onclick="NavRenderContacts()"><img src="../img/contacts.png"><a>Contacts</a></div>
+        </div>
+
     </div>
+
     <div class="nav_menu_box_info">
-        <div class="nav_btn" onclick="privacy()"><img src="../img/info.png"><a>Datenschutz</a></div> 
-        <div class="nav_btn" onclick="privacy()"><img src="../img/info.png"><a>Impressum</a></div> 
+
+        <div id="nav_privacy">
+            <div class="nav_btn" onclick="NavRenderPrivacy()"><img src="../img/info.png"><a>Privacy</a></div> 
+        </div>
+
+        <div id="nav_imprint">
+            <div class="nav_btn" onclick="NavRenderImprint()"><img src="../img/info.png"><a>Imprint</a></div> 
+        </div>
+
     </div>
 </div>

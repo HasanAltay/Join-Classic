@@ -21,11 +21,12 @@
     <script src="./js/contacts.js"></script>
     <script src="./js/summary.js"></script>
     <script src="./js/nav_left.js"></script>
+    <script src="./js/top_bar.js"></script>
     <script src="./js/login.js"></script>
 </head>
 
-<body onload="includeHTML(); login();">
-
+<body onload="includeHTML(); init();">
+    <div></div>
     <div class="main">
         <div w3-include-html="./content/nav_left.html" style="z-index: 12;"></div>
         <div w3-include-html="./content/top_bar.html"></div>
@@ -33,7 +34,8 @@
             <div w3-include-html="./content/summary.html"></div>
         </div>
     </div>
-    <div id="login"></div>
+    <div id="animation" class="animation"></div> 
+    <div id="login" class="login"></div>
 </body>
 
 </html>
