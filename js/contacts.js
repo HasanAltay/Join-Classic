@@ -24,7 +24,7 @@ let contacts = [
 ];
 
 
-function initContacts() {
+async function initContacts() {
     console.log('initContacts()');
     document.getElementById('contacts-id').innerHTML += drawContactHTML();
     console.log(contacts['John']);
