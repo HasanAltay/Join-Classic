@@ -5,14 +5,12 @@
     align-items: center;
     background-color: #2A3647;
     width: 232px;
-    height: 100vh;
-    /* padding-bottom: 50px; */
+    height: 100%;
 }
 
 .nav_logo {
     width: 100px;
     margin-top: 66px;
-    /* padding-bottom: 100px; */
 }
 
 .nav_btn {
@@ -81,7 +79,6 @@
 }
 
 .nav_menu_box_info {
-    /* margin-top: 200px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;

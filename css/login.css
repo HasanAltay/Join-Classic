@@ -1,5 +1,5 @@
 .login_frame {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,8 +7,8 @@
     top: 0;
     left: 0;
     right: 0;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     background-color: #F6F7F8;
     z-index: 20;
 }
@@ -68,12 +68,15 @@
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     width: 422px;
-    color: #D1D1D1;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 21px;
     line-height: 120%;
+}
+
+.login_input::placeholder {
+    color: #D1D1D1;
 }
 
 .login_access a {
@@ -85,7 +88,13 @@
 
 .login_secure_png {
     position: absolute;
-    top: 15px;
+    top: 107px;
+    right: 25px;
+}
+
+.login_mail_png {
+    position: absolute;
+    top: 17px;
     right: 25px;
 }
 
@@ -176,8 +185,7 @@
 }
 
 .login_logo_animation {
-
-    position: absolute;
+    position: fixed;
     width: 102px;
     height: 122px;
     top: 65px;
@@ -215,4 +223,42 @@
 
 .animation {
     visibility: visible;
+}
+
+.login_join {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 60px;
+    right: 90px;
+}
+
+.login_join a {
+    font-weight: 400;
+    font-size: 21px;
+    margin-right: 20px;
+}
+
+.login_btn_join {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    background-color: #2A3647;
+    border-radius: 8px;
+    border: none;
+    height: 51px;
+    width: 91px;
+    padding: 4px 0px;
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+}
+
+.login_btn_join:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: all 225ms ease-in-out;
 }
