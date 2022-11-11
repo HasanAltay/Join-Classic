@@ -30,8 +30,8 @@ async function NavRenderContacts() {
     <div w3-include-html="./content/contacts.html"></div>
     `;
     await includeHTML();
-    await initContacts();
     contactsPicked();
+    await initContacts();
 }
 
 

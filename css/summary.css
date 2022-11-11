@@ -67,7 +67,7 @@
 .sum_squares:hover {
     background-color: #2A3647;
     color: white;
-    transform: scale(1.1);
+    transform: scale(110%);
     transition: all 100ms ease-in-out;
 }
 
@@ -88,7 +88,7 @@
 .sum_middle:hover {
     background-color: #2A3647;
     color: white;
-    transform: scale(1.1);
+    transform: scale(105%);
     transition: all 100ms ease-in-out;
 }
 
@@ -149,7 +149,7 @@
 .sum_bottom_todo:hover {
     background-color: #2A3647;
     color: white;
-    transform: scale(1.1);
+    transform: scale(110%);
     transition: all 100ms ease-in-out;
 }
 

@@ -52,5 +52,5 @@ function drawContactHTML() {
 
 function insertContactToContactList(i, contact) {
     console.log('insertContactToContactList');
-    document.getElementById('contacts-list').innerHTML += <span>contact['name']</span>;
+    document.getElementById('contacts-list').innerHTML += `<span>${contact['name']}</span>`;
 }

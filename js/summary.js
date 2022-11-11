@@ -5,3 +5,5 @@ function SumTodoChangeImage(img) {
 function SumDoneChangeImage(img) {
     document.getElementById('sum_done_img').src = img;
 }
+
+
