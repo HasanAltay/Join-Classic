@@ -1,16 +1,18 @@
 .navigation_left {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     background-color: #2A3647;
     width: 232px;
     height: 100vh;
+    /* padding-bottom: 50px; */
 }
 
 .nav_logo {
     width: 100px;
-    padding-top: 66px;
-    padding-bottom: 100px;
+    margin-top: 66px;
+    /* padding-bottom: 100px; */
 }
 
 .nav_btn {
@@ -27,8 +29,6 @@
 
 .nav_btn:hover  {
     background-color: hsla(212, 74%, 66%, 0.25);
-    /* color: white; */
-    /* filter: brightness(105%); */
     transition: all 125ms ease-in-out;
 }
 
@@ -72,10 +72,6 @@
     filter: brightness(80%);
 }
 
-/* .nav_btn img:hover {
-    filter: brightness(105%);
-} */
-
 .nav_menu_box {
     display: flex;
     flex-direction: column;
@@ -85,10 +81,13 @@
 }
 
 .nav_menu_box_info {
-    margin-top: 200px;
+    /* margin-top: 200px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     height: 105px;
+    min-height: 105px;
+    margin-bottom: 120px;
+    margin-top: 120px;
 }
