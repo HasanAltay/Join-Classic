@@ -97,7 +97,7 @@
 .bo_drag-area {
     height: 376px;
     width: 215px;
-    background: #F5F5F5;
+    /* background: #F5F5F5; */
     /* background-color: rgb(200, 190, 190); */
     /* border-style: dashed; */
     /* margin-left: 50px; */
