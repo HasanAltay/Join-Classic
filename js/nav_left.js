@@ -12,6 +12,7 @@ async function NavRenderBoard() {
     <div w3-include-html="./content/board.html"></div>
     `;
     await includeHTML();
+    updateHTML();
     boardPicked();
 }
 

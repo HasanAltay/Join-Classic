@@ -19,10 +19,20 @@
         <span>In progress</span>
         <span>Awaiting Feedback</span>
         <span>Done</span>
-    
-    
-    
+
     </div>
+</div>
+
+<div class="bo_todo_area">
+
+    <div class="bo_todo_container">
+        <div class="bo_drag-area" id="todo" ondrop="moveTo('Todo')" ondragover="allowDrop(event)"></div>
+        <div class="bo_drag-area" id="inProgress" ondrop="moveTo('In progress')" ondragover="allowDrop(event)"></div>
+        <div class="bo_drag-area" id="awaitingFB" ondrop="moveTo('Awaiting Feedback')" ondragover="allowDrop(event)"></div>
+        <div class="bo_drag-area" id="done" ondrop="moveTo('Done')" ondragover="allowDrop(event)"></div>
+   </div>
+
+
 </div>
 </div>
 
