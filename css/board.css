@@ -62,12 +62,30 @@
 
 .bo_todo_sections {
     display: flex;
-    justify-content: space-around;
-    margin-left: -99px;
-    margin-right: 73px;
+    /* justify-content: space-around; */
+    /* margin-left: -99px;
+    margin-right: 73px; */
     font-style: normal;
     font-weight: 700;
-    font-size: 21px;
+    font-size: 16px;
+
+}
+
+
+.bo_todo_sections div {
+    display: flex;
+    align-items: center;
+    width: 205px;
+    margin-right: 60px;
+    text-indent: 15px;
+}
+
+
+.bo_todo_sections img {
+    border-radius: 8px;
+    border: solid 2px #2A3647;
+    padding: 3px;
+    cursor: pointer;
 }
 
 
