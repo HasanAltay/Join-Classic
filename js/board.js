@@ -1,7 +1,7 @@
 let todos = [
     {
         'id': 0,
-        'department' : 'Design',
+        'department': 'Design',
         'title': 'Website redesign',
         'category': 'Todo',
         'description': 'Modify the contents of the main website'
@@ -9,7 +9,7 @@ let todos = [
 
     {
         'id': 1,
-        'department' : 'Marketing',
+        'department': 'Marketing',
         'title': 'Social media Strategy',
         'category': 'In progress',
         'description': 'Develop an ad campaign for brand positioning'
@@ -17,7 +17,7 @@ let todos = [
 
     {
         'id': 2,
-        'department' : 'Sales',
+        'department': 'Sales',
         'title': 'Call potencial clients',
         'category': 'Awaiting Feedback',
         'description': 'Make the product presentation to the prospective buyers'
@@ -25,7 +25,7 @@ let todos = [
 
     {
         'id': 3,
-        'department' : 'Backoffice',
+        'department': 'Backoffice',
         'title': 'Accounting Invoices',
         'category': 'Done',
         'description': 'Write open invoices for customer'
@@ -94,23 +94,25 @@ function startDragging(id) {
 function generateTodoHTML(element) {
     return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo">
 
-        <div class="bo_todo_infos">
-             <span class="bo_department">${element['department']}</span>
-             <br>
-             <div class="bo_title"><b>${element['title']}</b></div>
-             <div><div>${element['description']}</div>
-        </div>
+                <div class="bo_todo_infos">
+                     <span class="bo_department">${element['department']}</span>
+                     <br>
+                        <div class="bo_todo_title"><b>${element['title']}</b></div>
+                        <div>
+                            <div>${element['description']}</div>
+                        </div>
+                 </div>
             </div> `;
 }
 
 
-function allowDrop(ev) {
-    ev.preventDefault();
+    function allowDrop(ev) {
+        ev.preventDefault();
 }
 
 
-function moveTo(category) {
-    todos[currentDraggedElement]['category'] = category;
+    function moveTo(category) {
+        todos[currentDraggedElement]['category'] = category;
     updateHTML();
 
 }
