@@ -1,5 +1,6 @@
 .navigation_left {
     display: flex;
+    position: fixed;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;

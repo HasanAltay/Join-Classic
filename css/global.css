@@ -4,11 +4,11 @@
 
 .global_main_format {
     padding-top: 160px;
-    padding-left: 115px;
+    padding-left: 347px;
     padding-right: 20px;
     background-color: #F6F7F9;
-    width: calc(100vw - 232px);
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
 }
 
 .font61-700 {
@@ -61,4 +61,8 @@
 
 .scale-105:active {
     transform: scale(105%);
+}
+
+.mb-70 {
+    margin-bottom: 70px;
 }
