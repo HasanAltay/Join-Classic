@@ -95,7 +95,7 @@ function generateTodoHTML(element) {
     return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo">
 
         <div class="bo_todo_infos">
-             <div class="bo_department"><span>${element['department']}</span></div> 
+             <span class="bo_department">${element['department']}</span>
              <br>
              <div class="bo_title"><b>${element['title']}</b></div>
              <div><div>${element['description']}</div>

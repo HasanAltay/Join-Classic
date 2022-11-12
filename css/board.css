@@ -101,17 +101,23 @@
 
 
 .bo_todo_infos {
-    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 
 .bo_department {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #FF7A00;
     border-radius: 8px;
     color: white;
-    padding-left: 8px;
-    margin-top: 24px;
-    width: 100px;
+    padding: 4px;
+    width: fit-content;    
+    padding-right: 25px;
+    padding-left: 25px;
 }
 
 

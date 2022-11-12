@@ -60,3 +60,19 @@
 .nav_top_bar_profile_border:hover {
     border: solid 3px #67A3E8;
 }
+
+.nav_logout {
+    font-size: 16px;
+    font-weight: 400;
+    position: absolute;
+    top: 89px;
+    right: 30px;
+    background-color: #2A3647;
+    padding: 15px;
+    padding-right: 35px;
+    padding-left: 40px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 20px 0px 20px 20px;
+    color: #CDCDCD;
+    cursor: pointer;
+}
