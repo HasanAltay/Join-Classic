@@ -28,6 +28,7 @@
 
 .nav_top_bar_icon {
     padding-right: 25px;
+    padding-left: 25px;
     cursor: pointer;
 }
 
@@ -35,9 +36,13 @@
     filter: invert(1);
 }
 
+.nav_top_bar_icon:active {
+    transform: scale(105%);
+}
+
 .nav_top_bar_profile {
     height: 42px;
-    border: solid 2px #FFFFFF;
+    border: solid 1px #FFFFFF;
     border-radius: 100%;
 }
 

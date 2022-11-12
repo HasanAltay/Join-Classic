@@ -53,6 +53,14 @@ async function NavRenderImprint() {
 }
 
 
+async function NavRenderHelp() {
+    document.getElementById('includeHTML').innerHTML = `
+    <div w3-include-html="./content/help.html"></div>
+    `;
+    await includeHTML();
+}
+
+
     function summaryPicked() {
         document.getElementById('nav_summary').innerHTML = `
         <div class="nav_btn_picked" onclick="renderSummary()">

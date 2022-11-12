@@ -5,6 +5,9 @@
     background-color: #F6F7F9;
     min-width: calc(100vw - 232px);
     min-height: 100vh;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 }
 
 .sum_title {
@@ -71,6 +74,10 @@
     transition: all 100ms ease-in-out;
 }
 
+.sum_squares:active {
+    transform: scale(1);
+}
+
 .sum_middle {
     display: flex;
     justify-content: center;
@@ -90,6 +97,10 @@
     color: white;
     transform: scale(105%);
     transition: all 100ms ease-in-out;
+}
+
+.sum_middle:active {
+    transform: scale(1);
 }
 
 .sum_frame_urgent {
@@ -153,6 +164,10 @@
     transition: all 100ms ease-in-out;
 }
 
+.sum_bottom_todo:active {
+    transform: scale(1);
+}
+
 .sum_bottom_done {
     display: flex;
     flex-direction: row;
@@ -178,16 +193,25 @@
     transition: all 100ms ease-in-out;
 }
 
+.sum_bottom_done:active {
+    transform: scale(1);
+}
+
 .sum_daytime {
     font-weight: 500;
     font-size: 47px;
     color: #2A3647;
-    white-space: nowrap;
 }
 
 .sum_user {
     font-weight: 700;
     font-size: 64px;
     color: #29ABE2;
-    white-space: nowrap;
+}
+
+.sum_greeting {
+    height: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

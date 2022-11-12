@@ -1,3 +1,64 @@
 * {
     box-sizing: border-box;
 }
+
+.global_main_format {
+    padding-top: 160px;
+    padding-left: 115px;
+    padding-right: 20px;
+    background-color: #F6F7F9;
+    width: calc(100vw - 232px);
+    height: 100vh;
+}
+
+.font61-700 {
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+}
+
+.font27-700 {
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 120%;
+}
+
+.font16-400 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+}
+
+.font21-400 {
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.space-bw {
+    justify-content: space-between;
+}
+
+.pr-90 {
+    padding-right: 90px;
+}
+
+.pr-20 {
+    padding-right: 20px;
+}
+
+.c-pointer {
+    cursor: pointer;
+}
+
+.scale-105 {
+    transform: scale(100%);
+}
+
+.scale-105:active {
+    transform: scale(105%);
+}
