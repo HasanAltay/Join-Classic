@@ -25,14 +25,11 @@
 
     <div class="bo_todo_area">
         <div class="bo_todo_sections">
-            <div>
-                <span>To do</span> <img src="./img/plus.png">
-            </div>
-            <span>In progress</span>
-            <span>Awaiting Feedback</span>
-            <span>Done</span>
-
-        </div>
+            <div class="d-flex space-bw"><span>To do</span><img src="./img/plus.png"></div>
+            <div class="d-flex space-bw"><span>In progress</span><img src="./img/plus.png"></div>
+            <div class="d-flex space-bw"><span>Awaiting Feedback</span><img src="./img/plus.png"></div>
+            <div class="d-flex space-bw"><span>Done</span><img src="./img/plus.png"></div>
+        </div><br>
 
         <div class="bo_todo_container">
             <div class="bo_drag-area" id="todo" ondrop="moveTo('Todo')" ondragover="allowDrop(event)"></div>

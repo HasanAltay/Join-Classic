@@ -62,6 +62,7 @@
 }
 
 .nav_logout {
+    display: none;
     font-size: 16px;
     font-weight: 400;
     position: absolute;
@@ -75,4 +76,9 @@
     border-radius: 20px 0px 20px 20px;
     color: #CDCDCD;
     cursor: pointer;
+}
+
+.nav_logout:hover {
+    color: white;
+    background-color: #091931;
 }
