@@ -2,16 +2,22 @@
     box-sizing: border-box;
 }
 
+.bo_main {
+    padding-top: 140px;
+    padding-left: 115px;
+    padding-right: 20px;
+    background-color: #F6F7F9;
+    min-width: calc(100vw - 232px);
+    min-height: 100vh;
+}
+
 
 .bo_top_section {
-    width: 75vw;
-    position: absolute;
+    width: 73vw;
+    /* position: absolute;
     height: 327px;
     left: 267px;
-    top: 57px;
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
+    top: 57px; */
 }
 
 
@@ -53,10 +59,9 @@
 }
 
 
-/* .bo_search_add_task span {
-    position: absolute;
-    right: 19px;
-    font-size: 34px;
-    top: 6px;
-
-} */
+.bo_todo_titles {
+    display: flex;
+    justify-content: space-around;
+    margin-left: -99px;
+    margin-right: 73px;
+}
