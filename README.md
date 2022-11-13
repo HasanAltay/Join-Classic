@@ -1,4 +1,4 @@
-# Kanban Project Management Tool
+# JOIN Kanban Project Management Tool
 
 Join helps to manage your schedules and notes. 
 It gives you a quick and simple notepad editing 
