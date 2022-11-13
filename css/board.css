@@ -3,15 +3,22 @@
 }
 
 
+.bo_main {
+    padding-top: 140px;
+    padding-left: 115px;
+    padding-right: 20px;
+    background-color: #F6F7F9;
+    min-width: calc(100vw - 232px);
+    min-height: 100vh;
+}
+
+
 .bo_top_section {
-    width: 75vw;
-    position: absolute;
+    width: 73vw;
+    /* position: absolute;
     height: 327px;
     left: 267px;
-    top: 57px;
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
+    top: 57px; */
 }
 
 
@@ -53,10 +60,89 @@
 }
 
 
-/* .bo_search_add_task span {
-    position: absolute;
-    right: 19px;
-    font-size: 34px;
-    top: 6px;
+.bo_todo_sections {
+    display: flex;
+    /* justify-content: space-around; */
+    /* margin-left: -99px;
+    margin-right: 73px; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
 
-} */
+}
+
+
+.bo_todo_sections div {
+    display: flex;
+    align-items: center;
+    width: 205px;
+    margin-right: 60px;
+    text-indent: 15px;
+}
+
+
+.bo_todo_sections img {
+    border-radius: 8px;
+    border: solid 2px #2A3647;
+    padding: 3px;
+    cursor: pointer;
+}
+
+
+.bo_todo_container {
+    display: flex;
+}
+
+
+.bo_drag-area {
+    height: 376px;
+    width: 215px;
+    /* background: #F5F5F5; */
+    /* background-color: rgb(200, 190, 190); */
+    /* border-style: dashed; */
+    /* margin-left: 50px; */
+    margin-right: 50px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.bo_todo {
+    background-color: white;
+    width: 210px;
+    /* height: 186px; */
+    box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 4%);
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+
+.bo_todo_infos {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+
+.bo_department {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FF7A00;
+    border-radius: 8px;
+    color: white;
+    padding: 4px;
+    width: fit-content;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+
+.bo_todo_title {
+    margin-bottom: 8px;
+    /* font-style: normal;
+    font-weight: 700;
+    font-size: 16px; */
+}

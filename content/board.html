@@ -1,23 +1,45 @@
+<div class="global_main_format">
+    <div class="bo_top_section">
 
-    
- <div class="bo_top_section">
+        <div class="bo_board mb-70">
+            <div>
+                <span class="font61-700">Board</span>
+            </div>
 
-   
-    
-    <div class="bo_board">
-        <div>
-        <h1 class="bo_h1">Board</h1>
+            <div class="bo_search_add_task">
+                <input type="text" placeholder="Find Task">
+                <button><span>Add Task</span> <span>+</span></button>
+            </div>
         </div>
 
-         <div class="bo_search_add_task">
-        <input type="text" placeholder="Find Task"> 
-        <button><span>Add Task</span> <span>+</span></button> 
-        </div>
+        <!-- <div class="bo_todo_titles">
+            <div>
+                <span>To do</span> <img src="./img/plus.png">
+            </div>
+            <span>In progress</span>
+            <span>Awaiting Feedback</span>
+            <span>Done</span>
+
+        </div> -->
     </div>
 
-    <div><span>To do</span> <img src="./img/plus.png"></div>
+    <div class="bo_todo_area">
+        <div class="bo_todo_sections">
+            <div class="d-flex space-bw"><span>To do</span><img src="./img/plus.png"></div>
+            <div class="d-flex space-bw"><span>In progress</span><img src="./img/plus.png"></div>
+            <div class="d-flex space-bw"><span>Awaiting Feedback</span><img src="./img/plus.png"></div>
+            <div class="d-flex space-bw"><span>Done</span><img src="./img/plus.png"></div>
+        </div><br>
+
+        <div class="bo_todo_container">
+            <div class="bo_drag-area" id="todo" ondrop="moveTo('Todo')" ondragover="allowDrop(event)"></div>
+            <div class="bo_drag-area" id="inProgress" ondrop="moveTo('In progress')" ondragover="allowDrop(event)">
+            </div>
+            <div class="bo_drag-area" id="awaitingFB" ondrop="moveTo('Awaiting Feedback')"
+                ondragover="allowDrop(event)"></div>
+            <div class="bo_drag-area" id="done" ondrop="moveTo('Done')" ondragover="allowDrop(event)"></div>
+        </div>
+
+
+    </div>
 </div>
-
-
-
-

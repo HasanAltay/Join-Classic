@@ -1,0 +1,12 @@
+@media (max-width: 414px) {
+     
+    body {
+        -ms-overflow-style: none;   
+        scrollbar-width: none; /* for Internet Explorer, Edge */
+        overflow-y: scroll; /* for Firefox */
+    }
+            
+    body::-webkit-scrollbar {
+        display: none; /* for Chrome, Safari, and Opera */
+    }
+    }

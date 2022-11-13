@@ -12,6 +12,7 @@ async function NavRenderBoard() {
     <div w3-include-html="./content/board.html"></div>
     `;
     await includeHTML();
+    updateHTML();
     boardPicked();
 }
 
@@ -50,6 +51,14 @@ async function NavRenderImprint() {
     `;
     await includeHTML();
     imprintPicked();
+}
+
+
+async function NavRenderHelp() {
+    document.getElementById('includeHTML').innerHTML = `
+    <div w3-include-html="./content/help.html"></div>
+    `;
+    await includeHTML();
 }
 
 
