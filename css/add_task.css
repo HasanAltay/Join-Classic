@@ -23,17 +23,14 @@
 .title {
     width: 65px;
     height: 25px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
     font-size: 21px;
-    line-height: 120%;
     color: #000000;
 }
 
 .titlebox {
     width: 422px;
     height: 51px;
+    font-size: 21px;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     background: #FFFFFF;
@@ -44,23 +41,21 @@
     gap: 10px;
     box-sizing: border-box;
     margin-top: 8px;
+    outline: none;
 }
 
 .description {
     margin-top: 34px;
     width: 154px;
     height: 25px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
     font-size: 21px;
-    line-height: 120%;
     color: #000000;
 }
 
 .descriptionbox {
     width: 422px;
     height: 119px;
+    font-size: 21px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -71,6 +66,7 @@
     border-radius: 10px;
     background: #FFFFFF;
     margin-top: 8px;
+    outline: none;
 }
 
 .drop-down {
@@ -93,6 +89,7 @@
     width: 422px;
     height: 51px;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     padding: 18px 21px;
@@ -106,8 +103,10 @@
 
 .categorybox {
     border: none;
+    width: 205px;
     height: 25px;
-    width: 422px;
+    font-size: 21px;
+    color: #000000;
 }
 
 .assigned {
@@ -125,6 +124,7 @@
 .assign-selection {
     margin-top: 8px;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     padding: 18px 21px;
@@ -138,8 +138,10 @@
 
 .assignedbox {
     border: none;
+    width: 250px;
     height: 25px;
-    width: 422px;
+    font-size: 21px;
+    color: #000000;
 }
 
 .right {
@@ -276,6 +278,7 @@
     width: 422px;
     height: 51px;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     padding: 18px 21px;
@@ -292,7 +295,9 @@
 .subtasks-input {
     width: 422px;
     height: 25px;
+    font-size: 21px;
     border: none;
+    outline: none;
 }
 
 .plus-icon {
