@@ -81,6 +81,8 @@
     text-decoration: none;
 }
 
+
+
 .login_secure_png {
     position: absolute;
     top: 107px;
@@ -95,6 +97,24 @@
 
 .login_pos_rel {
     position: relative;
+}
+
+.sign_name_png {
+    position: absolute;
+    top: 16px;
+    right: 25px;
+}
+
+.sign_secure_png {
+    position: absolute;
+    top: 203px;
+    right: 25px;
+}
+
+.sign_mail_png {
+    position: absolute;
+    top: 110px;
+    right: 25px;
 }
 
 .login_checkbox {

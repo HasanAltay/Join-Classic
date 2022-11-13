@@ -3,6 +3,7 @@ function init() {
     logoAnimation();
 }
 
+
 function logoAnimation() {
     document.getElementById('animation').innerHTML = /*html*/`
         <img src="./img/logo_dark.png" class="login_logo_animation">
@@ -11,9 +12,7 @@ function logoAnimation() {
 
 
 function login() {
-    document.getElementById('login').innerHTML = /*html*/`
-    <div class="login_frame">
-        <div class="login_access" id="login_access">
+    document.getElementById('login_access').innerHTML = /*html*/`
             <span class="font61-700">Log in</span><br>
             <div class="login_blue_line"></div><br><br>
             <div class="login_pos_rel">
@@ -35,11 +34,6 @@ function login() {
                 <button class="btn_dark" onclick="hideLogin()">Log in</button>
                 <button class="btn_bright" onclick="hideLogin()">Guest Log in</button>
             </div>
-        </div> 
-        <div class="login_join">
-            <a>Not a join user?</a><button class="login_btn_join" onclick="signUp()">Sign up</button>
-        </div>       
-    </div> 
     `;
 }
 
@@ -61,7 +55,7 @@ function forgotPassword() {
             </div>
             <br>
             <div>
-                <button class="btn_dark" onclick="hideLogin()">Send me the email</button>
+                <button class="btn_dark" onclick="resetPassword()">Send me the email</button>
             </div>
     `;
 }
@@ -74,16 +68,15 @@ function signUp() {
             </div>
             <span class="font61-700">Sign up</span><br>
             <div class="login_blue_line"></div><br><br>
-
             <div class="login_pos_rel">
             <input placeholder="Name" id="name_sign" type="name" class="login_input">
-                <img src="./img/mail.png" class="login_mail_png">
+                <img src="./img/name.png" class="sign_name_png">
                 <br><br>
                 <input placeholder="Email" id="email_sign" type="email" class="login_input">
-                <img src="./img/mail.png" class="login_mail_png">
+                <img src="./img/mail.png" class="sign_mail_png">
                 <br><br>
                 <input placeholder="Password" id="password_sign" type="password" class="login_input">
-                <img src="./img/secure.png" class="login_secure_png">
+                <img src="./img/secure.png" class="sign_secure_png">
                 <br>
             </div>
             <br>
@@ -91,6 +84,32 @@ function signUp() {
                 <button class="btn_dark" onclick="hideLogin()">Sign up</button>
             </div>
     `;
+}
+
+
+function resetPassword() {
+    document.getElementById('login_access').innerHTML = /*html*/`
+    <div class="c-pointer scale-105" onclick="forgotPassword()">
+        <img src="./img/left_arrow_blue.png">
+    </div>
+    <span class="font61-700">Reset your password</span><br>
+    <div class="login_blue_line"></div><br>
+    <span class="font21-400 txt-cr">
+        Change your account password<br>
+    </span><br><br>
+    <div class="login_pos_rel">
+        <input placeholder="New password" id="new_password" type="password" class="login_input">
+        <br><br>
+    </div>
+    <div class="login_pos_rel">
+        <input placeholder="Confirm password" id="confirm_password" type="password" class="login_input">
+        <br><br>
+    </div>
+    <br>
+    <div>
+        <button class="btn_dark" onclick="hideLogin()">Continue</button>
+    </div>
+`;
 }
 
 
