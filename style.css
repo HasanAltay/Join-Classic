@@ -120,10 +120,10 @@ body {
     margin: 0;
     scroll-behavior: smooth;
     font-family: 'Inter';
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .main {
     display: flex;
-    width: 100vw;
+    /* width: 100vw; */
 }
