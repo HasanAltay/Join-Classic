@@ -26,6 +26,7 @@
 
   background: #ffffff;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+  overflow: scroll;
 }
 
 .con_contactList {
@@ -49,10 +50,65 @@
   background: #ffffff;
 }
 
-.con_contactListElement {
+.con_alphabeticHints {
+  width: 282px;
+  height: 40px;
+
+  /* Version 2/t6 */
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 120%;
+  /* or 25px */
+
   display: flex;
-  justify-content: center;
   align-items: center;
+
+  color: #000000;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  border-bottom: 1px solid rgba(238, 238, 233, 0.8);
+  margin-top: 10px;
+}
+
+.con_contactListElement {
+  padding: 8px;
+  width: 282px;
+  height: 40px;
+
+  /* Version 2/t6 */
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 120%;
+  /* or 25px */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.con_contactListElementLabel {
+  width: 42px;
+  height: 42px;
+  border-radius: 100%;
+  border: 1px solid #000000;
+  align-self: baseline;
 }
 
 .con_contactInformation {
