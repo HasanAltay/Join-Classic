@@ -3,6 +3,7 @@ async function NavRenderSummary() {
     <div w3-include-html="./content/summary.html"></div>
     `;
     await includeHTML();
+    await getDaytime();
     summaryPicked(); 
 }
 

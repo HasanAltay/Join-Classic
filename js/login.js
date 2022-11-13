@@ -40,7 +40,7 @@ function login() {
 
 function forgotPassword() {
     document.getElementById('login_access').innerHTML = /*html*/`
-            <div class="c-pointer scale-105" onclick="login()">
+            <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
                 <img src="./img/left_arrow_blue.png">
             </div>
             <span class="font61-700">i forgot my password</span><br>
@@ -63,7 +63,7 @@ function forgotPassword() {
 
 function signUp() {
     document.getElementById('login_access').innerHTML = /*html*/`
-            <div class="c-pointer scale-105" onclick="login()">
+            <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
                 <img src="./img/left_arrow_blue.png">
             </div>
             <span class="font61-700">Sign up</span><br>
@@ -89,7 +89,7 @@ function signUp() {
 
 function resetPassword() {
     document.getElementById('login_access').innerHTML = /*html*/`
-    <div class="c-pointer scale-105" onclick="forgotPassword()">
+    <div class="c-pointer scale-105 login_arrow_left" onclick="forgotPassword()">
         <img src="./img/left_arrow_blue.png">
     </div>
     <span class="font61-700">Reset your password</span><br>
