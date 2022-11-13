@@ -40,9 +40,15 @@ function initContacts() {
 function drawContactHTML() {
     console.log('drawContactHTML()');
     return /*html*/`
-    <div id="contacts-list" class="con_contactsList"></div>
+    <div id="contacts-list-container" class="con_contactsListContainer">
+        <div id="contact-list" class="con_contactList"></div>
+    </div>
     <div id="contact-information" class="con_contactInformation">
-        <div id="contact-information-header" class="con_contactInformationHeader"></div>
+        <div id="contact-information-header" class="con_contactInformationHeader">
+            <span class="con_contactInformationStartHeader">Contacts</span>
+            <div class="con_vector5"></div>
+            <span class="con_contactInformationStartHeaderTwo">Better with a team</span>
+        </div>
         <div class="con_contactInformationName"></div>
         <div class="con_contactInformationDetails"></div>
     </div>
@@ -52,5 +58,5 @@ function drawContactHTML() {
 
 function insertContactToContactList(i, contact) {
     console.log('insertContactToContactList');
-    document.getElementById('contacts-list').innerHTML += `<span>${contact['name']}</span>`;
+    document.getElementById('contact-list').innerHTML += `<span>${contact['name']}</span>`;
 }

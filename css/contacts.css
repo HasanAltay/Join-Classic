@@ -1,26 +1,137 @@
 .con_contacts {
-    position: absolute;
-    top: 200px;
-    left: 232px;
-    right: 0;
-    display: flex;
+  /* position: absolute;
+  top: 200px;
+  left: 232px;
+  right: 0; */
+
+  display: flex;
 }
 
-.con_contactsList {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
+.con_contactsListContainer {
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+
+  position: fixed;
+  width: 453px;
+  /* width: 30%; */
+  height: 935px;
+
+  top: 89px;
+  left: 232px;
+  right: 755px;
+
+  /* white */
+
+  background: #ffffff;
+  box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+}
+
+.con_contactList {
+  /* Contact list v1 */
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+
+  position: absolute;
+  width: 357px;
+  height: 1072px;
+  left: 48px;
+  top: 2px;
+
+  /* white */
+
+  background: #ffffff;
 }
 
 .con_contactListElement {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .con_contactInformation {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
 }
 
+.con_contactInformationHeader {
+  position: absolute;
+  top: 171px;
+  left: 743px;
+  right: 423px;
+  bottom: 780px;
+  display: flex;
+  align-items: center;
+}
+
+.con_contactInformationStartHeader {
+  width: 274px;
+  height: 73px;
+
+  margin-right: 30px;
+
+  /* Version 2/t1 */
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 120%;
+  /* or 73px */
+
+  color: #000000;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.con_vector5 {
+  /* Vector 5 */
+
+  width: 0px;
+  height: 59px;
+
+  border: 3px solid #29abe2;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.con_contactInformationStartHeaderTwo {
+  /* Better with a team */
+
+  width: 235px;
+  height: 32px;
+
+  margin-left: 30px;
+
+  /* Version 2/t5 */
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 120%;
+  /* or 32px */
+
+  color: #2a3647;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
