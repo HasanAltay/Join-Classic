@@ -9,7 +9,7 @@ function SumDoneChangeImage(img) {
 
 
 async function getDaytime() {
-    let url = 'http://worldtimeapi.org/api/timezone/Europe/Berlin';
+    let url = 'https://worldtimeapi.org/api/timezone/Europe/Berlin';
     let response = await fetch(url);
     let responseJSON = await response.json();
     let datetime = responseJSON['datetime'];

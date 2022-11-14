@@ -24,11 +24,10 @@
     <script src="./js/summary.js"></script>
     <script src="./js/nav_left.js"></script>
     <script src="./js/top_bar.js"></script>
-    <script src="./js/login.js"></script>
     <script src="./backend/mini_backend.js"></script>
 </head>
 
-<body onload="includeHTML(); loginAndAnimation(); init();">
+<body onload="includeHTML()">
     <div></div>
     <div class="main">
         <div w3-include-html="./content/nav_left.html" style="z-index: 12;"></div>
@@ -37,7 +36,7 @@
             <div w3-include-html="./content/summary.html"></div>
         </div>
     </div>
-    <div id="animation" class="animation"></div> 
+    <!-- <div id="animation" class="animation"></div> 
     <div id="login" class="login">
             <div class="login_frame">
         <div class="login_access" id="login_access">
@@ -46,6 +45,6 @@
             <a>Not a join user?</a><button class="login_btn_join" onclick="signUp()">Sign up</button>
         </div>       
     </div> 
-    </div>
+    </div> -->
 </body>
 </html>

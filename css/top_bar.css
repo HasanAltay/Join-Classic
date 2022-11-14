@@ -80,6 +80,7 @@
     border-radius: 20px 0px 20px 20px;
     color: #CDCDCD;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .nav_logout:hover {
