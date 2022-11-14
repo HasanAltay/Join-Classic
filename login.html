@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Log in</title>
+    <link rel="icon" href="./img/logo.png">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/nav_left.css">
+    <link rel="stylesheet" href="./css/top_bar.css">
+    <link rel="stylesheet" href="./css/summary.css">
+    <link rel="stylesheet" href="./css/board.css">
+    <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="stylesheet" href="./css/add_task.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/privacy.css">
+    <link rel="stylesheet" href="./css/imprint.css">
+    <script src="./script.js"></script>
+    <script src="./js/add_task.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/summary.js"></script>
+    <script src="./js/nav_left.js"></script>
+    <script src="./js/top_bar.js"></script>
+    <script src="./logins.js"></script>
+    <script src="./backend/mini_backend.js"></script>
+</head>
+<body onload="init(); login(); logoAnimation();">
+    <div id="animation" class="animation"></div> 
+    <div id="login" class="login">
+            <div class="login_frame">
+        <div class="login_access" id="login_access">
+        </div> 
+        <div class="login_join">
+            <a>Not a join user?</a><button class="login_btn_join" onclick="signUp()">Sign up</button>
+        </div>       
+    </div> 
+    </div>
+    
+</body>
+</html>
