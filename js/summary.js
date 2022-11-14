@@ -28,10 +28,11 @@ function generateGreeting(time) {
     else if (time > 1800 && time < 2400) {
         greeting.push('Good evening');
     }
-    else if (time > 2400 && time < 1200) {
+    else if (time > 0000 && time < 1200) {
         greeting.push('Good morning');
     }
     let greet = greeting[0];
+    console.log(greet);
     document.getElementById('sum_daytime').innerHTML = `${greet},`;
 }
 

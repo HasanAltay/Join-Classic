@@ -1,4 +1,19 @@
-function init() {
+let users = [];
+setURL('https://gruppe-375.developerakademie.net/backend');
+
+async function init() {
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('users')) || [];
+}
+
+
+function addUser() {
+    users.push(username.value);
+    backend.setItem('users', JSON.stringify(users));
+}
+
+
+function loginAndAnimation() {
     login();
     logoAnimation();
 }
@@ -69,19 +84,19 @@ function signUp() {
             <span class="font61-700">Sign up</span><br>
             <div class="login_blue_line"></div><br><br>
             <div class="login_pos_rel">
-            <input placeholder="Name" id="name_sign" type="name" class="login_input">
+            <input placeholder="Name" id="username" type="name" class="login_input">
                 <img src="./img/name.png" class="sign_name_png">
                 <br><br>
-                <input placeholder="Email" id="email_sign" type="email" class="login_input">
+                <input placeholder="Email" id="email_signed" type="email" class="login_input">
                 <img src="./img/mail.png" class="sign_mail_png">
                 <br><br>
-                <input placeholder="Password" id="password_sign" type="password" class="login_input">
+                <input placeholder="Password" id="password_signed" type="password" class="login_input">
                 <img src="./img/secure.png" class="sign_secure_png">
                 <br>
             </div>
             <br>
             <div>
-                <button class="button_dark" onclick="hideLogin()">Sign up</button>
+                <button class="button_dark" onclick="addUser()">Sign up</button>
             </div>
     `;
 }
