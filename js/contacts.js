@@ -183,7 +183,7 @@ let contacts = [
   },
 ];
 
-async function initContacts() {
+function initContacts() {
   console.log("initContacts()");
   document.getElementById("contacts-id").innerHTML += drawContactHTML();
   console.log(contacts["John"]);
@@ -215,18 +215,17 @@ function drawContactHTML() {
 
 function insertContactToContactList(i, contact) {
   console.log("insertContactToContactList");
-  document.getElementById(
-    "contact-list"
-  ).innerHTML += `<span id="${contact["letter"]} " class="con_alphabeticHints">${contact["letter"]}</span>`;
+  document.getElementById("contact-list").innerHTML += `
+  <div id="${contact["letter"]}>
+    <span id="label-${contact["letter"]} " class="con_alphabeticHints">${contact["letter"]}</span>
+  </div>`;
 
   for (let i = 0; i < contact["names"].length; i++) {
     const element = contact["names"][i];
     const element2 = contact["lastNames"][i];
     const fName = element.charAt(0);
     const lName = element2.charAt(0);
-    document.getElementById(
-      "contact-list"
-    ).innerHTML += `<div id="${contact["letter"]}-${i}" class="con_contactListElement">
+    document.getElementById('${contact["letter"]}').innerHTML += `<div id="${contact["letter"]}-${i}" class="con_contactListElement">
     <span class="con_contactListElementLabel">${fName}${lName}</span>
     <span>${element} ${element2}</span>
     </div>`;
