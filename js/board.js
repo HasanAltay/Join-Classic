@@ -102,7 +102,8 @@ function openTodoInfo(){
 
 
 function generateTodoHTML(element) {
-    return ` <div class="bo_pop_up.d-none">
+    return `<div class="bo_pop_up d-none">
+
                 <div class="bo_popup_todo_Info">
                 
                      <span class="bo_department">${element['department']}</span>
