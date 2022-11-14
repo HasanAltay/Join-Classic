@@ -1,3 +1,7 @@
+.hoverEffect span:hover {
+  cursor: pointer;
+}
+
 .con_contacts {
   /* position: absolute;
   top: 200px;
@@ -80,7 +84,7 @@
 .con_contactListElement {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   padding: 15px 25px;
   gap: 35px;
 
@@ -121,11 +125,30 @@
 }
 
 .con_contactListElementLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 42px;
   height: 42px;
   border-radius: 100%;
   border: 1px solid #000000;
-  align-self: baseline;
+}
+
+.con_contactListElementEmail {
+  width: 140px;
+  height: 19px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  /* or 19px */
+
+  display: flex;
+  align-items: center;
+
+  color: #007cee;
 }
 
 .con_contactInformation {
