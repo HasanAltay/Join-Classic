@@ -92,7 +92,7 @@ function startDragging(id) {
 
 
 function generateTodoHTML(element) {
-    return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo">
+    return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
 
                 <div class="bo_todo_infos">
                      <span class="bo_department">${element['department']}</span>

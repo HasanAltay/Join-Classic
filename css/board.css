@@ -28,6 +28,7 @@
     align-items: center;
 }
 
+
 .bo_h1 {
     font-size: 61px;
 }
@@ -97,10 +98,6 @@
 .bo_drag-area {
     height: 376px;
     width: 215px;
-    /* background: #F5F5F5; */
-    /* background-color: rgb(200, 190, 190); */
-    /* border-style: dashed; */
-    /* margin-left: 50px; */
     margin-right: 50px;
     margin-top: 12px;
     display: flex;
@@ -112,7 +109,6 @@
 .bo_todo {
     background-color: white;
     width: 210px;
-    /* height: 186px; */
     box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 4%);
     border-radius: 30px;
     margin-bottom: 10px;
