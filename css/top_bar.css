@@ -11,6 +11,9 @@
     background-color: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     z-index: 8;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 }
 
 .nav_top_bar span {
@@ -81,5 +84,5 @@
 
 .nav_logout:hover {
     color: white;
-    background-color: #091931;
+    background-color: #29ABE2;
 }

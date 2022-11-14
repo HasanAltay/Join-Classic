@@ -31,7 +31,7 @@ function login() {
             </div>
             <br>
             <div class="login_btns_dflex">
-                <button class="btn_dark" onclick="hideLogin()">Log in</button>
+                <button class="button_dark" onclick="hideLogin()">Log in</button>
                 <button class="btn_bright" onclick="hideLogin()">Guest Log in</button>
             </div>
     `;
@@ -40,7 +40,7 @@ function login() {
 
 function forgotPassword() {
     document.getElementById('login_access').innerHTML = /*html*/`
-            <div class="c-pointer scale-105" onclick="login()">
+            <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
                 <img src="./img/left_arrow_blue.png">
             </div>
             <span class="font61-700">i forgot my password</span><br>
@@ -55,7 +55,7 @@ function forgotPassword() {
             </div>
             <br>
             <div>
-                <button class="btn_dark" onclick="resetPassword()">Send me the email</button>
+                <button class="button_dark" onclick="resetPassword()">Send me the email</button>
             </div>
     `;
 }
@@ -63,7 +63,7 @@ function forgotPassword() {
 
 function signUp() {
     document.getElementById('login_access').innerHTML = /*html*/`
-            <div class="c-pointer scale-105" onclick="login()">
+            <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
                 <img src="./img/left_arrow_blue.png">
             </div>
             <span class="font61-700">Sign up</span><br>
@@ -81,7 +81,7 @@ function signUp() {
             </div>
             <br>
             <div>
-                <button class="btn_dark" onclick="hideLogin()">Sign up</button>
+                <button class="button_dark" onclick="hideLogin()">Sign up</button>
             </div>
     `;
 }
@@ -89,7 +89,7 @@ function signUp() {
 
 function resetPassword() {
     document.getElementById('login_access').innerHTML = /*html*/`
-    <div class="c-pointer scale-105" onclick="forgotPassword()">
+    <div class="c-pointer scale-105 login_arrow_left" onclick="forgotPassword()">
         <img src="./img/left_arrow_blue.png">
     </div>
     <span class="font61-700">Reset your password</span><br>
@@ -107,7 +107,7 @@ function resetPassword() {
     </div>
     <br>
     <div>
-        <button class="btn_dark" onclick="hideLogin()">Continue</button>
+        <button class="button_dark" onclick="hideLogin()">Continue</button>
     </div>
 `;
 }
