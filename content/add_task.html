@@ -46,9 +46,9 @@
                 </div>
             </div>
             <div class="task-btns">
-                <button id="bright-button" class="button_bright clear-btn" onmouseover="clearIconHover()" onmouseout="clearIconDefault()" onmousedown="clearIconDefault()" onmouseup="clearIconHover()">
+                <button id="bright-button" class="clear-btn" onmouseover="addHover('./img/cancel-hover.png')" onmouseleave="removeHover('./img/cancel.png')" onmousedown="activeMode('./img/cancel.png')" onmouseup="inactiveMode('./img/cancel-hover.png')">
                     <span class="clear">Clear</span>
-                    <img id="clear-icon" src="./img/cancel.png">
+                    <img id="clear-icon" src="./img/cancel.png" onmousedown="activeMode('./img/cancel.png')">
                 </button>
                 <button class="button_dark create-task-btn">
                     <span class="create-task">Create Task</span>

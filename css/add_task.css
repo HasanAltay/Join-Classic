@@ -331,10 +331,44 @@
 }
 
 .clear-btn {
-    border-radius: 10px !important;
-    padding: 10px 18px !important;
-    background-color: #F6F7F9 !important;
+    border-radius: 10px;
+    padding: 10px 18px;
+    background-color: #F6F7F9;
     gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 700;
+    color: #2A3647;
+    border: 1px solid #2A3647;
+    height: 51px;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+    white-space: nowrap;
+}
+
+.defaultButton {
+    color: #2A3647 !important;
+    border: 1px solid #2A3647 !important;
+  }
+
+.disable {
+    pointer-events: none;
+}
+
+.clear-btn:hover {
+    border: 2px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: all 100ms ease-in-out;
+}
+
+.clear-btn:active {
+    border: 1px solid black;
+    color: #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .clear {

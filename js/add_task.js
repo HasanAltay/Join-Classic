@@ -1,8 +1,20 @@
-function clearIconHover() {
-    document.getElementById('clear-icon').src='./img/cancel-hover.png';
+function addHover(img) {
+    document.getElementById('clear-icon').src= img;
 }
 
-function clearIconDefault() {
-    document.getElementById('clear-icon').src='./img/cancel.png';
+function removeHover(img) {
+    document.getElementById('clear-icon').src= img;
+}
+
+function activeMode(img) {
+    document.getElementById('bright-button').classList.add('defaultButton');
+    document.getElementById('clear-icon').src = img;
+    console.log('active');
+}
+
+function inactiveMode(img) {
+    document.getElementById('bright-button').classList.remove('defaultButton');
+    document.getElementById('clear-icon').src = img;
+    console.log('inactive');
 }
 
