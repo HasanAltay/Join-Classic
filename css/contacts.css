@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
+.hoverEffect {
+  cursor: pointer;
+}
+
 .con_contacts {
   /* position: absolute;
   top: 200px;
@@ -20,7 +24,7 @@
   position: fixed;
   width: 453px;
   /* width: 30%; */
-  height: 935px;
+  height: 88vh;
 
   top: 89px;
   left: 232px;
@@ -155,6 +159,7 @@
   display: flex;
   flex-direction: column;
   width: 70%;
+  height: 88vh;
 }
 
 .con_contactInformationHeader {
@@ -231,4 +236,27 @@
   order: 2;
   flex-grow: 0;
   white-space: nowrap;
+}
+
+.con_ContactInformationAddButton {
+  box-sizing: border-box;
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 18px 10px;
+gap: 10px;
+
+position: absolute;
+width: 193px;
+height: 53px;
+left: 1195px;
+top: 638px;
+
+background: #2A3647;
+border: 1px solid #2A3647;
+border-radius: 10px;
 }

@@ -183,6 +183,18 @@ let contacts = [
   },
 ];
 
+let labelColors = [
+                    "#FF7A00",
+                    "#9327FF",
+                    "#29ABE2",
+                    "#FC71FF",
+                    "#02CF2F",
+                    "#AF1616",
+                    "#462F8A"
+];
+
+let currentLabelColor = 0;
+
 function initContacts() {
   console.log("initContacts()");
   document.getElementById("contacts-id").innerHTML += drawContactHTML();
@@ -207,6 +219,10 @@ function drawContactHTML() {
             <div class="con_vector5"></div>
             <span class="con_contactInformationStartHeaderTwo">Better with a team</span>
         </div>
+        <button class="con_ContactInformationAddButton hoverEffect" onclick="newContact()">
+          <span style="font-size: 21px; color: white;">New contact</span>
+          <img src="./img/add_contact.png">
+        </button>
         <div class="con_contactInformationName"></div>
         <div class="con_contactInformationDetails"></div>
     </div>
@@ -236,4 +252,38 @@ function insertContactToContactList(i, contact) {
       
     </div>`;
   }
+}
+
+
+function newContact() {
+  alert('You wanna add new contact?!');
+}
+
+function addNewContact(contactName, contactPhone, contactMail) {
+  let newContactFirstName = contactName.split(" ")[0];
+  let newContactLastName = contactName.split(" ")[1];
+  let firstLetterFirstName = newContactFirstName.charAt(0);
+  let firstLetterLastName = newContactLastName.charAt(0);
+  let currentNumberOfContactsAt = contacts[firstLetterOfNewContact]['names'].length;
+
+  contacts[firstLetterOfNewContact]['names'].push(newContactFirstName);
+  contacts[firstLetterOfNewContact]['lastNames'].push(newContactFirstName);
+
+  document.getElementById(`${firstLetterFirstName}`).innerHTML += 
+    `<div id="${firstLetterOfNewContact}-${currentNumberOfContactsAt+1}" class="con_contactListElement hoverEffect">
+      <span class="con_contactListElementLabel">${firstLetterFirstName}${firstLetterLastName}</span>
+      <div>
+        <span>${newContactFirstName} ${newContactLastName}</span>
+        <span class="con_contactListElementEmail">${element3}</span>
+      </div>
+      
+    </div>`;
+
+
+
+
+
+
+  document.getElementById('')
+  currentLabelColor++;
 }
