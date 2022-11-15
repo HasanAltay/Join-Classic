@@ -183,22 +183,29 @@ let contacts = [
   },
 ];
 
-let labelColors = [
-                    "#FF7A00",
-                    "#9327FF",
-                    "#29ABE2",
-                    "#FC71FF",
-                    "#02CF2F",
-                    "#AF1616",
-                    "#462F8A"
+var labelColors = [
+  BG_COLOR_SUPERNOVA,
+  BG_COLOR_TABASCO,
+  BG_COLOR_WEBORANGE,
+  BG_COLOR_BLAZEORANGE,
+  BG_COLOR_MALACHITE,
+  BG_COLOR_APPLE,
+  BG_COLOR_CYAN_AQUA,
+  BG_COLOR_CERULEAN,
+  BG_COLOR_BLUE_RIBBON,
+  BG_COLOR_JAVA,
+  BG_COLOR_PURPLE_PIZZAZZ,
+  BG_COLOR_HELIOTROPE,
+  BG_COLOR_ELECTRIC_VIOLET
 ];
 
-let currentLabelColor = 0;
+
+
+var currentLabelColor = 0;
 
 function initContacts() {
   console.log("initContacts()");
   document.getElementById("contacts-id").innerHTML += drawContactHTML();
-  // console.log(contacts["John"]);
   console.log(`contacts.length: ${contacts.length}`);
 
   for (let i = 0; i < contacts.length; i++) {
@@ -242,6 +249,14 @@ function insertContactToContactList(i, contact) {
     const element3 = contact["mail"][i];
     const fName = element.charAt(0);
     const lName = element2.charAt(0);
+
+    if(currentLabelColor >= labelColors.length) {
+      currentLabelColor = 0;
+    }
+   
+    const bgColor = labelColors[currentLabelColor];
+    currentLabelColor++;
+    
     document.getElementById(`${contact["letter"]}`).innerHTML += 
     `<div id="${contact["letter"]}-${i}" class="con_contactListElement hoverEffect">
       <span class="con_contactListElementLabel">${fName}${lName}</span>
@@ -251,6 +266,7 @@ function insertContactToContactList(i, contact) {
       </div>
       
     </div>`;
+    document.getElementById(`${contact["letter"]}-${i}`).style.backgroundColor = bgColor;
   }
 }
 
