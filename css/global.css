@@ -11,6 +11,12 @@
     min-height: 100vh;
 }
 
+.no_sel {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
 .font61-700 {
     font-weight: 700;
     font-size: 61px;
