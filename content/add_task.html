@@ -12,7 +12,7 @@
             </div>
             <div class="span-input">
                 <span class="category">Category</span>
-                <div class= "category-selection">
+                <div id="task" class="category-selection">
                     <span class="categorybox">Select task category</span>
                     <img class="drop-down" src="./img/open.png">
                 </div>
@@ -28,7 +28,7 @@
         <div class="right">
             <div class="span-input">
                 <span class="date">Due Date</span>
-                <input class="datebox" type="date">  
+                <input class="datebox" type="date">
             </div>
             <div class="span-input">
                 <span class="prio">Prio</span>
@@ -41,20 +41,23 @@
             <div class="span-input">
                 <span class="subtasks">Subtasks</span>
                 <div class="subtasks-box">
-                    <input class="subtasks-input" type="text" placeholder="Add new subtask">
-                    <img class="plus-icon" src="./img/plus.png">
+                    <input id="input_subtask" class="subtasks-input" type="text" placeholder="Add new subtask">
+                    <img class="plus-icon" src="./img/plus.png" onclick="showSubtask()">
                 </div>
-            </div>
-            <div class="task-btns">
-                <button id="bright-button" class="clear-btn" onmouseover="addHover('./img/cancel-hover.png')" onmouseleave="removeHover('./img/cancel.png')" onmousedown="activeMode('./img/cancel.png')" onmouseup="inactiveMode('./img/cancel-hover.png')">
-                    <span class="clear">Clear</span>
-                    <img id="clear-icon" src="./img/cancel.png" onmousedown="activeMode('./img/cancel.png')">
-                </button>
-                <button class="button_dark create-task-btn">
-                    <span class="create-task">Create Task</span>
-                    <img src="./img/check.png">
-                </button>
+                <ul id="ul_subtask"></ul>
             </div>
         </div>
+    </div>
+    <div class="task-btns">
+        <button id="bright-button" class="clear-btn" onmouseover="addHover('./img/cancel-hover.png')"
+            onmouseleave="removeHover('./img/cancel.png')" onmousedown="activeMode('./img/cancel.png')"
+            onmouseup="inactiveMode('./img/cancel-hover.png')">
+            <span class="clear">Clear</span>
+            <img id="clear-icon" src="./img/cancel.png" onmousedown="activeMode('./img/cancel.png')">
+        </button>
+        <button class="button_dark create-task-btn">
+            <span class="create-task">Create Task</span>
+            <img src="./img/check.png">
+        </button>
     </div>
 </div>
