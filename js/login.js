@@ -1,15 +1,8 @@
-let users = [];
-setURL('https://gruppe-375.developerakademie.net/backend');
-
-async function init() {
-    await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
+function backgroundAnimation() {
+    var pix = document.getElementsByClassName("pixel");
+    for (var i = 0; i < pix.length; i++) {
+    pix[i].style.animationDelay = Math.ceil(Math.random()*5000)+"ms";
 }
-
-
-function addUser() {
-    users.push(username.value);
-    backend.setItem('users', JSON.stringify(users));
 }
 
 
@@ -54,10 +47,10 @@ function login() {
             <span class="font61-700">Log in</span><br>
             <div class="login_blue_line"></div><br><br>
             <div class="login_pos_rel">
-                <input placeholder="Email" id="email" type="email" class="login_input">
+                <input placeholder="Email" id="email_login" type="email" class="login_input">
                 <img src="./img/mail.png" class="login_mail_png">
                 <br><br>
-                <input placeholder="Password" id="password" type="password" class="login_input">
+                <input placeholder="Password" id="password_login" type="password" class="login_input">
                 <img src="./img/secure.png" class="login_secure_png">
                 <br>
             </div>
@@ -88,10 +81,10 @@ function signUp() {
                 <input placeholder="Name" id="username" type="text" class="login_input">
                 <img src="./img/name.png" class="sign_name_png">
                 <br><br>
-                <input placeholder="Email" id="email_signed" type="email" class="login_input">
+                <input placeholder="Email" id="email" type="email" class="login_input">
                 <img src="./img/mail.png" class="sign_mail_png">
                 <br><br>
-                <input placeholder="Password" id="password_signed" type="password" class="login_input">
+                <input placeholder="Password" id="password" type="password" class="login_input">
                 <img src="./img/secure.png" class="sign_secure_png">
                 <br>
             </form>
