@@ -7,8 +7,8 @@ async function init() {
 }
 
 
-function addUser() {
-    users.push(username.value);
+function registerUser() {
+    users.push({username:username.value, email:email.value, password:password.value});
     backend.setItem('users', JSON.stringify(users));
 }
 
