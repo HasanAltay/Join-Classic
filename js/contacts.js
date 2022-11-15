@@ -257,9 +257,9 @@ function insertContactToContactList(i, contact) {
     const bgColor = labelColors[currentLabelColor];
     currentLabelColor++;
     
-    document.getElementById(`${contact["letter"]}`).innerHTML += 
+    document.getElementById(`${contact["letter"]}`).innerHTML +=
     `<div id="${contact["letter"]}-${i}" class="con_contactListElement hoverEffect">
-      <span class="con_contactListElementLabel">${fName}${lName}</span>
+      <span class="con_contactListElementLabel">${fName}${lName}</span> .  
       <div>
         <span>${element} ${element2}</span>
         <span class="con_contactListElementEmail">${element3}</span>
