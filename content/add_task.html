@@ -4,22 +4,25 @@
         <div class="left">
             <div class="span-input">
                 <span class="title">Title</span>
-                <input class="titlebox" type="text" placeholder="Enter a title">
+                <input id="title" class="titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''" onblur="this.placeholder='Enter a title'">
             </div>
             <div class="span-input">
                 <span class="description">Description</span>
-                <textarea class="descriptionbox" placeholder="Enter a description"></textarea>
+                <textarea id="description" class="descriptionbox" placeholder="Enter a description" onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
             </div>
             <div class="span-input">
                 <span class="category">Category</span>
                 <div id="task" class="category-selection">
                     <span class="categorybox">Select task category</span>
-                    <img class="drop-down" src="./img/open.png">
+                    <img onclick="showCategory()" class="dropdown" src="./img/open.png">
+                </div>
+                <div id="contentCategory" class="dropdown-content">
+                    <p>Hello World!</p>
                 </div>
             </div>
             <div class="span-input">
                 <span class="assigned">Assigned to</span>
-                <div class="assign-selection">
+                <div id="assign" class="assign-selection">
                     <span class="assignedbox">Select contacts to assign</span>
                     <img class="drop-down" src="./img/open.png">
                 </div>
@@ -41,10 +44,12 @@
             <div class="span-input">
                 <span class="subtasks">Subtasks</span>
                 <div class="subtasks-box">
-                    <input id="input_subtask" class="subtasks-input" type="text" placeholder="Add new subtask">
-                    <img class="plus-icon" src="./img/plus.png" onclick="showSubtask()">
+                    <input onclick="clear_subtaskInput()" id="inputSubtask" class="subtasks-input" type="text" placeholder="Add new subtask" onfocus="this.placeholder=''" onblur="this.placeholder='Add new subtask'">
+                    <div class="typesubtask" id="img-replace">
+                        <img id="img-subtask" class="plus-icon" src="./img/plus.png">
+                    </div>
                 </div>
-                <ul id="ul_subtask"></ul>
+                <ul class="list-subtask" id="list_subtask"></ul>
             </div>
         </div>
     </div>
@@ -55,7 +60,7 @@
             <span class="clear">Clear</span>
             <img id="clear-icon" src="./img/cancel.png" onmousedown="activeMode('./img/cancel.png')">
         </button>
-        <button class="button_dark create-task-btn">
+        <button onclick="addTask()" class="button_dark create-task-btn">
             <span class="create-task">Create Task</span>
             <img src="./img/check.png">
         </button>

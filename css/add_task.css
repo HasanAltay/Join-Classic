@@ -110,6 +110,10 @@
     color: #000000;
 }
 
+.dropdown-content {
+    display: none;
+}
+
 .assigned {
     width: 118px;
     height: 25px;
@@ -299,6 +303,30 @@
     outline: none;
 }
 
+.typesubtask {
+    display: flex;
+}
+
+.img-cancelSubtask {
+    padding-right: 15.76px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.img-addSubtask {
+    padding-left: 13px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.list-subtask {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 18px;
+}
+
 .plus-icon {
     cursor: pointer;
 }
@@ -306,6 +334,7 @@
 .task-btns {
     display: flex;
     justify-content: flex-end;
+    width: 963.46px;
 }
 
 .create-task-btn {
@@ -404,6 +433,16 @@
 .datebox[type="date"] {
     font-size: 21px;
     color: #D1D1D1;
+}
+
+.checkbox[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.subtask-item {
+    margin-left: 20px;
+    line-height: 120%;
 }
 
 .prio-urgent:hover {
