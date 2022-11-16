@@ -75,3 +75,21 @@ function showDefaultSubtask() {
 function showCategory() {
     document.getElementById('contentCategory').classList.remove('dropdown-content');
 }
+
+function changeButtonPrioUrgent() {
+    document.getElementById('prioUrgent').style.backgroundColor="#FF3D00";
+    document.getElementById('whiteUrgent').style.color="#FFFFFF";
+    document.getElementById('img-up-white').src="./img/arrowUpWhite.png"
+}
+
+function changeButtonPrioMedium() {
+    document.getElementById('prioMedium').style.backgroundColor="#FFA800";
+    document.getElementById('whiteMedium').style.color="#FFFFFF";
+    document.getElementById('img-middle-white').src="./img/arrowMiddleWhite.png"
+}
+
+function changeButtonPrioLow() {
+    document.getElementById('prioLow').style.backgroundColor="#7AE229";
+    document.getElementById('whiteLow').style.color="#FFFFFF";
+    document.getElementById('img-down-white').src="./img/arrowDownWhite.png"
+}
