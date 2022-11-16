@@ -205,8 +205,8 @@ var currentLabelColor = 0;
 
 function initContacts() {
   console.log("initContacts()");
-  document.getElementById("contacts-id").innerHTML += drawContactHTML();
-  console.log(`contacts.length: ${contacts.length}`);
+  // document.getElementById("contacts-id").innerHTML += drawContactHTML();
+  // console.log(`contacts.length: ${contacts.length}`);
 
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
@@ -250,12 +250,12 @@ function insertContactToContactList(i, contact) {
     const fName = element.charAt(0);
     const lName = element2.charAt(0);
 
-    if(currentLabelColor >= labelColors.length) {
-      currentLabelColor = 0;
-    }
+    // if(currentLabelColor >= labelColors.length) {
+    //   currentLabelColor = 0;
+    // }
    
-    const bgColor = labelColors[currentLabelColor];
-    currentLabelColor++;
+    // const bgColor = labelColors[currentLabelColor];
+    // currentLabelColor++;
     
     document.getElementById(`${contact["letter"]}`).innerHTML +=
     `<div id="${contact["letter"]}-${i}" class="con_contactListElement hoverEffect">
@@ -266,7 +266,7 @@ function insertContactToContactList(i, contact) {
       </div>
       
     </div>`;
-    document.getElementById(`${contact["letter"]}-${i}`).style.backgroundColor = bgColor;
+    // document.getElementById(`${contact["letter"]}-${i}`).style.backgroundColor = bgColor;
   }
 }
 
