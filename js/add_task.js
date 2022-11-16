@@ -73,13 +73,18 @@ function showDefaultSubtask() {
 }
 
 function showCategory() {
-    document.getElementById('contentCategory').classList.remove('dropdown-content');
+    let selection = document.getElementById('contentCategory');
+    if (selection.style.display == 'block') {
+        selection.style.display = 'none';
+    } else {
+        selection.style.display = 'block';
+    }
 }
 
 function changeButtonPrioUrgent() {
     document.getElementById('prioUrgent').style.backgroundColor="#FF3D00";
     document.getElementById('whiteUrgent').style.color="#FFFFFF";
-    document.getElementById('img-up-white').src="./img/arrowUpWhite.png"
+    document.getElementById('img-up-white').src="./img/arrowUpWhite.png"     
 }
 
 function changeButtonPrioMedium() {

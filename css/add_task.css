@@ -70,10 +70,6 @@
     outline: none;
 }
 
-.drop-down {
-    cursor: pointer;
-}
-
 .category {
     margin-top: 34px;
     width: 93px;
@@ -87,6 +83,8 @@
 }
 
 .category-selection {
+    position: relative;
+    display: inline-block;
     width: 422px;
     height: 51px;
     display: flex;
@@ -100,6 +98,7 @@
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     margin-top: 8px;
+    cursor: pointer;
 }
 
 .categorybox {
@@ -110,8 +109,14 @@
     color: #000000;
 }
 
+.show {display: block;}
+
 .dropdown-content {
     display: none;
+}
+
+.dropdown-item:hover {
+    background-color: #D1D1D1;
 }
 
 .assigned {
@@ -140,6 +145,7 @@
     background: #FFFFFF;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
+    cursor: pointer;
 }
 
 .assignedbox {

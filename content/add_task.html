@@ -12,19 +12,27 @@
             </div>
             <div class="span-input">
                 <span class="category">Category</span>
-                <div id="task" class="category-selection">
+                <div onclick="showCategory()" id="task" class="category-selection">
                     <span class="categorybox">Select task category</span>
-                    <img onclick="showCategory()" class="dropdown" src="./img/open.png">
+                    <img src="./img/open.png">
                 </div>
                 <div id="contentCategory" class="dropdown-content">
-                    <p>Hello World!</p>
+                    <div class="dropdown-item"><span>New category</span></div>
+                    <div class="dropdown-item">
+                        <span>Sales</span>
+                        <img src="./img/sales-img.png">
+                    </div>
+                    <div class="dropdown-item">
+                        <span>Backoffice</span>
+                        <img src="./img/backoffice-img.png">
+                    </div>
                 </div>
             </div>
             <div class="span-input">
                 <span class="assigned">Assigned to</span>
                 <div id="assign" class="assign-selection">
                     <span class="assignedbox">Select contacts to assign</span>
-                    <img class="drop-down" src="./img/open.png">
+                    <img src="./img/open.png">
                 </div>
             </div>
         </div>
