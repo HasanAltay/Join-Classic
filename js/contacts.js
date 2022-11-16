@@ -183,30 +183,35 @@ let contacts = [
   },
 ];
 
-var labelColors = [
-  BG_COLOR_SUPERNOVA,
-  BG_COLOR_TABASCO,
-  BG_COLOR_WEBORANGE,
-  BG_COLOR_BLAZEORANGE,
-  BG_COLOR_MALACHITE,
-  BG_COLOR_APPLE,
-  BG_COLOR_CYAN_AQUA,
-  BG_COLOR_CERULEAN,
-  BG_COLOR_BLUE_RIBBON,
-  BG_COLOR_JAVA,
-  BG_COLOR_PURPLE_PIZZAZZ,
-  BG_COLOR_HELIOTROPE,
-  BG_COLOR_ELECTRIC_VIOLET
-];
+var labelColors;
+
+var currentLabelColor;
 
 
+function initGlobalVariables() {
+  currentLabelColor = 0;
 
-var currentLabelColor = 0;
+  labelColors = [
+    BG_COLOR_SUPERNOVA,
+    BG_COLOR_TABASCO,
+    BG_COLOR_WEBORANGE,
+    BG_COLOR_BLAZEORANGE,
+    BG_COLOR_MALACHITE,
+    BG_COLOR_APPLE,
+    BG_COLOR_CYAN_AQUA,
+    BG_COLOR_CERULEAN,
+    BG_COLOR_BLUE_RIBBON,
+    BG_COLOR_JAVA,
+    BG_COLOR_PURPLE_PIZZAZZ,
+    BG_COLOR_HELIOTROPE,
+    BG_COLOR_ELECTRIC_VIOLET
+  ];
+}
+
 
 function initContacts() {
   console.log("initContacts()");
-  // document.getElementById("contacts-id").innerHTML += drawContactHTML();
-  // console.log(`contacts.length: ${contacts.length}`);
+  initGlobalVariables();
 
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
@@ -214,27 +219,6 @@ function initContacts() {
   }
 }
 
-function drawContactHTML() {
-  console.log("drawContactHTML()");
-  return /*html*/ `
-    <div id="contacts-list-container" class="con_contactsListContainer">
-        <div id="contact-list" class="con_contactList"></div>
-    </div>
-    <div id="contact-information" class="con_contactInformation">
-        <div id="contact-information-header" class="con_contactInformationHeader">
-            <span class="con_contactInformationStartHeader">Contacts</span>
-            <div class="con_vector5"></div>
-            <span class="con_contactInformationStartHeaderTwo">Better with a team</span>
-        </div>
-        <button class="con_ContactInformationAddButton hoverEffect" onclick="newContact()">
-          <span style="font-size: 21px; color: white;">New contact</span>
-          <img src="./img/add_contact.png">
-        </button>
-        <div class="con_contactInformationName"></div>
-        <div class="con_contactInformationDetails"></div>
-    </div>
-    `;
-}
 
 function insertContactToContactList(i, contact) {
   console.log("insertContactToContactList");
@@ -250,23 +234,23 @@ function insertContactToContactList(i, contact) {
     const fName = element.charAt(0);
     const lName = element2.charAt(0);
 
-    // if(currentLabelColor >= labelColors.length) {
-    //   currentLabelColor = 0;
-    // }
+    if(currentLabelColor >= labelColors.length) {
+      currentLabelColor = 0;
+    }
    
-    // const bgColor = labelColors[currentLabelColor];
-    // currentLabelColor++;
+    const bgColor = labelColors[currentLabelColor];
+    currentLabelColor++;
     
     document.getElementById(`${contact["letter"]}`).innerHTML +=
     `<div id="${contact["letter"]}-${i}" class="con_contactListElement hoverEffect">
-      <span class="con_contactListElementLabel">${fName}${lName}</span> .  
+      <span id="label-${contact["letter"]}-${i}" class="con_contactListElementLabel">${fName}${lName}</span> .  
       <div>
         <span>${element} ${element2}</span>
         <span class="con_contactListElementEmail">${element3}</span>
       </div>
       
     </div>`;
-    // document.getElementById(`${contact["letter"]}-${i}`).style.backgroundColor = bgColor;
+    document.getElementById(`label-${contact["letter"]}-${i}`).style.backgroundColor = bgColor;
   }
 }
 
@@ -274,6 +258,7 @@ function insertContactToContactList(i, contact) {
 function newContact() {
   alert('You wanna add new contact?!');
 }
+
 
 function addNewContact(contactName, contactPhone, contactMail) {
   let newContactFirstName = contactName.split(" ")[0];
@@ -300,6 +285,6 @@ function addNewContact(contactName, contactPhone, contactMail) {
 
 
 
-  document.getElementById('')
+  // document.getElementById('')
   currentLabelColor++;
 }
