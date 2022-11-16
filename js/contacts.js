@@ -208,6 +208,8 @@ function initGlobalVariables() {
     BG_COLOR_ELECTRIC_VIOLET,
   ];
 
+  
+
   last_id = "XX";
 }
 
@@ -293,10 +295,6 @@ function addNewContact(contactName, contactPhone, contactMail) {
 }
 
 function contactClicked(given_id) {
-  console.log("contactClicked()");
-  console.log(`last_id: ${last_id}`);
-  console.log(`given_id: ${given_id}`);
-
   if (given_id != last_id) {
       console.log("given_id != last_id");
       document.getElementById(given_id).style.backgroundColor = "#2A3647";
@@ -304,13 +302,15 @@ function contactClicked(given_id) {
     } else if (given_id == last_id) {
       document.getElementById(given_id).style.backgroundColor = "#FFFFFF";
       document.getElementById(given_id).style.color = "#000000";
-    }
-
-    if(last_id != "XX") {
-      document.getElementById(last_id).style.backgroundColor = "#FFFFFF";
-      document.getElementById(last_id).style.color = "#000000";
-    }
-  
+    }  
   last_id = given_id;
-  console.log(`last_id: ${last_id}`);
+  showContactInformation(given_id);
+}
+
+
+function showContactInformation(given_id) {
+  let currentContact = Number(given_id.split("-")[1]);
+
+
+console.log(contacts["names"][currentContact]);
 }
