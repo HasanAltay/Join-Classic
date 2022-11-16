@@ -41,7 +41,6 @@ function forgotPassword() {
 
 
 function login() {
-
     document.getElementById('login_access').innerHTML = /*html*/`
             <span class="font61-700">Log in</span>
             <div class="login_blue_line"></div>
@@ -64,11 +63,8 @@ function login() {
             </div>
             <div class="login_join">
         <a>Not a join user?</a><button class="login_btn_join" onclick="signUp()">Sign up</button>
-        </div>
-            
+        </div>   
     `;
-
-
 }
 
 

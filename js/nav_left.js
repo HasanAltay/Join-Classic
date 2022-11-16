@@ -1,6 +1,6 @@
 async function NavRenderSummary() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/summary.html"></div>
+    <div w3-include-html="./content/summary.html" onclick="closeLogout()"></div>
     `;
     await includeHTML();
     summaryPicked(); 
@@ -9,7 +9,7 @@ async function NavRenderSummary() {
 
 async function NavRenderBoard() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/board.html"></div>
+    <div w3-include-html="./content/board.html" onclick="closeLogout()"></div>
     `;
     await includeHTML();
     updateHTML();
@@ -19,7 +19,7 @@ async function NavRenderBoard() {
 
 async function NavRenderAddTask() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/add_task.html"></div>
+    <div w3-include-html="./content/add_task.html" onclick="closeLogout()"></div>
     `;
     await includeHTML();
     addTaskPicked();
@@ -28,7 +28,7 @@ async function NavRenderAddTask() {
 
 async function NavRenderContacts() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/contacts.html"></div>
+    <div w3-include-html="./content/contacts.html" onclick="closeLogout()"></div>
     `;
     await includeHTML();
     contactsPicked();
@@ -38,7 +38,7 @@ async function NavRenderContacts() {
 
 async function NavRenderPrivacy() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/privacy.html"></div>
+    <div w3-include-html="./content/privacy.html" onclick="closeLogout()"></div>
     `;
     await includeHTML();
     privacyPicked();
@@ -47,7 +47,7 @@ async function NavRenderPrivacy() {
 
 async function NavRenderImprint() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/imprint.html"></div>
+    <div w3-include-html="./content/imprint.html" onclick="closeLogout()"></div>
     `;
     await includeHTML();
     imprintPicked();
@@ -56,7 +56,7 @@ async function NavRenderImprint() {
 
 async function NavRenderHelp() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/help.html"></div>
+    <div w3-include-html="./content/help.html" onclick="closeLogout()"></div>
     `;
     await includeHTML();
 }

@@ -364,7 +364,7 @@ html, body {
     }
 
 
-@media (max-width: 430px) {
+@media (max-width: 540px) {
     .pixel {
         width: 12%;
         padding-top: 12%;
@@ -458,5 +458,40 @@ html, body {
             filter: opacity(100%);
         }
         }
+
+}
+
+@media (max-width: 360px) {
+
+    .login_access {
+     transform: scale(75%);   
+    }
+}
+
+@media (max-width: 280px) and (min-height: 653px) {
+
+    .login_access {
+     transform: scale(53%);   
+    }
+}
+
+@media (max-height: 667px) and (min-width: 375px) {
+
+    .login_access {
+     transform: scale(73%);   
+    }
+}
+
+@media (width: 1024px) and (height: 600px) {
+
+    .login_access {
+        transform: scale(95%);   
+       }
+
+    .login_join {
+        top: -50px;
+        right: -240px;
+        transform: scale(80%);
+    }
 
 }
