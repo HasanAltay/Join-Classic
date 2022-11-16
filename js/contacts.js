@@ -293,24 +293,46 @@ function addNewContact(contactName, contactPhone, contactMail) {
 }
 
 function contactClicked(given_id) {
+
+  console.log('contactClicked()');
+  console.log(`last_id: ${last_id}`);
+  console.log(`given_id: ${given_id}`);
+
   if (given_id != last_id) {
-    console.log("given_id != last_id");
     document.getElementById(given_id).style.backgroundColor = "#2A3647";
     document.getElementById(given_id).style.color = "#FFFFFF";
     if (last_id != "XX") {
       document.getElementById(last_id).style.backgroundColor = "#FFFFFF";
       document.getElementById(last_id).style.color = "#000000";
     }
+    last_id = given_id;
+    showContactInformation(given_id);
   } else if (given_id == last_id) {
     document.getElementById(given_id).style.backgroundColor = "#FFFFFF";
     document.getElementById(given_id).style.color = "#000000";
+    last_id = "XX";
   }
-  last_id = given_id;
-  showContactInformation(given_id);
+  // last_id = given_id;
+  
 }
 
 function showContactInformation(given_id) {
   let currentContact = Number(given_id.split("-")[1]);
+  let searchLetter = given_id.split("-")[0];
+  
+  let element = [];
+  for (let index = 0; index < contacts.length; index++) {
+    element.push(contacts[index]["letter"]);
+  }
 
-  // console.log(contacts["names"][currentContact]);
+  let contactIndex = element.indexOf(searchLetter, 0);
+
+  // console.log(`currentContact: ${currentContact}`);
+  // console.log(`letterIndex: ${letterIndex}`);
+  // console.log(`contacts.length: ${contacts.length}`);
+  // console.log(contactIndex);
+
+  let chosenContactsName = contacts[contactIndex]["names"][currentContact];
+  let chosenContactsLastName = contacts[contactIndex]["lastNames"][currentContact];
+  console.log(`You selected contact ${chosenContactsName} ${chosenContactsLastName }`);
 }
