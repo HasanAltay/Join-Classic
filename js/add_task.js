@@ -18,3 +18,15 @@ function inactiveMode(img) {
     console.log('inactive');
 }
 
+function addTask() {
+    let task = document.getElementById('task').innerHTML;
+    let category = document.getElementById('category').innerHTML;
+}
+
+function showSubtask() {
+    let subtask = document.getElementById('input_subtask');
+    document.getElementById('ul_subtask').innerHTML+=`<ul>${subtask.value}</ul>`;
+    subtask.value = '';
+
+}
+

@@ -135,6 +135,7 @@
     height: 51px;
     background: #FFFFFF;
     border-radius: 10px;
+    border: 1px solid #D1D1D1;
 }
 
 .assignedbox {
@@ -288,7 +289,6 @@
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-top: 8px;
-    margin-bottom: 220px;
 }
 
 .subtasks-input {
@@ -382,6 +382,7 @@
     width: 114px;
     height: 25px;
     font-size: 21px; 
+    font-family: 'Inter';
 }
 
 .descriptionbox::placeholder {
@@ -389,6 +390,7 @@
     height: 25px;
     color: #D1D1D1;
     font-size: 21px;
+    font-family: 'Inter';
 }
 
 .subtasks-input::placeholder {
@@ -396,6 +398,7 @@
     height: 25px;
     font-size: 21px;
     color: #D1D1D1;
+    font-family: 'Inter';
 }
 
 .datebox[type="date"] {
