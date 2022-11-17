@@ -29,6 +29,12 @@
     line-height: 120%;
 }
 
+.font21-700 {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+}
+
 .font16-700 {
     font-weight: 700;
     font-size: 16px;
@@ -139,6 +145,10 @@
 
 .mb-40 {
     margin-bottom: 40px;
+}
+
+.mt-25 {
+    margin-top: 25px;
 }
 
 .button_dark {
