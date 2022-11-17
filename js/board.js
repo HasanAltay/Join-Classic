@@ -126,9 +126,9 @@ function generateTodoHTML(element) {
                 <div class="bo_todo_infos">
                      <span class="bo_department font16-400">${element['department']}</span>
                      <br>
-                        <div class="bo_todo_title">${element['title']}</div>
+                        <div class="bo_todo_title font16-700">${element['title']}</div>
                         <div>
-                            <div class="bo_todo_description">${element['description']}</div>
+                            <div class="font16-400">${element['description']}</div>
                         </div>
                  </div>
             </div>
