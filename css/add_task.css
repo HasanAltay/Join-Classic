@@ -70,10 +70,6 @@
     outline: none;
 }
 
-.drop-down {
-    cursor: pointer;
-}
-
 .category {
     margin-top: 34px;
     width: 93px;
@@ -87,6 +83,8 @@
 }
 
 .category-selection {
+    position: relative;
+    display: inline-block;
     width: 422px;
     height: 51px;
     display: flex;
@@ -100,6 +98,7 @@
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     margin-top: 8px;
+    cursor: pointer;
 }
 
 .categorybox {
@@ -108,6 +107,16 @@
     height: 25px;
     font-size: 21px;
     color: #000000;
+}
+
+.show {display: block;}
+
+.dropdown-content {
+    display: none;
+}
+
+.dropdown-item:hover {
+    background-color: #D1D1D1;
 }
 
 .assigned {
@@ -136,6 +145,7 @@
     background: #FFFFFF;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
+    cursor: pointer;
 }
 
 .assignedbox {
@@ -299,6 +309,30 @@
     outline: none;
 }
 
+.typesubtask {
+    display: flex;
+}
+
+.img-cancelSubtask {
+    padding-right: 15.76px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.img-addSubtask {
+    padding-left: 13px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.list-subtask {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 18px;
+}
+
 .plus-icon {
     cursor: pointer;
 }
@@ -306,6 +340,7 @@
 .task-btns {
     display: flex;
     justify-content: flex-end;
+    width: 963.46px;
 }
 
 .create-task-btn {
@@ -404,6 +439,16 @@
 .datebox[type="date"] {
     font-size: 21px;
     color: #D1D1D1;
+}
+
+.checkbox[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.subtask-item {
+    margin-left: 20px;
+    line-height: 120%;
 }
 
 .prio-urgent:hover {
