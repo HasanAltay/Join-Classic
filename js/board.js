@@ -102,19 +102,20 @@ function startDragging(id) {
 
 
 function generateTodoHTML(element) {
-    return `<div class="bo_pop_up d-none">
+    return `<div class="bo_pop_up">
 
                 <div class="bo_popup_todo_Info">
                 
-                     <span class="bo_department">${element['department']}</span>
+                     <span class="bo_popUp_department">${element['department']}</span>
                      <br>
-                        <div class="bo_todo_title"><b>${element['title']}</b></div>
+                        <div class="font61-700">${element['title']}</div>
                         <div>
-                            <div class="bo_font_400">${element['description']}</div>
+                            <div>${element['description']}</div>
                         </div>
-                        <div class="bo_font_700">Due date: 05-08-2022</div>
-                        <div class="bo_font_700">Priority:</div>
-                        <div class="bo_font_700">Assigned to:</div>
+
+                        <div>Due date: 05-08-2022</div>
+                        <div>Priority:</div>
+                        <div>Assigned to:</div>
                  </div>
                 
             </div>
@@ -127,7 +128,7 @@ function generateTodoHTML(element) {
                      <br>
                         <div class="bo_todo_title">${element['title']}</div>
                         <div>
-                            <div>${element['description']}</div>
+                            <div class="bo_todo_description">${element['description']}</div>
                         </div>
                  </div>
             </div>
