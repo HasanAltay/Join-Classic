@@ -1,6 +1,6 @@
 async function NavRenderSummary() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/summary.html" onclick="closeLogout()"></div>
+    <div w3-include-html="./content/summary.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
     summaryPicked(); 
@@ -9,7 +9,7 @@ async function NavRenderSummary() {
 
 async function NavRenderBoard() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/board.html" onclick="closeLogout()"></div>
+    <div w3-include-html="./content/board.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
     updateHTML();
@@ -19,7 +19,7 @@ async function NavRenderBoard() {
 
 async function NavRenderAddTask() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/add_task.html" onclick="closeLogout()"></div>
+    <div w3-include-html="./content/add_task.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
     addTaskPicked();
@@ -28,7 +28,7 @@ async function NavRenderAddTask() {
 
 async function NavRenderContacts() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/contacts.html" onclick="closeLogout()"></div>
+    <div w3-include-html="./content/contacts.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
     contactsPicked();
@@ -38,7 +38,7 @@ async function NavRenderContacts() {
 
 async function NavRenderPrivacy() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/privacy.html" onclick="closeLogout()"></div>
+    <div w3-include-html="./content/privacy.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
     privacyPicked();
@@ -47,7 +47,7 @@ async function NavRenderPrivacy() {
 
 async function NavRenderImprint() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/imprint.html" onclick="closeLogout()"></div>
+    <div w3-include-html="./content/imprint.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
     imprintPicked();
@@ -108,3 +108,84 @@ async function NavRenderHelp() {
         <img src="../img/info.png"><a>Imprint</a></div> 
         `;
     }
+
+
+// Navigation for Mobile Devices
+
+
+        async function NavRenderSummaryMobile() {
+            document.getElementById('includeHTML').innerHTML = `
+            <div w3-include-html="./content/summary.html" onclick="closeLogout(); closeLogoutMobile();"></div>
+            `;
+            await includeHTML();
+            summaryPickedMobile(); 
+        }
+        
+        
+        async function NavRenderBoardMobile() {
+            document.getElementById('includeHTML').innerHTML = `
+            <div w3-include-html="./content/board.html" onclick="closeLogout(); closeLogoutMobile();"></div>
+            `;
+            await includeHTML();
+            updateHTML();
+            boardPickedMobile();
+        }
+        
+        
+        async function NavRenderAddTaskMobile() {
+            document.getElementById('includeHTML').innerHTML = `
+            <div w3-include-html="./content/add_task.html" onclick="closeLogout(); closeLogoutMobile();"></div>
+            `;
+            await includeHTML();
+            addTaskPickedMobile();
+        }
+        
+        
+        async function NavRenderContactsMobile() {
+            document.getElementById('includeHTML').innerHTML = `
+            <div w3-include-html="./content/contacts.html" onclick="closeLogout(); closeLogoutMobile();"></div>
+            `;
+            await includeHTML();
+            contactsPickedMobile();
+            await initContacts();
+        }
+
+
+            function summaryPicked() {
+                document.getElementById('nav_summary_mobile').innerHTML = `
+                <div class="nav_btns_mobile_picked" onclick="NavRenderSummaryMobile()">
+                    <img src="./img/summary.png">
+                    <a>Summary</a>
+                </div>
+                `;
+            }
+
+
+            function boardPickedMobile() {
+                document.getElementById('nav_board_mobile').innerHTML = `
+                <div class="nav_btns_mobile_picked" onclick="NavRenderBoardMobile()">
+                    <img src="./img/board.png">
+                    <a>Board</a>
+                </div>
+                `;
+            }
+
+
+            function addTaskPickedMobile() {
+                document.getElementById('nav_add_task_mobile').innerHTML = `
+                <div class="nav_btns_mobile_picked" onclick="NavRenderAddTaskMobile()">
+                    <img src="./img/add_task.png">
+                    <a>Add Task</a>
+                </div>
+                `;
+            }
+
+
+            function contactsPickedMobile() {
+                document.getElementById('nav_contacts_mobile').innerHTML = `
+                <div class="nav_btns_mobile_picked" onclick="NavRenderContactsMobile()">
+                    <img src="./img/contacts.png">
+                    <a>Contacts</a>
+                </div>
+                `;
+            }

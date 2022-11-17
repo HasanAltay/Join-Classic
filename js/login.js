@@ -45,12 +45,11 @@ function login() {
             <span class="font61-700">Log in</span>
             <div class="login_blue_line"></div>
             <div class="login_pos_rel">
-                <form type="submit">
+                <form type="submit" required>
                     <input placeholder="Email" id="email_login" type="email" class="login_input">
                     <img src="./img/mail.png" class="login_mail_png">
                     <input placeholder="Password" id="password_login" type="password" class="login_input">
-                    <img src="./img/secure.png" class="login_secure_png">
-                </form>
+                    <img src="./img/secure.png" class="login_secure_png">  
             </div>
             <div class="login_forgot">
                 <input type="checkbox" class="login_checkbox">
@@ -59,7 +58,7 @@ function login() {
             </div>
             <div class="login_btns_dflex">
                 <a href="./index.html"><button class="btn_dark">Log in</button></a>
-                <a href="./index.html"><button class="btn_bright">Guest Log in</button></a>
+                <a href="./index.html"><button class="btn_bright">Guest Log in</button></a></form>
             </div>
             <div class="login_join">
         <a>Not a join user?</a><button class="login_btn_join" onclick="signUp()">Sign up</button>
@@ -69,7 +68,6 @@ function login() {
 
 
 function signUp() {
-
     document.getElementById('login_access').innerHTML = /*html*/`
             <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
                 <img src="./img/left_arrow_blue.png">
@@ -120,3 +118,18 @@ function hideLogin() {
     document.getElementById('animation').style.visibility = "hidden";
     NavRenderSummary();
 }
+
+
+// function guestEnter() {
+//     mobileResCheck();
+// }
+
+
+// function mobileResCheck() {
+//     if (screen.width <= 600) {
+//         window.location = "./mobile.html";
+//     }
+//     else {
+//         window.location = "./index.html";
+//     }
+// }

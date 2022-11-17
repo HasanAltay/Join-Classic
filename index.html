@@ -35,8 +35,9 @@
         <div w3-include-html="./content/nav_left.html" style="z-index: 12;"></div>
         <div w3-include-html="./content/top_bar.html"></div>
         <div id="includeHTML">
-            <div w3-include-html="./content/summary.html" onclick="closeLogout()"></div>
+            <div w3-include-html="./content/summary.html" onclick="closeLogout(); closeLogoutMobile();"></div>
         </div>
+        <div w3-include-html="./content/nav_mobile.html" style="z-index: 12;"></div>
     </div>
 </body>
 </html>

@@ -192,3 +192,9 @@
 .pos-rel {
     position: relative;
 }
+
+@media (max-width: 600px) {
+    .global_main_format {
+        padding-left: 20px;
+    }
+}

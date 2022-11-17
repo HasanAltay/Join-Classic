@@ -10,5 +10,5 @@
 	Hasan Altay
 	Christian Axtmann
 	Malaica Brunks
-	Joachim ...?
+	Joachim Dürr?
 

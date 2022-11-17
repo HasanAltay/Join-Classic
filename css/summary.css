@@ -239,6 +239,21 @@
     .sum_user {
         font-size: 32px;
     }
-
-
 }
+
+/* @media (max-width: 1024px) {
+    .sum_main {
+    margin-top: 79px;
+    transform: scale(100%);
+
+    }
+
+    .sum_subtitle {
+        display: none;
+    }
+
+    .sum_main_child {
+        transform: scale(50%);
+    }
+    
+} */
