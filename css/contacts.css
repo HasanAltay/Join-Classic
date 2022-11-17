@@ -285,27 +285,59 @@
   display: flex;
 }
 
-.con_mailAndPhoneContainer {}
+.con_mailAndPhoneContainer {
+}
 
 .con_ContactInformationAddButton {
   box-sizing: border-box;
 
-/* Auto layout */
+  /* Auto layout */
 
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 18px 10px;
-gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
 
-position: absolute;
-width: 193px;
-height: 53px;
-left: 1195px;
-top: 638px;
+  position: absolute;
+  width: 193px;
+  height: 53px;
+  left: 1195px;
+  top: 638px;
 
-background: #2A3647;
-border: 1px solid #2A3647;
-border-radius: 10px;
+  background: #2a3647;
+  border: 1px solid #2a3647;
+  border-radius: 10px;
+}
+
+.con_editPopup {
+  position: absolute;
+   top: -20px;
+  left: -44px;
+  z-index: 1;
+  /* display: flex; */
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(187, 187, 187);
+  border: 2px solid black;
+  filter: opacity(0.95);
+  margin: 20px;
+}
+
+.con_editForm {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.con_editInputfield {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 30%;
+  height: 40px;
+  padding: 8px;
 }
