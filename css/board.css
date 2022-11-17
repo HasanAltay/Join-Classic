@@ -1,7 +1,6 @@
 .bo_main {
     padding-top: 140px;
     padding-left: 115px;
-    /* padding-right: 20px; */
     background-color: #F6F7F9;
     min-width: calc(100vw - 232px);
     min-height: 100vh;
@@ -10,10 +9,6 @@
 
 .bo_top_section {
     width: 950px;
-    /* position: absolute;
-    height: 327px;
-    left: 267px;
-    top: 57px; */
 }
 
 
@@ -24,16 +19,12 @@
 }
 
 
-.bo_h1 {
-    font-size: 61px;
-}
-
-
 .bo_search_add_task {
     display: flex;
     gap: 36px;
     height: 51px;
 }
+
 
 .bo_search_input {
     display: flex;
@@ -51,12 +42,14 @@
     font-size: 16px;
 }
 
+
 .bo_lupe {
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
 }
+
 
 .bo_search_input::placeholder {
     font-weight: 400;
@@ -114,16 +107,17 @@
     text-indent: 15px;
     background-color: white;
     border-radius: 16px;
-    /* padding: 10px 10px; */
     box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 4%);
     cursor: pointer;
     transition: all 100ms ease-in-out;
 }
 
+
 .bo_todo_sections div:hover {
     transform: scale(1.1);
     transition: all 100ms ease-in-out;
 }
+
 
 .bo_todo_sections div:active {
     transform: scale(1);
@@ -214,18 +208,15 @@
     right: 0;
     bottom: 0;
     left: 0;
-    /* display: flex;
+    display: flex;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
     margin: 0;
     max-height: 100vh;
 }
 
 
 .bo_popup_todo_Info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 50px;
     background-color: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -235,15 +226,13 @@
 }
 
 
-.bo_font_700 {
-    font-style: normal;
+.bo_popUp_department {
+    background: #FF7A00;
     font-weight: 400;
-    font-size: 21px;
+    font-size: 27px;
+    border-radius: 8px;
+    color: white;
+    padding-right: 25px;
+    padding-left: 25px;
 }
 
-
-.bo_font_400 {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-}
