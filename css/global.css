@@ -41,6 +41,12 @@
     line-height: 120%;
 }
 
+.font27-400 {
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 120%;
+}
+
 .txt-cr {
     text-align: center;
 }
