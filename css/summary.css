@@ -227,7 +227,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 
@@ -241,19 +240,30 @@
     }
 }
 
-/* @media (max-width: 1024px) {
+@media (max-width: 600px) {
     .sum_main {
-    margin-top: 79px;
-    transform: scale(100%);
-
+        margin-top: 79px;
+        /* transform: scale(100%); */
     }
 
     .sum_subtitle {
         display: none;
     }
 
+    .sum_title {
+        margin-top: 80px;
+        margin-left: 25px;
+    }
+
     .sum_main_child {
-        transform: scale(50%);
+        justify-content: center;
+        transform: scale(60%);
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .sum_greeting {
+        display: none;
     }
     
-} */
+}

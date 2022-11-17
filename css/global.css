@@ -217,6 +217,8 @@
 
 @media (max-width: 600px) {
     .global_main_format {
-        padding-left: 20px;
+        padding-left: 0px;
+        padding-top: 0px;
+        padding-right: 0px;
     }
 }

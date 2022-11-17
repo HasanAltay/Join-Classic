@@ -20,7 +20,7 @@
     display: flex;
     font-size: 21px;
     font-weight: 400;
-    padding: 20px 36px 20px 348px;
+    padding: 20px 0px 20px 348px;
     white-space: nowrap;
 }
 
@@ -115,7 +115,7 @@
     padding-bottom: 10px;
     padding-right: 25px;
     padding-left: 25px;
-    border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 0px 20px 20px;
 }
 
 .nav_logout_mobile a:hover {
