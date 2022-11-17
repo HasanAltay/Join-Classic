@@ -91,37 +91,8 @@ function startDragging(id) {
 }
 
 
-// function openTodoInfo(){
-//     document.getElementById(`boPopUp${element['id']}`).classList.remove('bo_d_none');
-// }
-
-
-// function closeTodoInfo(element) {
-//     document.getElementById(`boPopUp${element['id']}`).classList.add('bo_d_none');
-// }
-
-
 function generateTodoHTML(element) {
-    return `<div class="bo_pop_up">
-
-                <div class="bo_popup_todo_Info">
-                
-                     <span class="bo_popUp_department">${element['department']}</span>
-                     <br>
-                        <div class="mt-25 font61-700">${element['title']}</div>
-                        <div>
-                            <div class="mt-25 font21-400">${element['description']}</div>
-                        </div>
-
-                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
-                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
-                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
-                 </div>
-                
-            </div>
-      
-    
-    <div onclick="openTodoInfo()" draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
+    return `<div onclick="openTodoInfo('bo_popUp${element['id']}')" draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
 
                 <div class="bo_todo_infos">
                      <span class="bo_department font16-400">${element['department']}</span>
@@ -131,11 +102,28 @@ function generateTodoHTML(element) {
                             <div class="font16-400">${element['description']}</div>
                         </div>
                  </div>
-            </div>
+            </div>  
+
+
+                 <div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
+
+                     <div class="bo_popup_todo_Info">
             
+                          <span class="bo_popUp_department">${element['department']}</span>
+                            <br>
+                                <div class="mt-25 font61-700">${element['title']}</div>
+                                     <div>
+                                         <div class="mt-25 font21-400">${element['description']}</div>
+                                     </div>
+
+                    <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
+                    <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
+                    <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
+                    
+                    <button class="bo_edit_todo" onclick="openEditor()"><img id="boEditTodo" src="./img/edit-dark.png"></button>
+           </div>
             
-           
-            
+        </div>
             `;
 }
 
@@ -148,5 +136,18 @@ function generateTodoHTML(element) {
     function moveTo(category) {
         todos[currentDraggedElement]['category'] = category;
     updateHTML();
-
 }
+
+
+function openTodoInfo(id){
+    document.getElementById(id).classList.remove('d-none');
+}
+
+
+// function closeTodoInfo(element) {
+//     document.getElementById(`boPopUp${element['id']}`).classList.add('bo_d_none');
+// }
+
+// function openEditor() {
+    
+// }
