@@ -1,3 +1,7 @@
+.d-none {
+  display: none;
+}
+
 .hoverEffect span:hover {
   cursor: pointer;
 }
@@ -242,6 +246,46 @@
   flex-grow: 0;
   white-space: nowrap;
 }
+
+.con_contactsDetails {
+  position: absolute;
+  top: 260px;
+  left: 750px;
+  right: 0px;
+  bottom: 0px;
+  padding: 16px;
+}
+
+.con_labelBigAndName {
+  display: flex;
+  align-items: center;
+  font-size: 47px;
+  margin-bottom: 68px;
+}
+
+.con_bigLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  /* font-size: 47px; */
+  border-radius: 100%;
+  border: 1px solid white;
+  color: white;
+  margin-right: 48px;
+}
+
+.con_firstNameLastName {
+  margin-left: 48px;
+  /* font-size: 47px; */
+}
+
+.con_editContainer {
+  display: flex;
+}
+
+.con_mailAndPhoneContainer {}
 
 .con_ContactInformationAddButton {
   box-sizing: border-box;

@@ -327,12 +327,38 @@ function showContactInformation(given_id) {
 
   let contactIndex = element.indexOf(searchLetter, 0);
 
-  // console.log(`currentContact: ${currentContact}`);
+  console.log(`currentContact: ${currentContact}`);
   // console.log(`letterIndex: ${letterIndex}`);
   // console.log(`contacts.length: ${contacts.length}`);
-  // console.log(contactIndex);
+  console.log(`contactIndex: ${contactIndex}`);
 
   let chosenContactsName = contacts[contactIndex]["names"][currentContact];
   let chosenContactsLastName = contacts[contactIndex]["lastNames"][currentContact];
+  let firstLetterFirstName = chosenContactsName.charAt(0);
+  let firstLetterLastName = chosenContactsLastName.charAt(0);
   console.log(`You selected contact ${chosenContactsName} ${chosenContactsLastName }`);
+
+  document.getElementById('label-big-and-name').innerHTML = /*html*/`
+  <span id="big-label" class="con_bigLabel">${firstLetterFirstName}${firstLetterLastName}</span>
+  <span id="first-name-last-name" class="con_firstNameLastName">${chosenContactsName} ${chosenContactsLastName}</span>`;
+
+
+  // Get background color of label inside contact list
+  // ${contact["letter"]}-${i}
+  let label_Id = `label-${firstLetterFirstName}-${currentContact}`;
+  let bgColorLabel = document.getElementById(label_Id).style.backgroundColor;
+
+  document.getElementById('big-label').style.backgroundColor = bgColorLabel;
+  document.getElementById('edit-container').innerHTML = /*html*/`
+  <div>blaaaaaaa</div>
+  <div style="display: flex;">
+    <img src="./img/edit-2-32.png">
+    <span>Edit Contact</span>
+  </div>
+  `;
+  document.getElementById('mail-and-phone-container').innerHTML = /*html*/`
+  <h3>Email:</h3>
+  <span>lala@mail.de</span>
+  <h3>Phone:</h3>
+  <span>+49 171 999999</span>`;
 }
