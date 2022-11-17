@@ -91,9 +91,9 @@ function startDragging(id) {
 }
 
 
-function openTodoInfo(){
-    document.getElementById(`boPopUp${element['id']}`).classList.remove('bo_d_none');
-}
+// function openTodoInfo(){
+//     document.getElementById(`boPopUp${element['id']}`).classList.remove('bo_d_none');
+// }
 
 
 // function closeTodoInfo(element) {
@@ -125,7 +125,7 @@ function generateTodoHTML(element) {
                 <div class="bo_todo_infos">
                      <span class="bo_department">${element['department']}</span>
                      <br>
-                        <div class="bo_todo_title"><b>${element['title']}</b></div>
+                        <div class="bo_todo_title">${element['title']}</div>
                         <div>
                             <div>${element['description']}</div>
                         </div>
