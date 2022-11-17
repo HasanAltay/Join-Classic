@@ -223,6 +223,7 @@
     border-radius: 30px;
     width: 485px;
     height: 586px;
+    position: relative;
 }
 
 
@@ -236,3 +237,11 @@
     padding-left: 25px;
 }
 
+
+.bo_edit_todo {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: transparent;
+    border: none;
+}
