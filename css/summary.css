@@ -36,6 +36,8 @@
     animation-direction: normal;
 }
 
+
+
 @keyframes slide {
     0% {
         left: 345px;
@@ -229,6 +231,24 @@
     justify-content: center;
 }
 
+.sum_mobile_subtitle {
+    display: none;
+    padding-left: 25px;
+}
+
+.sum_mobile_top_text {
+    display: none;
+    padding-top: 115px;
+    padding-left: 25px;
+}
+
+.sum_blue_line_mobile {
+    display: none;
+    width: 90px;
+    border-bottom: solid 3px #29ABE2;
+    margin-left: 25px;
+    padding-top: 35px;
+}
 
 @media (max-width: 1280px) {
     .sum_daytime {
@@ -240,9 +260,18 @@
     }
 }
 
+@media (max-width: 1080px) {
+    .sum_main_child {
+        transform: scale(80%);
+        transform-origin: left top;
+        justify-content: left;
+
+    }
+}
+
 @media (max-width: 600px) {
     .sum_main {
-        margin-top: 79px;
+        padding-top: 0px;
         /* transform: scale(100%); */
     }
 
@@ -251,19 +280,36 @@
     }
 
     .sum_title {
-        margin-top: 80px;
-        margin-left: 25px;
+        padding-top: 20px;
+        padding-left: 25px;
+        font-size: 47px;
+        font-weight: 700;
+        margin-bottom: 25px;
     }
 
     .sum_main_child {
+        padding-top: 60px;
+        /* transform: scale(60%); */
+        transform-origin: top;
         justify-content: center;
-        transform: scale(60%);
         padding-left: 25px;
-        padding-right: 25px;
+        /* padding-right: 25px; */
+        zoom: 66%;
     }
 
     .sum_greeting {
         display: none;
     }
+
+    .sum_mobile_subtitle {
+        display: block;
+    }
     
+    .sum_mobile_top_text {
+        display: block;
+    }
+    
+    .sum_blue_line_mobile {
+        display: block;
+    }
 }

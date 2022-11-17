@@ -23,6 +23,12 @@
     line-height: 120%;
 }
 
+.font47-700 {
+    font-weight: 700;
+    font-size: 47px;
+    line-height: 120%;
+}
+
 .font27-700 {
     font-weight: 700;
     font-size: 27px;
@@ -105,6 +111,18 @@
 
 .pr-20 {
     padding-right: 20px;
+}
+
+.pl-25 {
+    padding-left: 25px;
+}
+
+.pb-25 {
+    padding-bottom: 25px;
+}
+
+.pt-120 {
+    padding-top: 120px;
 }
 
 .c-pointer {
@@ -217,8 +235,9 @@
 
 @media (max-width: 600px) {
     .global_main_format {
-        padding-left: 0px;
-        padding-top: 0px;
-        padding-right: 0px;
+        padding-left: unset;
+        padding-top: unset;
+        padding-right: unset;
     }
+
 }

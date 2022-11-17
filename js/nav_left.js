@@ -65,7 +65,8 @@ async function NavRenderHelp() {
     function summaryPicked() {
         document.getElementById('nav_summary').innerHTML = `
         <div class="nav_btn_picked" onclick="renderSummary()">
-        <img src="../img/summary.png"><a>Summary</a></div>
+        <img src="../img/summary.png"><a>Summary</a>
+        </div>
         `;
     }
 

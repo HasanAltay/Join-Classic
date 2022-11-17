@@ -11,52 +11,67 @@
  -->
 <div class="global_main_format sum_main">
     <div class="sum_dflex">
-       <div class="sum_title">Summary</div>
-        <div class="sum_subtitle">Everything in a nutshell!</div> 
-    </div>
-<div class="sum_main_child">
-    <div>
-        <div class="sum_frame_squares">
-            <div class="sum_squares"><a id="sum_board">5</a>
-                <span style="font-size: 21px; font-weight: 400;">Tasks in<br>Board</span></div>
-            <div class="sum_squares"><a id="sum_progress">2</a>
-                <span style="font-size: 21px; font-weight: 400;">Tasks in<br>Progress</span></div>
-            <div class="sum_squares"><a id="sum_freedback">2</a>
-                <span style="font-size: 21px; font-weight: 400;">Awaiting<br>Feedback</span></div>
+        <div>
+            <div class="sum_mobile_top_text">Kanban Project Management Tool</div>
+            <div class="sum_title">Summary</div>
+            <div class="font21-400 sum_mobile_subtitle">Everything in a
+                nutshell!</div>
+            <div class="sum_blue_line_mobile"></div>
         </div>
-        <div class="sum_middle">
-            <div class="sum_frame_urgent">
-                <img src="./img/urgent.png" onload="getDaytime(); summaryPicked();">
-                <div>
-                    <span id="sum_urgent" style="font-size: 47px; font-weight: 600;">1</span><br>
-                    <a style="font-size: 16px; font-weight: 400;">Urgent</a> 
-                </div>  
+        <div class="sum_subtitle">Everything in a nutshell!</div>
+
+    </div>
+    <div class="sum_main_child">
+        <div>
+            <div class="sum_frame_squares">
+                <div class="sum_squares"><a id="sum_board">5</a>
+                    <span style="font-size: 21px; font-weight: 400;">Tasks in<br>Board</span></div>
+                <div class="sum_squares"><a id="sum_progress">2</a>
+                    <span style="font-size: 21px; font-weight: 400;">Tasks in<br>Progress</span></div>
+                <div class="sum_squares"><a id="sum_freedback">2</a>
+                    <span style="font-size: 21px; font-weight: 400;">Awaiting<br>Feedback</span></div>
             </div>
-            <div class="sum_frame_deadline">
-                <span id="sum_deadline">December 12, 2022</span>
-                <a>Upcoming Deadline</a>    
+            <div class="sum_middle">
+                <div class="sum_frame_urgent">
+                    <img src="./img/urgent.png" onload="getDaytime();
+                        summaryPicked();">
+                    <div>
+                        <span id="sum_urgent" style="font-size: 47px;
+                            font-weight: 600;">1</span><br>
+                        <a style="font-size: 16px; font-weight: 400;">Urgent</a>
+                    </div>
+                </div>
+                <div class="sum_frame_deadline">
+                    <span id="sum_deadline">December 12, 2022</span>
+                    <a>Upcoming Deadline</a>
+                </div>
+            </div>
+            <div class="sum_dflex">
+                <div class="sum_bottom_todo"
+                    onmouseover="SumTodoChangeImage('./img/todo_bright.png')"
+                    onmouseout="SumTodoChangeImage('./img/todo.png')">
+                    <img id="sum_todo_img" src="./img/todo.png">
+                    <div>
+                        <span id="sum_todo" style="font-size: 64px; font-weight:
+                            600;">1</span><br>
+                        <a style="font-size: 21px; font-weight: 400;">To-Do</a>
+                    </div>
+                </div>
+                <div class="sum_bottom_done"
+                    onmouseover="SumDoneChangeImage('./img/done_bright.png')"
+                    onmouseout="SumDoneChangeImage('./img/done.png')">
+                    <img id="sum_done_img" src="./img/done.png">
+                    <div>
+                        <span id="sum_done" style="font-size: 64px; font-weight:
+                            600;">1</span><br>
+                        <a style="font-size: 21px; font-weight: 400;">Done</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="sum_dflex">
-            <div class="sum_bottom_todo" onmouseover="SumTodoChangeImage('./img/todo_bright.png')" onmouseout="SumTodoChangeImage('./img/todo.png')">
-                <img id="sum_todo_img" src="./img/todo.png">
-                <div>
-                    <span id="sum_todo" style="font-size: 64px; font-weight: 600;">1</span><br>
-                    <a style="font-size: 21px; font-weight: 400;">To-Do</a> 
-                </div>  
-            </div>
-            <div class="sum_bottom_done" onmouseover="SumDoneChangeImage('./img/done_bright.png')" onmouseout="SumDoneChangeImage('./img/done.png')">
-                <img  id="sum_done_img" src="./img/done.png">
-                <div>
-                    <span id="sum_done" style="font-size: 64px; font-weight: 600;">1</span><br>
-                    <a style="font-size: 21px; font-weight: 400;">Done</a> 
-                </div>  
-            </div>
+        <div class="sum_greeting">
+            <div class="sum_daytime" id="sum_daytime"></div>
+            <div class="sum_user" id="sum_user">Guest</div>
         </div>
     </div>
-    <div class="sum_greeting">
-        <div class="sum_daytime" id="sum_daytime"></div>
-        <div class="sum_user" id="sum_user">Guest</div> 
-    </div>
-</div>
 </div>

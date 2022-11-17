@@ -1,0 +1,32 @@
+
+
+.help_text_box {
+  padding-right: 90px;
+  padding-bottom: 25px;
+  display: flex;
+}
+
+.help_arrow_space {
+  padding-right: 90px;
+}
+
+
+@media (max-width: 600px) {
+
+.help_mobile_format {
+  padding-left: 25px;
+  padding-top: 120px;
+  padding-bottom: 40px;
+}
+
+.help_text_box {
+  padding-right: 30px;
+  padding-bottom: 25px;
+  display: flex;
+}
+
+.help_arrow_space {
+  padding-right: 30px;
+}
+
+}
