@@ -111,6 +111,11 @@
 
 .show {display: block;}
 
+.dropdown-container {
+    margin-top: 8px;
+    cursor: pointer;
+}
+
 .dropdown-content {
     display: none;
 }
