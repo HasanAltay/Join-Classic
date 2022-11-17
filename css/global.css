@@ -29,6 +29,12 @@
     line-height: 120%;
 }
 
+.font16-700 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+}
+
 .font16-400 {
     font-weight: 400;
     font-size: 16px;

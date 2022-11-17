@@ -102,7 +102,7 @@ function startDragging(id) {
 
 
 function generateTodoHTML(element) {
-    return `<div class="bo_pop_up">
+    return `<div class="bo_pop_up d-none">
 
                 <div class="bo_popup_todo_Info">
                 
@@ -124,7 +124,7 @@ function generateTodoHTML(element) {
     <div onclick="openTodoInfo()" draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
 
                 <div class="bo_todo_infos">
-                     <span class="bo_department">${element['department']}</span>
+                     <span class="bo_department font16-400">${element['department']}</span>
                      <br>
                         <div class="bo_todo_title">${element['title']}</div>
                         <div>
