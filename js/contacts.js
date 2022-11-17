@@ -183,6 +183,9 @@ let contacts = [
   },
 ];
 
+var contactToEditLetter;
+var contactToEditIndex;
+
 var labelColors;
 
 var currentLabelColor;
@@ -293,8 +296,7 @@ function addNewContact(contactName, contactPhone, contactMail) {
 }
 
 function contactClicked(given_id) {
-
-  console.log('contactClicked()');
+  console.log("contactClicked()");
   console.log(`last_id: ${last_id}`);
   console.log(`given_id: ${given_id}`);
 
@@ -311,54 +313,103 @@ function contactClicked(given_id) {
     document.getElementById(given_id).style.backgroundColor = "#FFFFFF";
     document.getElementById(given_id).style.color = "#000000";
     last_id = "XX";
+    hideContactDetails();
   }
   // last_id = given_id;
-  
 }
 
 function showContactInformation(given_id) {
+  // display contact details
+  document.getElementById('contacts-details').classList.remove('d-none');
+
   let currentContact = Number(given_id.split("-")[1]);
   let searchLetter = given_id.split("-")[0];
-  
+
   let element = [];
   for (let index = 0; index < contacts.length; index++) {
     element.push(contacts[index]["letter"]);
   }
 
-  let contactIndex = element.indexOf(searchLetter, 0);
+  let alphabetIndex = element.indexOf(searchLetter, 0);
 
-  console.log(`currentContact: ${currentContact}`);
-  // console.log(`letterIndex: ${letterIndex}`);
-  // console.log(`contacts.length: ${contacts.length}`);
-  console.log(`contactIndex: ${contactIndex}`);
-
-  let chosenContactsName = contacts[contactIndex]["names"][currentContact];
-  let chosenContactsLastName = contacts[contactIndex]["lastNames"][currentContact];
+  let chosenContactsName = contacts[alphabetIndex]["names"][currentContact];
+  let chosenContactsLastName =
+    contacts[alphabetIndex]["lastNames"][currentContact];
   let firstLetterFirstName = chosenContactsName.charAt(0);
   let firstLetterLastName = chosenContactsLastName.charAt(0);
-  console.log(`You selected contact ${chosenContactsName} ${chosenContactsLastName }`);
 
-  document.getElementById('label-big-and-name').innerHTML = /*html*/`
+  let phoneNumber = contacts[alphabetIndex]["phonenumbers"][currentContact];
+  let mailAddress = contacts[alphabetIndex]["mail"][currentContact];
+
+  // console.log(`letterIndex: ${letterIndex}`);
+  console.log(`contacts.length: ${contacts.length}`);
+  console.log(`alphabetIndex: ${alphabetIndex}`);
+  console.log(`currentContact: ${currentContact}`);
+  console.log(
+    `You selected contact ${chosenContactsName} ${chosenContactsLastName}`
+  );
+
+  document.getElementById("label-big-and-name").innerHTML = /*html*/ `
   <span id="big-label" class="con_bigLabel">${firstLetterFirstName}${firstLetterLastName}</span>
   <span id="first-name-last-name" class="con_firstNameLastName">${chosenContactsName} ${chosenContactsLastName}</span>`;
 
-
   // Get background color of label inside contact list
-  // ${contact["letter"]}-${i}
   let label_Id = `label-${firstLetterFirstName}-${currentContact}`;
   let bgColorLabel = document.getElementById(label_Id).style.backgroundColor;
 
-  document.getElementById('big-label').style.backgroundColor = bgColorLabel;
-  document.getElementById('edit-container').innerHTML = /*html*/`
-  <div>blaaaaaaa</div>
-  <div style="display: flex;">
-    <img src="./img/edit-2-32.png">
+  document.getElementById("big-label").style.backgroundColor = bgColorLabel;
+  document.getElementById("edit-container").innerHTML = /*html*/ `
+  <span style="font-size: 21px; margin-right: 62px;">Contact Information</span>
+  <div class="hoverEffect" style="display: flex; align-items: center;" onclick="editContact(${alphabetIndex}, ${currentContact})">
+    <img src="./img/edit-2-32.png" style="margin-right: 6px;">
     <span>Edit Contact</span>
   </div>
   `;
-  document.getElementById('mail-and-phone-container').innerHTML = /*html*/`
+  document.getElementById("mail-and-phone-container").innerHTML = /*html*/ `
   <h3>Email:</h3>
-  <span>lala@mail.de</span>
+  <span>${mailAddress}</span>
   <h3>Phone:</h3>
-  <span>+49 171 999999</span>`;
+  <span>${phoneNumber}</span>`;
+}
+
+function hideContactDetails() {
+  document.getElementById("contacts-details").classList.add("d-none");
+}
+
+function editContact(alphabetIndex, currentContact) {
+  console.log(
+    `You want to edit contact number ${currentContact} of alphabetic index ${alphabetIndex}`
+  );
+  document.getElementById('edit-popup').classList.remove('d-none');
+  document.getElementById('edit-popup').style.display = "flex";
+  contactToEditLetter = alphabetIndex;
+  contactToEditIndex = currentContact;
+}
+
+function submitEdit(contactToEditLetter, contactToEditIndex) {
+  document.getElementById("edit-popup").classList.add("d-none");
+  let firstNameNew = document.getElementById("con-edit-fname").value;
+  let lastNameNew = document.getElementById("con-edit-lname").value;
+  let phoneNew = document.getElementById("con-edit-phone").value;
+  let mailNew = document.getElementById("con-edit-mail").value;
+  console.log(`New contact details of contact: \nFirst name:${firstNameNew}\n
+  Last name:${lastNameNew}\nPhone number:${phoneNew}\nE-Mail:${mailNew}\n`);
+
+  // changeContact(contactToEditLetter, contactToEditIndex);
+}
+
+
+function changeContact(contactToEditLetter, contactToEditIndex) {
+  const element = contacts[contactToEditLetter]["names"][contactToEditIndex];
+  const element2 = contacts[contactToEditLetter]["lastNames"][contactToEditIndex];
+  const element3 = contacts[contactToEditLetter]["mail"][contactToEditIndex];
+  const fName = element.charAt(0);
+  const lName = element2.charAt(0);
+  document.getElementById(`${contactToEditLetter}-${contactToEditIndex}`).innerHTML = /*html*/`
+  <span id="label-${contacts[contactToEditLetter]["letter"]}-${contactToEditIndex}" class="con_contactListElementLabel">${fName}${lName}</span>  
+      <div>
+        <span>${element} ${element2}</span>
+        <span class="con_contactListElementEmail">${element3}</span>
+      </div>
+  `;
 }
