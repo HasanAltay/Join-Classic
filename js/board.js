@@ -34,6 +34,9 @@ let todos = [
 
 
 let currentDraggedElement;
+let urgentClicked = false;
+let mediumClicked = false;
+let lowClicked = false;
 
 
 function updateHTML() {
@@ -80,70 +83,114 @@ function updateHTML() {
 
         document.getElementById('done').innerHTML += generateTodoHTML(element);
     }
-
 }
 
 
 function startDragging(id) {
     currentDraggedElement = id;
-
-    console.log('Aktuelles Todo ist ', currentDraggedElement);
 }
 
 
 function generateTodoHTML(element) {
     return `<div onclick="openTodoInfo('bo_popUp${element['id']}')" draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
-        <div class="bo_todo_infos">
-          <span class="bo_department font16-400">${element['department']}</span>
-          <br>
-            <div class="bo_todo_title font16-700">${element['title']}</div>
-              <div>
-               <div class="font16-400">${element['description']}</div>
-              </div>
-         </div>
-     </div>  
+              <div class="bo_todo_infos">
+                <span class="bo_department font16-400">${element['department']}</span>
+                <br>
+                  <div class="bo_todo_title font16-700">${element['title']}</div>
+                   <div>
+                    <div class="font16-400">${element['description']}</div>
+                  </div>
+               </div>
+                ${showPopUp(element)};
+            </div>`;          
+}
 
-            <div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
-              <div class="bo_popup_todo_Info">
-                <button class="bo_cancel_btn c-pointer">
-                 <img src="./img/cancel.png">
-                </button>
-                  <span class="bo_popUp_department">${element['department']}</span>
-                  <br>
-                    <div class="mt-25 font61-700">${element['title']}</div>
-                      <div>
-                        <div class="mt-25 font21-400">${element['description']}</div>
-                      </div>
-                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
-                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
-                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
-                          <button class="bo_edit_todo c-pointer" onmouseover="changeEditBtn('./img/edit-light.png')" onmouseleave="resetEditBtn('./img/edit-dark.png')">
-                            <img id="boEditTodo" src="./img/edit-dark.png">
-                          </button>
+
+function showPopUp(element) {
+    return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
+             <div class="bo_popup_todo_Info">
+                <div class="">
+                   <button class="bo_cancel_btn c-pointer onclick="closeTodoInfo('bo_popUp${element['id']}')">
+                     <img src="./img/cancel.png">
+                   </button>
+                     <span class="bo_popUp_department">${element['department']}</span>
+                     <br>
+                     <div class="mt-25 font61-700">${element['title']}</div>
+                        <div>
+                         <div class="mt-25 font21-400">${element['description']}</div>
+                        </div>
+                            <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
+                            <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
+                            <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
+                                <button onclick="openTodoEdit()" class="bo_edit_todo c-pointer" onmouseover="changeEditBtn('./img/edit-light.png')" onmouseleave="resetEditBtn('./img/edit-dark.png')">
+                                  <img id="boEditTodo" src="./img/edit-dark.png">
+                                </button>
                 </div>
-            </div>`;
+
+             <div class="bo_edit_task d-none">
+                <div class="mb-40">
+                 <span class="title">Title</span>
+                    <input id="title" class="titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
+                    onblur="this.placeholder='Enter a title'">
+                </div>
+
+                <div class="mb-40">
+                  <span class="description">Description</span>
+                         <textarea id="description" class="descriptionbox" placeholder="Enter a description"
+                             onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
+                </div>
+
+                <div class="mb-40">
+                  <span class="date">Due Date</span>
+                       <input class="datebox" type="date">
+                </div>
+
+                <div class="mb-40">
+                  <span class="font21-400 bo_prio">Prio</span>
+                    <div class="bo_prio_btn">
+                        <button id="prioUrgent" onclick="changeToRed()" class="prio-urgent"><span id="whiteUrgent"
+                         class="urgent">Urgent</span><img id="img-up-white" src="./img/up.png"></button>
+                        <button id="prioMedium" onclick="changeToOrange()" class="prio-medium"><span id="whiteMedium"
+                            class="medium">Medium</span><img id="img-middle-white" src="./img/middle.png"></button>
+                        <button id="prioLow" onclick="changeToGreen()" class="prio-low"><span id="whiteLow"
+                        class="low">Low</span><img id="img-down-white" src="./img/down.png"></button>
+                     </div>
+                </div>
+
+                <div class="mb-40">
+                    <span class="assigned">Assigned to</span>
+                     <div id="assign" class="assign-selection">
+                        <span class="assignedbox">Select contacts to assign</span>
+                          <img src="./img/open.png">
+                     </div>
+                 </div>
+
+                 <button class="bo_button_dark ">Ok<img src="./img/check.png"></button>
+        </div>
+    </div>`;    
 }
 
 
-    function allowDrop(ev) {
-        ev.preventDefault();
+
+function allowDrop(ev) {
+    ev.preventDefault();
 }
 
 
-    function moveTo(category) {
-        todos[currentDraggedElement]['category'] = category;
+function moveTo(category) {
+    todos[currentDraggedElement]['category'] = category;
     updateHTML();
 }
 
 
-function openTodoInfo(id){
+function openTodoInfo(id) {
     document.getElementById(id).classList.remove('d-none');
 }
 
 
-// function closeTodoInfo(id) {
-//     document.getElementById(id).classList.add('d-none');
-// }
+function closeTodoInfo(id) {
+    document.getElementById(id).classList.add('d-none');
+}
 
 
 function changeEditBtn(img) {
@@ -153,4 +200,68 @@ function changeEditBtn(img) {
 
 function resetEditBtn(img) {
     document.getElementById('boEditTodo').src = img;
+}
+
+
+function urgentButtonDefault() {
+    document.getElementById('prioUrgent').style.backgroundColor = "#FFFFFF";
+    document.getElementById('whiteUrgent').style.color = "#000000";
+    document.getElementById('img-up-white').src = "./img/up.png";
+    urgentClicked = false;
+}
+
+
+function mediumButtonDefault() {
+    document.getElementById('prioMedium').style.backgroundColor = "#FFFFFF";
+    document.getElementById('whiteMedium').style.color = "#000000";
+    document.getElementById('img-middle-white').src = "./img/middle.png";
+    mediumClicked = false;
+}
+
+
+function lowButtonDefault() {
+    document.getElementById('prioLow').style.backgroundColor = "#FFFFFF";
+    document.getElementById('whiteLow').style.color = "#000000";
+    document.getElementById('img-down-white').src = "./img/down.png";
+    lowClicked = false;
+}
+
+
+function changeToRed() {
+    if (urgentClicked == false) {
+        document.getElementById('prioUrgent').style.backgroundColor = "#FF3D00";
+        document.getElementById('whiteUrgent').style.color = "#FFFFFF";
+        document.getElementById('img-up-white').src = "./img/arrowUpWhite.png";
+        urgentClicked = true;
+    } else {
+        urgentButtonDefault();
+    }
+    mediumButtonDefault();
+    lowButtonDefault();
+}
+
+function changeToOrange() {
+    if (mediumClicked == false) {
+        document.getElementById('prioMedium').style.backgroundColor = "#FFA800";
+        document.getElementById('whiteMedium').style.color = "#FFFFFF";
+        document.getElementById('img-middle-white').src = "./img/arrowMiddleWhite.png";
+        mediumClicked = true;
+    } else {
+        mediumButtonDefault();
+    }
+    urgentButtonDefault();
+    lowButtonDefault();
+}
+
+function changeToGreen() {
+    if (lowClicked == false) {
+        document.getElementById('prioLow').style.backgroundColor = "#7AE229";
+        document.getElementById('whiteLow').style.color = "#FFFFFF";
+        document.getElementById('img-down-white').src = "./img/arrowDownWhite.png";
+        lowClicked = true;
+    } else {
+        lowButtonDefault();
+    }
+    urgentButtonDefault();
+    mediumButtonDefault();
 }
