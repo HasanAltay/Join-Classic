@@ -221,9 +221,10 @@
     background-color: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
-    width: 485px;
-    height: 586px;
+    width: 623px;
+    height: 824px;
     position: relative;
+    transform: scale(70%);
 }
 
 

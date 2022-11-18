@@ -120,7 +120,9 @@ function generateTodoHTML(element) {
                     <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
                     <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
                     
-                    <button class="bo_edit_todo" onclick="openEditor()"><img id="boEditTodo" src="./img/edit-dark.png"></button>
+                    <button class="bo_edit_todo c-pointer" onmouseover="changeEditBtn('./img/edit-light.png')" onmouseleave="resetEditBtn('./img/edit-dark.png')">
+                         <img id="boEditTodo" src="./img/edit-dark.png">
+                    </button>
            </div>
             
         </div>
@@ -151,3 +153,11 @@ function openTodoInfo(id){
 // function openEditor() {
     
 // }
+function changeEditBtn(img) {
+    document.getElementById('boEditTodo').src = img;
+}
+
+
+function resetEditBtn(img) {
+    document.getElementById('boEditTodo').src = img;
+}
