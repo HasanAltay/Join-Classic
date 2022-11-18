@@ -31,7 +31,7 @@ function login() {
             </div>
             <div class="login_btns_dflex">
                 <button type="submit" class="btn_dark" name="login">Log in</button>
-                <a href="./index.html"><button class="btn_bright">Guest Log in</button></a>
+                <button class="btn_bright" onclick="enterAsGuest()">Guest Log in</button>
             </div>
             </form>
             <div class="login_join">
@@ -112,6 +112,11 @@ function hideLogin() {
     document.getElementById('login').style.visibility = "hidden";
     document.getElementById('animation').style.visibility = "hidden";
     NavRenderSummary();
+}
+
+
+function enterAsGuest() {
+    window.location = "./index.html";
 }
 
 
