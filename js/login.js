@@ -1,8 +1,8 @@
 function backgroundAnimation() {
     var pix = document.getElementsByClassName("pixel");
     for (var i = 0; i < pix.length; i++) {
-    pix[i].style.animationDelay = Math.ceil(Math.random()*5000)+"ms";
-}
+        pix[i].style.animationDelay = Math.ceil(Math.random() * 5000) + "ms";
+    }
 }
 
 
@@ -10,6 +10,33 @@ function logoAnimation() {
     document.getElementById('animation').innerHTML = `
         <img src="./img/logo_dark.png" class="login_logo_animation">
         <img src="./img/logo_white.png" class="login_hidden_mobile">
+    `;
+}
+
+
+function login() {
+    document.getElementById('login_access').innerHTML = /*html*/`
+            <span class="font61-700">Log in</span>
+            <div class="login_blue_line"></div>
+            <form>
+            <div class="login_pos_rel">
+                <input placeholder="Email" id="email_login" type="email" class="login_input" name="email" required>
+                <img src="./img/mail.png" class="login_mail_png">
+                <input placeholder="Password" id="password_login" type="password" class="login_input" name="password" required>
+                <img src="./img/secure.png" class="login_secure_png">  
+            </div>
+            <div class="login_forgot">
+                <input type="checkbox" id="confirm"><label for="confirm">Remember me</label>
+                <a href="#" onclick="forgotPassword()">Forgot my Password</a>
+            </div>
+            <div class="login_btns_dflex">
+                <button type="submit" class="btn_dark" name="login">Log in</button>
+                <a href="./index.html"><button class="btn_bright">Guest Log in</button></a>
+            </div>
+            </form>
+            <div class="login_join">
+                <a>Not a join user?</a><button class="login_btn_join" onclick="signUp()">Sign up</button>
+            </div>
     `;
 }
 
@@ -24,40 +51,13 @@ function forgotPassword() {
             <span class="font21-400 txt-cr mb-40">
                 Don't worry! We will send you an email with the instructions to <br>reset your password.
             </span>
-            <div class="login_pos_rel">
-                <input placeholder="Email" id="email_forgot" type="email" class="login_input">
-                <img src="./img/mail.png" class="login_mail_png">
-            </div>
-            <div>
-                <button class="button_dark" onclick="resetPassword()">Send me the email</button>
-            </div>
-    `;
-}
-
-
-function login() {
-    document.getElementById('login_access').innerHTML = /*html*/`
-            <span class="font61-700">Log in</span>
-            <div class="login_blue_line"></div>
-            <div class="login_pos_rel">
-                <form type="submit" required>
-                    <input placeholder="Email" id="email_login" type="email" class="login_input">
+            <form onsubmit="resetPassword()">
+                <div class="ai-center jc-center d-flex fd-col pos-rel">
+                    <input placeholder="Email" id="email_forgot" type="email" class="login_input" name="email_forgot" required>
                     <img src="./img/mail.png" class="login_mail_png">
-                    <input placeholder="Password" id="password_login" type="password" class="login_input">
-                    <img src="./img/secure.png" class="login_secure_png">  
-            </div>
-            <div class="login_forgot">
-                <input type="checkbox" class="login_checkbox">
-                <span>Remember me</span>
-                <a href="#" onclick="forgotPassword()">Forgot my Password</a>
-            </div>
-            <div class="login_btns_dflex">
-                <a href="./index.html"><button class="btn_dark">Log in</button></a>
-                <a href="./index.html"><button class="btn_bright">Guest Log in</button></a></form>
-            </div>
-            <div class="login_join">
-        <a>Not a join user?</a><button class="login_btn_join" onclick="signUp()">Sign up</button>
-        </div>   
+                    <button class="button_dark" type="submit" name="sendmail">Send me the email</button>
+                </div>
+            </form>
     `;
 }
 

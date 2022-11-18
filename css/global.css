@@ -77,6 +77,10 @@
     display: flex;
 }
 
+.fd-col {
+    flex-direction: column;
+}
+
 .space-bw {
     justify-content: space-between;
 }
@@ -243,9 +247,4 @@
     .font61-700 {
         font-size: 47px;
     }
-
-    .font27-700 {
-        
-    }
-
 }
