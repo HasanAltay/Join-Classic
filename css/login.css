@@ -9,7 +9,6 @@
     right: 0;
     min-width: 100vw;
     min-height: 100vh;
-    /* background-color: #F6F7F8; */
     z-index: 20;
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -27,6 +26,7 @@
     padding: 35px 100px;
     animation-name: loginAccessOpacity;
     animation-duration: 2800ms;
+    z-index: 8;
 }
 
 @keyframes loginAccessOpacity {
@@ -91,8 +91,6 @@
     line-height: 120%;
     text-decoration: none;
 }
-
-
 
 .login_secure_png {
     position: absolute;
@@ -227,15 +225,12 @@
             left: 45%;
             filter: opacity(0%);
             transform: scale(2);            
-            
         }
-
         50% {
             top: 40%;
             left: 45%;
             filter: opacity(100%);
             transform: scale(2);            
-
         }
         100% {
             top: 65px;
@@ -312,7 +307,6 @@
     left: 40px;
 }
 
-
 html, body {
     width: 100%;  height: 100%;
     margin: 0;    padding: 0;
@@ -336,6 +330,8 @@ html, body {
     float: left;
     opacity: 0.0;
     animation: blink 4500ms infinite;
+    animation-delay: 4s;
+    border-radius: 10px;
   }
   
   @keyframes blink {
@@ -344,6 +340,10 @@ html, body {
     50%   {opacity: 0.5;}
     100%  {opacity: 0.0;}
   }
+
+.login_hidden_mobile {
+    display: none;
+}
 
 @media (max-width: 1024px) {
 
@@ -364,7 +364,8 @@ html, body {
     }
 
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
+    
     .pixel {
         width: 12%;
         padding-top: 12%;
@@ -410,6 +411,7 @@ html, body {
         animation-name: logoSlideSmaller;
         animation-duration: 2500ms;
         animation-direction: normal;
+        z-index: 6;
     }
     
         @keyframes logoSlideSmaller {
@@ -462,28 +464,24 @@ html, body {
 }
 
 @media (max-width: 360px) {
-
     .login_access {
      transform: scale(75%);   
     }
 }
 
 @media (max-width: 280px) and (min-height: 653px) {
-
     .login_access {
      transform: scale(53%);   
     }
 }
 
 @media (max-height: 667px) and (min-width: 375px) {
-
     .login_access {
      transform: scale(73%);   
     }
 }
 
 @media (width: 1024px) and (height: 600px) {
-
     .login_access {
         transform: scale(95%);   
        }
@@ -492,6 +490,48 @@ html, body {
         top: -50px;
         right: -240px;
         transform: scale(80%);
+    }
+}
+
+@media (max-width: 600px) {
+
+.login_hidden_mobile {
+    position: fixed;
+    width: 102px;
+    height: 122px;
+    top: 40%;
+    left: 40%;
+    transform: scale(1.2);  
+    z-index: 21;
+    display: block;
+    animation-name: logo-fade;
+    animation-duration: 1300ms;
+    filter: opacity(0%);
+    z-index: 7;
+}
+
+@keyframes logo-fade {
+    100% {
+        filter: opacity(100%);
+    }
+    }
+
+html, body {
+    background: #D1D1D1;
+    animation-name: bg-color-fade;
+    animation-duration: 1600ms;
+  }
+
+  @keyframes bg-color-fade {
+    0% {
+        background: #2A3647;
+    }
+    80% {
+        background: #2A3647;
+    }
+    100% {
+        background: #D1D1D1;
+    }
     }
 
 }
