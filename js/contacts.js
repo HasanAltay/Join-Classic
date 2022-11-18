@@ -320,7 +320,9 @@ function contactClicked(given_id) {
 
 function showContactInformation(given_id) {
   // display contact details
+  // document.getElementById('contacts-details').classList.remove('con_invisible');
   document.getElementById('contacts-details').classList.remove('d-none');
+  
 
   let currentContact = Number(given_id.split("-")[1]);
   let searchLetter = given_id.split("-")[0];
@@ -351,7 +353,13 @@ function showContactInformation(given_id) {
 
   document.getElementById("label-big-and-name").innerHTML = /*html*/ `
   <span id="big-label" class="con_bigLabel">${firstLetterFirstName}${firstLetterLastName}</span>
-  <span id="first-name-last-name" class="con_firstNameLastName">${chosenContactsName} ${chosenContactsLastName}</span>`;
+  <div id="first-name-last-name" class="con_firstNameLastName">
+    <span>${chosenContactsName} ${chosenContactsLastName}</span>
+    <div style="display: flex; margin-top: 20px;">
+      <img src="./img/plus-8-32.png" style="height: 24px; width: 24px; object-fit: cover;">
+      <span class="hoverEffect" style="color: #29ABE2; font-size: 24px">Add Task</span>
+    </div>
+  </div>`;
 
   // Get background color of label inside contact list
   let label_Id = `label-${firstLetterFirstName}-${currentContact}`;
@@ -373,15 +381,17 @@ function showContactInformation(given_id) {
 }
 
 function hideContactDetails() {
-  document.getElementById("contacts-details").classList.add("d-none");
+  console.log('hideContactDetails()');
+  document.getElementById('contacts-details').classList.add('d-none');
+  // document.getElementById('label-big-and-name').classList.add('con_invisible')
 }
 
 function editContact(alphabetIndex, currentContact) {
   console.log(
     `You want to edit contact number ${currentContact} of alphabetic index ${alphabetIndex}`
   );
-  document.getElementById('edit-popup').classList.remove('d-none');
-  document.getElementById('edit-popup').style.display = "flex";
+  document.getElementById('edit-or-new-popup').classList.remove('d-none');
+  document.getElementById('edit-or-new-popup').style.display = "flex";
   contactToEditLetter = alphabetIndex;
   contactToEditIndex = currentContact;
 }

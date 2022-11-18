@@ -2,6 +2,10 @@
   display: none;
 }
 
+.con_invisible {
+  visibility: hidden;
+}
+
 .hoverEffect span:hover {
   cursor: pointer;
 }
@@ -26,8 +30,8 @@
   background-color: white;
 
   position: fixed;
-  width: 453px;
-  /* width: 30%; */
+  /* width: 453px; */
+  width: 30%;
   height: 88vh;
 
   top: 89px;
@@ -107,29 +111,6 @@
   flex: none;
   order: 2;
   flex-grow: 0;
-  /* padding: 8px;
-  width: 282px;
-  height: 40px; */
-
-  /* Version 2/t6 */
-
-  /* font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 21px;
-  line-height: 120%; */
-  /* or 25px */
-
-  /* display: flex;
-  align-items: center;
-
-  color: #000000;
-
-  
-
-  flex: none;
-  order: 0;
-  flex-grow: 0; */
 }
 
 .con_contactListElement:hover {
@@ -165,18 +146,23 @@
 }
 
 .con_contactInformation {
+  position: absolute;
+  top: 89px;
+  left: 685px;
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 64%;
   height: 88vh;
+  background-color: #F6F7F8;
 }
 
 .con_contactInformationHeader {
-  position: absolute;
+  /* position: absolute;
   top: 171px;
   left: 743px;
   right: 423px;
-  bottom: 780px;
+  bottom: 780px; */
+  margin: 20px;
   display: flex;
   align-items: center;
 }
@@ -248,12 +234,13 @@
 }
 
 .con_contactsDetails {
-  position: absolute;
+  /* position: absolute; */
   top: 260px;
   left: 750px;
   right: 0px;
   bottom: 0px;
   padding: 16px;
+  margin: 20px;
 }
 
 .con_labelBigAndName {
@@ -271,13 +258,13 @@
   height: 120px;
   /* font-size: 47px; */
   border-radius: 100%;
-  border: 1px solid white;
+  border: 3px solid #FFFFFF;
   color: white;
-  margin-right: 48px;
+  margin-right: 27px;
 }
 
 .con_firstNameLastName {
-  margin-left: 48px;
+  margin-left: 27px;
   /* font-size: 47px; */
 }
 
@@ -294,24 +281,27 @@
   /* Auto layout */
 
   display: flex;
+  align-self: flex-start;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 18px 10px;
+  margin: 20px;
   gap: 10px;
 
   position: absolute;
+  top: 670px;
+  left: 400px;
   width: 193px;
   height: 53px;
-  left: 1195px;
-  top: 638px;
+  
 
   background: #2a3647;
   border: 1px solid #2a3647;
   border-radius: 10px;
 }
 
-.con_editPopup {
+.con_editOrNewPopup {
   position: absolute;
    top: -20px;
   left: -44px;
@@ -321,7 +311,7 @@
   padding: 16px;
   border-radius: 20px;
   height: 100%;
-  width: 100%;
+  width: 80%;
   background-color: rgb(187, 187, 187);
   border: 2px solid black;
   filter: opacity(0.95);
