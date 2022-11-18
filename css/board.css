@@ -246,3 +246,12 @@
     background: transparent;
     border: none;
 }
+
+
+.bo_cancel_btn {
+    position: absolute;
+    right: 41px;
+    top: 41px;
+    background: transparent;
+    border: none;
+}

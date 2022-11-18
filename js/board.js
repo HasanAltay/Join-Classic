@@ -93,40 +93,35 @@ function startDragging(id) {
 
 function generateTodoHTML(element) {
     return `<div onclick="openTodoInfo('bo_popUp${element['id']}')" draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
+        <div class="bo_todo_infos">
+          <span class="bo_department font16-400">${element['department']}</span>
+          <br>
+            <div class="bo_todo_title font16-700">${element['title']}</div>
+              <div>
+               <div class="font16-400">${element['description']}</div>
+              </div>
+         </div>
+     </div>  
 
-                <div class="bo_todo_infos">
-                     <span class="bo_department font16-400">${element['department']}</span>
-                     <br>
-                        <div class="bo_todo_title font16-700">${element['title']}</div>
-                        <div>
-                            <div class="font16-400">${element['description']}</div>
-                        </div>
-                 </div>
-            </div>  
-
-
-                 <div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
-
-                     <div class="bo_popup_todo_Info">
-            
-                          <span class="bo_popUp_department">${element['department']}</span>
-                            <br>
-                                <div class="mt-25 font61-700">${element['title']}</div>
-                                     <div>
-                                         <div class="mt-25 font21-400">${element['description']}</div>
-                                     </div>
-
-                    <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
-                    <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
-                    <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
-                    
-                    <button class="bo_edit_todo c-pointer" onmouseover="changeEditBtn('./img/edit-light.png')" onmouseleave="resetEditBtn('./img/edit-dark.png')">
-                         <img id="boEditTodo" src="./img/edit-dark.png">
-                    </button>
-           </div>
-            
-        </div>
-            `;
+            <div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
+              <div class="bo_popup_todo_Info">
+                <button class="bo_cancel_btn c-pointer">
+                 <img src="./img/cancel.png">
+                </button>
+                  <span class="bo_popUp_department">${element['department']}</span>
+                  <br>
+                    <div class="mt-25 font61-700">${element['title']}</div>
+                      <div>
+                        <div class="mt-25 font21-400">${element['description']}</div>
+                      </div>
+                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
+                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
+                        <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
+                          <button class="bo_edit_todo c-pointer" onmouseover="changeEditBtn('./img/edit-light.png')" onmouseleave="resetEditBtn('./img/edit-dark.png')">
+                            <img id="boEditTodo" src="./img/edit-dark.png">
+                          </button>
+                </div>
+            </div>`;
 }
 
 
@@ -146,13 +141,11 @@ function openTodoInfo(id){
 }
 
 
-// function closeTodoInfo(element) {
-//     document.getElementById(`boPopUp${element['id']}`).classList.add('bo_d_none');
+// function closeTodoInfo(id) {
+//     document.getElementById(id).classList.add('d-none');
 // }
 
-// function openEditor() {
-    
-// }
+
 function changeEditBtn(img) {
     document.getElementById('boEditTodo').src = img;
 }
