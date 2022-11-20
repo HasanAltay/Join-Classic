@@ -14,8 +14,12 @@
 
 .bo_board {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+
+
+.bo_title {
+    margin-right: 300px;
 }
 
 
@@ -48,6 +52,13 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+}
+
+
+.bo_add_task_btn {
+    border: none;
+    background: transparent;
+    display: none;
 }
 
 
@@ -310,11 +321,14 @@
 
     .bo_board {
         margin-top: 20px;
-        /* justify-content: unset; */
     }
 
 
     .bo_mobile_search {
         display: none !important;
+    }
+
+    .bo_add_task_btn {
+        display: block;
     }
 }
