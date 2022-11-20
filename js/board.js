@@ -203,6 +203,16 @@ function resetEditBtn(img) {
 }
 
 
+function changeAddTaskBtn(img) {
+    document.getElementById('bo_AddTaskPlus').src = img;
+}
+
+
+function resetAddTaskBtn(img) {
+    document.getElementById('bo_AddTaskPlus').src = img;
+}
+
+
 function urgentButtonDefault() {
     document.getElementById('prioUrgent').style.backgroundColor = "#FFFFFF";
     document.getElementById('whiteUrgent').style.color = "#000000";
