@@ -12,11 +12,24 @@
                 <textarea id="description" class="descriptionbox" placeholder="Enter a description"
                     onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
             </div>
-            <div class="span-input">
+            <div id="color-picker" class="span-input">
                 <span class="category">Category</span>
-                <div class="category-selection">
-                    <span class="categorybox">Select task category</span>
-                    <img src="./img/open.png">
+                <div id="dropdown" onclick="showCategory()" class="category-selection">
+                    <div id="new_category" class="dropdown-container">
+                        <div class="categorybox">Select task category</div>
+                        <img src="./img/open.png">
+                    </div>
+                    <div class="dropdown-content" id="content">
+                        <div onclick="new_category()" class="dropdown-child"><span class="dropdown-item">New category</span></div>
+                        <div class="dropdown-child">
+                            <span class="dropdown-item">Sales</span>
+                            <img src="./img/sales-img.png">
+                        </div>
+                        <div class="dropdown-child">
+                            <span class="dropdown-item">Backoffice</span>
+                            <img src="./img/backoffice-img.png">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="span-input">
@@ -35,12 +48,15 @@
             <div class="span-input">
                 <span class="prio">Prio</span>
                 <div class="btn">
-                    <button id="prioUrgent" onclick="changeToRed()" class="prio-urgent"><span id="whiteUrgent"
+                    <button onmouseover="addPrioUrgentHover()" onmouseleave="removePrioUrgentHover()" id="prioUrgent"
+                        onclick="changeToRed()" class="prio-urgent"><span id="whiteUrgent"
                             class="urgent">Urgent</span><img id="img-up-white" src="./img/up.png"></button>
-                    <button id="prioMedium" onclick="changeToOrange()" class="prio-medium"><span id="whiteMedium"
+                    <button onmouseover="addPrioMediumHover()" onmouseleave="removePrioMediumHover()" id="prioMedium"
+                        onclick="changeToOrange()" class="prio-medium"><span id="whiteMedium"
                             class="medium">Medium</span><img id="img-middle-white" src="./img/middle.png"></button>
-                    <button id="prioLow" onclick="changeToGreen()" class="prio-low"><span id="whiteLow"
-                            class="low">Low</span><img id="img-down-white" src="./img/down.png"></button>
+                    <button onmouseover="addPrioLowHover()" onmouseleave="removePrioLowHover()" id="prioLow"
+                        onclick="changeToGreen()" class="prio-low"><span id="whiteLow" class="low">Low</span><img
+                            id="img-down-white" src="./img/down.png"></button>
                 </div>
             </div>
             <div class="span-input">
