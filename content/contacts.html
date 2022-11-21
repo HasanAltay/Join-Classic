@@ -16,7 +16,7 @@
                 <input class="con_editInputfield" value="Submit" type="button" onclick="addNewContact();">
             </form>
         </div>
-        <div id="contacts-details" class="con_contactsDetails d-none">
+        <div id="contacts-details" class="con_contactsDetails">
             <div id="edit-or-new-popup" class="con_editOrNewPopup d-none">
                 <form class="con_editForm d-none">
                     <input id="con-edit-name" class="con_editInputfield con_editInputfieldName" placeholder="Name" type="text" required>
@@ -25,14 +25,16 @@
                     <input class="con_editInputfield" value="Submit" type="button" onclick="submitEdit(contactToEditLetter, contactToEditIndex);">
                 </form>
             </div>
-            <div id="label-big-and-name" class="con_labelBigAndName"> Label Name<br>Add Task</div>
-            <div id="edit-container" class="con_editContainer">Contact Information Edit contact</div>
-            <div id="mail-and-phone-container" class="con_mailAndPhoneContainer">E-Mail   Phone</div>
+            <div id="label-big-and-name" class="con_labelBigAndName d-none"></div>
+            <div id="edit-container" class="con_editContainer d-none"></div>
+            <div id="mail-and-phone-container" class="con_mailAndPhoneContainer d-none"></div>
+            <div class="con_buttonContainer">
+                <button class="con_ContactInformationAddButton hoverEffect" onclick="newContact()">
+                    <span style="font-size: 21px; color: white;">New contact</span>
+                    <img src="./img/add_contact.png">
+                </button>
+            </div>
         </div>
-        <button class="con_ContactInformationAddButton hoverEffect" onclick="newContact()">
-          <span style="font-size: 21px; color: white;">New contact</span>
-          <img src="./img/add_contact.png">
-        </button>
         <div class="con_contactInformationName"></div>
         <div class="con_contactInformationDetails"></div>
     </div>

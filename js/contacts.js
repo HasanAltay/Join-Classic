@@ -360,7 +360,9 @@ function contactClicked(given_id) {
 function showContactInformation(given_id) {
   // display contact details
   // document.getElementById('contacts-details').classList.remove('con_invisible');
-  document.getElementById('contacts-details').classList.remove('d-none');
+  document.getElementById('label-big-and-name').classList.remove('d-none');
+  document.getElementById('edit-container').classList.remove('d-none');
+  document.getElementById('mail-and-phone-container').classList.remove('d-none');
   
 
   let currentContact = Number(given_id.split("-")[1]);
@@ -394,7 +396,7 @@ function showContactInformation(given_id) {
   <span id="big-label" class="con_bigLabel">${firstLetterFirstName}${firstLetterLastName}</span>
   <div id="first-name-last-name" class="con_firstNameLastName">
     <span>${chosenContactsName} ${chosenContactsLastName}</span>
-    <div style="display: flex; margin-top: 20px;">
+    <div style="display: flex; margin-top: 16px;">
       <img src="./img/plus-8-32.png" style="height: 24px; width: 24px; object-fit: cover;">
       <span class="hoverEffect" style="color: #29ABE2; font-size: 24px">Add Task</span>
     </div>
@@ -421,8 +423,10 @@ function showContactInformation(given_id) {
 
 function hideContactDetails() {
   console.log('hideContactDetails()');
-  document.getElementById('contacts-details').classList.add('d-none');
-  // document.getElementById('label-big-and-name').classList.add('con_invisible')
+  // document.getElementById('contacts-details').classList.add('d-none');
+  document.getElementById('label-big-and-name').classList.add('d-none');
+  document.getElementById('edit-container').classList.add('d-none');
+  document.getElementById('mail-and-phone-container').classList.add('d-none');
 }
 
 

@@ -1,5 +1,5 @@
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 .con_invisible {
@@ -151,8 +151,8 @@
   left: 685px;
   display: flex;
   flex-direction: column;
-  width: 64%;
-  height: 88vh;
+  width: 50%;
+  height: 86vh;
   background-color: #f6f7f8;
 }
 
@@ -240,14 +240,16 @@
   right: 0px;
   bottom: 0px;
   padding: 16px;
-  margin: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .con_labelBigAndName {
   display: flex;
   align-items: center;
   font-size: 47px;
-  margin-bottom: 68px;
+  margin-bottom: 48px;
 }
 
 .con_bigLabel {
@@ -275,6 +277,16 @@
 .con_mailAndPhoneContainer {
 }
 
+.con_buttonContainer {
+  position: absolute;
+  top: 520px;
+  left: 480px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .con_ContactInformationAddButton {
   box-sizing: border-box;
 
@@ -289,9 +301,9 @@
   margin: 20px;
   gap: 10px;
 
-  position: absolute;
+  /* position: absolute;
   top: 670px;
-  left: 400px;
+  left: 400px; */
   width: 193px;
   height: 53px;
 
