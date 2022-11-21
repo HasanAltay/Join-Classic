@@ -109,8 +109,8 @@ function generateTodoHTML(element) {
 function showPopUp(element) {
     return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
              <div class="bo_popup_todo_Info">
-                <div class="">
-                   <button class="bo_cancel_btn c-pointer onclick="closeTodoInfo('bo_popUp${element['id']}')">
+                <div>
+                   <button onclick="closeTodoInfo('bo_popUp${element['id']}')" class="bo_cancel_btn c-pointer">
                      <img src="./img/cancel.png">
                    </button>
                      <span class="bo_popUp_department">${element['department']}</span>
@@ -200,6 +200,16 @@ function changeEditBtn(img) {
 
 function resetEditBtn(img) {
     document.getElementById('boEditTodo').src = img;
+}
+
+
+function changeAddTaskBtn(img) {
+    document.getElementById('bo_AddTaskPlus').src = img;
+}
+
+
+function resetAddTaskBtn(img) {
+    document.getElementById('bo_AddTaskPlus').src = img;
 }
 
 

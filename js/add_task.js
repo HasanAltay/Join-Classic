@@ -72,13 +72,69 @@ function showDefaultSubtask() {
     `;
 }
 
-function showCategory() {
+function showCategoryNow() {
     let selection = document.getElementById('contentCategory');
     if (selection.style.display == 'block') {
         selection.style.display = 'none';
     } else {
         selection.style.display = 'block';
     }
+}
+
+let dropdown_clicked = false;
+
+function showCategory() {
+    if (dropdown_clicked == false) {
+        document.getElementById("content").classList.toggle("show");
+        document.getElementById("dropdown").classList.add("dropdown");
+        dropdown_clicked = true;
+    } else {
+        showCategoryDefault();
+    }
+}
+
+function showCategoryDefault() {
+    document.getElementById("content").classList.toggle("show");
+    document.getElementById("dropdown").classList.remove("dropdown");
+    dropdown_clicked = false;
+}
+
+function new_category() {
+    let new_category = document.getElementById('dropdown');
+    new_category.innerHTML = /*html*/`
+    <div class="new_category">
+        <input id="design" onclick="design()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+        <div class="img_new_category">
+            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearInputSubtask()">
+            <img src="./img/vertical.png">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="showSubtask()">
+        </div>
+    </div>
+    `;
+    document.getElementById('color-picker').innerHTML += /*html*/`
+    <div class="img-color-picker" id="img-picker">
+        <img id="picker" src="./img/color-picker.png">
+    </div>
+    `;
+}
+
+function design() {
+    document.getElementById('picker').src = "";
+    document.getElementById('design').value = "Design";
+    document.getElementById('img-picker').innerHTML = /*html*/`
+    <img class="color" src="./img/color-1.png">
+    <img class="color" src="./img/color-2.png">
+    <img class="color" src="./img/color-3.png">
+    <img class="color-brown" onclick="pick_brown()" src="./img/color-4.png">
+    <img class="color" src="./img/color-5.png">
+    <img class="color" src="./img/color-6.png">`;
+}
+
+function pick_brown() {
+    document.getElementById('img-picker').innerHTML = "";
+    document.getElementById('design').value = "";
+    document.getElementById('design').value = /*html*/`
+    <div><span>Design</span><img src="./img/color-4.png"></div>`;
 }
 
 function urgentButtonDefault() {
@@ -143,4 +199,28 @@ function changeToGreen() {
     }
     urgentButtonDefault();
     mediumButtonDefault();
+}
+
+function addPrioUrgentHover() {     
+    document.getElementById('prioUrgent').classList.add('prio-urgent-hover');   
+} 
+
+function removePrioUrgentHover() {
+    document.getElementById('prioUrgent').classList.remove('prio-urgent-hover');
+}
+
+function addPrioMediumHover() {
+    document.getElementById('prioMedium').classList.add('prio-medium-hover');
+}
+
+function removePrioMediumHover() {
+    document.getElementById('prioMedium').classList.remove('prio-medium-hover');
+}
+
+function addPrioLowHover() {
+    document.getElementById('prioLow').classList.add('prio-low-hover');
+}
+
+function removePrioLowHover() {
+    document.getElementById('prioLow').classList.remove('prio-low-hover');
 }
