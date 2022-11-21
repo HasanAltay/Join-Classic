@@ -101,7 +101,7 @@ function generateTodoHTML(element) {
                     <div class="font16-400">${element['description']}</div>
                   </div>
                </div>
-                ${showPopUp(element)};
+                ${showPopUp(element)}
             </div>`;          
 }
 
@@ -109,8 +109,8 @@ function generateTodoHTML(element) {
 function showPopUp(element) {
     return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
              <div class="bo_popup_todo_Info">
-                <div>
-                   <button onclick="closeTodoInfo('bo_popUp${element['id']}')" class="bo_cancel_btn c-pointer">
+                <div id="boPopUpInfo">
+                   <button onclick="closeTodoInfo('bo_popUp${element['id']}', event)" class="bo_cancel_btn c-pointer">
                      <img src="./img/cancel.png">
                    </button>
                      <span class="bo_popUp_department">${element['department']}</span>
@@ -122,12 +122,12 @@ function showPopUp(element) {
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
-                                <button onclick="openTodoEdit()" class="bo_edit_todo c-pointer" onmouseover="changeEditBtn('./img/edit-light.png')" onmouseleave="resetEditBtn('./img/edit-dark.png')">
+                                <button onclick="openTodoEdit()" class="bo_edit_todo c-pointer" onmouseenter="changeEditBtn('./img/edit-light.png')" onmouseleave="resetEditBtn('./img/edit-dark.png')">
                                   <img id="boEditTodo" src="./img/edit-dark.png">
                                 </button>
                 </div>
 
-             <div class="bo_edit_task d-none">
+             <div id="boEditPopUp" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="title">Title</span>
                     <input id="title" class="titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
@@ -165,9 +165,9 @@ function showPopUp(element) {
                      </div>
                  </div>
 
-                 <button class="bo_button_dark ">Ok<img src="./img/check.png"></button>
+                 <button onclick="closeTodoEdit()" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
         </div>
-    </div>`;    
+    </div>`;   
 }
 
 
@@ -188,8 +188,9 @@ function openTodoInfo(id) {
 }
 
 
-function closeTodoInfo(id) {
+function closeTodoInfo(id, event) {
     document.getElementById(id).classList.add('d-none');
+    event.stopPropagation();
 }
 
 
@@ -200,6 +201,18 @@ function changeEditBtn(img) {
 
 function resetEditBtn(img) {
     document.getElementById('boEditTodo').src = img;
+}
+
+
+function openTodoEdit() {
+    document.getElementById('boEditPopUp').classList.remove('d-none');
+    document.getElementById('boPopUpInfo').classList.add('d-none');
+}
+
+
+function closeTodoEdit() {
+    document.getElementById('boEditPopUp').classList.add('d-none');
+    document.getElementById('boPopUpInfo').classList.remove('d-none');
 }
 
 
