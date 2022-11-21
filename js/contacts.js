@@ -218,14 +218,19 @@ function initContacts() {
   console.log("initContacts()");
   initGlobalVariables();
 
+  document.getElementById("contact-list").innerHTML = '';
+
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     insertContactToContactList(i, contact);
   }
+  console.log('Contacts to add:')
+  console.log(contacts);
 }
 
 function insertContactToContactList(i, contact) {
   console.log("insertContactToContactList");
+  
   document.getElementById("contact-list").innerHTML += `
   <div id="${contact["letter"]}">
     <span id="label-${contact["letter"]} " class="con_alphabeticHints">${contact["letter"]}</span>
@@ -303,6 +308,25 @@ function addNewContact() {
   console.log(`New contact, phone: ${phone}`);
   console.log(`New contact, mail: ${mail}`);
 
+  // reset the input fields values
+  document.getElementById("con-new-name").value = '';
+  document.getElementById("con-new-phone").value = '';
+  document.getElementById("con-new-mail").value = '';
+
+  contacts[contactListIndex]['names'].push(firstName);
+  contacts[contactListIndex]['lastNames'].push(lastName);
+  contacts[contactListIndex]['phonenumbers'].push(phone);
+  contacts[contactListIndex]['mail'].push(mail);
+
+  console.log(`Contacts after adding of ${firstName} ${lastName}`);
+  console.log(contacts);
+
+  // sort contacts after adding new contact
+  sortContatcs(contactListIndex);
+
+
+
+  initContacts();
 
 
   
@@ -333,6 +357,75 @@ function addNewContact() {
   // currentLabelColor++;
   // let a = String();
 }
+
+
+function sortContatcs(contactListIndex) {
+  console.log('sortContacts()');
+
+  let namesArray = contacts[contactListIndex]['names'];
+  let tmp = namesArray;
+  let lastNamesArray = contacts[contactListIndex]['lastNames'];
+  let phonesArray = contacts[contactListIndex]['phonenumbers'];
+  let mailArray = contacts[contactListIndex]['mail'];
+
+  console.log('Before sorting...');
+  console.log(namesArray);
+  console.log(lastNamesArray);
+  console.log(phonesArray);
+  console.log(mailArray);
+
+  let oldIndices = [];
+  let newIndices = [];
+  let oldJson = {};
+  let newJson = {};
+
+  let sortJson = {};
+
+  for(let i = 0; i < namesArray.length; i++) {
+    let myKey = namesArray[i];
+    let myVal = i;
+    oldJson[myKey] = myVal;
+  }
+
+  // console.log(`namesArray: ${namesArray}`);
+
+  let namesArrayNew = tmp.sort();
+  // let namesArrayNew = ['Abelina', 'Alina', 'Anna'];
+
+  console.log(`namesArray: ${namesArray}`);
+  console.log(`namesArrayNew: ${namesArrayNew}`);
+  console.log(`temp: ${tmp}`);
+
+  for(let i = 0; i < namesArray.length; i++) {
+    let searchTag = namesArrayNew[i];
+    console.log(`searchTag: ${searchTag}`);
+    oldIndices.push(namesArray.indexOf(searchTag, 0));
+
+  }
+
+  for(let i = 0; i < namesArray.length; i++) {
+    let searchTag = namesArrayNew[i];
+    console.log(`searchTag: ${searchTag}`);
+    newIndices.push(namesArrayNew.indexOf(searchTag, 0));
+  }
+
+  console.log(`oldIndices: ${oldIndices}`);
+  console.log(`newIndices: ${newIndices}`);
+
+  for(let i = 0; i < namesArray.length; i++) {
+    let myKey = namesArray[i];
+    let myVal = newIndices[i];
+    newJson[myKey] = myVal;
+    // data["user_data"]["name"] = "tom";
+  }
+
+  console.log(newJson[0]);
+
+
+  console.log(oldJson);
+  console.log(newJson);
+}
+
 
 function contactClicked(given_id) {
   console.log("contactClicked()");
