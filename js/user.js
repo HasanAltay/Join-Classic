@@ -7,9 +7,10 @@ async function init() {
 }
 
 
-function registerUser() {
+async function registerUser() {
     users.push({username:username.value, email:email.value, password:password.value});
-    backend.setItem('users', JSON.stringify(users));
+    await backend.setItem('users', JSON.stringify(users));
+    alert('You are Registered:',users);
 }
 
 function guestUser(){

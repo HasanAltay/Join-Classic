@@ -64,7 +64,7 @@ async function NavRenderHelp() {
 
     function summaryPicked() {
         document.getElementById('nav_summary').innerHTML = `
-        <div class="nav_btn_picked" onclick="renderSummary()">
+        <div class="nav_btn_picked" onclick="NavRenderSummary()">
         <img src="../img/summary.png"><a>Summary</a>
         </div>
         `;
@@ -73,7 +73,7 @@ async function NavRenderHelp() {
 
     function boardPicked() {
         document.getElementById('nav_board').innerHTML = `
-        <div class="nav_btn_picked" onclick="renderBoard()">
+        <div class="nav_btn_picked" onclick="NavRenderBoard()">
         <img src="../img/board.png"><a>Board</a></div>
         `;
     }
@@ -81,7 +81,7 @@ async function NavRenderHelp() {
 
     function addTaskPicked() {
         document.getElementById('nav_add_task').innerHTML = `
-        <div class="nav_btn_picked" onclick="renderAddTask()">
+        <div class="nav_btn_picked" onclick="NavRenderAddTask()">
         <img src="../img/add_task.png"><a>Add Task</a></div>
         `;
     }
@@ -89,7 +89,7 @@ async function NavRenderHelp() {
 
     function contactsPicked() {
         document.getElementById('nav_contacts').innerHTML = `
-        <div class="nav_btn_picked" onclick="renderContacts()">
+        <div class="nav_btn_picked" onclick="NavRenderContacts()">
         <img src="../img/contacts.png"><a>Contacts</a></div>
         `;
     }

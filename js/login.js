@@ -64,24 +64,24 @@ function forgotPassword() {
 
 function signUp() {
     document.getElementById('login_access').innerHTML = /*html*/`
-            <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
-                <img src="./img/left_arrow_blue.png">
-            </div>
-            <span class="font61-700">Sign up</span>
-            <div class="login_blue_line"></div>
+        <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
+            <img src="./img/left_arrow_blue.png">
+        </div>
+        <span class="font61-700">Sign up</span>
+        <div class="login_blue_line"></div>
+        <form onsubmit="registerUser(); return false;">
             <div class="login_pos_rel">
-            <form>
-                <input placeholder="Name" id="username" type="text" class="login_input">
+                <input placeholder="Name" id="username" type="text" class="login_input" required>
                 <img src="./img/name.png" class="sign_name_png">
-                <input placeholder="Email" id="email" type="email" class="login_input">
+                <input placeholder="Email" id="email" type="email" class="login_input" required>
                 <img src="./img/mail.png" class="sign_mail_png">
-                <input placeholder="Password" id="password" type="password" class="login_input">
+                <input placeholder="Password" id="password" type="password" class="login_input" required>
                 <img src="./img/secure.png" class="sign_secure_png">
-            </form>
             </div>
             <div>
-                <button class="button_dark" onclick="registerUser()">Sign up</button>
+                <button class="button_dark">Sign up</button>
             </div>
+        </form>
     `;
 }
 
