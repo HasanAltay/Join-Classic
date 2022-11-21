@@ -158,10 +158,10 @@
     margin-bottom: 40px;
 }
 
-.login_forgot>span {
+/* .login_forgot>span {
     padding-left: 20px;
     padding-right: 45px;
-}
+} */
 
 .btn_dark {
     display: flex;
@@ -461,15 +461,12 @@ body {
         justify-content: center;
     }
 
-    .login_btns_dflex a {
-        margin-top: 20px;
-    }
-
     .btn_dark {
         width: 180px;
         padding: 4px 0px 4px 0px;
         font-size: 16px;
         font-weight: 700;
+        margin-bottom: 20px;
     }
 
     .btn_bright {
@@ -477,6 +474,7 @@ body {
         padding: 4px 0px 4px 0px;
         font-size: 16px;
         font-weight: 700;
+        margin-bottom: 20px;
     }
 
     .login_logo_animation {
@@ -539,6 +537,37 @@ body {
             filter: opacity(100%);
         }
     }
+
+    .login_forgot {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: unset;
+        justify-content: left;
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    .login_forgot a {
+        margin-bottom: 40px;
+    }
+
+    .login_input {
+        margin-bottom: 60px;
+    }
+
+    .login_secure_png {
+        top: 127px;
+    }
+
+    .sign_mail_png {
+        top: 130px;
+    }
+
+    .sign_secure_png {
+        top: 240px;
+    }
+    
+
 }
 
 @media (max-width: 360px) {

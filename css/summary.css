@@ -24,7 +24,7 @@
     height: 59px;
     border-left: 3px solid;
     border-left-color: #29ABE2;
-    font-size: 27px;
+    font-size: 24px;
     padding-left: 25px;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
 
 
 
-@keyframes slide {
+/* @keyframes slide {
     0% {
         left: 345px;
     }
@@ -48,7 +48,7 @@
     100% {
         left: 700px;
     }
-}
+} */
 
 .sum_main_child {
     display: flex;
@@ -266,6 +266,10 @@
         transform-origin: left top;
         justify-content: left;
 
+    }
+
+    .sum_subtitle {
+        font-size: 16px;
     }
 }
 

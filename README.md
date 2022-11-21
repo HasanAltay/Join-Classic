@@ -6,9 +6,9 @@
 	message, shopping list and to do list. 
 	You have prioritizing and deadline options in your tasks.
 
-	Developer:
+	Dev-Team:
 	Hasan Altay
 	Christian Axtmann
 	Malaica Brunks
-	Joachim Dürr?
+	Joachim Dürr
 
