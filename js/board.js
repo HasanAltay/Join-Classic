@@ -217,12 +217,12 @@ function closeTodoEdit() {
 
 
 function changeAddTaskBtn(img) {
-    document.getElementById('bo_AddTaskPlus').src = img;
+    document.getElementById('bo_AddTaskPlus', 'bo_AddTaskPlus-1').src = img;
 }
 
 
 function resetAddTaskBtn(img) {
-    document.getElementById('bo_AddTaskPlus').src = img;
+    document.getElementById('bo_AddTaskPlus', 'bo_AddTaskPlus-1').src = img;
 }
 
 

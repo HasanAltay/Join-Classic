@@ -218,14 +218,19 @@ function initContacts() {
   console.log("initContacts()");
   initGlobalVariables();
 
+  document.getElementById("contact-list").innerHTML = '';
+
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     insertContactToContactList(i, contact);
   }
+  console.log('Contacts to add:')
+  console.log(contacts);
 }
 
 function insertContactToContactList(i, contact) {
   console.log("insertContactToContactList");
+  
   document.getElementById("contact-list").innerHTML += `
   <div id="${contact["letter"]}">
     <span id="label-${contact["letter"]} " class="con_alphabeticHints">${contact["letter"]}</span>
@@ -303,6 +308,25 @@ function addNewContact() {
   console.log(`New contact, phone: ${phone}`);
   console.log(`New contact, mail: ${mail}`);
 
+  // reset the input fields values
+  document.getElementById("con-new-name").value = '';
+  document.getElementById("con-new-phone").value = '';
+  document.getElementById("con-new-mail").value = '';
+
+  contacts[contactListIndex]['names'].push(firstName);
+  contacts[contactListIndex]['lastNames'].push(lastName);
+  contacts[contactListIndex]['phonenumbers'].push(phone);
+  contacts[contactListIndex]['mail'].push(mail);
+
+  console.log(`Contacts after adding of ${firstName} ${lastName}`);
+  console.log(contacts);
+
+  // sort contacts after adding new contact
+  sortContatcs(contactListIndex);
+
+
+
+  initContacts();
 
 
   
@@ -333,6 +357,93 @@ function addNewContact() {
   // currentLabelColor++;
   // let a = String();
 }
+
+
+function sortContatcs(contactListIndex) {
+  console.log('sortContacts()');
+  let tmp = [];
+  let namesArray = [];
+  let lastNamesArray = [];
+  let lastNamesArrayNew = [];
+  let namesArrayNew = [];
+  let phonesArray = [];
+  let phonesArrayNew = [];
+  let mailArray = [];
+  let mailArrayNew = [];
+
+  // get the contacts' information into arrays
+  namesArray = contacts[contactListIndex]['names'];
+  lastNamesArray = contacts[contactListIndex]['lastNames'];
+  phonesArray = contacts[contactListIndex]['phonenumbers'];
+  mailArray = contacts[contactListIndex]['mail'];
+  
+  // copy the elements of namesArray to tmp
+  for (let index = 0; index < namesArray.length; index++) {
+    const element = namesArray[index];
+    tmp.push(element);
+  }
+
+  console.log('Before sorting...');
+  console.log(namesArray);
+  console.log(lastNamesArray);
+  console.log(phonesArray);
+  console.log(mailArray);
+
+  let oldIndices = [];
+  let newIndices = [];
+ 
+  // sort the array tmp and copy it
+  namesArrayNew = tmp.sort();
+  console.log('The sorting does...');
+  console.log('namesArray:');
+  console.log(namesArray);
+  console.log('namesArrayNew:');
+  console.log(namesArrayNew);
+  console.log('tmp:');
+  console.log(tmp);
+  
+  for(let i = 0; i < namesArray.length; i++) {
+    let searchTag = namesArrayNew[i];
+    console.log(`searchTag: ${searchTag}`);
+    oldIndices.push(namesArray.indexOf(searchTag, 0));
+
+  }
+
+  for(let i = 0; i < namesArray.length; i++) {
+    let searchTag = namesArrayNew[i];
+    console.log(`searchTag: ${searchTag}`);
+    newIndices.push(namesArrayNew.indexOf(searchTag, 0));
+  }
+
+  console.log(`oldIndices: ${oldIndices}`);
+  console.log(`newIndices: ${newIndices}`);
+
+  // fill arrays with dummy value
+  for (let index = 0; index < namesArray.length; index++) {
+    lastNamesArrayNew.push('dummy');
+    phonesArrayNew.push('dummy');
+    mailArrayNew.push('dummy');
+  }
+
+  for (let i = 0; i < namesArray.length; i++) {
+    lastNamesArrayNew[i] = lastNamesArray[oldIndices[i]];
+    phonesArrayNew[i] = phonesArray[oldIndices[i]];
+    mailArrayNew[i] = mailArray[oldIndices[i]];
+  }
+
+  console.log('the new sorted contacts are:');
+  console.log(namesArrayNew);
+  console.log(lastNamesArrayNew);
+  console.log(phonesArrayNew);
+  console.log(mailArrayNew);
+
+  contacts[contactListIndex]['names'] = namesArrayNew;
+  contacts[contactListIndex]['lastNames'] = lastNamesArrayNew;
+  contacts[contactListIndex]['phonenumbers'] = phonesArrayNew;
+  contacts[contactListIndex]['mail'] = mailArrayNew;
+
+}
+
 
 function contactClicked(given_id) {
   console.log("contactClicked()");
