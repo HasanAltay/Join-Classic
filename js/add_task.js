@@ -84,6 +84,7 @@ function showCategoryNow() {
 let dropdown_clicked = false;
 
 function showCategory() {
+    document.getElementById('dropdown').classList.add('height');
     if (dropdown_clicked == false) {
         document.getElementById("content").classList.toggle("show");
         document.getElementById("dropdown").classList.add("dropdown");
@@ -102,24 +103,117 @@ function showCategoryDefault() {
 function new_category() {
     let new_category = document.getElementById('dropdown');
     new_category.innerHTML = /*html*/`
-    <div class="new_category">
+    <div id="new-category" class="new_category">
         <input id="design" onclick="design()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
         <div class="img_new_category">
-            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearInputSubtask()">
+            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearCategory()">
             <img src="./img/vertical.png">
-            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="showSubtask()">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="design()">
         </div>
     </div>
     `;
-    document.getElementById('color-picker').innerHTML += /*html*/`
+    document.getElementById('color-picker').innerHTML = /*html*/`
     <div class="img-color-picker" id="img-picker">
         <img id="picker" src="./img/color-picker.png">
     </div>
     `;
 }
 
+function clearCategory() {
+    document.getElementById('new-category').classList.remove("new_category");
+    document.getElementById('img-picker').classList.add("d-none");
+    document.getElementById('new-category').innerHTML = /*html*/`
+    <div onclick="dropdownClear()" id="new_category" class="dropdown-container">
+        <div class="categorybox">Select task category</div>
+        <div><img src="./img/open.png"></div>
+    </div>
+    <div class="dropdown-content" id="content-sales">
+        <div onclick="new_category()" class="dropdown-child">
+            <span class="dropdown-item">New category</span>
+        </div>
+        <div onclick="showSales()" class="dropdown-child">
+            <span class="dropdown-item">Sales</span>
+            <img src="./img/sales-img.png">
+        </div>
+        <div onclick="backOffice()" class="dropdown-child">
+            <span class="dropdown-item">Backoffice</span>
+            <img src="./img/backoffice-img.png">
+        </div>
+    </div>`;
+}
+
+function dropdownClear() {
+    document.getElementById("content-sales").classList.toggle("show");
+}
+
+function showSales() {
+    let showSales = document.getElementById('dropdown');
+    showSales.innerHTML = /*html*/`
+    <div onclick="dropdownSales()" id="new-category" class="new_category">
+        <div>
+            <input id="design" class="categorybox sales caret-hidden" type="text" value="Sales">
+            <img class="img-sales" src="./img/sales-img.png">
+        </div>
+        <img src="./img/open.png">     
+   </div>
+    <div class="dropdown-content" id="content-sales">
+        <div onclick="new_category()" class="dropdown-child">
+            <span class="dropdown-item">New category</span>
+        </div>
+        <div onclick="showSales()" class="dropdown-child">
+            <span class="dropdown-item">Sales</span>
+            <img src="./img/sales-img.png">
+        </div>
+        <div onclick="backOffice()" class="dropdown-child">
+            <span class="dropdown-item">Backoffice</span>
+            <img src="./img/backoffice-img.png">
+        </div>
+    </div>`;
+}
+
+function dropdownSales() {
+    document.getElementById("content-sales").classList.toggle("show");
+}
+
+function backOffice() {
+    let backOffice = document.getElementById('dropdown');
+    backOffice.innerHTML = /*html*/`
+    <div onclick="dropdownOffice()" id="new-category" class="new_category">
+        <div>
+            <input id="design" class="categorybox backoffice caret-hidden" type="text" value="Backoffice">
+            <img class="img-sales" src="./img/backoffice-img.png">
+        </div>
+        <img src="./img/open.png">     
+   </div>
+   <div class="dropdown-content" id="content-office">
+        <div onclick="new_category()" class="dropdown-child">
+            <span class="dropdown-item">New category</span>
+        </div>
+        <div onclick="showSales()" class="dropdown-child">
+            <span class="dropdown-item">Sales</span>
+            <img src="./img/sales-img.png">
+        </div>
+        <div onclick="backOffice()" class="dropdown-child">
+            <span class="dropdown-item">Backoffice</span>
+            <img src="./img/backoffice-img.png">
+        </div>
+    </div>`;
+}
+
+function dropdownOffice() {
+    document.getElementById("content-office").classList.toggle("show");
+}
+
 function design() {
-    document.getElementById('picker').src = "";
+    document.getElementById('new-category').innerHTML = /*html*/`
+    <input id="design" onclick="design()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+    <div class="img_new_category">
+        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearCategory()">
+        <img src="./img/vertical.png">
+        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="click_design()">
+    </div>`;
+    document.getElementById('img-picker').classList.remove("d-none");
+    document.getElementById('img-picker').innerHTML = "";
     document.getElementById('design').value = "Design";
     document.getElementById('img-picker').innerHTML = /*html*/`
     <img class="color" src="./img/color-1.png">
@@ -130,11 +224,67 @@ function design() {
     <img class="color" src="./img/color-6.png">`;
 }
 
+function click_design() {
+    document.getElementById('img-picker').classList.add("d-none");
+    let design = document.getElementById('design');
+    design.value = "Design";
+    document.getElementById('new-category').classList.remove("new_category");
+    document.getElementById('new-category').innerHTML = /*html*/`
+    <div onclick="dropdownDesign()" class="design">
+        <div>
+            <span class="design-picked">${design.value}</span>
+            <img class="img-pick-brown" src="./img/color-4.png">
+        </div>
+        <img src = "./img/open.png">
+    </div>
+    <div class="dropdown-content" id="dropdownDesign">
+        <div onclick="new_category()" class="dropdown-child">
+            <span class="dropdown-item">New category</span>
+        </div>
+        <div onclick="showSales()" class="dropdown-child">
+            <span class="dropdown-item">Sales</span>
+            <img src="./img/sales-img.png">
+        </div>
+            <div onclick="backOffice()" class="dropdown-child">
+            <span class="dropdown-item">Backoffice</span>
+            <img src="./img/backoffice-img.png">
+        </div>
+    </div>
+    `;
+}
+
+function dropdownDesign() {
+    document.getElementById("dropdownDesign").classList.toggle("show");
+}
+
 function pick_brown() {
-    document.getElementById('img-picker').innerHTML = "";
-    document.getElementById('design').value = "";
-    document.getElementById('design').value = /*html*/`
-    <div><span>Design</span><img src="./img/color-4.png"></div>`;
+    document.getElementById('img-picker').classList.add("d-none");
+    let design = document.getElementById('design');
+    design.value = "";
+    design.value = "Design";
+    document.getElementById('new-category').classList.remove("new_category");
+    document.getElementById('new-category').innerHTML = /*html*/`
+    <div class="design">
+        <div>
+            <span class="design-picked">${design.value}</span>
+            <img class="img-pick-brown" src="./img/color-4.png">
+        </div>
+        <img src = "./img/open.png">
+    </div>
+    <div class="dropdown-content" id="content">
+        <div onclick="new_category()" class="dropdown-child">
+            <span class="dropdown-item">New category</span>
+        </div>
+        <div onclick="showSales()" class="dropdown-child">
+            <span class="dropdown-item">Sales</span>
+            <img src="./img/sales-img.png">
+        </div>
+            <div onclick="backOffice()" class="dropdown-child">
+            <span class="dropdown-item">Backoffice</span>
+            <img src="./img/backoffice-img.png">
+        </div>
+    </div>
+    `;
 }
 
 function urgentButtonDefault() {
@@ -201,9 +351,9 @@ function changeToGreen() {
     mediumButtonDefault();
 }
 
-function addPrioUrgentHover() {     
-    document.getElementById('prioUrgent').classList.add('prio-urgent-hover');   
-} 
+function addPrioUrgentHover() {
+    document.getElementById('prioUrgent').classList.add('prio-urgent-hover');
+}
 
 function removePrioUrgentHover() {
     document.getElementById('prioUrgent').classList.remove('prio-urgent-hover');

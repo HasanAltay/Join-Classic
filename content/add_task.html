@@ -12,7 +12,7 @@
                 <textarea id="description" class="descriptionbox" placeholder="Enter a description"
                     onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
             </div>
-            <div id="color-picker" class="span-input">
+            <div class="span-input">
                 <span class="category">Category</span>
                 <div id="dropdown" onclick="showCategory()" class="category-selection">
                     <div id="new_category" class="dropdown-container">
@@ -21,16 +21,17 @@
                     </div>
                     <div class="dropdown-content" id="content">
                         <div onclick="new_category()" class="dropdown-child"><span class="dropdown-item">New category</span></div>
-                        <div class="dropdown-child">
+                        <div onclick="showSales()" class="dropdown-child">
                             <span class="dropdown-item">Sales</span>
                             <img src="./img/sales-img.png">
                         </div>
-                        <div class="dropdown-child">
+                        <div onclick="backOffice()" class="dropdown-child">
                             <span class="dropdown-item">Backoffice</span>
                             <img src="./img/backoffice-img.png">
                         </div>
                     </div>
                 </div>
+                <div id="color-picker"></div>
             </div>
             <div class="span-input">
                 <span class="assigned">Assigned to</span>
