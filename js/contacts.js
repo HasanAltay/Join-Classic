@@ -361,12 +361,27 @@ function addNewContact() {
 
 function sortContatcs(contactListIndex) {
   console.log('sortContacts()');
+  let tmp = [];
+  let namesArray = [];
+  let lastNamesArray = [];
+  let lastNamesArrayNew = [];
+  let namesArrayNew = [];
+  let phonesArray = [];
+  let phonesArrayNew = [];
+  let mailArray = [];
+  let mailArrayNew = [];
 
-  let namesArray = contacts[contactListIndex]['names'];
-  let tmp = namesArray;
-  let lastNamesArray = contacts[contactListIndex]['lastNames'];
-  let phonesArray = contacts[contactListIndex]['phonenumbers'];
-  let mailArray = contacts[contactListIndex]['mail'];
+  // get the contacts' information into arrays
+  namesArray = contacts[contactListIndex]['names'];
+  lastNamesArray = contacts[contactListIndex]['lastNames'];
+  phonesArray = contacts[contactListIndex]['phonenumbers'];
+  mailArray = contacts[contactListIndex]['mail'];
+  
+  // copy the elements of namesArray to tmp
+  for (let index = 0; index < namesArray.length; index++) {
+    const element = namesArray[index];
+    tmp.push(element);
+  }
 
   console.log('Before sorting...');
   console.log(namesArray);
@@ -376,26 +391,17 @@ function sortContatcs(contactListIndex) {
 
   let oldIndices = [];
   let newIndices = [];
-  let oldJson = {};
-  let newJson = {};
-
-  let sortJson = {};
-
-  for(let i = 0; i < namesArray.length; i++) {
-    let myKey = namesArray[i];
-    let myVal = i;
-    oldJson[myKey] = myVal;
-  }
-
-  // console.log(`namesArray: ${namesArray}`);
-
-  let namesArrayNew = tmp.sort();
-  // let namesArrayNew = ['Abelina', 'Alina', 'Anna'];
-
-  console.log(`namesArray: ${namesArray}`);
-  console.log(`namesArrayNew: ${namesArrayNew}`);
-  console.log(`temp: ${tmp}`);
-
+ 
+  // sort the array tmp and copy it
+  namesArrayNew = tmp.sort();
+  console.log('The sorting does...');
+  console.log('namesArray:');
+  console.log(namesArray);
+  console.log('namesArrayNew:');
+  console.log(namesArrayNew);
+  console.log('tmp:');
+  console.log(tmp);
+  
   for(let i = 0; i < namesArray.length; i++) {
     let searchTag = namesArrayNew[i];
     console.log(`searchTag: ${searchTag}`);
@@ -412,18 +418,30 @@ function sortContatcs(contactListIndex) {
   console.log(`oldIndices: ${oldIndices}`);
   console.log(`newIndices: ${newIndices}`);
 
-  for(let i = 0; i < namesArray.length; i++) {
-    let myKey = namesArray[i];
-    let myVal = newIndices[i];
-    newJson[myKey] = myVal;
-    // data["user_data"]["name"] = "tom";
+  // fill arrays with dummy value
+  for (let index = 0; index < namesArray.length; index++) {
+    lastNamesArrayNew.push('dummy');
+    phonesArrayNew.push('dummy');
+    mailArrayNew.push('dummy');
   }
 
-  console.log(newJson[0]);
+  for (let i = 0; i < namesArray.length; i++) {
+    lastNamesArrayNew[i] = lastNamesArray[oldIndices[i]];
+    phonesArrayNew[i] = phonesArray[oldIndices[i]];
+    mailArrayNew[i] = mailArray[oldIndices[i]];
+  }
 
+  console.log('the new sorted contacts are:');
+  console.log(namesArrayNew);
+  console.log(lastNamesArrayNew);
+  console.log(phonesArrayNew);
+  console.log(mailArrayNew);
 
-  console.log(oldJson);
-  console.log(newJson);
+  contacts[contactListIndex]['names'] = namesArrayNew;
+  contacts[contactListIndex]['lastNames'] = lastNamesArrayNew;
+  contacts[contactListIndex]['phonenumbers'] = phonesArrayNew;
+  contacts[contactListIndex]['mail'] = mailArrayNew;
+
 }
 
 
