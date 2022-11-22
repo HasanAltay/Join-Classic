@@ -274,23 +274,25 @@
 }
 
 
-
-@media (max-width: 600px) {
-    .bo_title {
-        padding-top: 20px;
-        padding-left: 23px;
-        font-size: 47px;
-        font-weight: 700;
-        margin-bottom: 25px;
-    }
-
+@media (max-width: 900px) {
     .bo_board {
+        
         margin-top: 20px;
         margin-bottom: 30px;
     }
 
-    .bo_mobile_search {
-        display: none !important;
+
+    .bo_title {
+        margin-right: 125px;
+        margin-left: -24px;
+        padding-top: 20px;
+        padding-left: 23px;
+        font-size: 47px;
+        font-weight: 700;
+    }
+
+    .bo_search_dnone {
+        display: block !important;
     }
 
     .bo_search_mobile_input {
@@ -302,19 +304,55 @@
         background: #FFFFFF;
         border: 1px solid #A8A8A8;
         border-radius: 10px;
-        margin-left: 24px;
-        display: block !important;
+        margin-left: unset;
+        /* display: block !important; */
     }
 
     .bo_lupe_mobile {
         position: absolute;
         cursor: pointer;
         margin-top: -39px;
-        margin-left: 175px;
+        margin-left: 158px;
     }
 
+
+    .bo_mobile_search {
+        display: none !important;
+    }
+
+    
     .bo_add_task_btn {
         display: block;
+    }
+
+    .bo_todo_container {
+        flex-wrap: wrap;
+        margin-top: 24px;
+    }
+
+    .bo_todo_area {
+        margin-right: unset;
+    }
+}
+
+
+@media (max-width: 715px) {
+    .bo_title {
+         margin-right: 70px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .bo_title {
+        margin-bottom: 25px;
+        margin-right: 250px;
+        margin-left: unset;
+    }
+
+
+    .bo_search_mobile_input {
+        margin-left: 20px;
     }
 
     .bo_todo_container {
@@ -336,7 +374,7 @@
 
 @media (max-width: 480px) {
     .bo_title {
-        margin-right: 145px;
+        margin-right: 200px;
     }
 
     .bo_todo_area {
@@ -350,5 +388,23 @@
 
     .bo_drag-area {
         height: 290px;
+    }
+    /* .bo_search_mobile_input {
+        margin-left: 20px;
+    } */
+}
+
+
+@media (max-width: 380px) {
+    .bo_title {
+        margin-right: 114px;
+    }
+
+    /* .bo_search_mobile_input {
+        margin-left: 20px;
+    } */
+
+    .bo_todo {
+        width: unset;
     }
 }

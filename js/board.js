@@ -216,14 +216,14 @@ function closeTodoEdit(i) {
 }
 
 
-// function changeAddTaskBtn(img) {
-//     document.getElementById('bo_AddTaskPlus', 'bo_AddTaskPlus-1').src = img;
-// }
+function changeAddTaskBtn(img) {
+    document.getElementById('bo_AddTaskPlus').src = img;
+}
 
 
-// function resetAddTaskBtn(img) {
-//     document.getElementById('bo_AddTaskPlus', 'bo_AddTaskPlus-1').src = img;
-// }
+function resetAddTaskBtn(img) {
+    document.getElementById('bo_AddTaskPlus').src = img;
+}
 
 
 function urgentButtonDefault() {
