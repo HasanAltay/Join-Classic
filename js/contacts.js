@@ -1,3 +1,5 @@
+setURL('https://gruppe-375.developerakademie.net/backend');
+
 let contacts = [
   {
     letter: "A",
@@ -192,6 +194,7 @@ var currentLabelColor;
 
 var last_id;
 
+
 function initGlobalVariables() {
   labelColors = [
     BG_COLOR_SUPERNOVA,
@@ -226,6 +229,29 @@ function initContacts() {
   }
   console.log('Contacts to add:')
   console.log(contacts);
+
+  // save contactsToDatabase
+  saveContactsToDataBase();
+}
+
+
+function saveContactsToDataBase() {
+  console.log('saveContactsToDataBase()');
+  for (let index = 0; index < contacts.length; index++) {
+    const element = contacts[index];
+    localStorage.setItem(`contacts_${contacts[index]['letter']}_firstNames`, contacts[index]['names']);
+    localStorage.setItem(`contacts_${contacts[index]['letter']}_lastNames`, contacts[index]['lastNames']);
+    localStorage.setItem(`contacts_${contacts[index]['letter']}_phonenumbers`, contacts[index]['phonenumbers']);
+    localStorage.setItem(`contacts_${contacts[index]['letter']}_mailaddresses`, contacts[index]['mail']);
+
+    backend.setItem(`contacts_${contacts[index]['letter']}_firstNames`, JSON.stringify(contacts[index]['names']));
+    backend.setItem(`contacts_${contacts[index]['letter']}_lastNames`, JSON.stringify(contacts[index]['lastNames']));
+    backend.setItem(`contacts_${contacts[index]['letter']}_phonenumbers`, JSON.stringify(contacts[index]['phonenumbers']));
+    backend.setItem(`contacts_${contacts[index]['letter']}_mailaddresses`, JSON.stringify(contacts[index]['mail']));
+
+    console.log('Alirght. Successfully saved contacts to backend.');
+
+  }
 }
 
 function insertContactToContactList(i, contact) {
@@ -267,6 +293,7 @@ function insertContactToContactList(i, contact) {
   }
 }
 
+
 function newContact() {
   alert("You wanna add new contact?!");
   document.getElementById('new-popup').classList.remove('d-none');
@@ -276,6 +303,7 @@ function newContact() {
 
   
 }
+
 
 function addNewContact() {
   let firstName = document.getElementById("con-new-name").value.split(' ')[0];
@@ -327,35 +355,6 @@ function addNewContact() {
 
 
   initContacts();
-
-
-  
-  // let newContactFirstName = contactName.split(" ")[0];
-  // let newContactLastName = contactName.split(" ")[1];
-  // let firstLetterFirstName = newContactFirstName.charAt(0);
-  // let firstLetterLastName = newContactLastName.charAt(0);
-  // let currentNumberOfContactsAt =
-  //   contacts[firstLetterOfNewContact]["names"].length;
-
-  // contacts[firstLetterOfNewContact]["names"].push(newContactFirstName);
-  // contacts[firstLetterOfNewContact]["lastNames"].push(newContactFirstName);
-
-  // document.getElementById(
-  //   `${firstLetterFirstName}`
-  // ).innerHTML += `<div id="${firstLetterOfNewContact}-${
-  //   currentNumberOfContactsAt + 1
-  // }" class="con_contactListElement hoverEffect">
-  //     <span class="con_contactListElementLabel">${firstLetterFirstName}${firstLetterLastName}</span>
-  //     <div>
-  //       <span>${newContactFirstName} ${newContactLastName}</span>
-  //       <span class="con_contactListElementEmail">${element3}</span>
-  //     </div>
-      
-  //   </div>`;
-
-  // // document.getElementById('')
-  // currentLabelColor++;
-  // let a = String();
 }
 
 
@@ -465,7 +464,6 @@ function contactClicked(given_id) {
     last_id = "XX";
     hideContactDetails();
   }
-  // last_id = given_id;
 }
 
 function showContactInformation(given_id) {

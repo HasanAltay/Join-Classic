@@ -109,7 +109,7 @@ function generateTodoHTML(element) {
 function showPopUp(element) {
     return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
              <div class="bo_popup_todo_Info">
-                <div id="boPopUpInfo">
+                <div id="boPopUpInfo${element['id']}">
                    <button onclick="closeTodoInfo('bo_popUp${element['id']}', event)" class="bo_cancel_btn c-pointer">
                      <img src="./img/cancel.png">
                    </button>
@@ -122,12 +122,12 @@ function showPopUp(element) {
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
-                                <button onclick="openTodoEdit()" class="bo_edit_todo c-pointer" onmouseenter="changeEditBtn('./img/edit-light.png')" onmouseleave="resetEditBtn('./img/edit-dark.png')">
-                                  <img id="boEditTodo" src="./img/edit-dark.png">
+                                <button onclick="openTodoEdit(${element['id']})" class="bo_edit_todo c-pointer" onmouseenter="changeEditBtn('./img/edit-light.png', ${element['id']})" onmouseleave="resetEditBtn('./img/edit-dark.png', ${element['id']})">
+                                  <img id="boEditTodo${element['id']}" src="./img/edit-dark.png">
                                 </button>
                 </div>
 
-             <div id="boEditPopUp" class="bo_edit_task d-none">
+             <div id="boEditPopUp${element['id']}" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="title">Title</span>
                     <input id="title" class="titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
@@ -165,7 +165,7 @@ function showPopUp(element) {
                      </div>
                  </div>
 
-                 <button onclick="closeTodoEdit()" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
+                 <button onclick="closeTodoEdit(${element['id']})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
         </div>
     </div>`;   
 }
@@ -194,36 +194,36 @@ function closeTodoInfo(id, event) {
 }
 
 
-function changeEditBtn(img) {
-    document.getElementById('boEditTodo').src = img;
+function changeEditBtn(img, i) {
+    document.getElementById('boEditTodo'+ i).src = img;
 }
 
 
-function resetEditBtn(img) {
-    document.getElementById('boEditTodo').src = img;
+function resetEditBtn(img, i) {
+    document.getElementById('boEditTodo'+ i).src = img;
 }
 
 
-function openTodoEdit() {
-    document.getElementById('boEditPopUp').classList.remove('d-none');
-    document.getElementById('boPopUpInfo').classList.add('d-none');
+function openTodoEdit(i) {
+    document.getElementById('boEditPopUp'+ i).classList.remove('d-none');
+    document.getElementById('boPopUpInfo'+ i).classList.add('d-none');
 }
 
 
-function closeTodoEdit() {
-    document.getElementById('boEditPopUp').classList.add('d-none');
-    document.getElementById('boPopUpInfo').classList.remove('d-none');
+function closeTodoEdit(i) {
+    document.getElementById('boEditPopUp'+ i).classList.add('d-none');
+    document.getElementById('boPopUpInfo'+ i).classList.remove('d-none');
 }
 
 
-function changeAddTaskBtn(img) {
-    document.getElementById('bo_AddTaskPlus', 'bo_AddTaskPlus-1').src = img;
-}
+// function changeAddTaskBtn(img) {
+//     document.getElementById('bo_AddTaskPlus', 'bo_AddTaskPlus-1').src = img;
+// }
 
 
-function resetAddTaskBtn(img) {
-    document.getElementById('bo_AddTaskPlus', 'bo_AddTaskPlus-1').src = img;
-}
+// function resetAddTaskBtn(img) {
+//     document.getElementById('bo_AddTaskPlus', 'bo_AddTaskPlus-1').src = img;
+// }
 
 
 function urgentButtonDefault() {
