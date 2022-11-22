@@ -72,13 +72,21 @@ function showDefaultSubtask() {
     `;
 }
 
-function showCategoryNow() {
-    let selection = document.getElementById('contentCategory');
-    if (selection.style.display == 'block') {
-        selection.style.display = 'none';
+function showAssigned() {
+    document.getElementById('dropdownAssigned').classList.add('height');
+    if (dropdown_clicked == false) {
+        document.getElementById("content-assigned").classList.toggle("show");
+        document.getElementById("dropdownAssigned").classList.add("dropdown");
+        dropdown_clicked = true;
     } else {
-        selection.style.display = 'block';
+        showAssignedDefault();
     }
+}
+
+function showAssignedDefault() {
+    document.getElementById("content-assigned").classList.toggle("show");
+    document.getElementById("dropdownAssigned").classList.remove("dropdown");
+    dropdown_clicked = false;
 }
 
 let dropdown_clicked = false;

@@ -261,15 +261,12 @@
 
 .assign-selection {
     margin-top: 8px;
-    display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    padding: 18px 21px;
     gap: 10px;
     isolation: isolate;
     width: 422px;
-    height: 51px;
     background: #FFFFFF;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
