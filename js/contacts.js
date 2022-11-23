@@ -295,13 +295,20 @@ function insertContactToContactList(i, contact) {
 
 
 function newContact() {
-  alert("You wanna add new contact?!");
+  // alert("You wanna add new contact?!");
   document.getElementById('new-popup').classList.remove('d-none');
   document.getElementById('new-popup').style.visibility = 'visible';
   document.getElementById('new-popup').style.display = "flex";
   document.getElementById('new-popup-form').classList.remove('d-none');
 
   
+}
+
+function cancelAddNewContact() {
+  document.getElementById('new-popup').classList.add('d-none');
+  document.getElementById('new-popup').style.visibility = 'invisible';
+  document.getElementById('new-popup').style.display = "none";
+  document.getElementById('new-popup-form').classList.add('d-none');
 }
 
 
@@ -530,6 +537,7 @@ function showContactInformation(given_id) {
   <span>${phoneNumber}</span>`;
 }
 
+
 function hideContactDetails() {
   console.log('hideContactDetails()');
   // document.getElementById('contacts-details').classList.add('d-none');
@@ -544,6 +552,7 @@ function editContact(alphabetIndex, currentContact) {
     `You want to edit contact number ${currentContact} of alphabetic index ${alphabetIndex}`
   );
   document.getElementById('edit-or-new-popup').classList.remove('d-none');
+  document.getElementById('edit-form').classList.remove('d-none');
   document.getElementById('edit-or-new-popup').style.visibility = 'visible';
   document.getElementById('edit-or-new-popup').style.display = "flex";
   contactToEditLetter = alphabetIndex;
@@ -552,6 +561,7 @@ function editContact(alphabetIndex, currentContact) {
 
 function submitEdit(contactToEditLetter, contactToEditIndex) {
   document.getElementById("edit-or-new-popup").classList.add("d-none");
+  document.getElementById('edit-form').classList.add('d-none');
   let firstNameNew = document.getElementById("con-edit-name").value.split(' ')[0];
   let lastNameNew = document.getElementById("con-edit-name").value.split(' ')[1];
   let phoneNew = document.getElementById("con-edit-phone").value;
