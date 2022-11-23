@@ -183,6 +183,11 @@ function moveTo(category) {
 }
 
 
+function filterTodos() {
+    console.log('Hallo');
+}
+
+
 function openAddTask() {
   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
   document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">

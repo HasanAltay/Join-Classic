@@ -1,32 +1,34 @@
 <div class="global_main_format no_sel">
     <div class="bo_top_section">
         <div class="sum_mobile_top_text">Kanban Project Management Tool</div>
-        <div class="bo_board">
 
+        <div class="addTaskBTN">
+            <button class="bo_add_task_btn" onmouseover="changeAddTaskBtn('./img/plus-light.png')"
+            onmouseleave="resetAddTaskBtn('./img/plus-dark.png')"><img id="bo_AddTaskPlus"
+                src="./img/plus-dark.png"></button>
+            </div>
+
+        <div class="bo_board">
+           
             <div>
                 <span class="font61-700 bo_title">Board</span>
             </div>
             <div>
-                <div class="d-flex ml-135 bo_mobile_search">
+                <div class="d-flex">
                     <div class="pos-rel">
                         <div>
-                            <input type="text" placeholder="Find Task" class="bo_search_input">
+                            <input id="bo_input" onchange="filterTodos()" type="text" placeholder="Find Task" class="bo_search_input">
                             <img class="bo_lupe" src="./img/search.png">
                         </div>
                     </div>
-                    <button onclick="openAddTask()" class="button_dark ml-40">Add Task<img src="./img/plus_white.png"
+                    <button onclick="openAddTask()" class="button_dark ml-40 bo_mobile_search">Add Task<img src="./img/plus_white.png"
                             style="margin-left: 10px"></button>
                 </div>
-                <button class="bo_add_task_btn" onmouseover="changeAddTaskBtn('./img/plus-light.png')"
-                    onmouseleave="resetAddTaskBtn('./img/plus-dark.png')"><img id="bo_AddTaskPlus"
-                        src="./img/plus-dark.png"></button>
+               
             </div>
 
         </div>
-        <div class="bo_search_dnone">
-            <input type="text" placeholder="Find Task" class="bo_search_mobile_input">
-            <img class="bo_lupe_mobile" src="./img/search.png">
-        </div>
+      
     </div>
 
     <div class="bo_popUp_AddTask d-none" id="boAddTaskPopUp">PopUp AddTask</div>

@@ -1,3 +1,8 @@
+/* .bo_top_section {
+    margin-left: 200px;
+} */
+
+
 .bo_board {
     display: flex;
     justify-content: space-between;
@@ -47,7 +52,7 @@
 
 .bo_addTask {
     width: 900px;
-    height:614px;
+    height: 614px;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
@@ -165,10 +170,6 @@
 }
 
 
-.ml-135 {
-    margin-left: 135px;
-}
-
 .bo_search_dnone {
     display: none;
 }
@@ -275,6 +276,9 @@
     .bo_board {
         margin-top: 20px;
         margin-bottom: 30px;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
     }
 
     .bo_title {
@@ -285,8 +289,20 @@
         font-weight: 700;
     }
 
+    .bo_search_input {
+        margin-left: 26px;
+    }
+
     .bo_search_dnone {
         display: block !important;
+    }
+
+
+    .addTaskBTN {
+        position: absolute;
+        left: 80%;
+        top: 25%;
+        transform: translate(-80%, -50%)
     }
 
     .bo_search_mobile_input {
@@ -359,7 +375,7 @@
 
 
 @media (max-width: 480px) {
-    
+
     .bo_todo_area {
         margin-right: unset;
     }
