@@ -54,6 +54,31 @@
 }
 
 
+/* .bo_popUp_AddTask {
+    background: rgba(165, 184, 216, 0.385);
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    max-height: 100vh;
+} */
+
+
+.bo_addTask {
+    width: 900px;
+    height:614px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+
 .bo_search_input::placeholder {
     font-weight: 400;
     font-size: 16px;
@@ -173,7 +198,7 @@
     display: none;
 }
 
-.bo_pop_up {
+.bo_pop_up, .bo_popUp_AddTask {
     background: rgba(165, 184, 216, 0.385);
     z-index: 20;
     position: fixed;
@@ -272,7 +297,7 @@
 
 @media (max-width: 900px) {
     .bo_board {
-        
+
         margin-top: 20px;
         margin-bottom: 30px;
     }
@@ -316,7 +341,7 @@
         display: none !important;
     }
 
-    
+
     .bo_add_task_btn {
         display: block;
     }
@@ -385,6 +410,7 @@
     .bo_drag-area {
         height: 290px;
     }
+
     /* .bo_search_mobile_input {
         margin-left: 20px;
     } */
