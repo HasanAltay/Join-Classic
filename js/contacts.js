@@ -244,10 +244,10 @@ function saveContactsToDataBase() {
     localStorage.setItem(`contacts_${contacts[index]['letter']}_phonenumbers`, contacts[index]['phonenumbers']);
     localStorage.setItem(`contacts_${contacts[index]['letter']}_mailaddresses`, contacts[index]['mail']);
 
-    backend.setItem(`contacts_${contacts[index]['letter']}_firstNames`, JSON.stringify(contacts[index]['names']));
-    backend.setItem(`contacts_${contacts[index]['letter']}_lastNames`, JSON.stringify(contacts[index]['lastNames']));
-    backend.setItem(`contacts_${contacts[index]['letter']}_phonenumbers`, JSON.stringify(contacts[index]['phonenumbers']));
-    backend.setItem(`contacts_${contacts[index]['letter']}_mailaddresses`, JSON.stringify(contacts[index]['mail']));
+    backend.saveContacts(`contacts_${contacts[index]['letter']}_firstNames`, JSON.stringify(contacts[index]['names']));
+    backend.saveContacts(`contacts_${contacts[index]['letter']}_lastNames`, JSON.stringify(contacts[index]['lastNames']));
+    backend.saveContacts(`contacts_${contacts[index]['letter']}_phonenumbers`, JSON.stringify(contacts[index]['phonenumbers']));
+    backend.saveContacts(`contacts_${contacts[index]['letter']}_mailaddresses`, JSON.stringify(contacts[index]['mail']));
 
     console.log('Alirght. Successfully saved contacts to backend.');
 

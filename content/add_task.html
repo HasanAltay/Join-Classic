@@ -12,7 +12,7 @@
                 <textarea id="description" class="descriptionbox" placeholder="Enter a description"
                     onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
             </div>
-            <div id="color-picker" class="span-input">
+            <div class="span-input">
                 <span class="category">Category</span>
                 <div id="dropdown" onclick="showCategory()" class="category-selection">
                     <div id="new_category" class="dropdown-container">
@@ -20,25 +20,43 @@
                         <img src="./img/open.png">
                     </div>
                     <div class="dropdown-content" id="content">
-                        <div onclick="new_category()" class="dropdown-child"><span class="dropdown-item">New category</span></div>
-                        <div class="dropdown-child">
+                        <div onclick="new_category()" class="dropdown-child">
+                            <span class="dropdown-item">New category</span>
+                        </div>
+                        <div onclick="showSales()" class="dropdown-child">
                             <span class="dropdown-item">Sales</span>
                             <img src="./img/sales-img.png">
                         </div>
-                        <div class="dropdown-child">
+                        <div onclick="backOffice()" class="dropdown-child">
                             <span class="dropdown-item">Backoffice</span>
                             <img src="./img/backoffice-img.png">
                         </div>
                     </div>
                 </div>
+                <div id="color-picker"></div>
             </div>
             <div class="span-input">
                 <span class="assigned">Assigned to</span>
-                <div id="assign" class="assign-selection">
-                    <span class="assignedbox">Select contacts to assign</span>
-                    <img src="./img/open.png">
+                <div id="dropdownAssigned" onclick="showAssigned()" class="assign-selection">
+                    <div id="new_assigned" class="dropdown-container">
+                        <div class="assignedbox">Select contacts to assign</div>
+                        <img src="./img/open.png">
+                    </div>
+                    <div class="dropdown-content" id="content-assigned">
+                        <div onclick="" class="dropdown-child">
+                            <span class="dropdown-item">You</span>
+                        </div>
+                        <div onclick="" class="dropdown-child">
+                            <span class="dropdown-item">Laura Numey</span>
+                            <img src="./img/sales-img.png">
+                        </div>
+                        <div onclick="" class="dropdown-child">
+                            <span class="dropdown-item">Invite new contact</span>
+                            <img src="./img/backoffice-img.png">
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div> 
         </div>
         <div class="right">
             <div class="span-input">

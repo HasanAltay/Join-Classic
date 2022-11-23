@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funktionsparameter</title>
+    <style>
+        body {
+            padding: 100px 200px;
+        }
+
+        table {
+            border: 1px solid lightgray;
+            border-collapse: collapse;
+        }
+
+        table td,
+        th {
+            min-width: 100px;
+            text-align: start;
+            padding: 4px;
+        }
+    </style>
+    <style>
+        p {
+            margin-top: 80px;
+        }
+    </style>
+
+    <script>
+        let food = ['Apple', 'Spinach', 'Cookie', 'Pumpkin'];
+
+        /**
+         * Aufgabe 1 
+         */
+        function greet(name) {
+            console.log(`Hallo ${name}`);
+        }
+
+
+        /**
+         * Aufgabe 2
+         */
+        function multiply(number1, number2) {
+            let result = number1 * number2;
+            console.log(`Das Ergebnis ist ${result}`);
+        }
+
+
+        /**
+         * Aufgabe 3
+         */
+        function contactInfo(name, age) {
+            console.log(`Mein Name ist ${name}`);
+
+            showMyAge(age);
+        }
+
+
+        /**
+         * Aufgabe 3
+         */
+        function showMyAge(age) {
+            console.log(`Ich bin ${age} Jahre alt.`);
+        }
+
+
+        /**
+         * Aufgabe 4
+         */
+        function eatCookie(i) {
+            let item = food[i]; // Lädt das Element an der Stelle "i" aus dem Array
+            if (item == 'Cookie') {
+                console.log('Om nom nom');
+            } else {
+                console.log('I don\'t like ' + item);
+            }
+        }
+
+
+
+        /**
+         * Aufgabe 5
+         */
+        function pythagoras(a, b, container) {
+            let aabb = a * a + b * b; // Caclulates a² + b²
+            let result = Math.sqrt(aabb); // Calculates the route (dt: Wurzel) of the variable aabb; 
+            document.getElementById(container).innerHTML = result; // Transform Id in a parameter for showing results on different spots!
+        }
+
+
+        /**
+         * Aufgabe 6
+         */
+        function calculateDistance(speed,time, distance ) {
+            let result= speed * time;
+            document.getElementById(distance).innerHTML = result+' km';            
+
+            // TODO: Diese Funktion muss (inklusive Funktionsparameter) implementiert werden. 
+            // Orientiere dich an der Funktion aus Aufgabe 5.
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Funktionsparameter</h1>
+    <p>Bitte öffne die Entwicklungstools und wähle den Tab "Console" aus. Erfülle die folgenden Aufgaben.</p>
+
+    <p>
+        1) Wenn du auf den ersten Button klickst, wird in der Console der Text "Hallo Claudia" angezeigt. Gucke dir die
+        Funktion genau an.
+        <br><br> 1.1. Ändere den <b>Funktionsparameter</b> so ab, dass auf der Console <b>Hans</b> gegrüßt wird.
+        <br> 1.2. Beschreibe genau, was die Funktion <code>greet(name)</code> macht.<br>
+        Diese Funktion definiert die Variable 'name' in Abhängigkeit zur Grußformel, so dass jeder beliebige Name als
+        Parameter gesetzt werden kann.
+    </p>
+    <button onclick="greet('Hans')">Grüße senden</button>
+
+    <p>
+        2) Füge dem nachfolgenden Button die Funktion <code>multiply()</code> hinzu. Übergebe an die Funktion die
+        Parameter <code>7</code> und <code>8</code>. <br> Auf der Console soll der Text "Das Ergebnis ist 56" ausgegeben
+        werden.
+    </p>
+    <button onclick="multiply(7,8)">7 * 8</button>
+
+
+    <p>
+        3) Die Funktion <code>contactInfo()</code> ruft die Funktion <code>showMyAge()</code> auf. Diese zeigt jedoch
+        nicht das Alter an, sondern nur den Fehler <code>Uncaught ReferenceError: age is not defined</code>. Finde und
+        behebe den Fehler.
+    </p>
+    <button onclick="contactInfo('Claudia', 26)">Name und Alter anzeigen</button>
+
+
+
+    <p>
+        4) In diesem Code existiert ein Array mit diversen Leckereien. <br>
+        <br> 4.1. Ändere der Funktionsparameter der Funktion <code>eatCookie()</code> so ab, dass aus dem Array der Keks
+        ausgewählt und gegessen wird. Aus der Console sollte <code>Cookie: Om nom nom</code> angezeigt werden.
+        <br><br>
+
+    </p>
+    <button onclick="eatCookie(2)">Keks essen</button>
+
+
+    <p>5) Der Satz des Pythagoras ist jedem noch aus der Schulzeit bekannt: <code>a² + b² = c²</code>. In dieser Übung
+        rechnen wir unser c² für verschiedene Werte von a und b aus.<br>
+
+        <br> 5. 1. Versuche die Funktion in der ersten Zeile nachzuvollziehen. Sorge dafür, dass alle Ergebnisse aus der
+        Tabelle richtig angezeigt werden.
+
+        <br> 5. 2. Füge einen Button "Berechnen" in die zweite Spalte ein, der das die Rechnung <code>2² + 5²</code>
+        ausrechnet.
+
+        <br> 5.3. Spalte 3 der Tabelle verfügt bereits über einen "Berechnen" Button. Sobald dieser gedrückt wird, wird
+        jedoch eine Fehlermeldung angezeigt. Verstehe und löse diesen Fehler.
+    </p>
+
+    <table>
+        <tr>
+            <th></th>
+            <th>a² + b²</th>
+            <th>c²</th>
+            <th>Berechnen</th>
+        </tr>
+        <tr>
+            <td>1.</td>
+            <td>1² + 1²</td>
+            <td id="result1"></td>
+            <td><button onclick="pythagoras(1, 1, 'result1')">Berechnen</button></td>
+        </tr>
+
+        <tr>
+            <td>2.</td>
+            <td>2² + 5²</td>
+            <td id="result2"></td>
+            <td><button onclick="pythagoras(2, 5, 'result2')">Berechnen</button></td>
+        </tr>
+
+
+        <tr>
+            <td>3.</td>
+            <td>3² + 2²</td>
+            <td id="result3"></td>
+            <td><button onclick="pythagoras(3, 2, 'result3')">Berechnen</button></td>
+        </tr>
+    </table>
+
+
+
+    <p>
+        6. Wie viel Strecke kannst du innerhalb von 24 Stunden zurücklegen? Hierfür stellen wir eine Tabelle auf, welche
+        die Geschwindigkeit und Zeit multipliziert.<br>
+        <br>
+
+    </p>
+
+    <table>
+        <tr>
+            <th>Fortbewegungsmittel</th>
+            <th>Geschwindigkeit</th>
+            <th>Zeit</th>
+            <th>Ergebnis</th>
+            <th>Berechnen</th>
+        </tr>
+        <tr>
+            <td>Zu Fuß</td>
+            <td>5 km/h</td>
+            <td>24 Stunden</td>
+            <td id="distance1"></td>
+            <td><button onclick="calculateDistance(5, 24, 'distance1')">Berechnen</button></td>
+        </tr>
+
+        <tr>
+            <td>Joggen</td>
+            <td>12 km/h</td>
+            <td>24 Stunden</td>
+            <td id="distance2"></td>
+            <td><button onclick="calculateDistance(12, 24, 'distance2')">Berechnen</button></td>
+        </tr>
+
+        <tr>
+            <td>Fahrrad</td>
+            <td>18 km/h</td>
+            <td>24 Stunden</td>
+            <td id="distance3"></td>
+            <td><button onclick="calculateDistance(18, 24, 'distance3')">Berechnen</button></td>
+        </tr>
+
+        <tr>
+            <td>Auto</td>
+            <td>100 km/h</td>
+            <td>24 Stunden</td>
+            <td id="distance4"></td>
+            <td><button onclick="calculateDistance(100, 24, 'distance4')">Berechnen</button></td>
+        </tr>
+
+
+        <tr>
+            <td>Flugzeug</td>
+            <td>800 km/h</td>
+            <td>24 Stunden</td>
+            <td id="distance5"></td>
+            <td><button onclick="calculateDistance(800, 24, 'distance5')">Berechnen</button></td>
+        </tr>
+
+        <tr>
+            <td>ISS Raumstation</td>
+            <td>28800 km/h</td>
+            <td>24 Stunden</td>
+            <td id="distance6"></td>
+            <td><button onclick="calculateDistance(28800, 24, 'distance6')">Berechnen</button></td>
+        </tr>
+    </table>
+</body>
+
+</html>
