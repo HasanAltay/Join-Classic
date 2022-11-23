@@ -1,12 +1,3 @@
-.bo_main {
-    padding-top: 140px;
-    padding-left: 75px;
-    background-color: #F6F7F9;
-    min-width: calc(100vw - 232px);
-    min-height: 100vh;
-}
-
-
 .bo_board {
     display: flex;
     justify-content: space-between;
@@ -52,22 +43,6 @@
     background: transparent;
     display: none;
 }
-
-
-/* .bo_popUp_AddTask {
-    background: rgba(165, 184, 216, 0.385);
-    z-index: 20;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    max-height: 100vh;
-} */
 
 
 .bo_addTask {
@@ -295,16 +270,14 @@
 }
 
 
-@media (max-width: 900px) {
-    .bo_board {
 
+@media (max-width: 1280px) {
+    .bo_board {
         margin-top: 20px;
         margin-bottom: 30px;
     }
 
-
     .bo_title {
-        /* margin-right: 125px; */
         margin-left: -24px;
         padding-top: 20px;
         padding-left: 23px;
@@ -326,7 +299,6 @@
         border: 1px solid #A8A8A8;
         border-radius: 10px;
         margin-left: unset;
-        /* display: block !important; */
     }
 
     .bo_lupe_mobile {
@@ -336,11 +308,9 @@
         margin-left: 158px;
     }
 
-
     .bo_mobile_search {
         display: none !important;
     }
-
 
     .bo_add_task_btn {
         display: block;
@@ -357,27 +327,23 @@
 }
 
 
-/* @media (max-width: 715px) {
-    .bo_title {
-         margin-right: 70px;
-    }
-} */
-
-
 @media (max-width: 600px) {
     .bo_title {
         margin-bottom: 25px;
-        /* margin-right: 250px; */
         margin-left: unset;
     }
-
 
     .bo_search_mobile_input {
         margin-left: 20px;
     }
 
+    .bo_add_task_btn {
+        display: block;
+        padding-right: 48px;
+    }
+
     .bo_todo_container {
-        flex-direction: column;
+        /* flex-direction: column; */
         margin-top: 20px;
         margin-left: 24px;
     }
@@ -389,21 +355,17 @@
     .bo_drag-area {
         width: unset;
     }
-
 }
 
 
 @media (max-width: 480px) {
-    /* .bo_title {
-        margin-right: 200px;
-    } */
-
+    
     .bo_todo_area {
         margin-right: unset;
     }
 
     .bo_todo {
-        width: 363px;
+        width: 280px;
         height: 243px;
     }
 
@@ -411,22 +373,7 @@
         height: 290px;
     }
 
-    /* .bo_search_mobile_input {
+    .bo_search_mobile_input {
         margin-left: 20px;
-    } */
-}
-
-
-@media (max-width: 380px) {
-    /* .bo_title {
-        margin-right: 114px;
-    } */
-
-    /* .bo_search_mobile_input {
-        margin-left: 20px;
-    } */
-
-    .bo_todo {
-        width: unset;
     }
 }
