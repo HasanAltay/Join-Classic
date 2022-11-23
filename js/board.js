@@ -191,8 +191,9 @@ function filterTodos() {
 function openAddTask() {
   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
   document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
-  <div w3-include-html="./content/add_task.html"></div>
+  <div data-template="./content/add_task.html"></div>
   </div>`;
+  includeHTML();
 }
 
 

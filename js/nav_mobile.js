@@ -1,6 +1,6 @@
 async function NavRenderSummaryMobile() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/summary.html" onclick="closeLogoutMobile();"></div>
+    <div data-template="./content/summary.html" onclick="closeLogoutMobile();"></div>
     `;
     await includeHTML();
     summaryPickedMobile(); 
@@ -9,7 +9,7 @@ async function NavRenderSummaryMobile() {
 
 async function NavRenderBoardMobile() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/board.html" onclick="closeLogoutMobile();"></div>
+    <div data-template="./content/board.html" onclick="closeLogoutMobile();"></div>
     `;
     await includeHTML();
     updateHTML();
@@ -19,7 +19,7 @@ async function NavRenderBoardMobile() {
 
 async function NavRenderAddTaskMobile() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/add_task.html" onclick="closeLogoutMobile();"></div>
+    <div data-template="./content/add_task.html" onclick="closeLogoutMobile();"></div>
     `;
     await includeHTML();
     addTaskPickedMobile();
@@ -28,7 +28,7 @@ async function NavRenderAddTaskMobile() {
 
 async function NavRenderContactsMobile() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/contacts.html" onclick="closeLogoutMobile();"></div>
+    <div data-template="./content/contacts.html" onclick="closeLogoutMobile();"></div>
     `;
     await includeHTML();
     contactsPickedMobile();
@@ -38,7 +38,7 @@ async function NavRenderContactsMobile() {
 
 async function NavRenderPrivacyMobile() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/privacy.html" onclick="closeLogoutMobile();"></div>
+    <div data-template="./content/privacy.html" onclick="closeLogoutMobile();"></div>
     `;
     await includeHTML();
 }
@@ -46,7 +46,7 @@ async function NavRenderPrivacyMobile() {
 
 async function NavRenderImprintMobile() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/imprint.html" onclick="closeLogoutMobile();"></div>
+    <div data-template="./content/imprint.html" onclick="closeLogoutMobile();"></div>
     `;
     await includeHTML();
 }
@@ -54,7 +54,7 @@ async function NavRenderImprintMobile() {
 
 async function NavRenderHelpMobile() {
     document.getElementById('includeHTML').innerHTML = `
-    <div w3-include-html="./content/help.html" onclick="closeLogoutMobile();"></div>
+    <div data-template="./content/help.html" onclick="closeLogoutMobile();"></div>
     `;
     await includeHTML();
 }
