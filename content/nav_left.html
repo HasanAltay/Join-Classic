@@ -1,37 +1,26 @@
 <div class="navigation_left">
-    <img src="./img/logo.png" class="nav_logo" onclick="NavRenderSummary()">
+    <img src="./img/logo.png" class="nav_logo" onclick="NavRenderSummary(); NavClick(1)">
     <div class="nav_menu_box">
-        <div id="nav_summary">
-            <div class="nav_btn" onclick="NavRenderSummary()">
-                <img src="./img/summary.png"><a>Summary</a>
-            </div>
+        <div id="nav_summary" class="nav_btn" onclick="NavRenderSummary(); NavClick(1)">
+            <img src="./img/summary.png"><a>Summary</a>
         </div>
-        <div id="nav_board">
-            <div class="nav_btn" onclick="NavRenderBoard()">
-                <img src="./img/board.png"><a>Board</a>
-            </div>
+        <div id="nav_board" class="nav_btn" onclick="NavRenderBoard(); NavClick(2)">
+            <img src="./img/board.png"><a>Board</a>
         </div>
-        <div id="nav_add_task">
-            <div class="nav_btn" onclick="NavRenderAddTask()">
-                <img src="./img/add_task.png"><a>Add Task</a>
-            </div>
+        <div id="nav_add_task" class="nav_btn" onclick="NavRenderAddTask(); NavClick(3)">
+            <img src="./img/add_task.png"><a>Add Task</a>
         </div>
-        <div id="nav_contacts">
-            <div class="nav_btn" onclick="NavRenderContacts()">
-                <img src="./img/contacts.png"><a>Contacts</a>
-            </div>
+        <div id="nav_contacts" class="nav_btn" onclick="NavRenderContacts(); NavClick(4)">
+            <img src="./img/contacts.png"><a>Contacts</a>
         </div>
     </div>
     <div class="nav_menu_box_info">
-        <div id="nav_privacy">
-            <div class="nav_btn" onclick="NavRenderPrivacy()">
+            <div id="nav_privacy" class="nav_btn" onclick="NavRenderPrivacy(); NavClick(5)">
                 <img src="./img/info.png"><a>Privacy</a>
             </div> 
-        </div>
-        <div id="nav_imprint">
-            <div class="nav_btn" onclick="NavRenderImprint()">
+
+            <div id="nav_imprint" class="nav_btn" onclick="NavRenderImprint(); NavClick(6)">
                 <img src="./img/info.png"><a>Imprint</a>
             </div> 
-        </div>
     </div>
 </div>

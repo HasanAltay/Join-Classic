@@ -1,5 +1,5 @@
 <div class="nav_top_bar">
-    <img class="mobile_logo_hidden" src="./img/logo_dark.png" onclick="NavRenderSummaryMobile()">
+    <img class="mobile_logo_hidden" src="./img/logo_dark.png" onclick="NavRenderSummary(); NavClick(1)">
     <span>Kanban Project Management Tool</span>
     <div class="nav_top_bar_right">
         <div onclick="NavRenderHelp()">
@@ -15,9 +15,9 @@
         </div>
     </div>
     <div class="nav_logout_mobile" id="nav_open_logout_mobile">
-        <a onclick="NavRenderHelpMobile()">Help</a>
-        <a onclick="NavRenderPrivacyMobile()">Privacy</a>
-        <a onclick="NavRenderImprintMobile()">Imprint</a>
+        <a onclick="NavRenderHelp()">Help</a>
+        <a onclick="NavRenderPrivacy()">Privacy</a>
+        <a onclick="NavRenderImprint()">Imprint</a>
         <a href="./login.html">Log out</a>
     </div>
     <a href="./login.html" class="nav_logout" id="nav_open_logout">Log out</a>
