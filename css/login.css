@@ -576,6 +576,25 @@ body {
     }
 }
 
+@media (max-height: 667px) {
+    .login_join {
+        bottom: -550px;
+        right: unset;
+        transform: scale(80%);
+    }
+}
+
+@media (max-height: 512px) {
+    .login_join {
+        bottom: -550px;
+        right: unset;
+        transform: scale(80%);
+    }
+    .login_access {
+        transform: scale(50%);
+    }
+}
+
 @media (max-width: 280px) and (min-height: 653px) {
     .login_access {
         transform: scale(53%);
