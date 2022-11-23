@@ -1,6 +1,6 @@
 .bo_main {
     padding-top: 140px;
-    padding-left: 115px;
+    padding-left: 75px;
     background-color: #F6F7F9;
     min-width: calc(100vw - 232px);
     min-height: 100vh;
@@ -9,13 +9,9 @@
 
 .bo_board {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 70px;
-}
-
-
-.bo_title {
-    margin-right: 300px;
 }
 
 
@@ -283,7 +279,7 @@
 
 
     .bo_title {
-        margin-right: 125px;
+        /* margin-right: 125px; */
         margin-left: -24px;
         padding-top: 20px;
         padding-left: 23px;
@@ -336,17 +332,17 @@
 }
 
 
-@media (max-width: 715px) {
+/* @media (max-width: 715px) {
     .bo_title {
          margin-right: 70px;
     }
-}
+} */
 
 
 @media (max-width: 600px) {
     .bo_title {
         margin-bottom: 25px;
-        margin-right: 250px;
+        /* margin-right: 250px; */
         margin-left: unset;
     }
 
@@ -373,9 +369,9 @@
 
 
 @media (max-width: 480px) {
-    .bo_title {
+    /* .bo_title {
         margin-right: 200px;
-    }
+    } */
 
     .bo_todo_area {
         margin-right: unset;
@@ -396,9 +392,9 @@
 
 
 @media (max-width: 380px) {
-    .bo_title {
+    /* .bo_title {
         margin-right: 114px;
-    }
+    } */
 
     /* .bo_search_mobile_input {
         margin-left: 20px;

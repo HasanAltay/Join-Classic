@@ -183,6 +183,10 @@ function moveTo(category) {
 }
 
 
+// function openAddTask() {
+
+// }
+
 function openTodoInfo(id) {
     document.getElementById(id).classList.remove('d-none');
 }
