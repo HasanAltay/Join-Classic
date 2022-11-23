@@ -194,6 +194,8 @@ var currentLabelColor;
 
 var last_id;
 
+var selectedContact;
+
 
 function initGlobalVariables() {
   labelColors = [
@@ -475,7 +477,10 @@ function contactClicked(given_id) {
 
 function showContactInformation(given_id) {
   // display contact details
-  // document.getElementById('contacts-details').classList.remove('con_invisible');
+  selectedContact = given_id;
+  document.getElementById('contacts-details').classList.remove('d-none'); // testing !!!
+  document.getElementById('contact-information').style = "display: flex !important;";
+  document.getElementById('contact-information').classList.remove('d-none');
   document.getElementById('label-big-and-name').classList.remove('d-none');
   document.getElementById('edit-container').classList.remove('d-none');
   document.getElementById('mail-and-phone-container').classList.remove('d-none');
@@ -524,7 +529,7 @@ function showContactInformation(given_id) {
 
   document.getElementById("big-label").style.backgroundColor = bgColorLabel;
   document.getElementById("edit-container").innerHTML = /*html*/ `
-  <span style="font-size: 21px; margin-right: 62px;">Contact Information</span>
+  <span class="con_contactInformationSpan">Contact Information</span>
   <div class="hoverEffect" style="display: flex; align-items: center;" onclick="editContact(${alphabetIndex}, ${currentContact})">
     <img src="./img/edit-2-32.png" style="margin-right: 6px;">
     <span>Edit Contact</span>
@@ -540,7 +545,6 @@ function showContactInformation(given_id) {
 
 function hideContactDetails() {
   console.log('hideContactDetails()');
-  // document.getElementById('contacts-details').classList.add('d-none');
   document.getElementById('label-big-and-name').classList.add('d-none');
   document.getElementById('edit-container').classList.add('d-none');
   document.getElementById('mail-and-phone-container').classList.add('d-none');
@@ -618,4 +622,16 @@ function changeContact(contactToEditLetter, contactToEditIndex, firstNameNew, la
   let new_given_id = `${fName}-${contactToEditIndex}`;
 
   showContactInformation(new_given_id);
+}
+
+
+function closeContactInformationContainer() {
+  console.log(`You decided to close contact details of ${selectedContact}`);
+  document.getElementById('contact-information').classList.add('d-none');
+  document.getElementById('contact-information').style = "display: none !important;";
+  // let currentContact = Number(selectedContact.split("-")[1]);
+  // let searchLetter = selectedContact.split("-")[0];
+
+  document.getElementById(selectedContact).style.backgroundColor = "#FFFFFF";
+  document.getElementById(selectedContact).style.color = "#000000";
 }

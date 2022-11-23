@@ -101,12 +101,12 @@ function generateTodoHTML(element) {
                     <div class="font16-400">${element['description']}</div>
                   </div>
                </div>
-                ${showPopUp(element)}
+                ${showTodoPopUp(element)}
             </div>`;          
 }
 
 
-function showPopUp(element) {
+function showTodoPopUp(element) {
     return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
              <div class="bo_popup_todo_Info">
                 <div id="boPopUpInfo${element['id']}">
@@ -180,6 +180,20 @@ function allowDrop(ev) {
 function moveTo(category) {
     todos[currentDraggedElement]['category'] = category;
     updateHTML();
+}
+
+
+function filterTodos() {
+    console.log('Hallo');
+}
+
+
+function openAddTask() {
+  document.getElementById('boAddTaskPopUp').classList.remove('d-none');
+  document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
+  <div data-template="./content/add_task.html"></div>
+  </div>`;
+  includeHTML();
 }
 
 
