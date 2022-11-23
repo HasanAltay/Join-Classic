@@ -9,7 +9,6 @@
 }
 
 .left {
-    height: 551px;
     border-right: 1px solid #D1D1D1;
     padding-right: 59px;
     margin-top: 41px;
@@ -103,7 +102,7 @@
 }
 
 .height-default {
-    height: 51px;
+    height: 51px !important;
 }
 
 .sales {
@@ -112,7 +111,7 @@
 }
 
 .img-sales {
-    position:absolute;
+    position: absolute;
     top: 15.5px;
     width: 20px;
     height: 20px;
@@ -126,10 +125,10 @@
 .categorybox {
     border: none;
     width: 205px;
-    height: 25px;
     font-size: 21px;
     color: #000000;
     outline: none;
+    font-family: 'Inter';
 }
 
 .categorybox::placeholder {
@@ -236,6 +235,20 @@
     gap: 10px;
 }
 
+.dropdown-assigned {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    height: 51px;
+    padding: 13px 21px;
+    gap: 10px;
+}
+
+.initials {
+    padding: 10px 8px;
+}
+
 .dropdown-item {
     height: 25px;
     font-size: 21px;
@@ -245,6 +258,37 @@
 
 .dropdown-child:hover {
     background-color: #D1D1D1;
+}
+
+.dropdown-assigned:hover {
+    background-color: #D1D1D1;
+}
+
+#rectangle {
+    width: 11px;
+    height: 11px;
+    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
+    border: 1px solid #000000;
+    border-radius: 3px;
+    position: relative;
+    right: 4px;
+}
+
+#rectangle-clicked {
+    width: 5px;
+    height: 5px;
+    background: #000000;
+    border-radius: 1px;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    top: 20%;
+    bottom: 20%;
+}
+
+.img-invite {
+    width: 19.5px;
+    height: 22px;
 }
 
 .assigned {

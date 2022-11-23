@@ -295,6 +295,127 @@ function pick_brown() {
     `;
 }
 
+let clickedYou = false;
+let clickedContact = false;
+
+function clickyou(event) {
+    event.stopPropagation();
+    let click = document.getElementById('assigned-you');
+    if (clickedYou == false) {
+        click.innerHTML = /*html*/`
+        <span class="dropdown-item">You</span>
+        <div id="rectangle">
+            <div id="rectangle-clicked"></div>
+        </div>`;
+        clickedYou = true;
+    } else {
+        click.innerHTML = /*html*/`
+        <span class="dropdown-item">You</span>
+        <div id="rectangle"></div>`;
+        clickedYou = false;
+    }
+}
+
+function clickcontact(event) {
+    event.stopPropagation();
+    let click = document.getElementById('assigned-contact');
+    if (clickedContact == false) {click.innerHTML = /*html*/`
+    <span class="dropdown-item">Laura Numey</span>
+    <div id="rectangle">
+        <div id="rectangle-clicked"></div>
+    </div>`;
+    clickedContact = true;
+    } else {
+        click.innerHTML = /*html*/`
+        <span class="dropdown-item">Laura Numey</span>
+        <div id="rectangle"></div>`;
+        clickedContact = false;
+    }
+}
+
+function clickinvite() {
+    let invite = document.getElementById('dropdownAssigned');
+    invite.innerHTML = /*html*/`
+    <div id="contact" class="new_category">
+        <input id="email" onclick="select_email()" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
+        <div class="img_new_category">
+            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="defaultMode()">
+            <img src="./img/vertical.png">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="select_email()">
+        </div>
+    </div>
+    `;
+}
+
+function select_email() {
+    document.getElementById('contact').innerHTML = /*html*/`
+    <input id="email" onclick="selection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+    <div class="img_new_category">
+        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="defaultMode()">
+        <img src="./img/vertical.png">
+        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="selection()">
+    </div>`;
+    document.getElementById('email').value = "laura@gmail.com";
+}
+
+function defaultMode() {
+    document.getElementById('dropdownAssigned').innerHTML = /*html*/`
+    <div onclick="showAssigned()" id="new_assigned" class="dropdown-container">
+        <div class="assignedbox">Select contacts to assign</div>
+        <img src="./img/open.png">
+    </div>
+    <div class="dropdown-content" id="content-assigned">
+        <div id="assigned-you" onclick="clickyou(event)" class="dropdown-assigned">
+            <span class="dropdown-item">You</span>
+            <div id="rectangle"></div>
+        </div>
+        <div id="assigned-contact" onclick="clickcontact(event)" class="dropdown-assigned">
+            <span class="dropdown-item">Laura Numey</span>
+            <div id="rectangle"></div>
+        </div>
+        <div onclick="clickinvite()" class="dropdown-assigned">
+            <span class="dropdown-item">Invite new contact</span>
+            <img class="img-invite" src="./img/invite-sign.png">
+        </div>
+    </div>`;
+}
+
+function selection() {
+    document.getElementById('dropdownAssigned').classList.remove("dropdown");
+    document.getElementById('dropdownAssigned').classList.remove("height");
+    document.getElementById('dropdownAssigned').classList.add("height-default");
+    document.getElementById('dropdownAssigned').innerHTML = /*html*/`
+    <div onclick="restartDefault()" id="new_assigned" class="dropdown-container">
+        <div class="assignedbox">Select contacts to assign</div>
+        <img src="./img/open.png">
+    </div>
+    <div id="initials">
+        <img class="initials" src="./img/contactSM.png">
+        <img class="initials" src="./img/contactEV.png">
+        <img class="initials" src="./img/contactMV.png">
+    </div>
+    <div class="dropdown-content" id="content-assigned">
+        <div id="assigned-you" onclick="clickyou(event)" class="dropdown-assigned">
+            <span class="dropdown-item">You</span>
+            <div id="rectangle"></div>
+        </div>
+        <div id="assigned-contact" onclick="clickcontact(event)" class="dropdown-assigned">
+            <span class="dropdown-item">Laura Numey</span>
+            <div id="rectangle"></div>
+        </div>
+        <div onclick="clickinvite()" class="dropdown-assigned">
+            <span class="dropdown-item">Invite new contact</span>
+            <img class="img-invite" src="./img/invite-sign.png">
+        </div>
+    </div>`; 
+}
+
+function restartDefault() {
+    document.getElementById('dropdownAssigned').classList.add("dropdown");
+    document.getElementById('initials').classList.add("d-none");
+    document.getElementById('content-assigned').classList.toggle("show");
+}
+
 function urgentButtonDefault() {
     document.getElementById('prioUrgent').style.backgroundColor = "#FFFFFF";
     document.getElementById('whiteUrgent').style.color = "#000000";

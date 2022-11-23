@@ -37,22 +37,23 @@
             </div>
             <div class="span-input">
                 <span class="assigned">Assigned to</span>
-                <div id="dropdownAssigned" onclick="showAssigned()" class="assign-selection">
-                    <div id="new_assigned" class="dropdown-container">
+                <div id="dropdownAssigned" class="assign-selection">
+                    <div onclick="showAssigned()" id="new_assigned" class="dropdown-container">
                         <div class="assignedbox">Select contacts to assign</div>
                         <img src="./img/open.png">
                     </div>
                     <div class="dropdown-content" id="content-assigned">
-                        <div onclick="" class="dropdown-child">
+                        <div id="assigned-you" onclick="clickyou(event)" class="dropdown-assigned">
                             <span class="dropdown-item">You</span>
+                            <div id="rectangle"></div>
                         </div>
-                        <div onclick="" class="dropdown-child">
+                        <div id="assigned-contact" onclick="clickcontact(event)" class="dropdown-assigned">
                             <span class="dropdown-item">Laura Numey</span>
-                            <img src="./img/sales-img.png">
+                            <div id="rectangle"></div>
                         </div>
-                        <div onclick="" class="dropdown-child">
+                        <div onclick="clickinvite()" class="dropdown-assigned">
                             <span class="dropdown-item">Invite new contact</span>
-                            <img src="./img/backoffice-img.png">
+                            <img class="img-invite" src="./img/invite-sign.png">
                         </div>
                     </div>
                 </div>
