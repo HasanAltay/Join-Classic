@@ -295,13 +295,20 @@ function insertContactToContactList(i, contact) {
 
 
 function newContact() {
-  alert("You wanna add new contact?!");
+  // alert("You wanna add new contact?!");
   document.getElementById('new-popup').classList.remove('d-none');
   document.getElementById('new-popup').style.visibility = 'visible';
   document.getElementById('new-popup').style.display = "flex";
   document.getElementById('new-popup-form').classList.remove('d-none');
 
   
+}
+
+function cancelAddNewContact() {
+  document.getElementById('new-popup').classList.add('d-none');
+  document.getElementById('new-popup').style.visibility = 'invisible';
+  document.getElementById('new-popup').style.display = "none";
+  document.getElementById('new-popup-form').classList.add('d-none');
 }
 
 
@@ -529,6 +536,7 @@ function showContactInformation(given_id) {
   <h3>Phone:</h3>
   <span>${phoneNumber}</span>`;
 }
+
 
 function hideContactDetails() {
   console.log('hideContactDetails()');

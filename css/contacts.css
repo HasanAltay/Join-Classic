@@ -15,10 +15,6 @@
 }
 
 .con_contacts {
-  /* position: absolute;
-  top: 200px;
-  left: 232px;
-  right: 0; */
   top: 100px;
   left: 232px;
   position: relative;
@@ -289,7 +285,7 @@
 
 .con_buttonContainer {
   position: absolute;
-  left: 900px;
+  left: 800px;
   top: 520px;
   display: flex;
   justify-content: flex-end;
@@ -323,16 +319,17 @@
 }
 
 .con_editOrNewPopup {
-  position: absolute;
+  /* position: absolute;
   top: -20px;
-  left: -44px;
+  left: -44px; */
+  position: absolute;
   z-index: 1;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   padding: 16px;
   border-radius: 20px;
   height: 100%;
-  width: 80%;
+  width: fit-content;
   background-color: rgb(187, 187, 187);
   border: 2px solid black;
   filter: opacity(0.95);
