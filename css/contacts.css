@@ -19,7 +19,11 @@
   top: 200px;
   left: 232px;
   right: 0; */
-
+  top: 100px;
+  left: 232px;
+  position: relative;
+  height: 80vh;
+  width: fit-content;
   display: flex;
 }
 
@@ -29,14 +33,15 @@
 
   background-color: white;
 
-  position: fixed;
+  /* position: fixed; */
   /* width: 453px; */
-  width: 30%;
-  height: 88vh;
+  padding: 16px;
+  /* width: 30%; tested for responsiveness*/
+  height: 86vh;
 
-  top: 89px;
+  /* top: 89px;
   left: 232px;
-  right: 755px;
+  right: 755px; */
 
   /* white */
 
@@ -55,9 +60,10 @@
   align-items: center;
   padding: 0px;
 
-  position: absolute;
+  /* position: absolute; */
   width: 357px;
-  height: 1072px;
+  /* height: 1072px; */
+  height: 100%;
   left: 48px;
   top: 2px;
 
@@ -146,13 +152,17 @@
 }
 
 .con_contactInformation {
-  position: absolute;
+  /* position: absolute;
   top: 89px;
-  left: 685px;
+  left: 685px; */
   display: flex;
   flex-direction: column;
-  width: 50%;
+  /* width: 50%;     tested for responsiveness*/
+  width: 54vw;
+  /* width: 100vw; */
+  /* height: 78vh;    */
   height: 86vh;
+  padding: 16px;
   background-color: #f6f7f8;
 }
 
@@ -279,8 +289,8 @@
 
 .con_buttonContainer {
   position: absolute;
+  left: 900px;
   top: 520px;
-  left: 480px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -338,7 +348,7 @@
 .con_editInputfield {
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 30%;
+  width: 60%;
   height: 40px;
   padding: 8px;
 }
@@ -347,7 +357,7 @@
   background: url("../img/name.png");
   background-color: white;
   background-repeat: no-repeat;
-  background-position: 136px;
+  background-position: 220px;
   background-size: 16px 22px;
 }
 
@@ -355,7 +365,7 @@
   background: url("../img/phone-30-32.png");
   background-color: white;
   background-repeat: no-repeat;
-  background-position: 136px;
+  background-position: 220px;
   background-size: 20px 20px;
 }
 
@@ -363,10 +373,34 @@
   background: url("../img/mail.png");
   background-color: white;
   background-repeat: no-repeat;
-  background-position: 136px;
+  background-position: 220px;
   background-size: 20px 19px;
 }
 
 .con_NewPopup {
   
 }
+
+@media(max-width: 1400px) {
+  .con_contactInformationHeader {
+    display: block !important;
+    justify-content: center;
+  }
+
+  .con_labelBigAndName {
+    font-size: 32px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .con_contactInformation {
+    left: 590px !important;
+  }
+
+  .con_contactsListContainer {
+    left: 190px !important;
+  }
+
+  .con_contactInformationStartHeader {
+    font-size: 45px !important;
+  }
+} 

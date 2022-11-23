@@ -544,6 +544,7 @@ function editContact(alphabetIndex, currentContact) {
     `You want to edit contact number ${currentContact} of alphabetic index ${alphabetIndex}`
   );
   document.getElementById('edit-or-new-popup').classList.remove('d-none');
+  document.getElementById('edit-form').classList.remove('d-none');
   document.getElementById('edit-or-new-popup').style.visibility = 'visible';
   document.getElementById('edit-or-new-popup').style.display = "flex";
   contactToEditLetter = alphabetIndex;
@@ -552,6 +553,7 @@ function editContact(alphabetIndex, currentContact) {
 
 function submitEdit(contactToEditLetter, contactToEditIndex) {
   document.getElementById("edit-or-new-popup").classList.add("d-none");
+  document.getElementById('edit-form').classList.add('d-none');
   let firstNameNew = document.getElementById("con-edit-name").value.split(' ')[0];
   let lastNameNew = document.getElementById("con-edit-name").value.split(' ')[1];
   let phoneNew = document.getElementById("con-edit-phone").value;
