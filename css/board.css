@@ -272,7 +272,7 @@
 
 
 
-@media (max-width: 1280px) {
+@media (max-width: 900px) {
     .bo_board {
         margin-top: 20px;
         margin-bottom: 30px;
@@ -300,9 +300,9 @@
 
     .addTaskBTN {
         position: absolute;
-        left: 80%;
+        left: 92%;
         top: 25%;
-        transform: translate(-80%, -50%)
+        transform: translate(-92%, -50%)
     }
 
     .bo_search_mobile_input {
@@ -343,7 +343,11 @@
 }
 
 
-@media (max-width: 600px) {
+/* @media (max-width: 800px) {
+
+} */
+
+@media (max-width: 768px) {
     .bo_title {
         margin-bottom: 25px;
         margin-left: unset;
@@ -375,6 +379,13 @@
 
 
 @media (max-width: 480px) {
+
+    
+    .addTaskBTN {
+        left: 80%;
+        top: 25%;
+        transform: translate(-80%, -50%)
+    }
 
     .bo_todo_area {
         margin-right: unset;
