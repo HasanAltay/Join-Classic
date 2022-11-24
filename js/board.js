@@ -6,7 +6,6 @@ let todos = [
         'category': 'Todo',
         'description': 'Modify the contents of the main website'
     },
-
     {
         'id': 1,
         'department': 'Marketing',
@@ -14,7 +13,6 @@ let todos = [
         'category': 'In progress',
         'description': 'Develop an ad campaign for brand positioning'
     },
-
     {
         'id': 2,
         'department': 'Sales',
@@ -22,7 +20,6 @@ let todos = [
         'category': 'Awaiting Feedback',
         'description': 'Make the product presentation to the prospective buyers'
     },
-
     {
         'id': 3,
         'department': 'Backoffice',
@@ -32,11 +29,13 @@ let todos = [
     }
 ];
 
-
 let currentDraggedElement;
 let urgentClicked = false;
 let mediumClicked = false;
 let lowClicked = false;
+let dropdownClicked = false;
+let clicked_You = false;
+let clicked_Contact = false;
 
 
 function updateHTML() {
@@ -46,7 +45,6 @@ function updateHTML() {
 
     for (let index = 0; index < todo.length; index++) {
         const element = todo[index];
-
         document.getElementById('todo').innerHTML += generateTodoHTML(element);
     }
 
@@ -57,7 +55,6 @@ function updateHTML() {
 
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
-
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
     }
 
@@ -68,10 +65,8 @@ function updateHTML() {
 
     for (let index = 0; index < awaitingFB.length; index++) {
         const element = awaitingFB[index];
-
         document.getElementById('awaitingFB').innerHTML += generateTodoHTML(element);
     }
-
 
 
     let done = todos.filter(t => t['category'] == 'Done');
@@ -80,16 +75,13 @@ function updateHTML() {
 
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
-
         document.getElementById('done').innerHTML += generateTodoHTML(element);
     }
 }
 
-
 function startDragging(id) {
     currentDraggedElement = id;
 }
-
 
 function generateTodoHTML(element) {
     return `<div onclick="openTodoInfo('bo_popUp${element['id']}')" draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
@@ -109,7 +101,6 @@ function generateTodoHTML(element) {
                 ${showTodoPopUp(element)}
             </div>`;          
 }
-
 
 function showTodoPopUp(element) {
     return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
@@ -135,13 +126,13 @@ function showTodoPopUp(element) {
              <div id="boEditPopUp${element['id']}" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="title">Title</span>
-                    <input id="title" class="titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
+                    <input id="title${element['id']}" class="titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
                     onblur="this.placeholder='Enter a title'">
                 </div>
 
                 <div class="mb-40">
                   <span class="description">Description</span>
-                         <textarea id="description" class="descriptionbox" placeholder="Enter a description"
+                         <textarea id="description${element['id']}" class="descriptionbox" placeholder="Enter a description"
                              onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
                 </div>
 
@@ -153,21 +144,37 @@ function showTodoPopUp(element) {
                 <div class="mb-40">
                   <span class="font21-400 bo_prio">Prio</span>
                     <div class="bo_prio_btn">
-                        <button id="prioUrgent" onclick="changeToRed()" class="prio-urgent"><span id="whiteUrgent"
-                         class="urgent">Urgent</span><img id="img-up-white" src="./img/up.png"></button>
-                        <button id="prioMedium" onclick="changeToOrange()" class="prio-medium"><span id="whiteMedium"
-                            class="medium">Medium</span><img id="img-middle-white" src="./img/middle.png"></button>
-                        <button id="prioLow" onclick="changeToGreen()" class="prio-low"><span id="whiteLow"
-                        class="low">Low</span><img id="img-down-white" src="./img/down.png"></button>
+                        <button id="prioUrgent${element['id']}" onclick="changeToRed(${element['id']})" class="prio-urgent"><span id="whiteUrgent${element['id']}"
+                         class="urgent">Urgent</span><img id="img-up-white${element['id']}" src="./img/up.png"></button>
+                        <button id="prioMedium${element['id']}" onclick="changeToOrange(${element['id']})" class="prio-medium"><span id="whiteMedium${element['id']}"
+                            class="medium">Medium</span><img id="img-middle-white${element['id']}" src="./img/middle.png"></button>
+                        <button id="prioLow${element['id']}" onclick="changeToGreen(${element['id']})" class="prio-low"><span id="whiteLow${element['id']}"
+                        class="low">Low</span><img id="img-down-white${element['id']}" src="./img/down.png"></button>
                      </div>
                 </div>
 
                 <div class="mb-40">
-                    <span class="assigned">Assigned to</span>
-                     <div id="assign" class="assign-selection">
-                        <span class="assignedbox">Select contacts to assign</span>
-                          <img src="./img/open.png">
-                     </div>
+                <span class="assigned">Assigned to</span>
+                <div id="dropdownAssigned${element['id']}" class="assign-selection">
+                    <div onclick="showAssigned(${element['id']})" id="new_assigned${element['id']}" class="dropdown-container">
+                        <div class="assignedbox">Select contacts to assign</div>
+                        <img src="./img/open.png">
+                    </div>
+                    <div class="dropdown-content" id="content-assigned${element['id']}">
+                        <div id="assigned-you${element['id']}" onclick="clickyou(event, ${element['id']})" class="dropdown-assigned">
+                            <span class="dropdown-item">You</span>
+                            <div id="rectangle"></div>
+                        </div>
+                        <div id="assigned-contact${element['id']}" onclick="clickcontact(event, ${element['id']})" class="dropdown-assigned">
+                            <span class="dropdown-item">Laura Numey</span>
+                            <div id="rectangle${element['id']}"></div>
+                        </div>
+                        <div onclick="clickinvite(${element['id']})" class="dropdown-assigned">
+                            <span class="dropdown-item">Invite new contact</span>
+                            <img class="img-invite" src="./img/invite-sign.png">
+                        </div>
+                    </div>
+                </div>
                  </div>
 
                  <button onclick="closeTodoEdit(${element['id']})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
@@ -175,12 +182,9 @@ function showTodoPopUp(element) {
     </div>`;   
 }
 
-
-
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
 
 function moveTo(category) {
     todos[currentDraggedElement]['category'] = category;
@@ -220,114 +224,236 @@ function openAddTask() {
   includeHTML();
 }
 
-
 function closeAddTaskPopUp() {
     document.getElementById('boAddTaskPopUp').classList.add('d-none');
 }
 
-
 function openTodoInfo(id) {
     document.getElementById(id).classList.remove('d-none');
 }
-
 
 function closeTodoInfo(id, event) {
     document.getElementById(id).classList.add('d-none');
     event.stopPropagation();
 }
 
-
 function changeEditBtn(img, i) {
     document.getElementById('boEditTodo'+ i).src = img;
 }
 
-
 function resetEditBtn(img, i) {
     document.getElementById('boEditTodo'+ i).src = img;
 }
-
 
 function openTodoEdit(i) {
     document.getElementById('boEditPopUp'+ i).classList.remove('d-none');
     document.getElementById('boPopUpInfo'+ i).classList.add('d-none');
 }
 
-
 function closeTodoEdit(i) {
     document.getElementById('boEditPopUp'+ i).classList.add('d-none');
     document.getElementById('boPopUpInfo'+ i).classList.remove('d-none');
 }
 
-
 function changeMobileAddTaskBtn(img) {
     document.getElementById('bo_mobile_AddTaskPlus').src = img;
 }
-
 
 function resetMobileAddTaskBtn(img) {
     document.getElementById('bo_mobile_AddTaskPlus').src = img;
 }
 
-
-function urgentButtonDefault() {
-    document.getElementById('prioUrgent').style.backgroundColor = "#FFFFFF";
-    document.getElementById('whiteUrgent').style.color = "#000000";
-    document.getElementById('img-up-white').src = "./img/up.png";
+function urgentButtonDefault(i) {
+    document.getElementById('prioUrgent'+ i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('whiteUrgent'+ i).style.color = "#000000";
+    document.getElementById('img-up-white'+ i).src = "./img/up.png";
     urgentClicked = false;
 }
 
-
-function mediumButtonDefault() {
-    document.getElementById('prioMedium').style.backgroundColor = "#FFFFFF";
-    document.getElementById('whiteMedium').style.color = "#000000";
-    document.getElementById('img-middle-white').src = "./img/middle.png";
+function mediumButtonDefault(i) {
+    document.getElementById('prioMedium'+i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('whiteMedium'+i).style.color = "#000000";
+    document.getElementById('img-middle-white'+ i).src = "./img/middle.png";
     mediumClicked = false;
 }
 
-
-function lowButtonDefault() {
-    document.getElementById('prioLow').style.backgroundColor = "#FFFFFF";
-    document.getElementById('whiteLow').style.color = "#000000";
-    document.getElementById('img-down-white').src = "./img/down.png";
+function lowButtonDefault(i) {
+    document.getElementById('prioLow'+ i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('whiteLow'+ i).style.color = "#000000";
+    document.getElementById('img-down-white'+ i).src = "./img/down.png";
     lowClicked = false;
 }
 
-
-function changeToRed() {
+function changeToRed(i) {
     if (urgentClicked == false) {
-        document.getElementById('prioUrgent').style.backgroundColor = "#FF3D00";
-        document.getElementById('whiteUrgent').style.color = "#FFFFFF";
-        document.getElementById('img-up-white').src = "./img/arrowUpWhite.png";
+        document.getElementById('prioUrgent'+ i).style.backgroundColor = "#FF3D00";
+        document.getElementById('whiteUrgent'+ i).style.color = "#FFFFFF";
+        document.getElementById('img-up-white'+ i).src = "./img/arrowUpWhite.png";
         urgentClicked = true;
     } else {
-        urgentButtonDefault();
+        urgentButtonDefault(i);
     }
-    mediumButtonDefault();
-    lowButtonDefault();
+    mediumButtonDefault(i);
+    lowButtonDefault(i);
 }
 
-function changeToOrange() {
+function changeToOrange(i) {
     if (mediumClicked == false) {
-        document.getElementById('prioMedium').style.backgroundColor = "#FFA800";
-        document.getElementById('whiteMedium').style.color = "#FFFFFF";
-        document.getElementById('img-middle-white').src = "./img/arrowMiddleWhite.png";
+        document.getElementById('prioMedium'+ i).style.backgroundColor = "#FFA800";
+        document.getElementById('whiteMedium'+ i).style.color = "#FFFFFF";
+        document.getElementById('img-middle-white'+ i).src = "./img/arrowMiddleWhite.png";
         mediumClicked = true;
     } else {
-        mediumButtonDefault();
+        mediumButtonDefault(i);
     }
-    urgentButtonDefault();
-    lowButtonDefault();
+    urgentButtonDefault(i);
+    lowButtonDefault(i);
 }
 
-function changeToGreen() {
+function changeToGreen(i) {
     if (lowClicked == false) {
-        document.getElementById('prioLow').style.backgroundColor = "#7AE229";
-        document.getElementById('whiteLow').style.color = "#FFFFFF";
-        document.getElementById('img-down-white').src = "./img/arrowDownWhite.png";
+        document.getElementById('prioLow'+ i).style.backgroundColor = "#7AE229";
+        document.getElementById('whiteLow'+ i).style.color = "#FFFFFF";
+        document.getElementById('img-down-white'+ i).src = "./img/arrowDownWhite.png";
         lowClicked = true;
     } else {
-        lowButtonDefault();
+        lowButtonDefault(i);
     }
-    urgentButtonDefault();
-    mediumButtonDefault();
+    urgentButtonDefault(i);
+    mediumButtonDefault(i);
+}
+
+function showAssigned(i) {
+    document.getElementById('dropdownAssigned'+ i).classList.add('height');
+    if (dropdownClicked == false) {
+        document.getElementById("content-assigned"+ i).classList.toggle("show");
+        document.getElementById("dropdownAssigned"+ i).classList.add("dropdown");
+        dropdownClicked = true;
+    } else {
+        showAssignedDefault(i);
+    }
+}
+
+function showAssignedDefault(i) {
+    document.getElementById("content-assigned"+ i).classList.toggle("show");
+    document.getElementById("dropdownAssigned"+ i).classList.remove("dropdown");
+    dropdownClicked = false;
+}
+
+function clickyou(event, i) {
+    event.stopPropagation();
+    let click = document.getElementById('assigned-you'+ i);
+    if (clicked_You == false) {
+        click.innerHTML = /*html*/`
+        <span class="dropdown-item">You</span>
+        <div id='rectangle'+ i>
+            <div id='rectangle-clicked'+ i></div>
+        </div>`;
+        clicked_You = true;
+    } else {
+        click.innerHTML = /*html*/`
+        <span class="dropdown-item">You</span>
+        <div id='rectangle'+ i></div>`;
+        clicked_You = false;
+    }
+}
+
+function clickcontact(event, i) {
+    event.stopPropagation();
+    let click = document.getElementById('assigned-contact'+ i);
+    if (clicked_Contact == false) {click.innerHTML = /*html*/`
+    <span class="dropdown-item">Laura Numey</span>
+    <div id='rectangle'+ i>
+        <div id='rectangle-clicked'+ i></div>
+    </div>`;
+    clicked_Contact = true;
+    } else {
+        click.innerHTML = /*html*/`
+        <span class="dropdown-item">Laura Numey</span>
+        <div id='rectangle'+ i></div>`;
+        clicked_Contact = false;
+    }
+}
+
+function clickinvite(i) {
+    let invite = document.getElementById('dropdownAssigned'+ i);
+    invite.innerHTML = /*html*/`
+    <div id="contact${i}" class="new_category">
+        <input id="email" onclick="select_email()" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
+        <div class="img_new_category">
+            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="defaultMode()">
+            <img src="./img/vertical.png">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="select_email()">
+        </div>
+    </div>
+    `;
+}
+
+function select_email(i) {
+    document.getElementById('contact').innerHTML = /*html*/`
+    <input id="email${i}" onclick="selection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+    <div class="img_new_category">
+        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="defaultMode()">
+        <img src="./img/vertical.png">
+        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="selection()">
+    </div>`;
+    document.getElementById('email'+ i).value = "laura@gmail.com";
+}
+
+function defaultMode(i) {
+    document.getElementById('dropdownAssigned'+ i).innerHTML = /*html*/`
+    <div onclick="showAssigned(i)" id="new_assigned${i}" class="dropdown-container">
+        <div class="assignedbox">Select contacts to assign</div>
+        <img src="./img/open.png">
+    </div>
+    <div class="dropdown-content" id="content-assigned${i}">
+        <div id="assigned-you${i}" onclick="clickyou(event, i)" class="dropdown-assigned">
+            <span class="dropdown-item">You</span>
+            <div id="rectangle${i}"></div>
+        </div>
+        <div id="assigned-contact${i}" onclick="clickcontact(event, i)" class="dropdown-assigned">
+            <span class="dropdown-item">Laura Numey</span>
+            <div id="rectangle${i}"></div>
+        </div>
+        <div onclick="clickinvite(i)" class="dropdown-assigned">
+            <span class="dropdown-item">Invite new contact</span>
+            <img class="img-invite" src="./img/invite-sign.png">
+        </div>
+    </div>`;
+}
+
+function selection(i) {
+    document.getElementById('dropdownAssigned'+ i).classList.remove("dropdown");
+    document.getElementById('dropdownAssigned'+ i).classList.remove("height");
+    document.getElementById('dropdownAssigned'+ i).classList.add("height-default");
+    document.getElementById('dropdownAssigned'+ i).innerHTML = /*html*/`
+    <div onclick="restartDefault()" id="new_assigned${i}" class="dropdown-container">
+        <div class="assignedbox">Select contacts to assign</div>
+        <img src="./img/open.png">
+    </div>
+    <div id="initials${i}">
+        <img class="initials" src="./img/contactSM.png">
+        <img class="initials" src="./img/contactEV.png">
+        <img class="initials" src="./img/contactMV.png">
+    </div>
+    <div class="dropdown-content" id="content-assigned${i}">
+        <div id="assigned-you${i}" onclick="clickyou(event, i)" class="dropdown-assigned">
+            <span class="dropdown-item">You</span>
+            <div id="rectangle${i}"></div>
+        </div>
+        <div id="assigned-contact${i}" onclick="clickcontact(event, i)" class="dropdown-assigned">
+            <span class="dropdown-item">Laura Numey</span>
+            <div id="rectangle${i}"></div>
+        </div>
+        <div onclick="clickinvite(i)" class="dropdown-assigned">
+            <span class="dropdown-item">Invite new contact</span>
+            <img class="img-invite" src="./img/invite-sign.png">
+        </div>
+    </div>`; 
+}
+
+function restartDefault(i) {
+    document.getElementById('dropdownAssigned'+ i).classList.add("dropdown");
+    document.getElementById('initials'+ i).classList.add("d-none");
+    document.getElementById('content-assigned'+ i).classList.toggle("show");
 }
