@@ -188,28 +188,28 @@ function moveTo(category) {
 }
 
 
-function filterTodos() {
-   let search = document.getElementById('searchTodo').value;
-   search = search.toLowerCase();
-   console.log(search);
+// function filterTodos() {
+//    let search = document.getElementById('searchTodo').value;
+//    search = search.toLowerCase();
+//    console.log(search);
 
 
 
 
-//    let todo = todos.filter(t => t['category'] == 'Todo');
+// //    let todo = todos.filter(t => t['category'] == 'Todo');
 
-    document.getElementById('todo').innerHTML = '';
+//     document.getElementById('todo').innerHTML = '';
 
-    for (let i = 0; i < todos.length; i++) {
-        let element = todos[0]['title'];
+//     for (let i = 0; i < todos.length; i++) {
+//         let element = todos[0]['title'];
 
-        if(element.toLowerCase().includes(search)) {
-        document.getElementById('todo').innerHTML += element;
-     } //else {
+//         if(element.toLowerCase().includes(search)) {
+//         document.getElementById('todo').innerHTML += element;
+//      } //else {
     
-    // }
-    }
-}
+//     // }
+//     }
+// }
 
 
 function openAddTask() {
