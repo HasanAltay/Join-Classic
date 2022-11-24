@@ -235,13 +235,13 @@ function closeTodoEdit(i) {
 }
 
 
-function changeAddTaskBtn(img) {
-    document.getElementById('bo_AddTaskPlus').src = img;
+function changeMobileAddTaskBtn(img) {
+    document.getElementById('bo_mobile_AddTaskPlus').src = img;
 }
 
 
-function resetAddTaskBtn(img) {
-    document.getElementById('bo_AddTaskPlus').src = img;
+function resetMobileAddTaskBtn(img) {
+    document.getElementById('bo_mobile_AddTaskPlus').src = img;
 }
 
 

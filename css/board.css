@@ -61,7 +61,7 @@
 }
 
 
-.bo_add_task_btn {
+.bo_mobile_add_task_btn {
     border: none;
     background: transparent;
     display: none;
@@ -118,13 +118,12 @@
 
 .bo_todo_container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 
 .bo_todo_area {
-    margin-right: 50px;
-    margin-left: -20px;
-    padding-left: 20px;
+    padding-left: 32px;
 }
 
 
@@ -134,6 +133,11 @@
     align-items: center;
     padding-left: 5px;
     padding-right: 31px;
+}
+
+
+.bo_todo_sections img:hover {
+    transform: scale(1.2);
 }
 
 
@@ -295,20 +299,26 @@
 }
 
 
-
-@media (max-width: 900px) {
-
-    .bo_main {
-        padding-top: 120px;
-    }
-
+@media (max-width: 1030px) {
     .bo_board {
         margin-top: 20px;
         margin-bottom: 30px;
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        width: fit-content;
+        gap: 30px;
+    }
+
+    .bo_todo_area {
+        padding-left: unset;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .bo_main {
+        padding-top: 120px;
     }
 
     .bo_title {
@@ -319,20 +329,15 @@
         font-weight: 700;
     }
 
-    .bo_search_input {
-        width: unset;
-    }
-
     .bo_search_dnone {
         display: block !important;
     }
 
-
     .addTaskBTN {
         position: absolute;
         left: 92%;
-        top: 25%;
-        transform: translate(-92%, -50%)
+        top: 22%;
+        transform: translate(-92%, -22%);
     }
 
     .bo_lupe_mobile {
@@ -346,7 +351,7 @@
         display: none !important;
     }
 
-    .bo_add_task_btn {
+    .bo_mobile_add_task_btn {
         display: block;
     }
 
@@ -357,13 +362,22 @@
 
     .bo_todo_area {
         margin-right: unset;
+        width: 318px;
+    }
+
+    .bo_drag-area {
+        width: 254px;
+    }
+   
+    .bo_todo {
+        min-width: 320px;
     }
 }
 
 
 @media (max-width: 600px) {
     .bo_main {
-        padding-left: unset;
+        padding-left: 40px;
     }
 
     .bo_mobile_top_text {
@@ -376,7 +390,7 @@
         margin-left: unset;
     }
 
-    .bo_add_task_btn {
+    .bo_mobile_add_task_btn {
         display: block;
         padding-right: 48px;
     }
@@ -385,7 +399,7 @@
         position: absolute;
         left: 100%;
         top: 25%;
-        transform: translate(-100%, -50%)
+        transform: translate(-100%, -25%)
     }
 
     .bo_search_input {
@@ -393,7 +407,6 @@
     }
 
     .bo_todo_container {
-        flex-direction: column;
         margin-top: 20px;
         margin-left: 24px;
     }
@@ -408,11 +421,12 @@
 }
 
 
- @media (max-width: 480px) {
-   
+@media (max-width: 480px) {
+
     .addTaskBTN {
         left: 90%;
         top: 25%;
         transform: translate(-90%, -25%)
     }
-} 
+}
+
