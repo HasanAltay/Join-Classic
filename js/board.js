@@ -100,6 +100,11 @@ function generateTodoHTML(element) {
                    <div>
                     <div class="font16-400">${element['description']}</div>
                   </div>
+                  <br>
+                  <div class="bo_todo_contacts_prio">
+                    <div>Contacts</div>
+                    <div>Prio Btn</div>
+                  </div>
                </div>
                 ${showTodoPopUp(element)}
             </div>`;          
