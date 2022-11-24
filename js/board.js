@@ -189,7 +189,26 @@ function moveTo(category) {
 
 
 function filterTodos() {
-    console.log('Hallo');
+   let search = document.getElementById('searchTodo').value;
+   search = search.toLowerCase();
+   console.log(search);
+
+
+
+
+//    let todo = todos.filter(t => t['category'] == 'Todo');
+
+    document.getElementById('todo').innerHTML = '';
+
+    for (let i = 0; i < todos.length; i++) {
+        let element = todos[0]['title'];
+
+        if(element.toLowerCase().includes(search)) {
+        document.getElementById('todo').innerHTML += element;
+     } //else {
+    
+    // }
+    }
 }
 
 
