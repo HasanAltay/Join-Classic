@@ -202,6 +202,11 @@ function openAddTask() {
 }
 
 
+function closeAddTaskPopUp() {
+    document.getElementById('boAddTaskPopUp').classList.add('d-none');
+}
+
+
 function openTodoInfo(id) {
     document.getElementById(id).classList.remove('d-none');
 }
