@@ -22,3 +22,8 @@ function logout() {
     document.getElementById('nav_open_logout').style.display = 'none';
     location.reload();
 }
+
+
+function goBackToIndex() {
+    window.location = "./index.html";
+}

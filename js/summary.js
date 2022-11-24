@@ -34,6 +34,13 @@ function generateGreeting(time) {
     let greet = greeting[0];
     console.log(greet);
     document.getElementById('sum_daytime').innerHTML = `${greet},`;
+    document.getElementById('sum_daytime_mobile').innerHTML = `${greet},`;
+}
+
+
+function NoMobileGreeting() {
+    // document.getElementById('sum_greeting_mobile').style.display = "none";
+    document.getElementsByClassName('sum_greeting_mobile').style = "display:none";
 }
 
 

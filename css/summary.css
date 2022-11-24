@@ -36,8 +36,6 @@
     animation-direction: normal;
 }
 
-
-
 /* @keyframes slide {
     0% {
         left: 345px;
@@ -250,6 +248,10 @@
     padding-top: 35px;
 }
 
+.sum_greeting_mobile {
+    display: none;
+}
+
 @media (max-width: 1280px) {
     .sum_daytime {
         font-size: 24px;
@@ -315,5 +317,48 @@
     
     .sum_blue_line_mobile {
         display: block;
+    }
+
+    .sum_greeting_mobile {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;        
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #F6F7F9;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+        animation-name: fade;
+        animation-duration: 3s;
+        animation-direction: normal;
+        visibility: hidden;
+    }
+
+    @keyframes fade {
+        0% {
+            visibility: visible;
+        }
+        100% {
+            visibility: hidden;
+        }
+    }
+
+    .sum_daytime_mobile {
+        font-weight: 500;
+        font-size: 47px;
+        color: #2A3647;
+    }
+
+    .sum_user_mobile {
+        font-weight: 700;
+        font-size: 64px;
+        color: #29ABE2;
     }
 }

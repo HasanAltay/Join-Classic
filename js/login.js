@@ -116,15 +116,12 @@ function hideLogin() {
 
 
 function enterAsGuest() {
-    window.location = "./index.html";
+    window.location = "./home.html";
 }
 
 
 // function mobileResCheck() {
 //     if (screen.width <= 600) {
 //         window.location = "./mobile.html";
-//     }
-//     else {
-//         window.location = "./index.html";
 //     }
 // }
