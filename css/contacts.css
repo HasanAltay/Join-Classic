@@ -32,66 +32,36 @@
   flex-direction: column;
 
   background-color: white;
-
-  /* position: fixed; */
-  /* width: 453px; */
   padding: 16px;
-  /* width: 30%; tested for responsiveness*/
   height: 86vh;
-
-  /* top: 89px;
-  left: 232px;
-  right: 755px; */
-
-  /* white */
-
   background: #ffffff;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
   overflow: scroll;
 }
 
 .con_contactList {
-  /* Contact list v1 */
-
-  /* Auto layout */
-
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0px;
-
-  /* position: absolute; */
   width: 357px;
-  /* height: 1072px; */
   height: 100%;
   left: 48px;
   top: 2px;
-
-  /* white */
-
   background: #ffffff;
 }
 
 .con_alphabeticHints {
   width: 282px;
   height: 40px;
-
-  /* Version 2/t6 */
-
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 21px;
   line-height: 120%;
-  /* or 25px */
-
   display: flex;
   align-items: center;
-
   color: #000000;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -105,15 +75,10 @@
   align-items: center;
   padding: 15px 25px;
   gap: 35px;
-
   width: 357px;
   height: 79px;
-
   background: #ffffff;
   border-radius: 10px;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 2;
   flex-grow: 0;
@@ -137,41 +102,26 @@
 .con_contactListElementEmail {
   width: 140px;
   height: 19px;
-
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 120%;
-  /* or 19px */
-
   display: flex;
   align-items: center;
-
   color: #007cee;
 }
 
 .con_contactInformation {
-  /* position: absolute;
-  top: 89px;
-  left: 685px; */
   display: flex;
   flex-direction: column;
-  /* width: 50%;     tested for responsiveness*/
   width: 54vw;
-  /* width: 100vw; */
-  /* height: 78vh;    */
   height: 86vh;
   padding: 16px;
   background-color: #f6f7f8;
 }
 
 .con_contactInformationHeader {
-  /* position: absolute;
-  top: 171px;
-  left: 743px;
-  right: 423px;
-  bottom: 780px; */
   margin: 20px;
   display: flex;
   align-items: center;
@@ -180,63 +130,37 @@
 .con_contactInformationStartHeader {
   width: 274px;
   height: 73px;
-
   margin-right: 30px;
-
-  /* Version 2/t1 */
-
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 61px;
   line-height: 120%;
-  /* or 73px */
-
   color: #000000;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 
 .con_vector5 {
-  /* Vector 5 */
-
   width: 0px;
   height: 59px;
-
   border: 3px solid #29abe2;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 1;
   flex-grow: 0;
 }
 
 .con_contactInformationStartHeaderTwo {
-  /* Better with a team */
-
   width: 235px;
   height: 32px;
-
   margin-left: 30px;
-
-  /* Version 2/t5 */
-
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 27px;
   line-height: 120%;
-  /* or 32px */
-
   color: #2a3647;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 2;
   flex-grow: 0;
@@ -244,14 +168,12 @@
 }
 
 .con_contactsDetails {
-  /* position: absolute; */
   top: 260px;
   left: 750px;
   right: 0px;
   bottom: 0px;
   padding: 16px;
   margin-top: 20px;
-  /* margin-left: 20px; */
   margin-right: 20px;
 }
 
@@ -268,7 +190,6 @@
   align-items: center;
   width: 120px;
   height: 120px;
-  /* font-size: 47px; */
   border-radius: 100%;
   border: 3px solid #ffffff;
   color: white;
@@ -277,7 +198,6 @@
 
 .con_firstNameLastName {
   margin-left: 27px;
-  /* font-size: 47px; */
 }
 
 .con_editContainer {
@@ -288,9 +208,6 @@
   font-size: 21px; 
   margin-right: 62px;
 }
-
-/* .con_mailAndPhoneContainer {
-} */
 
 .con_buttonContainer {
   position: absolute;
@@ -304,9 +221,6 @@
 
 .con_ContactInformationAddButton {
   box-sizing: border-box;
-
-  /* Auto layout */
-
   display: flex;
   align-self: flex-start;
   flex-direction: row;
@@ -315,13 +229,8 @@
   padding: 18px 10px;
   margin: 20px;
   gap: 10px;
-
-  /* position: absolute;
-  top: 670px;
-  left: 400px; */
   width: 193px;
   height: 53px;
-
   background: #2a3647;
   border: 1px solid #2a3647;
   border-radius: 10px;
@@ -332,11 +241,10 @@
 }
 
 .con_editOrNewPopup {
-  /* position: absolute;
-  top: -20px;
-  left: -44px; */
   position: absolute;
-  z-index: 1;
+  top: -20px;
+  left: -20px;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -387,8 +295,22 @@
   background-size: 20px 19px;
 }
 
-.con_NewPopup {
-  
+.con_mobileViewAddContactButton {
+  display: none;
+  z-index: 1;
+  box-sizing: border-box;
+  align-self: flex-start;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  margin: 20px;
+  gap: 10px;
+  width: 193px;
+  height: 53px;
+  background: #2a3647;
+  border: 1px solid #2a3647;
+  border-radius: 10px;
 }
 
 @media(max-width: 1400px) {
@@ -499,6 +421,10 @@
 
   .con_CloseContactInformation {
     display: flex;
+  }
+
+  .con_mobileViewAddContactButton {
+    display: flex !important;
   }
 }
 

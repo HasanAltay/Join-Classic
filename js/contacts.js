@@ -187,13 +187,9 @@ let contacts = [
 
 var contactToEditLetter;
 var contactToEditIndex;
-
 var labelColors;
-
 var currentLabelColor;
-
 var last_id;
-
 var selectedContact;
 
 
@@ -223,7 +219,13 @@ function initContacts() {
   console.log("initContacts()");
   initGlobalVariables();
 
-  document.getElementById("contact-list").innerHTML = '';
+  document.getElementById("contact-list").innerHTML = /*html*/`
+  <button class="con_mobileViewAddContactButton hoverButton hoverEffect" onclick="newContact();">
+                <span style="font-size: 21px; color: white;">New contact</span>
+                <img src="./img/add_contact.png">
+  </button>
+  `;
+
 
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
@@ -302,15 +304,21 @@ function newContact() {
   document.getElementById('new-popup').style.visibility = 'visible';
   document.getElementById('new-popup').style.display = "flex";
   document.getElementById('new-popup-form').classList.remove('d-none');
-
-  
 }
+
 
 function cancelAddNewContact() {
   document.getElementById('new-popup').classList.add('d-none');
   document.getElementById('new-popup').style.visibility = 'invisible';
   document.getElementById('new-popup').style.display = "none";
   document.getElementById('new-popup-form').classList.add('d-none');
+}
+
+
+function cancelEditContact() {
+  console.log('cancelEditContact()');
+  document.getElementById("edit-or-new-popup").classList.add("d-none");
+  document.getElementById('edit-form').classList.add('d-none');
 }
 
 
@@ -360,9 +368,6 @@ function addNewContact() {
 
   // sort contacts after adding new contact
   sortContatcs(contactListIndex);
-
-
-
   initContacts();
 }
 
@@ -472,6 +477,9 @@ function contactClicked(given_id) {
     document.getElementById(given_id).style.color = "#000000";
     last_id = "XX";
     hideContactDetails();
+
+    // trying to fix bug of missing hover effect after contact clicked
+    document.getElementById(given_id).style.backgroundColor = "";
   }
 }
 
@@ -548,6 +556,7 @@ function hideContactDetails() {
   document.getElementById('label-big-and-name').classList.add('d-none');
   document.getElementById('edit-container').classList.add('d-none');
   document.getElementById('mail-and-phone-container').classList.add('d-none');
+
 }
 
 
