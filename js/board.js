@@ -118,7 +118,9 @@ function showTodoPopUp(element) {
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
                             <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
-                                <button onclick="openTodoEdit(${element['id']})" class="bo_edit_todo c-pointer" onmouseenter="changeEditBtn('./img/edit-light.png', ${element['id']})" onmouseleave="resetEditBtn('./img/edit-dark.png', ${element['id']})">
+                                <button onclick="openTodoEdit(${element['id']})" class="bo_edit_todo c-pointer"
+                                 onmouseenter="changeEditBtn('./img/edit-light.png', ${element['id']})"
+                                 onmouseleave="resetEditBtn('./img/edit-dark.png', ${element['id']})">
                                   <img id="boEditTodo${element['id']}" src="./img/edit-dark.png">
                                 </button>
                 </div>
@@ -144,11 +146,11 @@ function showTodoPopUp(element) {
                 <div class="mb-40">
                   <span class="font21-400 bo_prio">Prio</span>
                     <div class="bo_prio_btn">
-                        <button id="prioUrgent${element['id']}" onclick="changeToRed(${element['id']})" class="prio-urgent"><span id="whiteUrgent${element['id']}"
+                        <button id="prioUrgent${element['id']}" onclick="BoardChangeToRed(${element['id']})" class="prio-urgent"><span id="whiteUrgent${element['id']}"
                          class="urgent">Urgent</span><img id="img-up-white${element['id']}" src="./img/up.png"></button>
-                        <button id="prioMedium${element['id']}" onclick="changeToOrange(${element['id']})" class="prio-medium"><span id="whiteMedium${element['id']}"
+                        <button id="prioMedium${element['id']}" onclick="BoardChangeToOrange(${element['id']})" class="prio-medium"><span id="whiteMedium${element['id']}"
                             class="medium">Medium</span><img id="img-middle-white${element['id']}" src="./img/middle.png"></button>
-                        <button id="prioLow${element['id']}" onclick="changeToGreen(${element['id']})" class="prio-low"><span id="whiteLow${element['id']}"
+                        <button id="prioLow${element['id']}" onclick="BoardChangeToGreen(${element['id']})" class="prio-low"><span id="whiteLow${element['id']}"
                         class="low">Low</span><img id="img-down-white${element['id']}" src="./img/down.png"></button>
                      </div>
                 </div>
@@ -156,20 +158,20 @@ function showTodoPopUp(element) {
                 <div class="mb-40">
                 <span class="assigned">Assigned to</span>
                 <div id="dropdownAssigned${element['id']}" class="assign-selection">
-                    <div onclick="showAssigned(${element['id']})" id="new_assigned${element['id']}" class="dropdown-container">
+                    <div onclick="BoardShowAssigned(${element['id']})" id="new_assigned${element['id']}" class="dropdown-container">
                         <div class="assignedbox">Select contacts to assign</div>
                         <img src="./img/open.png">
                     </div>
                     <div class="dropdown-content" id="content-assigned${element['id']}">
-                        <div id="assigned-you${element['id']}" onclick="clickyou(event, ${element['id']})" class="dropdown-assigned">
+                        <div id="assigned-you${element['id']}" onclick="BoardClickyou(event, ${element['id']})" class="dropdown-assigned">
                             <span class="dropdown-item">You</span>
                             <div id="rectangle"></div>
                         </div>
-                        <div id="assigned-contact${element['id']}" onclick="clickcontact(event, ${element['id']})" class="dropdown-assigned">
+                        <div id="assigned-contact${element['id']}" onclick="BoardClickcontact(event, ${element['id']})" class="dropdown-assigned">
                             <span class="dropdown-item">Laura Numey</span>
                             <div id="rectangle${element['id']}"></div>
                         </div>
-                        <div onclick="clickinvite(${element['id']})" class="dropdown-assigned">
+                        <div onclick="BoardClickinvite(${element['id']})" class="dropdown-assigned">
                             <span class="dropdown-item">Invite new contact</span>
                             <img class="img-invite" src="./img/invite-sign.png">
                         </div>
@@ -192,41 +194,39 @@ function moveTo(category) {
 }
 
 
-// function filterTodos() {
-//    let search = document.getElementById('searchTodo').value;
-//    search = search.toLowerCase();
-//    console.log(search);
+function filterTodos() {
+    let search = document.getElementById('searchTodo').value;
+    search = search.toLowerCase();
+    console.log(search);
+
+    document.getElementById('todo').innerHTML = '';
+    document.getElementById('inProgress').innerHTML = '';
+    document.getElementById('awaitingFB').innerHTML = '';
+    document.getElementById('done').innerHTML = '';
+
+    let searchedTodo = todos.filter(t => t.category == 'Todo' && t.title.toLowerCase().includes(search))
+    let searchedInProgress = todos.filter(t => t.category == 'In progress' && t.title.toLowerCase().includes(search))
+    let searchedInAwaitingFeedback = todos.filter(t => t.category == "Awaiting Feedback" && t.title.toLowerCase().includes(search))
+    let searchedInDone = todos.filter(t => t.category == "Done" && t.title.toLowerCase().includes(search))
+
+    searchedTodo.forEach(t => document.getElementById('todo').innerHTML += generateTodoHTML(t))
+    searchedInProgress.forEach(t => document.getElementById('inProgress').innerHTML += generateTodoHTML(t))
+    searchedInAwaitingFeedback.forEach(t => document.getElementById('awaitingFB').innerHTML += generateTodoHTML(t))
+    searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
+}
 
 
-
-
-// //    let todo = todos.filter(t => t['category'] == 'Todo');
-
-//     document.getElementById('todo').innerHTML = '';
-
-//     for (let i = 0; i < todos.length; i++) {
-//         let element = todos[0]['title'];
-
-//         if(element.toLowerCase().includes(search)) {
-//         document.getElementById('todo').innerHTML += element;
-//      } //else {
-    
-//     // }
-//     }
+// function openAddTask() {
+//   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
+//   document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
+//   <div data-template="./content/add_task.html"></div>
+//   </div>`;
+//   includeHTML();
 // }
 
-
-function openAddTask() {
-  document.getElementById('boAddTaskPopUp').classList.remove('d-none');
-  document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
-  <div data-template="./content/add_task.html"></div>
-  </div>`;
-  includeHTML();
-}
-
-function closeAddTaskPopUp() {
-    document.getElementById('boAddTaskPopUp').classList.add('d-none');
-}
+// function closeAddTaskPopUp() {
+//     document.getElementById('boAddTaskPopUp').classList.add('d-none');
+// }
 
 function openTodoInfo(id) {
     document.getElementById(id).classList.remove('d-none');
@@ -263,84 +263,84 @@ function resetMobileAddTaskBtn(img) {
     document.getElementById('bo_mobile_AddTaskPlus').src = img;
 }
 
-function urgentButtonDefault(i) {
+function BoardUrgentButtonDefault(i) {
     document.getElementById('prioUrgent'+ i).style.backgroundColor = "#FFFFFF";
     document.getElementById('whiteUrgent'+ i).style.color = "#000000";
     document.getElementById('img-up-white'+ i).src = "./img/up.png";
     urgentClicked = false;
 }
 
-function mediumButtonDefault(i) {
+function BoardMediumButtonDefault(i) {
     document.getElementById('prioMedium'+i).style.backgroundColor = "#FFFFFF";
     document.getElementById('whiteMedium'+i).style.color = "#000000";
     document.getElementById('img-middle-white'+ i).src = "./img/middle.png";
     mediumClicked = false;
 }
 
-function lowButtonDefault(i) {
+function BoardLowButtonDefault(i) {
     document.getElementById('prioLow'+ i).style.backgroundColor = "#FFFFFF";
     document.getElementById('whiteLow'+ i).style.color = "#000000";
     document.getElementById('img-down-white'+ i).src = "./img/down.png";
     lowClicked = false;
 }
 
-function changeToRed(i) {
+function BoardChangeToRed(i) {
     if (urgentClicked == false) {
         document.getElementById('prioUrgent'+ i).style.backgroundColor = "#FF3D00";
         document.getElementById('whiteUrgent'+ i).style.color = "#FFFFFF";
         document.getElementById('img-up-white'+ i).src = "./img/arrowUpWhite.png";
         urgentClicked = true;
     } else {
-        urgentButtonDefault(i);
+        BoardUrgentButtonDefault(i);
     }
-    mediumButtonDefault(i);
-    lowButtonDefault(i);
+    BoardMediumButtonDefault(i);
+    BoardLowButtonDefault(i);
 }
 
-function changeToOrange(i) {
+function BoardChangeToOrange(i) {
     if (mediumClicked == false) {
         document.getElementById('prioMedium'+ i).style.backgroundColor = "#FFA800";
         document.getElementById('whiteMedium'+ i).style.color = "#FFFFFF";
         document.getElementById('img-middle-white'+ i).src = "./img/arrowMiddleWhite.png";
         mediumClicked = true;
     } else {
-        mediumButtonDefault(i);
+        BoardMediumButtonDefault(i);
     }
-    urgentButtonDefault(i);
-    lowButtonDefault(i);
+    BoardUrgentButtonDefault(i);
+    BoardLowButtonDefault(i);
 }
 
-function changeToGreen(i) {
+function BoardChangeToGreen(i) {
     if (lowClicked == false) {
         document.getElementById('prioLow'+ i).style.backgroundColor = "#7AE229";
         document.getElementById('whiteLow'+ i).style.color = "#FFFFFF";
         document.getElementById('img-down-white'+ i).src = "./img/arrowDownWhite.png";
         lowClicked = true;
     } else {
-        lowButtonDefault(i);
+        BoardLowButtonDefault(i);
     }
-    urgentButtonDefault(i);
-    mediumButtonDefault(i);
+    BoardUrgentButtonDefault(i);
+    BoardMediumButtonDefault(i);
 }
 
-function showAssigned(i) {
+function BoardShowAssigned(i) {
     document.getElementById('dropdownAssigned'+ i).classList.add('height');
     if (dropdownClicked == false) {
         document.getElementById("content-assigned"+ i).classList.toggle("show");
         document.getElementById("dropdownAssigned"+ i).classList.add("dropdown");
         dropdownClicked = true;
     } else {
-        showAssignedDefault(i);
+        BoardShowAssignedDefault(i);
     }
 }
 
-function showAssignedDefault(i) {
+function BoardShowAssignedDefault(i) {
     document.getElementById("content-assigned"+ i).classList.toggle("show");
     document.getElementById("dropdownAssigned"+ i).classList.remove("dropdown");
     dropdownClicked = false;
 }
 
-function clickyou(event, i) {
+function BoardClickyou(event, i) {
     event.stopPropagation();
     let click = document.getElementById('assigned-you'+ i);
     if (clicked_You == false) {
@@ -358,7 +358,7 @@ function clickyou(event, i) {
     }
 }
 
-function clickcontact(event, i) {
+function BoardClickcontact(event, i) {
     event.stopPropagation();
     let click = document.getElementById('assigned-contact'+ i);
     if (clicked_Contact == false) {click.innerHTML = /*html*/`
@@ -375,59 +375,59 @@ function clickcontact(event, i) {
     }
 }
 
-function clickinvite(i) {
+function BoardClickinvite(i) {
     let invite = document.getElementById('dropdownAssigned'+ i);
     invite.innerHTML = /*html*/`
     <div id="contact${i}" class="new_category">
         <input id="email" onclick="select_email()" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
         <div class="img_new_category">
-            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="defaultMode()">
+            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode()">
             <img src="./img/vertical.png">
-            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="select_email()">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="BoardSelect_email()">
         </div>
     </div>
     `;
 }
 
-function select_email(i) {
+function BoardSelect_email(i) {
     document.getElementById('contact').innerHTML = /*html*/`
-    <input id="email${i}" onclick="selection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+    <input id="email${i}" onclick="BoardSelection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
     <div class="img_new_category">
-        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="defaultMode()">
+        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode()">
         <img src="./img/vertical.png">
-        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="selection()">
+        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="BoardSelection()">
     </div>`;
     document.getElementById('email'+ i).value = "laura@gmail.com";
 }
 
-function defaultMode(i) {
+function BoardDefaultMode(i) {
     document.getElementById('dropdownAssigned'+ i).innerHTML = /*html*/`
-    <div onclick="showAssigned(i)" id="new_assigned${i}" class="dropdown-container">
+    <div onclick="BoardShowAssigned(i)" id="new_assigned${i}" class="dropdown-container">
         <div class="assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
     </div>
     <div class="dropdown-content" id="content-assigned${i}">
-        <div id="assigned-you${i}" onclick="clickyou(event, i)" class="dropdown-assigned">
+        <div id="assigned-you${i}" onclick="BoardClickyou(event, i)" class="dropdown-assigned">
             <span class="dropdown-item">You</span>
             <div id="rectangle${i}"></div>
         </div>
-        <div id="assigned-contact${i}" onclick="clickcontact(event, i)" class="dropdown-assigned">
+        <div id="assigned-contact${i}" onclick="BoardClickcontact(event, i)" class="dropdown-assigned">
             <span class="dropdown-item">Laura Numey</span>
             <div id="rectangle${i}"></div>
         </div>
-        <div onclick="clickinvite(i)" class="dropdown-assigned">
+        <div onclick="BoardClickinvite(i)" class="dropdown-assigned">
             <span class="dropdown-item">Invite new contact</span>
             <img class="img-invite" src="./img/invite-sign.png">
         </div>
     </div>`;
 }
 
-function selection(i) {
+function BoardSelection(i) {
     document.getElementById('dropdownAssigned'+ i).classList.remove("dropdown");
     document.getElementById('dropdownAssigned'+ i).classList.remove("height");
     document.getElementById('dropdownAssigned'+ i).classList.add("height-default");
     document.getElementById('dropdownAssigned'+ i).innerHTML = /*html*/`
-    <div onclick="restartDefault()" id="new_assigned${i}" class="dropdown-container">
+    <div onclick="BoardRestartDefault()" id="new_assigned${i}" class="dropdown-container">
         <div class="assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
     </div>
@@ -437,22 +437,22 @@ function selection(i) {
         <img class="initials" src="./img/contactMV.png">
     </div>
     <div class="dropdown-content" id="content-assigned${i}">
-        <div id="assigned-you${i}" onclick="clickyou(event, i)" class="dropdown-assigned">
+        <div id="assigned-you${i}" onclick="BoardClickyou(event, i)" class="dropdown-assigned">
             <span class="dropdown-item">You</span>
             <div id="rectangle${i}"></div>
         </div>
-        <div id="assigned-contact${i}" onclick="clickcontact(event, i)" class="dropdown-assigned">
+        <div id="assigned-contact${i}" onclick="BoardClickcontact(event, i)" class="dropdown-assigned">
             <span class="dropdown-item">Laura Numey</span>
             <div id="rectangle${i}"></div>
         </div>
-        <div onclick="clickinvite(i)" class="dropdown-assigned">
+        <div onclick="BoardClickinvite(i)" class="dropdown-assigned">
             <span class="dropdown-item">Invite new contact</span>
             <img class="img-invite" src="./img/invite-sign.png">
         </div>
     </div>`; 
 }
 
-function restartDefault(i) {
+function BoardRestartDefault(i) {
     document.getElementById('dropdownAssigned'+ i).classList.add("dropdown");
     document.getElementById('initials'+ i).classList.add("d-none");
     document.getElementById('content-assigned'+ i).classList.toggle("show");
