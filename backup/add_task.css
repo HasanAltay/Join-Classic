@@ -655,10 +655,6 @@
 
 @media (min-width: 866px) and (max-width: 1300px) {
 
-    .right {
-        margin-right: 16px;
-    }
-    
     .datebox {
         width: unset;
     }
@@ -688,15 +684,6 @@
     }
 
     .subtasks-box {
-        width: unset;
-    }
-
-    .task-btns {
-        width: unset;
-        margin-right: 16px;
-    }
-
-    .create-task-btn {
         width: unset;
     }
 }
