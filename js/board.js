@@ -216,13 +216,13 @@ function filterTodos() {
 }
 
 
-function openAddTask() {
-  document.getElementById('boAddTaskPopUp').classList.remove('d-none');
-  document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
-  <div data-template="./content/add_task.html"></div>
-  </div>`;
-  includeHTML();
-}
+// function openAddTask() {
+//   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
+//   document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
+//   <div data-template="./content/add_task.html"></div>
+//   </div>`;
+//   includeHTML();
+// }
 
 // function closeAddTaskPopUp() {
 //     document.getElementById('boAddTaskPopUp').classList.add('d-none');
