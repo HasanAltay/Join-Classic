@@ -54,7 +54,7 @@ function setPrioStat() {
     if (urgent_clicked) status = "urgent";
     if (medium_clicked) status = "medium";
     if (low_clicked) status = "low";
-    return status;  
+    return status;
 }
 
 function clear_subtaskInput() {
@@ -116,18 +116,25 @@ function showCategory() {
         document.getElementById("content").classList.toggle("show");
         document.getElementById("dropdown").classList.add("dropdown");
         clickedDropdown = true;
+    } else {
+        showCategoryDefault();
     }
+}
+
+function showCategoryDefault() {
+    document.getElementById("content").classList.toggle("show");
+    document.getElementById("dropdown").classList.remove("dropdown");
 }
 
 function new_category() {
     let new_category = document.getElementById('dropdown');
     new_category.innerHTML = /*html*/`
     <div id="new-category" class="new_category">
-        <input id="design" onclick="design()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+        <input id="design" onclick="designCategory()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
         <div class="img_new_category">
             <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearCategory()">
             <img src="./img/vertical.png">
-            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="design()">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="designCategory()">
         </div>
     </div>
     `;
@@ -141,7 +148,7 @@ function new_category() {
 function clearCategory() {
     document.getElementById('new-category').classList.remove("new_category");
     document.getElementById('img-picker').classList.add("d-none");
-    document.getElementById('new-category').innerHTML = /*html*/`
+    document.getElementById('dropdown').innerHTML = /*html*/`
     <div onclick="dropdownClear()" id="new_category" class="dropdown-container">
         <div class="categorybox">Select task category</div>
         <div><img src="./img/open.png"></div>
@@ -223,13 +230,15 @@ function dropdownOffice() {
     document.getElementById("content-office").classList.toggle("show");
 }
 
-function design() {
-    document.getElementById('new-category').innerHTML = /*html*/`
-    <input id="design" onclick="click_design()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
-    <div class="img_new_category">
-        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearCategory()">
-        <img src="./img/vertical.png">
-        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="click_design()">
+function designCategory() {
+    document.getElementById('dropdown').innerHTML = /*html*/`
+    <div id="new-category" class="new_category">
+        <input id="design" onclick="click_design()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+        <div class="img_new_category">
+            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearCategory()">
+            <img src="./img/vertical.png">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="click_design()">
+        </div>
     </div>`;
     document.getElementById('img-picker').classList.remove("d-none");
     document.getElementById('img-picker').innerHTML = "";
@@ -246,7 +255,7 @@ function design() {
 function click_design() {
     document.getElementById('img-picker').classList.add("d-none");
     let design = document.getElementById('design');
-    design.value = "Design";
+    design.value = `Design`;
     document.getElementById('new-category').classList.remove("new_category");
     document.getElementById('new-category').innerHTML = /*html*/`
     <div onclick="dropdownDesign()" class="design">
@@ -330,12 +339,13 @@ function clickyou(event) {
 function clickcontact(event) {
     event.stopPropagation();
     let click = document.getElementById('assigned-contact');
-    if (clickedContact == false) {click.innerHTML = /*html*/`
+    if (clickedContact == false) {
+        click.innerHTML = /*html*/`
     <span class="dropdown-item">Laura Numey</span>
     <div id="rectangle">
         <div id="rectangle-clicked"></div>
     </div>`;
-    clickedContact = true;
+        clickedContact = true;
     } else {
         click.innerHTML = /*html*/`
         <span class="dropdown-item">Laura Numey</span>
@@ -419,7 +429,7 @@ function selection() {
             <span class="dropdown-item">Invite new contact</span>
             <img class="img-invite" src="./img/invite-sign.png">
         </div>
-    </div>`; 
+    </div>`;
 }
 
 function restartDefault() {
