@@ -2,6 +2,12 @@
     display: flex;
 }
 
+.bo_font21-700 {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+}
+
 .bo_main {
     display: block;
     padding-top: 160px;
@@ -255,7 +261,7 @@
     padding-left: 25px;
 }
 
-
+/* ab hier AddTask Todo Section */
 .bo_edit_todo {
     position: absolute;
     right: 10px;
@@ -299,6 +305,7 @@
     box-sizing: border-box;
     margin-top: 8px;
     outline: none;
+    width: 440px;
 }
 
 .bo_task_description {
@@ -323,6 +330,7 @@
     background: #FFFFFF;
     margin-top: 8px;
     outline: none;
+    width: 440px;
 }
 
 .bo_task_date {
@@ -350,12 +358,173 @@
     background: #FFFFFF;
     cursor: pointer;
     outline: none;
+    width: 440px;
 }
 
+.bo_task_prio-urgent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    width: 136px;
+    height: 51px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.bo_task_urgent {
+    font-size: 21px;
+}
+
+.bo_task_prio-medium {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    width: 130px;
+    height: 51px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.bo_task_medium {
+    font-size: 21px;
+}
+
+.bo_task_prio-low {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    width: 136px;
+    height: 51px;
+    cursor: pointer;
+}
+
+.bo_task_low {
+    font-size: 21px;
+}
 
 .bo_prio_btn {
     display: flex;
     margin-top: 8px;
+}
+
+.bo_task_assigned {
+    height: 25px;
+    margin-top: 34px;
+    color: #000000;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+}
+
+.bo_assign-selection {
+    margin-top: 8px;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    isolation: isolate;
+    width: 422px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    cursor: pointer;
+}
+
+.bo_task_dropdown-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 21px;
+}
+
+.bo_task_assignedbox {
+    border: none;
+    height: 25px;
+    font-size: 21px;
+    color: #000000;
+}
+
+.bo_task_dropdown-content {
+    display: none;
+    cursor: pointer;
+}
+
+.bo_dropdown-assigned {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    height: 51px;
+    padding: 13px 21px;
+    gap: 10px;
+}
+
+.bo_dropdown-item {
+    height: 25px;
+    font-size: 21px;
+    color: #000000;
+    line-height: 120%;
+}
+
+.bo_task_dropdown {
+    height: fit-content !important;
+}
+
+.bo_dropdown-assigned:hover {
+    background-color: #D1D1D1;
+}
+
+.bo_task_height {
+    height: fit-content;
+}
+
+.bo_task_height-default {
+    height: 51px !important;
+}
+
+.bo_task_dropdown {
+    height: fit-content !important;
+}
+
+.dropdown-content {
+    display: none;
+    cursor: pointer;
+}
+
+.bo_task_show {
+    display: block;
+}
+
+.bo_task_img-invite {
+    width: 19.5px;
+    height: 22px;
+}
+
+.bo_task_initials {
+    padding: 10px 8px;
 }
 
 .bo_rectangle {
@@ -420,6 +589,7 @@
     .bo_todo_area {
         padding-left: unset;
     }
+
 }
 
 
@@ -474,6 +644,8 @@
     .bo_drag-area {
         width: 254px;
     }
+
+
 }
 
 
@@ -512,5 +684,32 @@
 
     .bo_drag-area {
         width: unset;
+    }
+
+    .bo_popup_todo_Info {
+        width: unset;
+        padding-left: 15px;
+        padding-right: 30px;
+    }
+
+    .bo_task_titlebox, .bo_task_descriptionbox, .bo_task_datebox {
+        width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bo_font21-700 {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 380px) {
+    .bo_popup_todo_Info {
+        padding-left: unset;
+        padding-right: 25px;
+    }
+
+    .bo_button_dark {
+        right: -12px;
     }
 }

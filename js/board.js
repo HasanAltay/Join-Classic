@@ -115,9 +115,9 @@ function showTodoPopUp(element) {
                         <div>
                          <div class="mt-25 font21-400">${element['description']}</div>
                         </div>
-                            <div class="mt-25 font21-400"><span class="mr-20 font21-700">Due date:</span> 05-08-2022</div>
-                            <div class="mt-25 font21-400"><span class="mr-20 font21-700">Priority:</span></div>
-                            <div class="mt-25 font21-400"><span class="mr-20 font21-700">Assigned to:</span></div>
+                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Due date:</span> 05-08-2022</div>
+                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Priority:</span></div>
+                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Assigned to:</span></div>
                                 <button onclick="openTodoEdit(${element['id']})" class="bo_edit_todo c-pointer"
                                  onmouseenter="changeEditBtn('./img/edit-light.png', ${element['id']})"
                                  onmouseleave="resetEditBtn('./img/edit-dark.png', ${element['id']})">
@@ -128,13 +128,13 @@ function showTodoPopUp(element) {
              <div id="boEditPopUp${element['id']}" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="bo_task_title">Title</span>
-                    <input id="title${element['id']}" class="bo_task_titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
+                    <input id="bo_task_title${element['id']}" class="bo_task_titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
                     onblur="this.placeholder='Enter a title'">
                 </div>
 
                 <div class="mb-40">
                   <span class="bo_task_description">Description</span>
-                         <textarea id="description${element['id']}" class="bo_task_descriptionbox" placeholder="Enter a description"
+                         <textarea id="bo_task_description${element['id']}" class="bo_task_descriptionbox" placeholder="Enter a description"
                              onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
                 </div>
 
@@ -146,34 +146,34 @@ function showTodoPopUp(element) {
                 <div class="mb-40">
                   <span class="font21-400 bo_prio">Prio</span>
                     <div class="bo_prio_btn">
-                        <button id="boPrioUrgent${element['id']}" onclick="BoardChangeToRed(${element['id']})" class="prio-urgent"><span id="boWhiteUrgent${element['id']}"
-                         class="urgent">Urgent</span><img id="img-up-white${element['id']}" src="./img/up.png"></button>
-                        <button id="prioMedium${element['id']}" onclick="BoardChangeToOrange(${element['id']})" class="prio-medium"><span id="whiteMedium${element['id']}"
-                            class="medium">Medium</span><img id="img-middle-white${element['id']}" src="./img/middle.png"></button>
-                        <button id="prioLow${element['id']}" onclick="BoardChangeToGreen(${element['id']})" class="prio-low"><span id="whiteLow${element['id']}"
-                        class="low">Low</span><img id="img-down-white${element['id']}" src="./img/down.png"></button>
+                        <button id="boPrioUrgent${element['id']}" onclick="BoardChangeToRed(${element['id']})" class="bo_task_prio-urgent"><span id="boWhiteUrgent${element['id']}"
+                         class="bo_task_urgent">Urgent</span><img id="boImg-up-white${element['id']}" src="./img/up.png"></button>
+                        <button id="boPrioMedium${element['id']}" onclick="BoardChangeToOrange(${element['id']})" class="bo_task_prio-medium"><span id="boWhiteMedium${element['id']}"
+                            class="bo_task_medium">Medium</span><img id="boImg-middle-white${element['id']}" src="./img/middle.png"></button>
+                        <button id="boPrioLow${element['id']}" onclick="BoardChangeToGreen(${element['id']})" class="bo_task_prio-low"><span id="boWhiteLow${element['id']}"
+                        class="bo_task_low">Low</span><img id="boImg-down-white${element['id']}" src="./img/down.png"></button>
                      </div>
                 </div>
 
                 <div class="mb-40">
-                <span class="assigned">Assigned to</span>
-                <div id="dropdownAssigned${element['id']}" class="assign-selection">
-                    <div onclick="BoardShowAssigned(${element['id']})" id="new_assigned${element['id']}" class="dropdown-container">
-                        <div class="assignedbox">Select contacts to assign</div>
+                <span class="bo_task_assigned">Assigned to</span>
+                <div id="boDropdownAssigned${element['id']}" class="bo_assign-selection">
+                    <div onclick="BoardShowAssigned(${element['id']})" id="boNew_assigned${element['id']}" class="bo_task_dropdown-container">
+                        <div class="bo_task_assignedbox">Select contacts to assign</div>
                         <img src="./img/open.png">
                     </div>
-                    <div class="dropdown-content" id="content-assigned${element['id']}">
-                        <div id="assigned-you${element['id']}" onclick="BoardClickyou(event, ${element['id']})" class="dropdown-assigned">
-                            <span class="dropdown-item">You</span>
+                    <div class="bo_task_dropdown-content" id="boContent-assigned${element['id']}">
+                        <div id="boAssigned-you${element['id']}" onclick="BoardClickyou(event, ${element['id']})" class="bo_dropdown-assigned">
+                            <span class="bo_dropdown-item">You</span>
                             <div class="bo_rectangle" id="bo_rectangle${element['id']}"></div>
                         </div>
-                        <div id="assigned-contact${element['id']}" onclick="BoardClickcontact(event, ${element['id']})" class="dropdown-assigned">
-                            <span class="dropdown-item">Laura Numey</span>
+                        <div id="boAssigned-contact${element['id']}" onclick="BoardClickcontact(event, ${element['id']})" class="bo_dropdown-assigned">
+                            <span class="bo_dropdown-item">Laura Numey</span>
                             <div class="bo_rectangle" id="bo_rectangle${element['id']}"></div>
                         </div>
-                        <div onclick="BoardClickinvite(${element['id']})" class="dropdown-assigned">
-                            <span class="dropdown-item">Invite new contact</span>
-                            <img class="img-invite" src="./img/invite-sign.png">
+                        <div onclick="BoardClickinvite(${element['id']})" class="bo_dropdown-assigned">
+                            <span class="bo_dropdown-item">Invite new contact</span>
+                            <img class="bo_task_img-invite" src="./img/invite-sign.png">
                         </div>
                     </div>
                 </div>
@@ -266,21 +266,21 @@ function resetMobileAddTaskBtn(img) {
 function BoardUrgentButtonDefault(i) {
     document.getElementById('boPrioUrgent'+ i).style.backgroundColor = "#FFFFFF";
     document.getElementById('boWhiteUrgent'+ i).style.color = "#000000";
-    document.getElementById('img-up-white'+ i).src = "./img/up.png";
+    document.getElementById('boImg-up-white'+ i).src = "./img/up.png";
     urgentClicked = false;
 }
 
 function BoardMediumButtonDefault(i) {
-    document.getElementById('prioMedium'+i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('whiteMedium'+i).style.color = "#000000";
-    document.getElementById('img-middle-white'+ i).src = "./img/middle.png";
+    document.getElementById('boPrioMedium'+i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('boWhiteMedium'+i).style.color = "#000000";
+    document.getElementById('boImg-middle-white'+ i).src = "./img/middle.png";
     mediumClicked = false;
 }
 
 function BoardLowButtonDefault(i) {
-    document.getElementById('prioLow'+ i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('whiteLow'+ i).style.color = "#000000";
-    document.getElementById('img-down-white'+ i).src = "./img/down.png";
+    document.getElementById('boPrioLow'+ i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('boWhiteLow'+ i).style.color = "#000000";
+    document.getElementById('boImg-down-white'+ i).src = "./img/down.png";
     lowClicked = false;
 }
 
@@ -288,7 +288,7 @@ function BoardChangeToRed(i) {
     if (urgentClicked == false) {
         document.getElementById('boPrioUrgent'+ i).style.backgroundColor = "#FF3D00";
         document.getElementById('boWhiteUrgent'+ i).style.color = "#FFFFFF";
-        document.getElementById('img-up-white'+ i).src = "./img/arrowUpWhite.png";
+        document.getElementById('boImg-up-white'+ i).src = "./img/arrowUpWhite.png";
         urgentClicked = true;
     } else {
         BoardUrgentButtonDefault(i);
@@ -299,9 +299,9 @@ function BoardChangeToRed(i) {
 
 function BoardChangeToOrange(i) {
     if (mediumClicked == false) {
-        document.getElementById('prioMedium'+ i).style.backgroundColor = "#FFA800";
-        document.getElementById('whiteMedium'+ i).style.color = "#FFFFFF";
-        document.getElementById('img-middle-white'+ i).src = "./img/arrowMiddleWhite.png";
+        document.getElementById('boPrioMedium'+ i).style.backgroundColor = "#FFA800";
+        document.getElementById('boWhiteMedium'+ i).style.color = "#FFFFFF";
+        document.getElementById('boImg-middle-white'+ i).src = "./img/arrowMiddleWhite.png";
         mediumClicked = true;
     } else {
         BoardMediumButtonDefault(i);
@@ -312,9 +312,9 @@ function BoardChangeToOrange(i) {
 
 function BoardChangeToGreen(i) {
     if (lowClicked == false) {
-        document.getElementById('prioLow'+ i).style.backgroundColor = "#7AE229";
-        document.getElementById('whiteLow'+ i).style.color = "#FFFFFF";
-        document.getElementById('img-down-white'+ i).src = "./img/arrowDownWhite.png";
+        document.getElementById('boPrioLow'+ i).style.backgroundColor = "#7AE229";
+        document.getElementById('boWhiteLow'+ i).style.color = "#FFFFFF";
+        document.getElementById('boImg-down-white'+ i).src = "./img/arrowDownWhite.png";
         lowClicked = true;
     } else {
         BoardLowButtonDefault(i);
@@ -324,10 +324,10 @@ function BoardChangeToGreen(i) {
 }
 
 function BoardShowAssigned(i) {
-    document.getElementById('dropdownAssigned'+ i).classList.add('height');
+    document.getElementById('boDropdownAssigned'+ i).classList.add('bo_task_height');
     if (dropdownClicked == false) {
-        document.getElementById("content-assigned"+ i).classList.toggle("show");
-        document.getElementById("dropdownAssigned"+ i).classList.add("dropdown");
+        document.getElementById("boContent-assigned"+ i).classList.toggle("bo_task_show");
+        document.getElementById("boDropdownAssigned"+ i).classList.add("bo_task_dropdown");
         dropdownClicked = true;
     } else {
         BoardShowAssignedDefault(i);
@@ -335,24 +335,24 @@ function BoardShowAssigned(i) {
 }
 
 function BoardShowAssignedDefault(i) {
-    document.getElementById("content-assigned"+ i).classList.toggle("show");
-    document.getElementById("dropdownAssigned"+ i).classList.remove("dropdown");
+    document.getElementById("boContent-assigned"+ i).classList.toggle("bo_task_show");
+    document.getElementById("boDropdownAssigned"+ i).classList.remove("bo_task_dropdown");
     dropdownClicked = false;
 }
 
 function BoardClickyou(event, i) {
     event.stopPropagation();
-    let click = document.getElementById('assigned-you'+ i);
+    let click = document.getElementById('boAssigned-you'+ i);
     if (clicked_You == false) {
         click.innerHTML = /*html*/`
-        <span class="dropdown-item">You</span>
+        <span class="bo_dropdown-item">You</span>
         <div class="bo_rectangle" id='bo_rectangle${i}'>
             <div class="bo_rectangle-clicked" id='bo_rectangle-clicked${i}'></div>
         </div>`;
         clicked_You = true;
     } else {
         click.innerHTML = /*html*/`
-        <span class="dropdown-item">You</span>
+        <span class="bo_dropdown-item">You</span>
         <div class="bo_rectangle" id='bo_rectangle${i}'></div>`;
         clicked_You = false;
     }
@@ -360,23 +360,23 @@ function BoardClickyou(event, i) {
 
 function BoardClickcontact(event, i) {
     event.stopPropagation();
-    let click = document.getElementById('assigned-contact'+ i);
+    let click = document.getElementById('boAssigned-contact'+ i);
     if (clicked_Contact == false) {click.innerHTML = /*html*/`
-    <span class="dropdown-item">Laura Numey</span>
+    <span class="bo_dropdown-item">Laura Numey</span>
     <div class="bo_rectangle" id='bo_rectangle${i}'>
         <div class="bo_rectangle-clicked" id='bo_rectangle-clicked${i}'></div>
     </div>`;
     clicked_Contact = true;
     } else {
         click.innerHTML = /*html*/`
-        <span class="dropdown-item">Laura Numey</span>
+        <span class="bo_dropdown-item">Laura Numey</span>
         <div class="bo_rectangle" id='bo_rectangle${i}'></div>`;
         clicked_Contact = false;
     }
 }
 
 function BoardClickinvite(i) {
-    let invite = document.getElementById('dropdownAssigned'+ i);
+    let invite = document.getElementById('boDropdownAssigned'+ i);
     invite.innerHTML = /*html*/`
     <div id="contact${i}" class="new_category">
         <input id="email" onclick="select_email()" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
@@ -401,59 +401,59 @@ function BoardSelect_email(i) {
 }
 
 function BoardDefaultMode(i) {
-    document.getElementById('dropdownAssigned'+ i).innerHTML = /*html*/`
-    <div onclick="BoardShowAssigned(i)" id="new_assigned${i}" class="dropdown-container">
-        <div class="assignedbox">Select contacts to assign</div>
+    document.getElementById('boDropdownAssigned'+ i).innerHTML = /*html*/`
+    <div onclick="BoardShowAssigned(i)" id="boNew_assigned${i}" class="bo_task_dropdown-container">
+        <div class="bo_task_assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
     </div>
-    <div class="dropdown-content" id="content-assigned${i}">
-        <div id="assigned-you${i}" onclick="BoardClickyou(event, i)" class="dropdown-assigned">
-            <span class="dropdown-item">You</span>
+    <div class="bo_task_dropdown-content" id="boContent-assigned${i}">
+        <div id="boAssigned-you${i}" onclick="BoardClickyou(event, i)" class="bo_dropdown-assigned">
+            <span class="bo_dropdown-item">You</span>
             <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
-        <div id="assigned-contact${i}" onclick="BoardClickcontact(event, i)" class="dropdown-assigned">
-            <span class="dropdown-item">Laura Numey</span>
+        <div id="boAssigned-contact${i}" onclick="BoardClickcontact(event, i)" class="bo_dropdown-assigned">
+            <span class="bo_dropdown-item">Laura Numey</span>
             <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
-        <div onclick="BoardClickinvite(i)" class="dropdown-assigned">
-            <span class="dropdown-item">Invite new contact</span>
-            <img class="img-invite" src="./img/invite-sign.png">
+        <div onclick="BoardClickinvite(i)" class="bo_dropdown-assigned">
+            <span class="bo_dropdown-item">Invite new contact</span>
+            <img class="bo_task_img-invite" src="./img/invite-sign.png">
         </div>
     </div>`;
 }
 
 function BoardSelection(i) {
-    document.getElementById('dropdownAssigned'+ i).classList.remove("dropdown");
-    document.getElementById('dropdownAssigned'+ i).classList.remove("height");
-    document.getElementById('dropdownAssigned'+ i).classList.add("height-default");
-    document.getElementById('dropdownAssigned'+ i).innerHTML = /*html*/`
-    <div onclick="BoardRestartDefault()" id="new_assigned${i}" class="dropdown-container">
-        <div class="assignedbox">Select contacts to assign</div>
+    document.getElementById('boDropdownAssigned'+ i).classList.remove("bo_task_dropdown");
+    document.getElementById('boDropdownAssigned'+ i).classList.remove("bo_task_height");
+    document.getElementById('boDropdownAssigned'+ i).classList.add("bo_task_height-default");
+    document.getElementById('boDropdownAssigned'+ i).innerHTML = /*html*/`
+    <div onclick="BoardRestartDefault()" id="boNew_assigned${i}" class="bo_task_dropdown-container">
+        <div class="bo_task_assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
     </div>
-    <div id="initials${i}">
-        <img class="initials" src="./img/contactSM.png">
-        <img class="initials" src="./img/contactEV.png">
-        <img class="initials" src="./img/contactMV.png">
+    <div id="boInitials${i}">
+        <img class="bo_task_initials" src="./img/contactSM.png">
+        <img class="bo_task_initials" src="./img/contactEV.png">
+        <img class="bo_task_initials" src="./img/contactMV.png">
     </div>
-    <div class="dropdown-content" id="content-assigned${i}">
-        <div id="assigned-you${i}" onclick="BoardClickyou(event, i)" class="dropdown-assigned">
-            <span class="dropdown-item">You</span>
+    <div class="bo_task_dropdown-content" id="boContent-assigned${i}">
+        <div id="boAssigned-you${i}" onclick="BoardClickyou(event, i)" class="bo_dropdown-assigned">
+            <span class="bo_dropdown-item">You</span>
             <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
-        <div id="assigned-contact${i}" onclick="BoardClickcontact(event, i)" class="dropdown-assigned">
-            <span class="dropdown-item">Laura Numey</span>
+        <div id="boAssigned-contact${i}" onclick="BoardClickcontact(event, i)" class="bo_dropdown-assigned">
+            <span class="bo_dropdown-item">Laura Numey</span>
             <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
-        <div onclick="BoardClickinvite(i)" class="dropdown-assigned">
-            <span class="dropdown-item">Invite new contact</span>
-            <img class="img-invite" src="./img/invite-sign.png">
+        <div onclick="BoardClickinvite(i)" class="bo_dropdown-assigned">
+            <span class="bo_dropdown-item">Invite new contact</span>
+            <img class="bo_task_img-invite" src="./img/invite-sign.png">
         </div>
     </div>`; 
 }
 
 function BoardRestartDefault(i) {
-    document.getElementById('dropdownAssigned'+ i).classList.add("dropdown");
-    document.getElementById('initials'+ i).classList.add("d-none");
-    document.getElementById('content-assigned'+ i).classList.toggle("show");
+    document.getElementById('boDropdownAssigned'+ i).classList.add("bo_task_dropdown");
+    document.getElementById('boInitials'+ i).classList.add("d-none");
+    document.getElementById('boContent-assigned'+ i).classList.toggle("bo_task_show");
 }
