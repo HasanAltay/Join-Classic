@@ -165,11 +165,11 @@ function showTodoPopUp(element) {
                     <div class="dropdown-content" id="content-assigned${element['id']}">
                         <div id="assigned-you${element['id']}" onclick="BoardClickyou(event, ${element['id']})" class="dropdown-assigned">
                             <span class="dropdown-item">You</span>
-                            <div id="rectangle"></div>
+                            <div class="bo_rectangle" id="bo_rectangle${element['id']}"></div>
                         </div>
                         <div id="assigned-contact${element['id']}" onclick="BoardClickcontact(event, ${element['id']})" class="dropdown-assigned">
                             <span class="dropdown-item">Laura Numey</span>
-                            <div id="rectangle${element['id']}"></div>
+                            <div class="bo_rectangle" id="bo_rectangle${element['id']}"></div>
                         </div>
                         <div onclick="BoardClickinvite(${element['id']})" class="dropdown-assigned">
                             <span class="dropdown-item">Invite new contact</span>
@@ -346,14 +346,14 @@ function BoardClickyou(event, i) {
     if (clicked_You == false) {
         click.innerHTML = /*html*/`
         <span class="dropdown-item">You</span>
-        <div id='rectangle'+ i>
-            <div id='rectangle-clicked'+ i></div>
+        <div class="bo_rectangle" id='bo_rectangle${i}'>
+            <div class="bo_rectangle-clicked" id='bo_rectangle-clicked${i}'></div>
         </div>`;
         clicked_You = true;
     } else {
         click.innerHTML = /*html*/`
         <span class="dropdown-item">You</span>
-        <div id='rectangle'+ i></div>`;
+        <div class="bo_rectangle" id='bo_rectangle${i}'></div>`;
         clicked_You = false;
     }
 }
@@ -363,14 +363,14 @@ function BoardClickcontact(event, i) {
     let click = document.getElementById('assigned-contact'+ i);
     if (clicked_Contact == false) {click.innerHTML = /*html*/`
     <span class="dropdown-item">Laura Numey</span>
-    <div id='rectangle'+ i>
-        <div id='rectangle-clicked'+ i></div>
+    <div class="bo_rectangle" id='bo_rectangle${i}'>
+        <div class="bo_rectangle-clicked" id='bo_rectangle-clicked${i}'></div>
     </div>`;
     clicked_Contact = true;
     } else {
         click.innerHTML = /*html*/`
         <span class="dropdown-item">Laura Numey</span>
-        <div id='rectangle'+ i></div>`;
+        <div class="bo_rectangle" id='bo_rectangle${i}'></div>`;
         clicked_Contact = false;
     }
 }
@@ -409,11 +409,11 @@ function BoardDefaultMode(i) {
     <div class="dropdown-content" id="content-assigned${i}">
         <div id="assigned-you${i}" onclick="BoardClickyou(event, i)" class="dropdown-assigned">
             <span class="dropdown-item">You</span>
-            <div id="rectangle${i}"></div>
+            <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
         <div id="assigned-contact${i}" onclick="BoardClickcontact(event, i)" class="dropdown-assigned">
             <span class="dropdown-item">Laura Numey</span>
-            <div id="rectangle${i}"></div>
+            <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
         <div onclick="BoardClickinvite(i)" class="dropdown-assigned">
             <span class="dropdown-item">Invite new contact</span>
@@ -439,11 +439,11 @@ function BoardSelection(i) {
     <div class="dropdown-content" id="content-assigned${i}">
         <div id="assigned-you${i}" onclick="BoardClickyou(event, i)" class="dropdown-assigned">
             <span class="dropdown-item">You</span>
-            <div id="rectangle${i}"></div>
+            <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
         <div id="assigned-contact${i}" onclick="BoardClickcontact(event, i)" class="dropdown-assigned">
             <span class="dropdown-item">Laura Numey</span>
-            <div id="rectangle${i}"></div>
+            <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
         <div onclick="BoardClickinvite(i)" class="dropdown-assigned">
             <span class="dropdown-item">Invite new contact</span>

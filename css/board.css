@@ -1,3 +1,7 @@
+.bo_d-flex {
+    display: flex;
+}
+
 .bo_main {
     display: block;
     padding-top: 160px;
@@ -261,7 +265,6 @@
 
 .bo_edit_task {
     margin-left: 50px;
-    /* margin-top: 30px; */
     position: relative;
 }
 
@@ -269,6 +272,28 @@
 .bo_prio_btn {
     display: flex;
     margin-top: 8px;
+}
+
+.bo_rectangle {
+    width: 11px;
+    height: 11px;
+    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
+    border: 1px solid #000000;
+    border-radius: 3px;
+    position: relative;
+    right: 4px;
+}
+
+.bo_rectangle-clicked {
+    width: 5px;
+    height: 5px;
+    background: #000000;
+    border-radius: 1px;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    top: 20%;
+    bottom: 20%;
 }
 
 
@@ -324,6 +349,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 48vw;
     }
 
     .bo_title {
@@ -337,13 +363,6 @@
     .bo_search_dnone {
         display: block !important;
     }
-
-    /* .addTaskBTN {
-        position: absolute;
-        left: 92%;
-        top: 22%;
-        transform: translate(-92%, -22%);
-    } */
 
     .bo_lupe_mobile {
         position: absolute;
@@ -361,21 +380,15 @@
     }
 
     .bo_todo_container {
-        flex-wrap: wrap;
         margin-top: 24px;
     }
 
-    .bo_todo_area {
-        margin-right: unset;
-        width: 318px;
+    .bo_todo_sections {
+        padding-left: unset;
     }
 
     .bo_drag-area {
         width: 254px;
-    }
-
-    .bo_todo {
-        min-width: 320px;
     }
 }
 
@@ -390,6 +403,10 @@
         padding-top: unset;
     }
 
+    .board_btn_section {
+        width: 84vw;
+    }
+
     .bo_title {
         margin-bottom: 25px;
         margin-left: unset;
@@ -400,13 +417,6 @@
         padding-right: 48px;
     }
 
-    /* .addTaskBTN {
-        position: absolute;
-        left: 100%;
-        top: 25%;
-        transform: translate(-100%, -25%)
-    } */
-
     .bo_search_input {
         margin-left: 22px;
     }
@@ -416,21 +426,7 @@
         margin-left: 24px;
     }
 
-    .bo_todo_sections {
-        padding-left: unset;
-    }
-
     .bo_drag-area {
         width: unset;
     }
-}
-
-
-@media (max-width: 480px) {
-
-    /* .addTaskBTN {
-        left: 90%;
-        top: 25%;
-        transform: translate(-90%, -25%)
-    } */
 }
