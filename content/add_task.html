@@ -19,7 +19,7 @@
                     <div id="dropdown" onclick="showCategory()" class="category-selection">
                         <div id="new_category" class="dropdown-container">
                             <div class="categorybox">Select task category</div>
-                            <img src="./img/open.png">
+                            <img class="open-img" src="./img/open.png">
                         </div>
                         <div class="dropdown-content" id="content">
                             <div onclick="new_category()" class="dropdown-child">
@@ -27,11 +27,11 @@
                             </div>
                             <div onclick="showSales()" class="dropdown-child">
                                 <span class="dropdown-item">Sales</span>
-                                <img src="./img/sales-img.png">
+                                <img class="item-img" src="./img/sales-img.png">
                             </div>
                             <div onclick="backOffice()" class="dropdown-child">
                                 <span class="dropdown-item">Backoffice</span>
-                                <img src="./img/backoffice-img.png">
+                                <img class="item-img" src="./img/backoffice-img.png">
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                     <div id="dropdownAssigned" class="assign-selection">
                         <div onclick="showAssigned()" id="new_assigned" class="dropdown-container">
                             <div class="assignedbox">Select contacts to assign</div>
-                            <img src="./img/open.png">
+                            <img class="open-img" src="./img/open.png">
                         </div>
                         <div class="dropdown-content" id="content-assigned">
                             <div id="assigned-you" onclick="clickyou(event)" class="dropdown-assigned">
@@ -71,13 +71,13 @@
                     <div class="btn">
                         <button onmouseover="addPrioUrgentHover()" onmouseleave="removePrioUrgentHover()" id="prioUrgent"
                             onclick="changeToRed()" class="prio-urgent"><span id="whiteUrgent"
-                                class="urgent">Urgent</span><img id="img-up-white" src="./img/up.png"></button>
+                                class="urgent">Urgent</span><img id="img-up-white" class="img-prio" src="./img/up.png"></button>
                         <button onmouseover="addPrioMediumHover()" onmouseleave="removePrioMediumHover()" id="prioMedium"
                             onclick="changeToOrange()" class="prio-medium"><span id="whiteMedium"
-                                class="medium">Medium</span><img id="img-middle-white" src="./img/middle.png"></button>
+                                class="medium">Medium</span><img id="img-middle-white" class="img-prio" src="./img/middle.png"></button>
                         <button onmouseover="addPrioLowHover()" onmouseleave="removePrioLowHover()" id="prioLow"
                             onclick="changeToGreen()" class="prio-low"><span id="whiteLow" class="low">Low</span><img
-                                id="img-down-white" src="./img/down.png"></button>
+                                id="img-down-white" class="img-prio" src="./img/down.png"></button>
                     </div>
                 </div>
                 <div class="span-input">
