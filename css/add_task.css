@@ -1,3 +1,7 @@
+form {
+    width: fit-content;
+}
+
 .headline {
     font-weight: 700;
     font-size: 61px;
@@ -20,14 +24,12 @@
 }
 
 .title {
-    width: 65px;
     height: 25px;
     font-size: 21px;
     color: #000000;
 }
 
 .titlebox {
-    width: 422px;
     height: 51px;
     font-size: 21px;
     border-radius: 10px;
@@ -45,14 +47,12 @@
 
 .description {
     margin-top: 34px;
-    width: 154px;
     height: 25px;
     font-size: 21px;
     color: #000000;
 }
 
 .descriptionbox {
-    width: 422px;
     height: 119px;
     font-size: 21px;
     font-family: 'Inter';
@@ -71,7 +71,6 @@
 
 .category {
     margin-top: 34px;
-    width: 93px;
     height: 25px;
     font-family: 'Inter';
     font-style: normal;
@@ -83,7 +82,6 @@
 
 .category-selection {
     position: relative;
-    width: 422px;
     height: 51px;
     justify-content: space-between;
     flex-direction: row;
@@ -124,7 +122,6 @@
 
 .categorybox {
     border: none;
-    width: 205px;
     font-size: 21px;
     color: #000000;
     outline: none;
@@ -292,7 +289,6 @@
 }
 
 .assigned {
-    width: 118px;
     height: 25px;
     margin-top: 34px;
     color: #000000;
@@ -319,7 +315,6 @@
 
 .assignedbox {
     border: none;
-    width: 250px;
     height: 25px;
     font-size: 21px;
     color: #000000;
@@ -331,7 +326,6 @@
 }
 
 .date {
-    width: 91px;
     height: 25px;
     font-family: 'Inter';
     font-style: normal;
@@ -344,7 +338,6 @@
 
 .datebox {
     margin-top: 8px;
-    width: 422px;
     height: 51px;
     display: flex;
     flex-direction: row;
@@ -362,7 +355,6 @@
 .prio {
     margin-top: 34px;
     margin-bottom: 13px;
-    width: 39px;
     height: 25px;
     font-family: 'Inter';
     font-style: normal;
@@ -394,7 +386,6 @@
 }
 
 .urgent {
-    width: 68px;
     font-size: 21px;
 }
 
@@ -416,7 +407,6 @@
 }
 
 .medium {
-    width: 80px;
     font-size: 21px;
 }
 
@@ -437,13 +427,11 @@
 }
 
 .low {
-    width: 42px;
     font-size: 21px;
 }
 
 .subtasks {
     margin-top: 38px;
-    width: 92px;
     height: 25px;
     font-family: 'Inter';
     font-style: normal;
@@ -454,7 +442,6 @@
 }
 
 .subtasks-box {
-    width: 422px;
     height: 51px;
     display: flex;
     justify-content: space-between;
@@ -508,21 +495,18 @@
 .task-btns {
     display: flex;
     justify-content: flex-end;
-    width: 963.46px;
 }
 
 .create-task-btn {
     flex-direction: row;
     padding: 18px 10px !important;
     gap: 10px;
-    width: 177px;
     background: #2A3647;
     border-radius: 10px !important;
     margin-left: 24px;
 }
 
 .create-task {
-    width: 123px;
     height: 25px;
     font-family: 'Inter';
     font-style: normal;
@@ -653,33 +637,20 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-@media (min-width: 866px) and (max-width: 1300px) {
+@media (min-width: 1170px) and (max-width: 1300px) {
+    .d-flex {
+        width: 840px;
+    }
+
+    .left {
+        width: 420px;
+    }
 
     .right {
-        margin-right: 16px;
-    }
-    
-    .datebox {
-        width: unset;
+        width: 420px;
     }
 
-    .date {
-        width: unset;
-    }
-
-    .prio {
-        width: unset;
-    }
-
-    .prio-urgent {
-        width: unset;
-    }
-
-    .prio-medium {
-        width: unset;
-    }
-
-    .prio-low {
+    .assign-selection {
         width: unset;
     }
 
@@ -687,16 +658,260 @@
         justify-content: space-between;
     }
 
-    .subtasks-box {
+    .prio-medium {
+        width: 120px;
+    }
+
+    .prio-low {
+        width: 110px;
+    }
+
+    .prio-urgent {
+        width: 110px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1169px) {
+    .assign-selection {
         width: unset;
     }
 
-    .task-btns {
-        width: unset;
-        margin-right: 16px;
+    .dropdown-container {
+        gap: 10px;
+        white-space: nowrap;
     }
 
-    .create-task-btn {
+    .dropdown-item {
+        font-size: 16px;
+    }
+
+    .titlebox::placeholder {
+        font-size: 16px;
+    }
+
+    .descriptionbox::placeholder {
+        font-size: 16px;
+    }
+
+    .subtasks-input::placeholder {
+        font-size: 16px;
+
+    }
+
+    .datebox[type="date"] {
+        font-size: 16px;
+    }
+
+    .categorybox {
+        font-size: 16px;
+    }
+
+    .assignedbox {
+        font-size: 16px;
+    }
+
+    .urgent {
+        font-size: 16px;
+    }
+
+    .medium {
+        font-size: 16px;
+    }
+
+    .low {
+        font-size: 16px;
+    }
+
+    .subtasks-input::placeholder {
+        font-size: 16px;
+    }
+
+    .subtasks-input {
+        font-size: 16px;
+    }
+
+    .img-prio {
+        width: 13px;
+    }
+
+    .prio-urgent {
+        width: 90px;
+    }
+
+    .prio-medium {
+        width:90px;
+    }
+
+    .prio-low {
+        width: 90px;
+    }
+
+    .create-task {
+        font-size: 16px;
+        height: unset;
+    }
+
+    .clear {
+        font-size: 16px;
         width: unset;
+        height: unset;
+    }
+
+    .d-flex {
+        width: 680px;
+    }
+
+    .left {
+        width: 340px;
+    }
+
+    .right {
+        width: 340px;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 999px) {
+    .assign-selection {
+        width: unset;
+    }
+
+    .dropdown-container {
+        gap: 10px;
+        white-space: nowrap;
+    }
+
+    .dropdown {
+        width: unset;
+        justify-content: unset;
+    }
+
+    .titlebox::placeholder {
+        font-size: 14px;
+    }
+
+    .descriptionbox::placeholder {
+        font-size: 14px;
+    }
+
+    .subtasks-input::placeholder {
+        font-size: 14px;
+    }
+
+    .datebox[type="date"] {
+        font-size: 14px;
+    }
+
+    .categorybox {
+        font-size: 14px;
+        height: unset;
+    }
+
+    .new_category {
+       justify-content: unset;
+    }
+
+    .assignedbox {
+        font-size: 14px;
+        height: unset;
+    }
+
+    .urgent {
+        font-size: 14px;
+    }
+
+    .medium {
+        font-size: 14px;
+    }
+
+    .low {
+        font-size: 14px;
+    }
+
+    .subtasks-input::placeholder {
+        font-size: 14px;
+    }
+
+    .subtasks-input {
+        font-size: 14px;
+    }
+
+    .img-prio {
+        width: 13px;
+    }
+
+    .prio-urgent {
+        width: 85px;
+    }
+
+    .prio-medium {
+        width:85px;
+    }
+
+    .prio-low {
+        width: 85px;
+    }
+
+    .create-task {
+        font-size: 14px;
+        height: unset;
+    }
+
+    .clear {
+        font-size: 14px;
+        width: unset;
+        height: unset;
+    }
+
+    .d-flex {
+        width: 550px;
+    }
+
+    .left {
+        width: 275px;
+        padding-right: 16px;
+
+    }
+
+    .right {
+        width: 275px;
+        padding-left: 16px;
+    }
+
+    .headline {
+        font-size: 48px;
+    }
+
+    .dropdown-item {
+        font-size: 14px;
+        height: unset;
+    }
+
+    .open-img {
+        width: 12px;
+    }
+
+    .item-img {
+        width: 12px;
+    }
+
+    .img-cancelSubtask {
+       padding-right: 8px;
+    }
+
+    .img-addSubtask {
+        padding-left: 8px;
+    }
+
+    .categorybox::placeholder {
+        font-size: 14px;
+    }
+
+    .img_new_category {
+        align-items: center;
+    }
+
+    .img-color-picker {
+        width: unset;
+        align-items: unset;
     }
 }
