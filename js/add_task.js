@@ -47,7 +47,15 @@ function addTask() {
     contacts = '';
     date.value = '';
     subtasks.value = '';
+
+    backend.setItem("tasks", task);
 }
+
+async function loadArrayFromBackend() {
+    // tasks = getArrayFromBackend('tasks');
+    await downloadFromServer();
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
+  }
 
 function setPrioStat() {
     let status = '';
@@ -263,7 +271,7 @@ function click_design() {
             <span class="design-picked">${design.value}</span>
             <img class="img-pick-brown" src="./img/color-4.png">
         </div>
-        <img src = "./img/open.png">
+        <img class="open-img" src = "./img/open.png">
     </div>
     <div class="dropdown-content" id="dropdownDesign">
         <div onclick="new_category()" class="dropdown-child">
@@ -297,7 +305,7 @@ function pick_brown() {
             <span class="design-picked">${design.value}</span>
             <img class="img-pick-brown" src="./img/color-4.png">
         </div>
-        <img src = "./img/open.png">
+        <img class="open-img" src = "./img/open.png">
     </div>
     <div class="dropdown-content" id="dropdownDesign">
         <div onclick="new_category()" class="dropdown-child">

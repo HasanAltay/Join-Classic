@@ -775,6 +775,10 @@ form {
         width: unset;
     }
 
+    .category-selection {
+        height: unset;
+    }
+
     .dropdown-container {
         gap: 10px;
         white-space: nowrap;
@@ -804,10 +808,7 @@ form {
     .categorybox {
         font-size: 14px;
         height: unset;
-    }
-
-    .new_category {
-       justify-content: unset;
+        width: unset;
     }
 
     .assignedbox {
@@ -829,10 +830,16 @@ form {
 
     .subtasks-input::placeholder {
         font-size: 14px;
+        height: 17px;
     }
 
     .subtasks-input {
         font-size: 14px;
+    }
+
+    .subtasks-box {
+        padding: 13px 21px;
+        height: 43px;
     }
 
     .img-prio {
@@ -860,6 +867,14 @@ form {
         font-size: 14px;
         width: unset;
         height: unset;
+    }
+
+    .clear-btn {
+        height: 43px;
+    }
+
+    .button_dark {
+        height: 43px !important;
     }
 
     .d-flex {
@@ -914,4 +929,40 @@ form {
         width: unset;
         align-items: unset;
     }
+
+    .img-pick-brown {
+        top: 16.5px;
+        left: 70px;
+        width: 15px;
+        height: 15px;
+    }
+
+    .typesubtask {
+        align-items: center;
+    }
+
+    .img-cancelSubtask {
+        width: 20px;
+        height: 20px;
+    }
+
+    .img-addSubtask {
+        width: 20px;
+        height: 20px;
+    }
+
+    .plus-icon {
+        width: 15px;
+        height: 15px;
+    }
+
+    .design {
+        width: unset;
+        height: 43px;
+    }
+
+    .design-picked {
+        font-size: 14px;
+    }
+
 }
