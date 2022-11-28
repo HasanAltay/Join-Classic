@@ -78,7 +78,18 @@
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
+    /* position: relative; */
 }
+
+
+/* .scale_include_down {
+    scale: 75%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+} */
 
 
 .bo_search_input::placeholder {
@@ -266,6 +277,79 @@
 .bo_edit_task {
     margin-left: 50px;
     position: relative;
+}
+
+.bo_task_title {
+    height: 25px;
+    font-size: 21px;
+    color: #000000;
+}
+
+.bo_task_titlebox {
+    height: 51px;
+    font-size: 21px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    box-sizing: border-box;
+    margin-top: 8px;
+    outline: none;
+}
+
+.bo_task_description {
+    margin-top: 34px;
+    height: 25px;
+    font-size: 21px;
+    color: #000000;
+}
+
+.bo_task_descriptionbox {
+    height: 119px;
+    font-size: 21px;
+    font-family: 'Inter';
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 18px 21px;
+    gap: 10px;
+    isolation: isolate;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    background: #FFFFFF;
+    margin-top: 8px;
+    outline: none;
+}
+
+.bo_task_date {
+    height: 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+    color: #000000;
+    white-space: nowrap;
+}
+
+.bo_task_datebox {
+    margin-top: 8px;
+    height: 51px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 18px 21px;
+    gap: 10px;
+    isolation: isolate;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    background: #FFFFFF;
+    cursor: pointer;
+    outline: none;
 }
 
 

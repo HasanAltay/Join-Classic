@@ -127,26 +127,26 @@ function showTodoPopUp(element) {
 
              <div id="boEditPopUp${element['id']}" class="bo_edit_task d-none">
                 <div class="mb-40">
-                 <span class="title">Title</span>
-                    <input id="title${element['id']}" class="titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
+                 <span class="bo_task_title">Title</span>
+                    <input id="title${element['id']}" class="bo_task_titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
                     onblur="this.placeholder='Enter a title'">
                 </div>
 
                 <div class="mb-40">
-                  <span class="description">Description</span>
-                         <textarea id="description${element['id']}" class="descriptionbox" placeholder="Enter a description"
+                  <span class="bo_task_description">Description</span>
+                         <textarea id="description${element['id']}" class="bo_task_descriptionbox" placeholder="Enter a description"
                              onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
                 </div>
 
                 <div class="mb-40">
-                  <span class="date">Due Date</span>
-                       <input class="datebox" type="date">
+                  <span class="bo_task_date">Due Date</span>
+                       <input class="bo_task_datebox" type="date">
                 </div>
 
                 <div class="mb-40">
                   <span class="font21-400 bo_prio">Prio</span>
                     <div class="bo_prio_btn">
-                        <button id="prioUrgent${element['id']}" onclick="BoardChangeToRed(${element['id']})" class="prio-urgent"><span id="whiteUrgent${element['id']}"
+                        <button id="boPrioUrgent${element['id']}" onclick="BoardChangeToRed(${element['id']})" class="prio-urgent"><span id="boWhiteUrgent${element['id']}"
                          class="urgent">Urgent</span><img id="img-up-white${element['id']}" src="./img/up.png"></button>
                         <button id="prioMedium${element['id']}" onclick="BoardChangeToOrange(${element['id']})" class="prio-medium"><span id="whiteMedium${element['id']}"
                             class="medium">Medium</span><img id="img-middle-white${element['id']}" src="./img/middle.png"></button>
@@ -215,11 +215,11 @@ function filterTodos() {
     searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
 }
 
-
 // function openAddTask() {
 //   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
 //   document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
-//   <div data-template="./content/add_task.html"></div>
+//   <button>x</button>
+//   <div class="scale_include_down" data-template="./content/add_task.html"></div>
 //   </div>`;
 //   includeHTML();
 // }
@@ -264,8 +264,8 @@ function resetMobileAddTaskBtn(img) {
 }
 
 function BoardUrgentButtonDefault(i) {
-    document.getElementById('prioUrgent'+ i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('whiteUrgent'+ i).style.color = "#000000";
+    document.getElementById('boPrioUrgent'+ i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('boWhiteUrgent'+ i).style.color = "#000000";
     document.getElementById('img-up-white'+ i).src = "./img/up.png";
     urgentClicked = false;
 }
@@ -286,8 +286,8 @@ function BoardLowButtonDefault(i) {
 
 function BoardChangeToRed(i) {
     if (urgentClicked == false) {
-        document.getElementById('prioUrgent'+ i).style.backgroundColor = "#FF3D00";
-        document.getElementById('whiteUrgent'+ i).style.color = "#FFFFFF";
+        document.getElementById('boPrioUrgent'+ i).style.backgroundColor = "#FF3D00";
+        document.getElementById('boWhiteUrgent'+ i).style.color = "#FFFFFF";
         document.getElementById('img-up-white'+ i).src = "./img/arrowUpWhite.png";
         urgentClicked = true;
     } else {
