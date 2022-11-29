@@ -343,14 +343,14 @@ function BoardClickyou(event, i) {
     event.stopPropagation();
     let click = document.getElementById('boAssigned-you'+ i);
     if (clicked_You == false) {
-        click.innerHTML = /*html*/`
+        click.innerHTML = `
         <span class="bo_dropdown-item">You</span>
         <div class="bo_rectangle" id='bo_rectangle${i}'>
             <div class="bo_rectangle-clicked" id='bo_rectangle-clicked${i}'></div>
         </div>`;
         clicked_You = true;
     } else {
-        click.innerHTML = /*html*/`
+        click.innerHTML = `
         <span class="bo_dropdown-item">You</span>
         <div class="bo_rectangle" id='bo_rectangle${i}'></div>`;
         clicked_You = false;
@@ -360,7 +360,7 @@ function BoardClickyou(event, i) {
 function BoardClickcontact(event, i) {
     event.stopPropagation();
     let click = document.getElementById('boAssigned-contact'+ i);
-    if (clicked_Contact == false) {click.innerHTML = /*html*/`
+    if (clicked_Contact == false) {click.innerHTML = `
     <span class="bo_dropdown-item">Laura Numey</span>
     <div class="bo_rectangle" id='bo_rectangle${i}'>
         <div class="bo_rectangle-clicked" id='bo_rectangle-clicked${i}'></div>
@@ -376,9 +376,9 @@ function BoardClickcontact(event, i) {
 
 function BoardClickinvite(i) {
     let invite = document.getElementById('boDropdownAssigned'+ i);
-    invite.innerHTML = /*html*/`
+    invite.innerHTML = `
     <div id="contact${i}" class="new_category">
-        <input id="email" onclick="select_email()" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
+        <input id="boEmail" onclick="BoardSelect_email(i)" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
         <div class="img_new_category">
             <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode()">
             <img src="./img/vertical.png">
@@ -389,18 +389,18 @@ function BoardClickinvite(i) {
 }
 
 function BoardSelect_email(i) {
-    document.getElementById('contact').innerHTML = /*html*/`
-    <input id="email${i}" onclick="BoardSelection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+    document.getElementById('contact').innerHTML = `
+    <input id="boEmail${i}" onclick="BoardSelection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
     <div class="img_new_category">
         <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode()">
         <img src="./img/vertical.png">
         <img class="img-addSubtask" src='./img/addSubtask.png' onclick="BoardSelection()">
     </div>`;
-    document.getElementById('email'+ i).value = "laura@gmail.com";
+    document.getElementById('boEmail'+ i).value = "laura@gmail.com";
 }
 
 function BoardDefaultMode(i) {
-    document.getElementById('boDropdownAssigned'+ i).innerHTML = /*html*/`
+    document.getElementById('boDropdownAssigned'+ i).innerHTML = `
     <div onclick="BoardShowAssigned(i)" id="boNew_assigned${i}" class="bo_task_dropdown-container">
         <div class="bo_task_assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
