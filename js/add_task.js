@@ -52,18 +52,18 @@ function addTask() {
     backend.setItem("tasks", task);
 }
 
-async function loadArrayFromBackend() {
-    // tasks = getArrayFromBackend('tasks');
-    await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
-}
+// async function loadArrayFromBackend() {
+//     // tasks = getArrayFromBackend('tasks');
+//     await downloadFromServer();
+//     tasks = JSON.parse(backend.getItem('tasks')) || [];
+// }
 
 function setPrioStat() {
-    let status = '';
-    if (urgent_clicked) status = "urgent";
-    if (medium_clicked) status = "medium";
-    if (low_clicked) status = "low";
-    return status;
+    let prioStat = '';
+    if (urgent_clicked) prioStat = "urgent";
+    if (medium_clicked) prioStat = "medium";
+    if (low_clicked) prioStat = "low";
+    return prioStat;
 }
 
 function clear_subtaskInput() {
