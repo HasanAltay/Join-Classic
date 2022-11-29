@@ -681,6 +681,10 @@ form {
     .prio-urgent {
         width: 110px;
     }
+
+    .subtasks-box {
+        gap: unset;
+    }
 }
 
 @media (min-width: 1000px) and (max-width: 1169px) {
@@ -742,6 +746,10 @@ form {
         font-size: 16px;
     }
 
+    .subtasks-box {
+        gap: unset;
+    }
+
     .img-prio {
         width: 13px;
     }
@@ -779,6 +787,14 @@ form {
 
     .right {
         width: 340px;
+    }
+
+    .img-cancelSubtask {
+        padding-right: 8px;
+    }
+
+    .img-addSubtask {
+        padding-left: 8px;
     }
 }
 
@@ -856,6 +872,7 @@ form {
     .subtasks-box {
         padding: 13px 21px;
         height: 43px;
+        gap: unset;
     }
 
     .img-prio {
@@ -1069,6 +1086,21 @@ form {
         height: unset;
     }
 
+    .img-sales {
+        width: 15px;
+        height: 15px;
+        top: 17px;
+        left: 70px;
+    }
+
+    .img-backoffice {
+        position: absolute;
+        left: 100px;
+        width: 15px;
+        height: 15px;
+        top: 17px;
+    }
+
     .design-picked {
         font-size: 14px;
     }
@@ -1084,6 +1116,10 @@ form {
 
     .subtask-item {
         font-size: 14px;
+    }
+
+    .subtasks-box {
+        gap: unset;
     }
 
     .plus-icon {
@@ -1143,6 +1179,7 @@ form {
 }
 
 @media (min-width: 601px) and (max-width: 710px) {
+    
     .global_main_format {
         padding-left: 265px !important;
         padding-right: 45px;
@@ -1260,6 +1297,10 @@ form {
         font-size: 14px;
     }
 
+    .subtasks-box {
+        gap: unset;
+    }
+
     .dropdown-item {
         font-size: 14px;
         height: unset;
@@ -1340,6 +1381,7 @@ form {
 }
 
 @media (max-width: 600px) {
+    
     .global_main_format {
         padding-left: 32px !important;
         padding-right: 32px !important;
@@ -1455,6 +1497,10 @@ form {
 
     .subtasks-input {
         font-size: 14px;
+    }
+
+    .subtasks-box {
+        gap: unset;
     }
 
     .dropdown-item {
