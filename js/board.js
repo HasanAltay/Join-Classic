@@ -193,7 +193,6 @@ function moveTo(category) {
     updateHTML();
 }
 
-
 function filterTodos() {
     let search = document.getElementById('searchTodo').value;
     search = search.toLowerCase();

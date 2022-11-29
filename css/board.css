@@ -17,13 +17,11 @@
     min-height: 100vh;
 }
 
-
 .bo_mobile_top_text {
     display: none;
     padding-top: 115px;
     padding-left: 25px;
 }
-
 
 .bo_board {
     display: flex;
@@ -31,7 +29,6 @@
     align-items: center;
     margin-bottom: 70px;
 }
-
 
 .bo_title {
     font-weight: 700;
@@ -44,7 +41,6 @@
     gap: 36px;
     height: 51px;
 }
-
 
 .bo_search_input {
     display: flex;
@@ -62,7 +58,6 @@
     font-size: 16px;
 }
 
-
 .bo_lupe {
     position: absolute;
     top: 10px;
@@ -70,13 +65,11 @@
     cursor: pointer;
 }
 
-
 .bo_mobile_add_task_btn {
     border: none;
     background: transparent;
     display: none;
 }
-
 
 .bo_addTask {
     width: 900px;
@@ -84,9 +77,7 @@
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
-    /* position: relative; */
 }
-
 
 /* .scale_include_down {
     scale: 75%;
@@ -97,7 +88,6 @@
     bottom: 0;
 } */
 
-
 .bo_search_input::placeholder {
     font-weight: 400;
     font-size: 16px;
@@ -107,7 +97,6 @@
     color: #D1D1D1;
 }
 
-
 .bo_search_add_task input {
     background: #FFFFFF;
     border: 1px solid #A8A8A8;
@@ -116,14 +105,12 @@
     padding: 8px;
 }
 
-
 .bo_search_add_task img {
     position: absolute;
     border-left: 1px solid #A8A8A8;
     right: 240px;
     top: 181px;
 }
-
 
 .bo_search_add_task button {
     background: #2A3647;
@@ -136,17 +123,14 @@
     width: 137px;
 }
 
-
 .bo_todo_container {
     display: flex;
     flex-wrap: wrap;
 }
 
-
 .bo_todo_area {
     padding-left: 32px;
 }
-
 
 .bo_todo_sections {
     display: flex;
@@ -156,11 +140,9 @@
     padding-right: 31px;
 }
 
-
 .bo_todo_sections img:hover {
     transform: scale(1.2);
 }
-
 
 .bo_drag-area {
     height: 376px;
@@ -172,7 +154,6 @@
     flex-direction: column;
 }
 
-
 .bo_todo {
     background-color: white;
     min-width: 210px;
@@ -181,19 +162,16 @@
     margin-bottom: 10px;
 }
 
-
 .bo_todo_infos {
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
 
-
 .bo_todo_contacts_prio {
     display: flex;
     justify-content: space-between;
 }
-
 
 .bo_department {
     display: flex;
@@ -208,16 +186,13 @@
     padding-left: 25px;
 }
 
-
 .bo_todo_title {
     margin-bottom: 8px;
 }
 
-
 .d-none {
     display: none;
 }
-
 
 .bo_search_dnone {
     display: none;
@@ -238,7 +213,6 @@
     max-height: 100vh;
 }
 
-
 .bo_popup_todo_Info {
     padding: 50px;
     background-color: white;
@@ -249,7 +223,6 @@
     position: relative;
     transform: scale(70%);
 }
-
 
 .bo_popUp_department {
     background: #FF7A00;
@@ -270,7 +243,6 @@
     border: none;
 }
 
-
 .bo_cancel_btn {
     position: absolute;
     right: 41px;
@@ -278,7 +250,6 @@
     background: transparent;
     border: none;
 }
-
 
 .bo_edit_task {
     margin-left: 50px;
@@ -549,7 +520,6 @@
     bottom: 20%;
 }
 
-
 .bo_button_dark {
     display: flex;
     justify-content: center;
@@ -569,13 +539,11 @@
     bottom: -60px;
 }
 
-
 .bo_button_dark:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: all 100ms ease-in-out;
 }
-
 
 @media (max-width: 1030px) {
     .bo_board {
@@ -589,9 +557,7 @@
     .bo_todo_area {
         padding-left: unset;
     }
-
 }
-
 
 @media (max-width: 900px) {
 
@@ -644,10 +610,7 @@
     .bo_drag-area {
         width: 254px;
     }
-
-
 }
-
 
 @media (max-width: 600px) {
     .bo_main {
