@@ -115,6 +115,13 @@ form {
     height: 20px;
 }
 
+.img-backoffice {
+    position: absolute;
+    top: 15.5px;
+    width: 20px;
+    height: 20px;
+}
+
 .backoffice {
     width: 118px !important;
     font-family: 'Inter';
@@ -213,6 +220,10 @@ form {
 }
 
 .show {
+    display: block;
+}
+
+.display {
     display: block;
 }
 
@@ -605,6 +616,7 @@ form {
 .subtask-item {
     margin-left: 20px;
     line-height: 120%;
+    font-family: 'Inter';
 }
 
 .prio-urgent-hover-button {
@@ -739,7 +751,7 @@ form {
     }
 
     .prio-medium {
-        width:90px;
+        width: 90px;
     }
 
     .prio-low {
@@ -770,7 +782,7 @@ form {
     }
 }
 
-@media (min-width: 800px) and (max-width: 999px) {
+@media (min-width: 881px) and (max-width: 999px) {
     .assign-selection {
         width: unset;
     }
@@ -807,8 +819,12 @@ form {
 
     .categorybox {
         font-size: 14px;
+        height: 17px;
+        width: 174px;
+    }
+
+    .new_category {
         height: unset;
-        width: unset;
     }
 
     .assignedbox {
@@ -851,7 +867,7 @@ form {
     }
 
     .prio-medium {
-        width:85px;
+        width: 85px;
     }
 
     .prio-low {
@@ -910,7 +926,7 @@ form {
     }
 
     .img-cancelSubtask {
-       padding-right: 8px;
+        padding-right: 8px;
     }
 
     .img-addSubtask {
@@ -965,4 +981,133 @@ form {
         font-size: 14px;
     }
 
+    .img-sales {
+        width: 15px;
+        height: 15px;
+        top: 17px;
+        left: 70px;
+    }
+
+    .img-backoffice {
+        position: absolute;
+        left: 100px;
+        width: 15px;
+        height: 15px;
+        top: 17px;
+    }
+
+    .subtask-item {
+        font-size: 14px;
+    }
+
+    .dropdown-child {
+        height: unset;
+    }
+}
+
+@media (min-width: 711px) and (max-width: 880px) {
+    .global_main_format {
+        padding-left: 265px;
+        padding-right: 45px;
+    }
+
+    .nav_top_bar span {
+        font-size: 17px;
+    }
+
+    .nav_top_bar_profile {
+        height: 35px;
+    }
+
+    .nav_top_bar_icon {
+        padding-left: unset;
+        padding-right: 12px;
+    }
+
+    form {
+        width: unset;
+    }
+
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .left {
+        padding-right: unset;
+        border-right: unset;
+    }
+
+    .right {
+        padding-left: unset;
+    }
+
+    .btn {
+        justify-content: space-between;
+    }
+
+    .assign-selection {
+        width: unset;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 710px) {
+    .global_main_format {
+        padding-left: 265px;
+        padding-right: 45px;
+    }
+
+    .nav_top_bar {
+        justify-content: unset;
+    }
+
+    .nav_top_bar span {
+        font-size: 12px;
+        margin-right: 24px;
+    }
+
+    .nav_top_bar_profile {
+        height: 20px;
+    }
+
+    .nav_top_bar_icon {
+        padding-left: unset;
+        padding-right: 12px;
+    }
+
+    form {
+        width: unset;
+    }
+
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .left {
+        padding-right: unset;
+        border-right: unset;
+    }
+
+    .right {
+        padding-left: unset;
+    }
+
+    .btn {
+        justify-content: space-between;
+    }
+
+    .assign-selection {
+        width: unset;
+    }
+
+    .prio-urgent {
+        width: unset;
+    }
+
+    .prio-medium {
+        width: unset;
+    }
+
+    .prio-low {
+        width: unset;
+    }
 }

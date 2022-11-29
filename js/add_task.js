@@ -36,7 +36,8 @@ function addTask() {
         "contacts": contacts,
         "prio": prioStat,
         "date": date.value,
-        "subtasks": subtasks.value
+        "subtasks": subtasks.value,
+        "status": 'Todo'
     };
 
     tasks.push(task);
@@ -55,7 +56,7 @@ async function loadArrayFromBackend() {
     // tasks = getArrayFromBackend('tasks');
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
-  }
+}
 
 function setPrioStat() {
     let status = '';
@@ -159,7 +160,7 @@ function clearCategory() {
     document.getElementById('dropdown').innerHTML = /*html*/`
     <div onclick="dropdownClear()" id="new_category" class="dropdown-container">
         <div class="categorybox">Select task category</div>
-        <div><img src="./img/open.png"></div>
+        <div><img class="open-img" src="./img/open.png"></div>
     </div>
     <div class="dropdown-content" id="content-sales">
         <div onclick="new_category()" class="dropdown-child">
@@ -183,12 +184,12 @@ function dropdownClear() {
 function showSales() {
     let showSales = document.getElementById('dropdown');
     showSales.innerHTML = /*html*/`
-    <div onclick="dropdownSales()" id="new-category" class="new_category">
+    <div onclick="defaultModeCategory()" id="new-category" class="new_category">
         <div>
             <input id="design" class="categorybox sales caret-hidden" type="text" value="Sales">
             <img class="img-sales" src="./img/sales-img.png">
         </div>
-        <img src="./img/open.png">     
+        <img class="open-img" src="./img/open.png">     
    </div>
     <div class="dropdown-content" id="content-sales">
         <div onclick="new_category()" class="dropdown-child">
@@ -205,19 +206,15 @@ function showSales() {
     </div>`;
 }
 
-function dropdownSales() {
-    document.getElementById("content-sales").classList.toggle("show");
-}
-
 function backOffice() {
     let backOffice = document.getElementById('dropdown');
     backOffice.innerHTML = /*html*/`
-    <div onclick="dropdownOffice()" id="new-category" class="new_category">
+    <div onclick="defaultModeCategory()" id="new-category" class="new_category">
         <div>
             <input id="design" class="categorybox backoffice caret-hidden" type="text" value="Backoffice">
-            <img class="img-sales" src="./img/backoffice-img.png">
+            <img class="img-backoffice" src="./img/backoffice-img.png">
         </div>
-        <img src="./img/open.png">     
+        <img class="open-img" src="./img/open.png">     
    </div>
    <div class="dropdown-content" id="content-office">
         <div onclick="new_category()" class="dropdown-child">
@@ -225,27 +222,47 @@ function backOffice() {
         </div>
         <div onclick="showSales()" class="dropdown-child">
             <span class="dropdown-item">Sales</span>
-            <img src="./img/sales-img.png">
+            <img class="img-sales" src="./img/sales-img.png">
         </div>
         <div onclick="backOffice()" class="dropdown-child">
             <span class="dropdown-item">Backoffice</span>
-            <img src="./img/backoffice-img.png">
+            <img class="img-backoffice" src="./img/backoffice-img.png">
         </div>
     </div>`;
 }
 
-function dropdownOffice() {
-    document.getElementById("content-office").classList.toggle("show");
+function defaultModeCategory() {
+    document.getElementById('dropdownArea').classList.remove("height-default");
+    document.getElementById('dropdownArea').innerHTML = /*html*/`
+    <div id="dropdown" class="category-selection">
+        <div onclick="showCategory()" id="new-category" class="dropdown-container">
+            <div class="categorybox">Select task category</div>
+            <img class="open-img" src="./img/open.png">
+        </div>
+        <div class="dropdown-content" id="content">
+            <div onclick="new_category()" class="dropdown-child">
+                <span class="dropdown-item">New category</span>
+            </div>
+            <div onclick="showSales()" class="dropdown-child">
+                <span class="dropdown-item">Sales</span>
+                <img class="item-img" src="./img/sales-img.png">
+            </div>
+            <div onclick="backOffice()" class="dropdown-child">
+                <span class="dropdown-item">Backoffice</span>
+                <img class="item-img" src="./img/backoffice-img.png">
+            </div>
+        </div>
+    </div>`;
 }
 
 function designCategory() {
     document.getElementById('dropdown').innerHTML = /*html*/`
     <div id="new-category" class="new_category">
-        <input id="design" onclick="click_design()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+        <input id="design" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
         <div class="img_new_category">
             <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearCategory()">
             <img src="./img/vertical.png">
-            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="click_design()">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="pick_brown()">
         </div>
     </div>`;
     document.getElementById('img-picker').classList.remove("d-none");
@@ -260,39 +277,6 @@ function designCategory() {
     <img class="color" src="./img/color-6.png">`;
 }
 
-function click_design() {
-    document.getElementById('img-picker').classList.add("d-none");
-    let design = document.getElementById('design');
-    design.value = `Design`;
-    document.getElementById('new-category').classList.remove("new_category");
-    document.getElementById('new-category').innerHTML = /*html*/`
-    <div onclick="dropdownDesign()" class="design">
-        <div>
-            <span class="design-picked">${design.value}</span>
-            <img class="img-pick-brown" src="./img/color-4.png">
-        </div>
-        <img class="open-img" src = "./img/open.png">
-    </div>
-    <div class="dropdown-content" id="dropdownDesign">
-        <div onclick="new_category()" class="dropdown-child">
-            <span class="dropdown-item">New category</span>
-        </div>
-        <div onclick="showSales()" class="dropdown-child">
-            <span class="dropdown-item">Sales</span>
-            <img src="./img/sales-img.png">
-        </div>
-            <div onclick="backOffice()" class="dropdown-child">
-            <span class="dropdown-item">Backoffice</span>
-            <img src="./img/backoffice-img.png">
-        </div>
-    </div>
-    `;
-}
-
-function dropdownDesign() {
-    document.getElementById("dropdownDesign").classList.toggle("show");
-}
-
 function pick_brown() {
     document.getElementById('img-picker').classList.add("d-none");
     let design = document.getElementById('design');
@@ -300,7 +284,7 @@ function pick_brown() {
     design.value = "Design";
     document.getElementById('new-category').classList.remove("new_category");
     document.getElementById('new-category').innerHTML = /*html*/`
-    <div onclick="dropdownDesign()" class="design">
+    <div onclick="defaultModeCategory()" class="design">
         <div>
             <span class="design-picked">${design.value}</span>
             <img class="img-pick-brown" src="./img/color-4.png">
