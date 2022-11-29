@@ -377,7 +377,7 @@ function BoardClickcontact(event, i) {
 function BoardClickinvite(i) {
     let invite = document.getElementById('boDropdownAssigned'+ i);
     invite.innerHTML = `
-    <div id="contact${i}" class="new_category">
+    <div id="boContact${i}" class="new_category">
         <input id="boEmail" onclick="BoardSelect_email(i)" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
         <div class="img_new_category">
             <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode()">
@@ -389,7 +389,7 @@ function BoardClickinvite(i) {
 }
 
 function BoardSelect_email(i) {
-    document.getElementById('contact').innerHTML = `
+    document.getElementById('boContact').innerHTML = `
     <input id="boEmail${i}" onclick="BoardSelection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
     <div class="img_new_category">
         <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode()">
