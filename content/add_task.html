@@ -1,7 +1,7 @@
 <div class="global_main_format add_main_format">
     <form onsubmit="addTask(); return false">
         <span class="headline">Add Task</span>
-        <div class="d-flex">
+        <div class="d-flex add_d-flex">
             <div class="left">
                 <div class="span-input">
                     <span class="title">Title</span>
@@ -97,13 +97,13 @@
             </div>
         </div>
         <div class="task-btns">
-            <button id="bright-button" class="clear-btn" onmouseover="addHover('./img/cancel-hover.png')"
+            <button type="button" id="bright-button" class="clear-btn" onmouseover="addHover('./img/cancel-hover.png')"
                 onmouseleave="removeHover('./img/cancel.png')" onmousedown="activeMode('./img/cancel.png')"
                 onmouseup="inactiveMode('./img/cancel-hover.png')">
                 <span class="clear">Clear</span>
                 <img id="clear-icon" src="./img/cancel.png" onmousedown="activeMode('./img/cancel.png')">
             </button>
-            <button type="submit" class="button_dark create-task-btn">
+            <button type="submit" class="button_dark add_button_dark create-task-btn">
                 <span class="create-task">Create Task</span>
                 <img src="./img/check.png">
             </button>

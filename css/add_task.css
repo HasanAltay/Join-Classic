@@ -8,7 +8,7 @@ form {
     line-height: 120%;
 }
 
-.d-flex {
+.add_d-flex {
     display: flex;
 }
 
@@ -650,7 +650,7 @@ form {
 }
 
 @media (min-width: 1170px) and (max-width: 1300px) {
-    .d-flex {
+    .add_d-flex {
         width: 840px;
     }
 
@@ -777,7 +777,7 @@ form {
         height: unset;
     }
 
-    .d-flex {
+    .add_d-flex {
         width: 680px;
     }
 
@@ -906,11 +906,11 @@ form {
         height: 43px;
     }
 
-    .button_dark {
+    .add_button_dark {
         height: 43px !important;
     }
 
-    .d-flex {
+    .add_d-flex {
         width: 550px;
     }
 
@@ -1033,7 +1033,7 @@ form {
         width: unset;
     }
 
-    .d-flex {
+    .add_d-flex {
         flex-direction: column;
     }
 
@@ -1179,7 +1179,7 @@ form {
         width: unset;
     }
 
-    .d-flex {
+    .add_d-flex {
         flex-direction: column;
     }
 
@@ -1362,7 +1362,7 @@ form {
         width: unset;
     }
 
-    .d-flex {
+    .add_d-flex {
         flex-direction: column;
     }
 
@@ -1547,7 +1547,7 @@ form {
         height: unset;
     }
 
-    .button_dark {
+    .add_button_dark {
         height: 43px !important;
     }
 
