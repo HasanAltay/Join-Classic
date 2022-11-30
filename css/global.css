@@ -251,3 +251,85 @@
         font-size: 47px;
     }
 }
+
+/* Änderungen auf der addTask Seite, die wieder zurückgenommen wurden: */
+
+/* @media (min-width: 601px) and (max-width: 710px) {
+    
+    .global_main_format {
+        padding-left: 265px !important;
+        padding-right: 45px;
+        padding-top: 110px !important;
+        width: 100% !important;
+    }
+
+    .nav_top_bar {
+        justify-content: unset;
+    }
+
+    .nav_top_bar span {
+        font-size: 15px;
+        margin-right: 16px;
+        padding-left: 250px;
+    }
+
+    .nav_top_bar_profile {
+        height: 20px;
+    }
+
+    .nav_top_bar_icon {
+        padding-left: unset;
+        padding-right: 12px;
+    }
+} */
+
+/* @media (min-width: 711px) and (max-width: 880px) {
+    
+    .global_main_format {
+        padding-left: 265px;
+        padding-right: 45px;
+    }
+
+    .nav_top_bar span {
+        font-size: 17px;
+    }
+
+    .nav_top_bar_profile {
+        height: 35px;
+    }
+
+    .nav_top_bar_icon {
+        padding-left: unset;
+        padding-right: 12px;
+
+    }
+}*/
+
+/* @media (max-width: 600px) {
+    
+    /* .global_main_format {
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+        padding-top: 110px !important;
+        width: 100% !important;
+    }
+
+    .nav_top_bar {
+        justify-content: unset;
+    }
+
+    .nav_top_bar span {
+        font-size: 15px;
+        margin-right: 16px;
+        padding-left: 250px;
+    }
+
+    .nav_top_bar_profile {
+        height: 20px;
+    }
+
+    .nav_top_bar_icon {
+        padding-left: unset;
+        padding-right: 12px;
+    }
+} */ 
