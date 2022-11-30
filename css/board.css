@@ -58,7 +58,7 @@
     font-size: 16px;
 }
 
-.bo_lupe {
+.bo_magnifyer {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -584,12 +584,12 @@
         display: block !important;
     }
 
-    .bo_lupe_mobile {
+    /* .bo_magnifyer_mobile {
         position: absolute;
         cursor: pointer;
         margin-top: -39px;
         margin-left: 158px;
-    }
+    } */
 
     .bo_mobile_search {
         display: none !important;

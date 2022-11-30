@@ -1,33 +1,34 @@
-let todos = [
-    {
-        'id': 0,
-        'department': 'Design',
-        'title': 'Website redesign',
-        'category': 'Todo',
-        'description': 'Modify the contents of the main website'
-    },
-    {
-        'id': 1,
-        'department': 'Marketing',
-        'title': 'Social media Strategy',
-        'category': 'In progress',
-        'description': 'Develop an ad campaign for brand positioning'
-    },
-    {
-        'id': 2,
-        'department': 'Sales',
-        'title': 'Call potencial clients',
-        'category': 'Awaiting Feedback',
-        'description': 'Make the product presentation to the prospective buyers'
-    },
-    {
-        'id': 3,
-        'department': 'Backoffice',
-        'title': 'Accounting Invoices',
-        'category': 'Done',
-        'description': 'Write open invoices for customer'
-    }
-];
+// let todos = [
+//     {
+//         'id': 0,
+//         'department': 'Design',
+//         'title': 'Website redesign',
+//         'category': 'Todo',
+//         'description': 'Modify the contents of the main website'
+//     },
+//     {
+//         'id': 1,
+//         'department': 'Marketing',
+//         'title': 'Social media Strategy',
+//         'category': 'In progress',
+//         'description': 'Develop an ad campaign for brand positioning'
+//     },
+//     {
+//         'id': 2,
+//         'department': 'Sales',
+//         'title': 'Call potencial clients',
+//         'category': 'Awaiting Feedback',
+//         'description': 'Make the product presentation to the prospective buyers'
+//     },
+//     {
+//         'id': 3,
+//         'department': 'Backoffice',
+//         'title': 'Accounting Invoices',
+//         'category': 'Done',
+//         'description': 'Write open invoices for customer'
+//     }
+// ];
+
 
 let currentDraggedElement;
 let urgentClicked = false;
@@ -37,45 +38,50 @@ let dropdownClicked = false;
 let clicked_You = false;
 let clicked_Contact = false;
 
+async function loadArrayFromBackend() {
+    // tasks = getArrayFromBackend('tasks');
+    await downloadFromServer();
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
+  }
 
 function updateHTML() {
-    let todo = todos.filter(t => t['category'] == 'Todo');
+    let todo = tasks.filter(t => t['status'] == 'Todo');
 
     document.getElementById('todo').innerHTML = '';
 
-    for (let index = 0; index < todo.length; index++) {
-        const element = todo[index];
-        document.getElementById('todo').innerHTML += generateTodoHTML(element);
+    for (let i = 0; i < todo.length; i++) {
+        const element = todo[i];
+        document.getElementById('todo').innerHTML += generateTodoHTML(element, i);
     }
 
 
-    let inProgress = todos.filter(t => t['category'] == 'In progress');
+    let inProgress = tasks.filter(t => t['status'] == 'In progress');
 
     document.getElementById('inProgress').innerHTML = '';
 
-    for (let index = 0; index < inProgress.length; index++) {
-        const element = inProgress[index];
-        document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
+    for (let i = 0; i < inProgress.length; i++) {
+        const element = inProgress[i];
+        document.getElementById('inProgress').innerHTML += generateTodoHTML(element, i);
     }
 
 
-    let awaitingFB = todos.filter(t => t['category'] == 'Awaiting Feedback');
+    let awaitingFB = tasks.filter(t => t['status'] == 'Awaiting Feedback');
 
     document.getElementById('awaitingFB').innerHTML = '';
 
-    for (let index = 0; index < awaitingFB.length; index++) {
-        const element = awaitingFB[index];
-        document.getElementById('awaitingFB').innerHTML += generateTodoHTML(element);
+    for (let i = 0; i < awaitingFB.length; i++) {
+        const element = awaitingFB[i];
+        document.getElementById('awaitingFB').innerHTML += generateTodoHTML(element, i);
     }
 
 
-    let done = todos.filter(t => t['category'] == 'Done');
+    let done = tasks.filter(t => t['status'] == 'Done');
 
     document.getElementById('done').innerHTML = '';
 
-    for (let index = 0; index < done.length; index++) {
-        const element = done[index];
-        document.getElementById('done').innerHTML += generateTodoHTML(element);
+    for (let i = 0; i < done.length; i++) {
+        const element = done[i];
+        document.getElementById('done').innerHTML += generateTodoHTML(element, i);
     }
 }
 
@@ -83,10 +89,10 @@ function startDragging(id) {
     currentDraggedElement = id;
 }
 
-function generateTodoHTML(element) {
-    return `<div onclick="openTodoInfo('bo_popUp${element['id']}')" draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
+function generateTodoHTML(element, i) {
+    return `<div onclick="openTodoInfo('bo_popUp${element[i]}')" draggable="true" ondragstart="startDragging(${element[i]})" class="bo_todo c-pointer">
               <div class="bo_todo_infos">
-                <span class="bo_department font16-400">${element['department']}</span>
+                <span class="bo_department font16-400">${element['category']}</span>
                 <br>
                   <div class="bo_todo_title font16-700">${element['title']}</div>
                    <div>
@@ -98,80 +104,80 @@ function generateTodoHTML(element) {
                     <div>Prio Btn</div>
                   </div>
                </div>
-                ${showTodoPopUp(element)}
+                ${showTodoPopUp(element, i)}
             </div>`;          
 }
 
-function showTodoPopUp(element) {
-    return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
+function showTodoPopUp(element, i) {
+    return `<div id="bo_popUp${element[i]}" class="bo_pop_up d-none">
              <div class="bo_popup_todo_Info">
-                <div id="boPopUpInfo${element['id']}">
-                   <button onclick="closeTodoInfo('bo_popUp${element['id']}', event)" class="bo_cancel_btn c-pointer">
+                <div id="boPopUpInfo${element[i]}">
+                   <button onclick="closeTodoInfo('bo_popUp${element[i]}', event)" class="bo_cancel_btn c-pointer">
                      <img src="./img/cancel.png">
                    </button>
-                     <span class="bo_popUp_department">${element['department']}</span>
+                     <span class="bo_popUp_department">${element['category']}</span>
                      <br>
                      <div class="mt-25 font61-700">${element['title']}</div>
                         <div>
                          <div class="mt-25 font21-400">${element['description']}</div>
                         </div>
-                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Due date:</span> 05-08-2022</div>
-                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Priority:</span></div>
-                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Assigned to:</span></div>
-                                <button onclick="openTodoEdit(${element['id']})" class="bo_edit_todo c-pointer"
-                                 onmouseenter="changeEditBtn('./img/edit-light.png', ${element['id']})"
-                                 onmouseleave="resetEditBtn('./img/edit-dark.png', ${element['id']})">
-                                  <img id="boEditTodo${element['id']}" src="./img/edit-dark.png">
+                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Due date:</span>${element['date']}</div>
+                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Priority:</span>${element['prio']}</div>
+                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Assigned to:</span>${element['contacts']}</div>
+                                <button onclick="openTodoEdit(${element[i]})" class="bo_edit_todo c-pointer"
+                                 onmouseenter="changeEditBtn('./img/edit-light.png', ${element[i]})"
+                                 onmouseleave="resetEditBtn('./img/edit-dark.png', ${element[i]})">
+                                  <img id="boEditTodo${element[i]}" src="./img/edit-dark.png">
                                 </button>
                 </div>
 
-             <div id="boEditPopUp${element['id']}" class="bo_edit_task d-none">
+             <div id="boEditPopUp${element[i]}" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="bo_task_title">Title</span>
-                    <input id="bo_task_title${element['id']}" class="bo_task_titlebox" type="text" placeholder="Enter a title" onfocus="this.placeholder=''"
+                    <input id="bo_task_title${element[i]}" class="bo_task_titlebox" type="text" value="${element['title']}" placeholder="Enter a title" onfocus="this.placeholder=''"
                     onblur="this.placeholder='Enter a title'">
                 </div>
 
                 <div class="mb-40">
                   <span class="bo_task_description">Description</span>
-                         <textarea id="bo_task_description${element['id']}" class="bo_task_descriptionbox" placeholder="Enter a description"
+                         <textarea id="bo_task_description${element[i]}" class="bo_task_descriptionbox" value="${element['descritpion']}" placeholder="Enter a description"
                              onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
                 </div>
 
                 <div class="mb-40">
-                  <span class="bo_task_date">Due Date</span>
+                  <span class="bo_task_date">value="${element['date']}"</span>
                        <input class="bo_task_datebox" type="date">
                 </div>
 
                 <div class="mb-40">
                   <span class="font21-400 bo_prio">Prio</span>
                     <div class="bo_prio_btn">
-                        <button id="boPrioUrgent${element['id']}" onclick="BoardChangeToRed(${element['id']})" class="bo_task_prio-urgent"><span id="boWhiteUrgent${element['id']}"
-                         class="bo_task_urgent">Urgent</span><img id="boImg-up-white${element['id']}" src="./img/up.png"></button>
-                        <button id="boPrioMedium${element['id']}" onclick="BoardChangeToOrange(${element['id']})" class="bo_task_prio-medium"><span id="boWhiteMedium${element['id']}"
-                            class="bo_task_medium">Medium</span><img id="boImg-middle-white${element['id']}" src="./img/middle.png"></button>
-                        <button id="boPrioLow${element['id']}" onclick="BoardChangeToGreen(${element['id']})" class="bo_task_prio-low"><span id="boWhiteLow${element['id']}"
-                        class="bo_task_low">Low</span><img id="boImg-down-white${element['id']}" src="./img/down.png"></button>
+                        <button id="boPrioUrgent${element[i]}" onclick="BoardChangeToRed(${element[i]})" class="bo_task_prio-urgent"><span id="boWhiteUrgent${element[i]}"
+                         class="bo_task_urgent">Urgent</span><img id="boImg-up-white${element[i]}" src="./img/up.png"></button>
+                        <button id="boPrioMedium${element[i]}" onclick="BoardChangeToOrange(${element[i]})" class="bo_task_prio-medium"><span id="boWhiteMedium${element[i]}"
+                            class="bo_task_medium">Medium</span><img id="boImg-middle-white${element[i]}" src="./img/middle.png"></button>
+                        <button id="boPrioLow${element[i]}" onclick="BoardChangeToGreen(${element[i]})" class="bo_task_prio-low"><span id="boWhiteLow${element[i]}"
+                        class="bo_task_low">Low</span><img id="boImg-down-white${element[i]}" src="./img/down.png"></button>
                      </div>
                 </div>
 
                 <div class="mb-40">
                 <span class="bo_task_assigned">Assigned to</span>
-                <div id="boDropdownAssigned${element['id']}" class="bo_assign-selection">
-                    <div onclick="BoardShowAssigned(${element['id']})" id="boNew_assigned${element['id']}" class="bo_task_dropdown-container">
+                <div id="boDropdownAssigned${element[i]}" class="bo_assign-selection">
+                    <div onclick="BoardShowAssigned(${element[i]})" id="boNew_assigned${element[i]}" class="bo_task_dropdown-container">
                         <div class="bo_task_assignedbox">Select contacts to assign</div>
                         <img src="./img/open.png">
                     </div>
-                    <div class="bo_task_dropdown-content" id="boContent-assigned${element['id']}">
-                        <div id="boAssigned-you${element['id']}" onclick="BoardClickyou(event, ${element['id']})" class="bo_dropdown-assigned">
+                    <div class="bo_task_dropdown-content" id="boContent-assigned${element[i]}">
+                        <div id="boAssigned-you${element[i]}" onclick="BoardClickyou(event, ${element[i]})" class="bo_dropdown-assigned">
                             <span class="bo_dropdown-item">You</span>
-                            <div class="bo_rectangle" id="bo_rectangle${element['id']}"></div>
+                            <div class="bo_rectangle" id="bo_rectangle${element[i]}"></div>
                         </div>
-                        <div id="boAssigned-contact${element['id']}" onclick="BoardClickcontact(event, ${element['id']})" class="bo_dropdown-assigned">
+                        <div id="boAssigned-contact${element[i]}" onclick="BoardClickcontact(event, ${element[i]})" class="bo_dropdown-assigned">
                             <span class="bo_dropdown-item">Laura Numey</span>
-                            <div class="bo_rectangle" id="bo_rectangle${element['id']}"></div>
+                            <div class="bo_rectangle" id="bo_rectangle${element[i]}"></div>
                         </div>
-                        <div onclick="BoardClickinvite(${element['id']})" class="bo_dropdown-assigned">
+                        <div onclick="BoardClickinvite(${element[i]})" class="bo_dropdown-assigned">
                             <span class="bo_dropdown-item">Invite new contact</span>
                             <img class="bo_task_img-invite" src="./img/invite-sign.png">
                         </div>
@@ -179,7 +185,7 @@ function showTodoPopUp(element) {
                 </div>
                  </div>
 
-                 <button onclick="closeTodoEdit(${element['id']})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
+                 <button onclick="closeTodoEdit(${element[i]})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
         </div>
     </div>`;   
 }
@@ -188,8 +194,8 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-function moveTo(category) {
-    todos[currentDraggedElement]['category'] = category;
+function moveTo(status) {
+    tasks[currentDraggedElement]['status'] = status;
     updateHTML();
 }
 
@@ -203,10 +209,10 @@ function filterTodos() {
     document.getElementById('awaitingFB').innerHTML = '';
     document.getElementById('done').innerHTML = '';
 
-    let searchedTodo = todos.filter(t => t.category == 'Todo' && t.title.toLowerCase().includes(search))
-    let searchedInProgress = todos.filter(t => t.category == 'In progress' && t.title.toLowerCase().includes(search))
-    let searchedInAwaitingFeedback = todos.filter(t => t.category == "Awaiting Feedback" && t.title.toLowerCase().includes(search))
-    let searchedInDone = todos.filter(t => t.category == "Done" && t.title.toLowerCase().includes(search))
+    let searchedTodo = tasks.filter(t => t.status == 'Todo' && t.title.toLowerCase().includes(search))
+    let searchedInProgress = tasks.filter(t => t.status == 'In progress' && t.title.toLowerCase().includes(search))
+    let searchedInAwaitingFeedback = tasks.filter(t => t.status == "Awaiting Feedback" && t.title.toLowerCase().includes(search))
+    let searchedInDone = tasks.filter(t => t.status == "Done" && t.title.toLowerCase().includes(search))
 
     searchedTodo.forEach(t => document.getElementById('todo').innerHTML += generateTodoHTML(t))
     searchedInProgress.forEach(t => document.getElementById('inProgress').innerHTML += generateTodoHTML(t))
@@ -215,8 +221,7 @@ function filterTodos() {
 }
 
 // function openAddTask() {
-//   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
-//   document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
+//   document.getElementById('boAddTaskPopUp').classList.remove('document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
 //   <button>x</button>
 //   <div class="scale_include_down" data-template="./content/add_task.html"></div>
 //   </div>`;
