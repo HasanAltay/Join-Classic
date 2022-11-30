@@ -90,7 +90,7 @@ function startDragging(id) {
 }
 
 function generateTodoHTML(element, i) {
-    return `<div onclick="openTodoInfo('bo_popUp${element[i]}')" draggable="true" ondragstart="startDragging(${element[i]})" class="bo_todo c-pointer">
+    return `<div onclick="openTodoInfo('bo_popUp${element[i]}')" draggable="true" ondragstart="startDragging(${i})" class="bo_todo c-pointer">
               <div class="bo_todo_infos">
                 <span class="bo_department font16-400">${element['category']}</span>
                 <br>
@@ -140,13 +140,13 @@ function showTodoPopUp(element, i) {
 
                 <div class="mb-40">
                   <span class="bo_task_description">Description</span>
-                         <textarea id="bo_task_description${element[i]}" class="bo_task_descriptionbox" value="${element['descritpion']}" placeholder="Enter a description"
+                         <textarea id="bo_task_description${element[i]}" class="bo_task_descriptionbox" value="${element['description']}" placeholder="Enter a description"
                              onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
                 </div>
 
                 <div class="mb-40">
-                  <span class="bo_task_date">value="${element['date']}"</span>
-                       <input class="bo_task_datebox" type="date">
+                  <span class="bo_task_date"></span>
+                       <input class="bo_task_datebox" type="date" value="${element['date']}">
                 </div>
 
                 <div class="mb-40">
