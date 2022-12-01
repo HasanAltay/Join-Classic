@@ -28,7 +28,7 @@ function addTask() {
     let contacts = document.getElementById('new_assigned');
     let date = document.getElementById('due_date');
     let prioStat = setPrioStat();
-    let subtasks = document.getElementById('inputSubtask');
+    let subtasks = document.getElementById('list_subtask');
 
     let task = {
         "title": title.value,
@@ -37,7 +37,7 @@ function addTask() {
         "contacts": contacts.value,
         "prio": prioStat,
         "date": date.value,
-        "subtasks": subtasks.value,
+        "subtasks": subtasks.innerHTML,
         "status": "Todo"
     };
 
@@ -79,9 +79,9 @@ function addTask() {
 
 function setPrioStat() {
     let prioStat = '';
-    if (urgent_clicked) prioStat = "urgent";
-    if (medium_clicked) prioStat = "medium";
-    if (low_clicked) prioStat = "low";
+    if (urgent_clicked) prioStat = "Urgent";
+    if (medium_clicked) prioStat = "Medium";
+    if (low_clicked) prioStat = "Low";
     return prioStat;
 }
 
