@@ -23,7 +23,8 @@ let tasks = [];
 function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = document.getElementById('new_category');
+    let category = document.getElementById('design');
+    let categoryDefault = document.getElementById('dropdownArea');
     let contacts = document.getElementById('new_assigned');
     let date = document.getElementById('due_date');
     let prioStat = setPrioStat();
@@ -32,20 +33,38 @@ function addTask() {
     let task = {
         "title": title.value,
         "description": description.value,
-        "category": category,
-        "contacts": contacts,
+        "category": category.value,
+        "contacts": contacts.value,
         "prio": prioStat,
         "date": date.value,
         "subtasks": subtasks.value,
-        "status": 'Todo'
+        "status": "Todo"
     };
 
     tasks.push(task);
     console.log(tasks);
     title.value = '';
     description.value = '';
-    category = '';
-    contacts = '';
+    categoryDefault = /*html*/`
+    <div id="dropdown" class="category-selection">
+        <div onclick="showCategory()" id="new-category"  class="dropdown-container">
+            <div class="categorybox">Select task category</div>
+            <img class="open-img" src="./img/open.png">
+        </div>
+        <div class="dropdown-content" id="content">
+        <div onclick="new_category()" class="dropdown-child">
+            <span class="dropdown-item">New category</span>
+        </div>
+        <div onclick="showSales()" class="dropdown-child">
+            <span class="dropdown-item">Sales</span>
+            <img class="item-img" src="./img/sales-img.png">
+        </div>
+        <div onclick="backOffice()" class="dropdown-child">
+            <span class="dropdown-item">Backoffice</span>
+            <img class="item-img" src="./img/backoffice-img.png">
+        </div>
+    </div>`;
+    contacts.value = '';
     date.value = '';
     subtasks.value = '';
 
