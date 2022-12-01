@@ -90,7 +90,7 @@ function startDragging(id) {
 }
 
 function generateTodoHTML(element, i) {
-    return `<div onclick="openTodoInfo('bo_popUp${element[i]}')" draggable="true" ondragstart="startDragging(${i})" class="bo_todo c-pointer">
+    return `<div onclick="openTodoInfo('bo_popUp${i}')" draggable="true" ondragstart="startDragging(${i})" class="bo_todo c-pointer">
               <div class="bo_todo_infos">
                 <span class="bo_department font16-400">${element['category']}</span>
                 <br>
@@ -109,10 +109,10 @@ function generateTodoHTML(element, i) {
 }
 
 function showTodoPopUp(element, i) {
-    return `<div id="bo_popUp${element[i]}" class="bo_pop_up d-none">
+    return `<div id="bo_popUp${i}" class="bo_pop_up d-none">
              <div class="bo_popup_todo_Info">
-                <div id="boPopUpInfo${element[i]}">
-                   <button onclick="closeTodoInfo('bo_popUp${element[i]}', event)" class="bo_cancel_btn c-pointer">
+                <div id="boPopUpInfo${i}">
+                   <button onclick="closeTodoInfo('bo_popUp${i}', event)" class="bo_cancel_btn c-pointer">
                      <img src="./img/cancel.png">
                    </button>
                      <span class="bo_popUp_department">${element['category']}</span>
@@ -124,23 +124,23 @@ function showTodoPopUp(element, i) {
                             <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Due date:</span>${element['date']}</div>
                             <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Priority:</span>${element['prio']}</div>
                             <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Assigned to:</span>${element['contacts']}</div>
-                                <button onclick="openTodoEdit(${element[i]})" class="bo_edit_todo c-pointer"
-                                 onmouseenter="changeEditBtn('./img/edit-light.png', ${element[i]})"
-                                 onmouseleave="resetEditBtn('./img/edit-dark.png', ${element[i]})">
-                                  <img id="boEditTodo${element[i]}" src="./img/edit-dark.png">
+                                <button onclick="openTodoEdit(${i})" class="bo_edit_todo c-pointer"
+                                 onmouseenter="changeEditBtn('./img/edit-light.png', ${i})"
+                                 onmouseleave="resetEditBtn('./img/edit-dark.png', ${i})">
+                                  <img id="boEditTodo${i}" src="./img/edit-dark.png">
                                 </button>
                 </div>
 
-             <div id="boEditPopUp${element[i]}" class="bo_edit_task d-none">
+             <div id="boEditPopUp${i}" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="bo_task_title">Title</span>
-                    <input id="bo_task_title${element[i]}" class="bo_task_titlebox" type="text" value="${element['title']}" placeholder="Enter a title" onfocus="this.placeholder=''"
+                    <input id="bo_task_title${i}" class="bo_task_titlebox" type="text" value="${element['title']}" placeholder="Enter a title" onfocus="this.placeholder=''"
                     onblur="this.placeholder='Enter a title'">
                 </div>
 
                 <div class="mb-40">
                   <span class="bo_task_description">Description</span>
-                         <textarea id="bo_task_description${element[i]}" class="bo_task_descriptionbox" value="${element['description']}" placeholder="Enter a description"
+                         <textarea id="bo_task_descrip}" class="bo_task_descriptionbox" value="${element['description']}" placeholder="Enter a description"
                              onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
                 </div>
 
@@ -152,32 +152,32 @@ function showTodoPopUp(element, i) {
                 <div class="mb-40">
                   <span class="font21-400 bo_prio">Prio</span>
                     <div class="bo_prio_btn">
-                        <button id="boPrioUrgent${element[i]}" onclick="BoardChangeToRed(${element[i]})" class="bo_task_prio-urgent"><span id="boWhiteUrgent${element[i]}"
-                         class="bo_task_urgent">Urgent</span><img id="boImg-up-white${element[i]}" src="./img/up.png"></button>
-                        <button id="boPrioMedium${element[i]}" onclick="BoardChangeToOrange(${element[i]})" class="bo_task_prio-medium"><span id="boWhiteMedium${element[i]}"
-                            class="bo_task_medium">Medium</span><img id="boImg-middle-white${element[i]}" src="./img/middle.png"></button>
-                        <button id="boPrioLow${element[i]}" onclick="BoardChangeToGreen(${element[i]})" class="bo_task_prio-low"><span id="boWhiteLow${element[i]}"
-                        class="bo_task_low">Low</span><img id="boImg-down-white${element[i]}" src="./img/down.png"></button>
+                        <button id="boPrioUrgent${i}" onclick="BoardChangeToRed(${i})" class="bo_task_prio-urgent"><span id="boWhiteUrgent${i}"
+                         class="bo_task_urgent">Urgent</span><img id="boImg-up-white${i}" src="./img/up.png"></button>
+                        <button id="boPrioMedium${i}" onclick="BoardChangeToOi]})" class="bo_task_prio-medium"><span id="boWhiteMedium${i}"
+                            class="bo_task_medium">Medium</span><img id="boImg-middle-white${i}" src="./img/middle.png"></button>
+                        <button id="boPrioLow${i}" onclick="BoardChangeToGreen(${i})" class="bo_task_prio-low"><span id="boWhiteLow${i}"
+                        class="bo_task_low">Low</span><img id="boImg-down-white${i}" src="./img/down.png"></button>
                      </div>
                 </div>
 
                 <div class="mb-40">
                 <span class="bo_task_assigned">Assigned to</span>
-                <div id="boDropdownAssigned${element[i]}" class="bo_assign-selection">
-                    <div onclick="BoardShowAssigned(${element[i]})" id="boNew_assigned${element[i]}" class="bo_task_dropdown-container">
+                <div id="boDropdownAssigned${i}" class="bo_assign-selection">
+                    <div onclick="BoardShowAssigned(${i})" id="boNew_assigned${i}" class="bo_task_dropdown-container">
                         <div class="bo_task_assignedbox">Select contacts to assign</div>
                         <img src="./img/open.png">
                     </div>
-                    <div class="bo_task_dropdown-content" id="boContent-assigned${element[i]}">
-                        <div id="boAssigned-you${element[i]}" onclick="BoardClickyou(event, ${element[i]})" class="bo_dropdown-assigned">
+                    <div class="bo_task_dropdown-content" id="boContent-assigned${i}">
+                        <div id="boAssigned-you${i}" onclick="BoardClickyou(event, ${i})" class="bo_dropdown-assigned">
                             <span class="bo_dropdown-item">You</span>
-                            <div class="bo_rectangle" id="bo_rectangle${element[i]}"></div>
+                            <div class="bo_rectangle" id="bo_rectangle${i}"></div>
                         </div>
-                        <div id="boAssigned-contact${element[i]}" onclick="BoardClickcontact(event, ${element[i]})" class="bo_dropdown-assigned">
+                        <div id="boAssigned-contact${i}" onclick="BoardClickcontact(event, ${i})" class="bo_dropdown-assigned">
                             <span class="bo_dropdown-item">Laura Numey</span>
-                            <div class="bo_rectangle" id="bo_rectangle${element[i]}"></div>
+                            <div class="bo_rectangle" id="bo_rectangle${i}"></div>
                         </div>
-                        <div onclick="BoardClickinvite(${element[i]})" class="bo_dropdown-assigned">
+                        <div onclick="BoardClickinvite(${i})" class="bo_dropdown-assigned">
                             <span class="bo_dropdown-item">Invite new contact</span>
                             <img class="bo_task_img-invite" src="./img/invite-sign.png">
                         </div>
@@ -185,7 +185,7 @@ function showTodoPopUp(element, i) {
                 </div>
                  </div>
 
-                 <button onclick="closeTodoEdit(${element[i]})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
+                 <button onclick="closeTodoEdit(${i})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
         </div>
     </div>`;   
 }

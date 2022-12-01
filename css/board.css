@@ -145,7 +145,7 @@
 }
 
 .bo_drag-area {
-    height: 376px;
+    min-height: 500px;
     width: 215px;
     margin-right: 30px;
     margin-top: 12px;
@@ -584,13 +584,6 @@
         display: block !important;
     }
 
-    /* .bo_magnifyer_mobile {
-        position: absolute;
-        cursor: pointer;
-        margin-top: -39px;
-        margin-left: 158px;
-    } */
-
     .bo_mobile_search {
         display: none !important;
     }
@@ -607,9 +600,9 @@
         padding-left: unset;
     }
 
-    .bo_drag-area {
+    /* .bo_drag-area {
         width: 254px;
-    }
+    } */
 }
 
 @media (max-width: 600px) {
@@ -643,10 +636,6 @@
     .bo_todo_container {
         margin-top: 20px;
         margin-left: 24px;
-    }
-
-    .bo_drag-area {
-        width: unset;
     }
 
     .bo_popup_todo_Info {
