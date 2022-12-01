@@ -20,6 +20,10 @@ function inactiveMode(img) {
 
 let tasks = [];
 
+let subtasks = [];
+
+let colors = [];
+
 function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
@@ -28,7 +32,7 @@ function addTask() {
     let contacts = document.getElementById('new_assigned');
     let date = document.getElementById('due_date');
     let prioStat = setPrioStat();
-    let subtasks = document.getElementById('list_subtask');
+    let input = document.getElementById('inputSubtask');
 
     let task = {
         "title": title.value,
@@ -37,7 +41,7 @@ function addTask() {
         "contacts": contacts.value,
         "prio": prioStat,
         "date": date.value,
-        "subtasks": subtasks.innerHTML,
+        "subtasks": subtasks,
         "status": "Todo"
     };
 
@@ -45,7 +49,7 @@ function addTask() {
     console.log(tasks);
     title.value = '';
     description.value = '';
-    categoryDefault = /*html*/`
+    categoryDefault.innerHTML = /*html*/`
     <div id="dropdown" class="category-selection">
         <div onclick="showCategory()" id="new-category"  class="dropdown-container">
             <div class="categorybox">Select task category</div>
@@ -66,9 +70,10 @@ function addTask() {
     </div>`;
     contacts.value = '';
     date.value = '';
-    subtasks.value = '';
+    input.value = '';
 
-    backend.setItem("tasks", task);
+    backend.setItem("tasks", tasks);
+    JSON.stringify(tasks);
 }
 
 // async function loadArrayFromBackend() {
@@ -100,11 +105,14 @@ function clearInputSubtask() {
     showDefaultSubtask();
 }
 
+
+
 function showSubtask() {
     let input = document.getElementById('inputSubtask');
     let subtask = document.getElementById('list_subtask');
     if (input.value == '') { return 0 }
     else {
+        subtasks.push(input.value);
         subtask.innerHTML += /*html*/`
         <li><input class="checkbox" type="checkbox"><span class="subtask-item">${input.value}</span></li>`;
     }
@@ -286,7 +294,7 @@ function designCategory() {
     </div>`;
     document.getElementById('img-picker').classList.remove("d-none");
     document.getElementById('img-picker').innerHTML = "";
-    document.getElementById('design').value = "Design";
+    document.getElementById('design').value = "";
     document.getElementById('img-picker').innerHTML = /*html*/`
     <img class="color" src="./img/color-1.png">
     <img class="color" src="./img/color-2.png">
@@ -300,7 +308,7 @@ function pick_brown() {
     document.getElementById('img-picker').classList.add("d-none");
     let design = document.getElementById('design');
     design.value = "";
-    design.value = "Design";
+    design.value = "";
     document.getElementById('new-category').classList.remove("new_category");
     document.getElementById('new-category').innerHTML = /*html*/`
     <div onclick="defaultModeCategory()" class="design">
