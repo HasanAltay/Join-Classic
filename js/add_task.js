@@ -72,8 +72,8 @@ function addTask() {
     date.value = '';
     input.value = '';
 
-    backend.setItem("tasks", tasks);
-    JSON.stringify(tasks);
+    backend.setItem("tasks", JSON.stringify(tasks));
+    
 }
 
 // async function loadArrayFromBackend() {
