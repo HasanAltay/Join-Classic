@@ -192,6 +192,17 @@ var currentLabelColor;
 var last_id;
 var selectedContact;
 
+// variables to get the currend width of an element
+let navigation_left;
+let navigation_left_width;
+let navTopBar;
+
+let contactsListContainer;
+let contactListContainerWidth;
+let navTopBarHeight;
+
+let contactsPage;
+
 
 function initGlobalVariables() {
   labelColors = [
@@ -219,12 +230,24 @@ function initContacts() {
   console.log("initContacts()");
   initGlobalVariables();
 
-  document.getElementById("contact-list").innerHTML = /*html*/`
-  <button class="con_mobileViewAddContactButton hoverButton hoverEffect" onclick="newContact();">
-                <span style="font-size: 21px; color: white;">New contact</span>
-                <img src="./img/add_contact.png">
-  </button>
-  `;
+  navigation_left = document.getElementById('navigation-bar-left');
+  navigation_left_width = navigation_left.offsetWidth;
+
+  contactsListContainer = document.getElementById('contacts-list-container');
+  contactListContainerWidth = contactsListContainer.offsetWidth;
+
+  contactsPage = document.getElementById('contacts-id');
+
+  // document.getElementById("contact-list").innerHTML = /*html*/`
+  // <button class="con_mobileViewAddContactButton hoverButton hoverEffect" onclick="newContact();">
+  //               <span style="font-size: 21px; color: white;">New contact</span>
+  //               <img src="./img/add_contact.png">
+  // </button>
+  // `;
+
+  // trying to fix bug after adding new contact
+  document.getElementById("contact-list").innerHTML = '';
+
 
 
   for (let i = 0; i < contacts.length; i++) {
@@ -236,6 +259,14 @@ function initContacts() {
 
   // save contactsToDatabase
   saveContactsToDataBase();
+
+  // render contactInformation container according to width of nav_left and contactListContainer
+  let contactInformation = document.getElementById('contact-information');
+  contactInformation.style = `width: calc(100vw - ${navigation_left_width}px - ${contactListContainerWidth}px`;
+  
+  // render contact list height according to height of nav top bar
+  navTopBar = document.getElementById('nav-top-bar');
+  navTopBarHeight = navTopBar.offsetHeight;
 }
 
 
@@ -367,12 +398,12 @@ function addNewContact() {
   console.log(contacts);
 
   // sort contacts after adding new contact
-  sortContatcs(contactListIndex);
+  sortContacts(contactListIndex);
   initContacts();
 }
 
 
-function sortContatcs(contactListIndex) {
+function sortContacts(contactListIndex) {
   console.log('sortContacts()');
   let tmp = [];
   let namesArray = [];
@@ -548,6 +579,10 @@ function showContactInformation(given_id) {
   <span>${mailAddress}</span>
   <h3>Phone:</h3>
   <span>${phoneNumber}</span>`;
+
+  // render contactInformation container according to width of nav_left and contactListContainer
+  let contactInformation = document.getElementById('contact-information');
+  contactInformation.style = `width: calc(100vw - ${navigation_left_width}px - ${contactListContainerWidth}px`;
 }
 
 
@@ -638,9 +673,26 @@ function closeContactInformationContainer() {
   console.log(`You decided to close contact details of ${selectedContact}`);
   document.getElementById('contact-information').classList.add('d-none');
   document.getElementById('contact-information').style = "display: none !important;";
-  // let currentContact = Number(selectedContact.split("-")[1]);
-  // let searchLetter = selectedContact.split("-")[0];
+  
 
-  document.getElementById(selectedContact).style.backgroundColor = "#FFFFFF";
-  document.getElementById(selectedContact).style.color = "#000000";
+  if (selectedContact != last_id) {
+    document.getElementById(selectedContact).style.backgroundColor = "#2A3647";
+    document.getElementById(selectedContact).style.color = "#FFFFFF";
+    if (last_id != "XX") {
+      document.getElementById(last_id).style.backgroundColor = "#FFFFFF";
+      document.getElementById(last_id).style.color = "#000000";
+    }
+    last_id = selectedContact;
+    showContactInformation(selectedContact);
+  } else if (selectedContact == last_id) {
+    document.getElementById(selectedContact).style.backgroundColor = "#FFFFFF";
+    document.getElementById(selectedContact).style.color = "#000000";
+    last_id = "XX";
+  }
+
+
+  // document.getElementById(selectedContact).style.backgroundColor = "#FFFFFF";
+  // document.getElementById(selectedContact).style.color = "#000000";
+  // trying to fix bug of missing hover effect after contact clicked
+  document.getElementById(selectedContact).style.backgroundColor = "";
 }

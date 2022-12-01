@@ -22,7 +22,7 @@
   top: 100px;
   left: 232px;
   position: relative;
-  height: 80vh;
+  /* height: 80vh; */
   width: fit-content;
   display: flex;
 }
@@ -115,8 +115,9 @@
 .con_contactInformation {
   display: flex;
   flex-direction: column;
-  width: 54vw;
-  height: 86vh;
+  /* width: 54vw; */
+  /* width: calc(100% -232px -404px); */
+  /* height: 86vh; */
   padding: 16px;
   background-color: #f6f7f8;
 }
@@ -211,12 +212,11 @@
 
 .con_buttonContainer {
   position: absolute;
-  left: 950px;
-  top: 520px;
+  right: 52px;
+  bottom: 24px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .con_ContactInformationAddButton {
@@ -227,7 +227,27 @@
   justify-content: center;
   align-items: center;
   padding: 18px 10px;
-  margin: 20px;
+  /* margin: 20px; */
+  gap: 10px;
+  width: 193px;
+  height: 53px;
+  background: #2a3647;
+  border: 1px solid #2a3647;
+  border-radius: 10px;
+}
+
+.con_ContactInformationAddButtonMobile {
+  position: absolute;
+  top: 0px;
+  right: 32px;
+  box-sizing: border-box;
+  display: none;
+  align-self: flex-start;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  /* margin: 20px; */
   gap: 10px;
   width: 193px;
   height: 53px;
@@ -293,24 +313,6 @@
   background-repeat: no-repeat;
   background-position: 220px;
   background-size: 20px 19px;
-}
-
-.con_mobileViewAddContactButton {
-  display: none;
-  z-index: 1;
-  box-sizing: border-box;
-  align-self: flex-start;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 18px 10px;
-  margin: 20px;
-  gap: 10px;
-  width: 193px;
-  height: 53px;
-  background: #2a3647;
-  border: 1px solid #2a3647;
-  border-radius: 10px;
 }
 
 @media(max-width: 1400px) {
@@ -395,7 +397,8 @@
   }
 
   .con_editContainer {
-    display: block !important;
+    /* display: block !important; */
+    flex-direction: column;
   }
 
   .con_bigLabel {
@@ -412,18 +415,19 @@
   }
 
   .con_editContainer {
-    display: flex !important;
+    /* display: flex !important; */
+    flex-direction: row !important;
   }
 
   .con_buttonContainer {
-    left: 0px !important;
+    display: none;
   }
 
   .con_CloseContactInformation {
     display: flex;
   }
 
-  .con_mobileViewAddContactButton {
+  .con_ContactInformationAddButtonMobile {
     display: flex !important;
   }
 }
