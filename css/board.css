@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.bo-width400 {
+    width: 430px;
+}
+
 .bo_font21-700 {
     font-weight: 700;
     font-size: 21px;
@@ -218,8 +222,8 @@
     background-color: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
-    width: 623px;
-    height: 924px;
+    /* width: 623px; */
+    min-height: 750px;
     position: relative;
     transform: scale(70%);
 }
@@ -232,6 +236,18 @@
     color: white;
     padding-right: 25px;
     padding-left: 25px;
+}
+
+.bo_prio_color {
+    width: 131px;
+    height: 33px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 18px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 /* ab hier AddTask Todo Section */
@@ -252,7 +268,7 @@
 }
 
 .bo_edit_task {
-    margin-left: 50px;
+    /* margin-left: 50px; */
     position: relative;
 }
 
@@ -536,7 +552,7 @@
     white-space: nowrap;
     position: absolute;
     right: -24px;
-    bottom: -60px;
+    bottom: -72px;
 }
 
 .bo_button_dark:hover {
@@ -640,7 +656,7 @@
 
     .bo_popup_todo_Info {
         width: unset;
-        padding-left: 15px;
+        /* padding-left: 15px; */
         padding-right: 30px;
     }
 
@@ -657,7 +673,7 @@
 
 @media (max-width: 380px) {
     .bo_popup_todo_Info {
-        padding-left: unset;
+        /* padding-left: unset; */
         padding-right: 25px;
     }
 

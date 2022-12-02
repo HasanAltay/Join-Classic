@@ -40,9 +40,10 @@ let clicked_Contact = false;
 
 async function loadArrayFromBackend() {
     // tasks = getArrayFromBackend('tasks');
-    await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
-  }
+     await downloadFromServer();
+    console.log(JSON.parse(backend.getItem('tasks')));
+    tasks = JSON.parse(backend.getItem('tasks')) || [];    
+}
 
 function updateHTML() {
     let todo = tasks.filter(t => t['status'] == 'Todo');
@@ -52,6 +53,7 @@ function updateHTML() {
     for (let i = 0; i < todo.length; i++) {
         const element = todo[i];
         document.getElementById('todo').innerHTML += generateTodoHTML(element, i);
+        BoardPrioColor(i)
     }
 
 
@@ -62,6 +64,7 @@ function updateHTML() {
     for (let i = 0; i < inProgress.length; i++) {
         const element = inProgress[i];
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element, i);
+        BoardPrioColor(i)
     }
 
 
@@ -72,6 +75,7 @@ function updateHTML() {
     for (let i = 0; i < awaitingFB.length; i++) {
         const element = awaitingFB[i];
         document.getElementById('awaitingFB').innerHTML += generateTodoHTML(element, i);
+        BoardPrioColor(i)
     }
 
 
@@ -82,6 +86,7 @@ function updateHTML() {
     for (let i = 0; i < done.length; i++) {
         const element = done[i];
         document.getElementById('done').innerHTML += generateTodoHTML(element, i);
+        BoardPrioColor(i)
     }
 }
 
@@ -100,12 +105,12 @@ function generateTodoHTML(element, i) {
                   </div>
                   <br>
                   <div class="bo_todo_contacts_prio">
-                    <div>Contacts</div>
-                    <div>Prio Btn</div>
+                    <div>${element['contacts']}</div>
+                    <div class="${element['prio']}"><img id="prioTodo${i}" src="./img/up.png"></div>
                   </div>
                </div>
                 ${showTodoPopUp(element, i)}
-            </div>`;          
+            </div>`;
 }
 
 function showTodoPopUp(element, i) {
@@ -121,16 +126,21 @@ function showTodoPopUp(element, i) {
                         <div>
                          <div class="mt-25 font21-400">${element['description']}</div>
                         </div>
-                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Due date:</span>${element['date']}</div>
-                            <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Priority:</span>${element['prio']}</div>
+                            <div class="mt-25 font21-400 bo-width400"><span class="mr-20 bo_font21-700">Due date:</span>${element['date']}</div>
+
+                            <div class="bo_d-flex mt-25 font21-400"><span class="mr-20 bo_font21-700">Priority:</span>
+                                <div class="bo_prio_color" id="boPrioColor${i}">${element['prio']} <img id="boPrioImg${i}" src="./img/arrowUpWhite.png"></div></div>
+                            
                             <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Assigned to:</span>${element['contacts']}</div>
-                                <button onclick="openTodoEdit(${i})" class="bo_edit_todo c-pointer"
+                               
+                            <button onclick="openTodoEdit(${i})" class="bo_edit_todo c-pointer"
                                  onmouseenter="changeEditBtn('./img/edit-light.png', ${i})"
                                  onmouseleave="resetEditBtn('./img/edit-dark.png', ${i})">
                                   <img id="boEditTodo${i}" src="./img/edit-dark.png">
                                 </button>
                 </div>
 
+               
              <div id="boEditPopUp${i}" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="bo_task_title">Title</span>
@@ -140,8 +150,8 @@ function showTodoPopUp(element, i) {
 
                 <div class="mb-40">
                   <span class="bo_task_description">Description</span>
-                         <textarea id="bo_task_descrip}" class="bo_task_descriptionbox" value="${element['description']}" placeholder="Enter a description"
-                             onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'"></textarea>
+                         <textarea id="bo_task_descrip}" class="bo_task_descriptionbox" placeholder="Enter a description"
+                             onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'">${element['description']}</textarea>
                 </div>
 
                 <div class="mb-40">
@@ -187,7 +197,9 @@ function showTodoPopUp(element, i) {
 
                  <button onclick="closeTodoEdit(${i})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
         </div>
-    </div>`;   
+    </div>`;
+
+
 }
 
 function allowDrop(ev) {
@@ -242,21 +254,21 @@ function closeTodoInfo(id, event) {
 }
 
 function changeEditBtn(img, i) {
-    document.getElementById('boEditTodo'+ i).src = img;
+    document.getElementById('boEditTodo' + i).src = img;
 }
 
 function resetEditBtn(img, i) {
-    document.getElementById('boEditTodo'+ i).src = img;
+    document.getElementById('boEditTodo' + i).src = img;
 }
 
 function openTodoEdit(i) {
-    document.getElementById('boEditPopUp'+ i).classList.remove('d-none');
-    document.getElementById('boPopUpInfo'+ i).classList.add('d-none');
+    document.getElementById('boEditPopUp' + i).classList.remove('d-none');
+    document.getElementById('boPopUpInfo' + i).classList.add('d-none');
 }
 
 function closeTodoEdit(i) {
-    document.getElementById('boEditPopUp'+ i).classList.add('d-none');
-    document.getElementById('boPopUpInfo'+ i).classList.remove('d-none');
+    document.getElementById('boEditPopUp' + i).classList.add('d-none');
+    document.getElementById('boPopUpInfo' + i).classList.remove('d-none');
 }
 
 function changeMobileAddTaskBtn(img) {
@@ -267,32 +279,53 @@ function resetMobileAddTaskBtn(img) {
     document.getElementById('bo_mobile_AddTaskPlus').src = img;
 }
 
+function BoardPrioColor(i) {
+    // let prioTodo = document.getElementsByClassName(`${element['prio']}`);
+    let prioPopUp = document.getElementById('boPrioColor' + i).innerHTML;
+    
+
+    if (prioPopUp.includes('Urgent')) {
+        document.getElementById('boPrioColor' + i).style.background = "#FF3D00";
+    } 
+    if (prioPopUp.includes('Medium')) {
+        document.getElementById('boPrioColor' + i).style.background = "#FFA800";
+        document.getElementById('boPrioImg' + i).src = './img/arrowMiddleWhite.png';
+       
+    }
+    if (prioPopUp.includes('Low')) {
+        document.getElementById('boPrioColor' + i).style.background = "#7AE229";
+        document.getElementById('boPrioImg' + i).src = './img/arrowDownWhite.png';
+       
+    }
+    prioPopUp = document.getElementById('boPrioColor' + i).style.color = "#FFFFFF";  
+}
+
 function BoardUrgentButtonDefault(i) {
-    document.getElementById('boPrioUrgent'+ i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('boWhiteUrgent'+ i).style.color = "#000000";
-    document.getElementById('boImg-up-white'+ i).src = "./img/up.png";
+    document.getElementById('boPrioUrgent' + i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('boWhiteUrgent' + i).style.color = "#000000";
+    document.getElementById('boImg-up-white' + i).src = "./img/up.png";
     urgentClicked = false;
 }
 
 function BoardMediumButtonDefault(i) {
-    document.getElementById('boPrioMedium'+i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('boWhiteMedium'+i).style.color = "#000000";
-    document.getElementById('boImg-middle-white'+ i).src = "./img/middle.png";
+    document.getElementById('boPrioMedium' + i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('boWhiteMedium' + i).style.color = "#000000";
+    document.getElementById('boImg-middle-white' + i).src = "./img/middle.png";
     mediumClicked = false;
 }
 
 function BoardLowButtonDefault(i) {
-    document.getElementById('boPrioLow'+ i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('boWhiteLow'+ i).style.color = "#000000";
-    document.getElementById('boImg-down-white'+ i).src = "./img/down.png";
+    document.getElementById('boPrioLow' + i).style.backgroundColor = "#FFFFFF";
+    document.getElementById('boWhiteLow' + i).style.color = "#000000";
+    document.getElementById('boImg-down-white' + i).src = "./img/down.png";
     lowClicked = false;
 }
 
 function BoardChangeToRed(i) {
     if (urgentClicked == false) {
-        document.getElementById('boPrioUrgent'+ i).style.backgroundColor = "#FF3D00";
-        document.getElementById('boWhiteUrgent'+ i).style.color = "#FFFFFF";
-        document.getElementById('boImg-up-white'+ i).src = "./img/arrowUpWhite.png";
+        document.getElementById('boPrioUrgent' + i).style.backgroundColor = "#FF3D00";
+        document.getElementById('boWhiteUrgent' + i).style.color = "#FFFFFF";
+        document.getElementById('boImg-up-white' + i).src = "./img/arrowUpWhite.png";
         urgentClicked = true;
     } else {
         BoardUrgentButtonDefault(i);
@@ -303,9 +336,9 @@ function BoardChangeToRed(i) {
 
 function BoardChangeToOrange(i) {
     if (mediumClicked == false) {
-        document.getElementById('boPrioMedium'+ i).style.backgroundColor = "#FFA800";
-        document.getElementById('boWhiteMedium'+ i).style.color = "#FFFFFF";
-        document.getElementById('boImg-middle-white'+ i).src = "./img/arrowMiddleWhite.png";
+        document.getElementById('boPrioMedium' + i).style.backgroundColor = "#FFA800";
+        document.getElementById('boWhiteMedium' + i).style.color = "#FFFFFF";
+        document.getElementById('boImg-middle-white' + i).src = "./img/arrowMiddleWhite.png";
         mediumClicked = true;
     } else {
         BoardMediumButtonDefault(i);
@@ -316,9 +349,9 @@ function BoardChangeToOrange(i) {
 
 function BoardChangeToGreen(i) {
     if (lowClicked == false) {
-        document.getElementById('boPrioLow'+ i).style.backgroundColor = "#7AE229";
-        document.getElementById('boWhiteLow'+ i).style.color = "#FFFFFF";
-        document.getElementById('boImg-down-white'+ i).src = "./img/arrowDownWhite.png";
+        document.getElementById('boPrioLow' + i).style.backgroundColor = "#7AE229";
+        document.getElementById('boWhiteLow' + i).style.color = "#FFFFFF";
+        document.getElementById('boImg-down-white' + i).src = "./img/arrowDownWhite.png";
         lowClicked = true;
     } else {
         BoardLowButtonDefault(i);
@@ -328,10 +361,10 @@ function BoardChangeToGreen(i) {
 }
 
 function BoardShowAssigned(i) {
-    document.getElementById('boDropdownAssigned'+ i).classList.add('bo_task_height');
+    document.getElementById('boDropdownAssigned' + i).classList.add('bo_task_height');
     if (dropdownClicked == false) {
-        document.getElementById("boContent-assigned"+ i).classList.toggle("bo_task_show");
-        document.getElementById("boDropdownAssigned"+ i).classList.add("bo_task_dropdown");
+        document.getElementById("boContent-assigned" + i).classList.toggle("bo_task_show");
+        document.getElementById("boDropdownAssigned" + i).classList.add("bo_task_dropdown");
         dropdownClicked = true;
     } else {
         BoardShowAssignedDefault(i);
@@ -339,14 +372,14 @@ function BoardShowAssigned(i) {
 }
 
 function BoardShowAssignedDefault(i) {
-    document.getElementById("boContent-assigned"+ i).classList.toggle("bo_task_show");
-    document.getElementById("boDropdownAssigned"+ i).classList.remove("bo_task_dropdown");
+    document.getElementById("boContent-assigned" + i).classList.toggle("bo_task_show");
+    document.getElementById("boDropdownAssigned" + i).classList.remove("bo_task_dropdown");
     dropdownClicked = false;
 }
 
 function BoardClickyou(event, i) {
     event.stopPropagation();
-    let click = document.getElementById('boAssigned-you'+ i);
+    let click = document.getElementById('boAssigned-you' + i);
     if (clicked_You == false) {
         click.innerHTML = `
         <span class="bo_dropdown-item">You</span>
@@ -364,13 +397,14 @@ function BoardClickyou(event, i) {
 
 function BoardClickcontact(event, i) {
     event.stopPropagation();
-    let click = document.getElementById('boAssigned-contact'+ i);
-    if (clicked_Contact == false) {click.innerHTML = `
+    let click = document.getElementById('boAssigned-contact' + i);
+    if (clicked_Contact == false) {
+        click.innerHTML = `
     <span class="bo_dropdown-item">Laura Numey</span>
     <div class="bo_rectangle" id='bo_rectangle${i}'>
         <div class="bo_rectangle-clicked" id='bo_rectangle-clicked${i}'></div>
     </div>`;
-    clicked_Contact = true;
+        clicked_Contact = true;
     } else {
         click.innerHTML = /*html*/`
         <span class="bo_dropdown-item">Laura Numey</span>
@@ -380,7 +414,7 @@ function BoardClickcontact(event, i) {
 }
 
 function BoardClickinvite(i) {
-    let invite = document.getElementById('boDropdownAssigned'+ i);
+    let invite = document.getElementById('boDropdownAssigned' + i);
     invite.innerHTML = `
     <div id="boContact${i}" class="new_category">
         <input id="boEmail" onclick="BoardSelect_email(i)" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
@@ -401,11 +435,11 @@ function BoardSelect_email(i) {
         <img src="./img/vertical.png">
         <img class="img-addSubtask" src='./img/addSubtask.png' onclick="BoardSelection()">
     </div>`;
-    document.getElementById('boEmail'+ i).value = "laura@gmail.com";
+    document.getElementById('boEmail' + i).value = "laura@gmail.com";
 }
 
 function BoardDefaultMode(i) {
-    document.getElementById('boDropdownAssigned'+ i).innerHTML = `
+    document.getElementById('boDropdownAssigned' + i).innerHTML = `
     <div onclick="BoardShowAssigned(i)" id="boNew_assigned${i}" class="bo_task_dropdown-container">
         <div class="bo_task_assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
@@ -427,10 +461,10 @@ function BoardDefaultMode(i) {
 }
 
 function BoardSelection(i) {
-    document.getElementById('boDropdownAssigned'+ i).classList.remove("bo_task_dropdown");
-    document.getElementById('boDropdownAssigned'+ i).classList.remove("bo_task_height");
-    document.getElementById('boDropdownAssigned'+ i).classList.add("bo_task_height-default");
-    document.getElementById('boDropdownAssigned'+ i).innerHTML = /*html*/`
+    document.getElementById('boDropdownAssigned' + i).classList.remove("bo_task_dropdown");
+    document.getElementById('boDropdownAssigned' + i).classList.remove("bo_task_height");
+    document.getElementById('boDropdownAssigned' + i).classList.add("bo_task_height-default");
+    document.getElementById('boDropdownAssigned' + i).innerHTML = /*html*/`
     <div onclick="BoardRestartDefault()" id="boNew_assigned${i}" class="bo_task_dropdown-container">
         <div class="bo_task_assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
@@ -453,11 +487,11 @@ function BoardSelection(i) {
             <span class="bo_dropdown-item">Invite new contact</span>
             <img class="bo_task_img-invite" src="./img/invite-sign.png">
         </div>
-    </div>`; 
+    </div>`;
 }
 
 function BoardRestartDefault(i) {
-    document.getElementById('boDropdownAssigned'+ i).classList.add("bo_task_dropdown");
-    document.getElementById('boInitials'+ i).classList.add("d-none");
-    document.getElementById('boContent-assigned'+ i).classList.toggle("bo_task_show");
+    document.getElementById('boDropdownAssigned' + i).classList.add("bo_task_dropdown");
+    document.getElementById('boInitials' + i).classList.add("d-none");
+    document.getElementById('boContent-assigned' + i).classList.toggle("bo_task_show");
 }
