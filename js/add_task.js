@@ -22,7 +22,11 @@ let tasks = [];
 
 let subtasks = [];
 
-let colors = [];
+let colors = [
+    {"name": 'blue',
+    "farbcode": 'rgb...'
+    }
+];
 
 function addTask() {
     let title = document.getElementById('title');
@@ -38,6 +42,7 @@ function addTask() {
         "title": title.value,
         "description": description.value,
         "category": category.value,
+        "categoryColor": clickedColor,
         "contacts": contacts.value,
         "prio": prioStat,
         "date": date.value,
@@ -105,8 +110,6 @@ function clearInputSubtask() {
     showDefaultSubtask();
 }
 
-
-
 function showSubtask() {
     let input = document.getElementById('inputSubtask');
     let subtask = document.getElementById('list_subtask');
@@ -166,17 +169,66 @@ function new_category() {
     let new_category = document.getElementById('dropdown');
     new_category.innerHTML = /*html*/`
     <div id="new-category" class="new_category">
-        <input id="design" onclick="designCategory()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+        <input id="design" class="categorybox" type="text" placeholder="New category name">
         <div class="img_new_category">
-            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearCategory()">
+            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="new_category()">
             <img src="./img/vertical.png">
-            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="designCategory()">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="fillInput()">
         </div>
     </div>
     `;
     document.getElementById('color-picker').innerHTML = /*html*/`
     <div class="img-color-picker" id="img-picker">
-        <img id="picker" src="./img/color-picker.png">
+        <img class="color" onclick="pick_color(0)" src="./img/color-1.png">
+        <img class="color" onclick="pick_color(1)" src="./img/color-2.png">
+        <img class="color" onclick="pick_color(2)" src="./img/color-3.png">
+        <img class="color" onclick="pick_color(3)" src="./img/color-4.png">
+        <img class="color" onclick="pick_color(4)" src="./img/color-5.png">
+        <img class="color" onclick="pick_color(5)" src="./img/color-6.png">
+        </div>
+    `;
+}
+
+let allColors = ['./img/color-1.png','./img/color-2.png','./img/color-3.png','./img/color-4.png','./img/color-5.png','./img/color-6.png']
+let clickedColor = [];
+
+function fillInput() {
+    let input = document.getElementById('design');
+    if (input.value == '') {return 0}
+    else {
+        pick_color();
+    } 
+}
+
+function pick_color(i) {
+    clickedColor.push(allColors[i]);
+    document.getElementById('img-picker').classList.add("d-none");
+    let design = document.getElementById('design');  
+    document.getElementById('new-category').classList.remove("new_category");
+    document.getElementById('new-category').innerHTML = /*html*/`
+    <div onclick="clearCategory()" class="design">
+        <div class="add_changeColor">
+            <div>
+                <span class="design-picked">${design.value}</span>
+            </div>
+            <div>
+                <img class="color add_setColor" src=${allColors[i]}>
+            </div>    
+        </div>
+        <img class="open-img" src = "./img/open.png">
+    </div>
+    <div class="dropdown-content" id="dropdownDesign">
+        <div onclick="new_category()" class="dropdown-child">
+            <span class="dropdown-item">New category</span>
+        </div>
+        <div onclick="showSales()" class="dropdown-child">
+            <span class="dropdown-item">Sales</span>
+            <img src="./img/sales-img.png">
+        </div>
+            <div onclick="backOffice()" class="dropdown-child">
+            <span class="dropdown-item">Backoffice</span>
+            <img src="./img/backoffice-img.png">
+        </div>
     </div>
     `;
 }
@@ -189,7 +241,7 @@ function clearCategory() {
         <div class="categorybox">Select task category</div>
         <div><img class="open-img" src="./img/open.png"></div>
     </div>
-    <div class="dropdown-content" id="content-sales">
+    <div class="dropdown-content" id="content-clear">
         <div onclick="new_category()" class="dropdown-child">
             <span class="dropdown-item">New category</span>
         </div>
@@ -205,7 +257,7 @@ function clearCategory() {
 }
 
 function dropdownClear() {
-    document.getElementById("content-sales").classList.toggle("show");
+    document.getElementById("content-clear").classList.toggle("show");
 }
 
 function showSales() {
@@ -289,7 +341,7 @@ function designCategory() {
         <div class="img_new_category">
             <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="clearCategory()">
             <img src="./img/vertical.png">
-            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="pick_brown()">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="pick_color()">
         </div>
     </div>`;
     document.getElementById('img-picker').classList.remove("d-none");
@@ -299,39 +351,9 @@ function designCategory() {
     <img class="color" src="./img/color-1.png">
     <img class="color" src="./img/color-2.png">
     <img class="color" src="./img/color-3.png">
-    <img class="color-brown" onclick="pick_brown()" src="./img/color-4.png">
+    <img class="color-brown" onclick="pick_color()" src="./img/color-4.png">
     <img class="color" src="./img/color-5.png">
     <img class="color" src="./img/color-6.png">`;
-}
-
-function pick_brown() {
-    document.getElementById('img-picker').classList.add("d-none");
-    let design = document.getElementById('design');
-    design.value = "";
-    design.value = "";
-    document.getElementById('new-category').classList.remove("new_category");
-    document.getElementById('new-category').innerHTML = /*html*/`
-    <div onclick="defaultModeCategory()" class="design">
-        <div>
-            <span class="design-picked">${design.value}</span>
-            <img class="img-pick-brown" src="./img/color-4.png">
-        </div>
-        <img class="open-img" src = "./img/open.png">
-    </div>
-    <div class="dropdown-content" id="dropdownDesign">
-        <div onclick="new_category()" class="dropdown-child">
-            <span class="dropdown-item">New category</span>
-        </div>
-        <div onclick="showSales()" class="dropdown-child">
-            <span class="dropdown-item">Sales</span>
-            <img src="./img/sales-img.png">
-        </div>
-            <div onclick="backOffice()" class="dropdown-child">
-            <span class="dropdown-item">Backoffice</span>
-            <img src="./img/backoffice-img.png">
-        </div>
-    </div>
-    `;
 }
 
 let clickedYou = false;

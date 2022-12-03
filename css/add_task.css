@@ -133,11 +133,11 @@ form {
     color: #000000;
     outline: none;
     font-family: 'Inter';
+    width: 265px;
 }
 
 .categorybox::placeholder {
     color: #D1D1D1;
-    width: 200px;
     height: 25px;
     font-size: 21px;
     font-family: 'Inter';
@@ -167,12 +167,6 @@ form {
     height: 51px;
 }
 
-.color-brown {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-}
-
 .img-pick-brown {
     height: 20px;
     width: 20px;
@@ -182,8 +176,25 @@ form {
 }
 
 .color {
+    cursor: pointer;
     width: 20px;
     height: 20px;
+}
+
+.color:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+}
+
+.add_setColor {
+    pointer-events: none;
+    display: flex;
+}
+
+.add_changeColor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .design-picked {
@@ -197,7 +208,6 @@ form {
     align-items: center;
     justify-content: space-between;
     height: 51px;
-    width: 422px;
     padding: 13px 21px;
     cursor: pointer;
 }
@@ -329,6 +339,8 @@ form {
     height: 25px;
     font-size: 21px;
     color: #000000;
+    display: flex;
+    align-items: center;
 }
 
 .right {
@@ -480,13 +492,13 @@ form {
 }
 
 .img-cancelSubtask {
-    padding-right: 15.76px;
+    padding-right: 8px;
     object-fit: contain;
     cursor: pointer;
 }
 
 .img-addSubtask {
-    padding-left: 13px;
+    padding-left: 8px;
     object-fit: contain;
     cursor: pointer;
 }
@@ -720,7 +732,13 @@ form {
 
     .categorybox {
         font-size: 16px;
+        width: 200px;
     }
+
+    .categorybox::placeholder {
+        font-size: 16px;
+    }
+
 
     .assignedbox {
         font-size: 16px;
@@ -837,10 +855,6 @@ form {
         font-size: 14px;
         height: 17px;
         width: 174px;
-    }
-
-    .new_category {
-        height: unset;
     }
 
     .assignedbox {
@@ -977,11 +991,13 @@ form {
     .img-cancelSubtask {
         width: 20px;
         height: 20px;
+        padding-right: 8px;
     }
 
     .img-addSubtask {
         width: 20px;
         height: 20px;
+        padding-left: 8px;
     }
 
     .plus-icon {
