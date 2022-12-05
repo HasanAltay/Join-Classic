@@ -41,7 +41,6 @@ let clicked_Contact = false;
 async function loadArrayFromBackend() {
     // tasks = getArrayFromBackend('tasks');
      await downloadFromServer();
-    console.log(JSON.parse(backend.getItem('tasks')));
     tasks = JSON.parse(backend.getItem('tasks')) || [];    
 }
 
@@ -150,13 +149,13 @@ function showTodoPopUp(element, i) {
 
                 <div class="mb-40">
                   <span class="bo_task_description">Description</span>
-                         <textarea id="bo_task_descrip}" class="bo_task_descriptionbox" placeholder="Enter a description"
+                         <textarea id="bo_task_description${i}" class="bo_task_descriptionbox" placeholder="Enter a description"
                              onfocus="this.placeholder=''" onblur="this.placeholder='Enter a description'">${element['description']}</textarea>
                 </div>
 
                 <div class="mb-40">
                   <span class="bo_task_date"></span>
-                       <input class="bo_task_datebox" type="date" value="${element['date']}">
+                       <input id="bo_task_due_Date${i}" class="bo_task_datebox" type="date" value="${element['date']}">
                 </div>
 
                 <div class="mb-40">
@@ -164,7 +163,7 @@ function showTodoPopUp(element, i) {
                     <div class="bo_prio_btn">
                         <button id="boPrioUrgent${i}" onclick="BoardChangeToRed(${i})" class="bo_task_prio-urgent"><span id="boWhiteUrgent${i}"
                          class="bo_task_urgent">Urgent</span><img id="boImg-up-white${i}" src="./img/up.png"></button>
-                        <button id="boPrioMedium${i}" onclick="BoardChangeToOi]})" class="bo_task_prio-medium"><span id="boWhiteMedium${i}"
+                        <button id="boPrioMedium${i}" onclick="BoardChangeToOrange(${i})" class="bo_task_prio-medium"><span id="boWhiteMedium${i}"
                             class="bo_task_medium">Medium</span><img id="boImg-middle-white${i}" src="./img/middle.png"></button>
                         <button id="boPrioLow${i}" onclick="BoardChangeToGreen(${i})" class="bo_task_prio-low"><span id="boWhiteLow${i}"
                         class="bo_task_low">Low</span><img id="boImg-down-white${i}" src="./img/down.png"></button>
@@ -266,7 +265,29 @@ function openTodoEdit(i) {
     document.getElementById('boPopUpInfo' + i).classList.add('d-none');
 }
 
+// let tasks = [];
+
+// function changeDataBackend(i) {
+//     let title = document.getElementById(`bo_task_title${i}`);
+//     let description = document.getElementById(`bo_task_description${i}`);
+//     let date = document.getElementById(`bo_task_due_Date${i}`);
+//     // let contacts = document.getElementById(``);
+
+//     //sollte/muss ohne "let" funktionieren, da diese bereits in AddTask.js definiert ist.
+//     task = {
+//         "title": title.value,
+//         "description": description.value,
+//         "contacts": contacts.value,
+//         // "prio": prioStat,?? Priority
+//         "date": date.value,
+//         // "status": "Todo"?? bauche ich glaube ich nicht
+//     };
+
+//     tasks.push(task);
+// }
+
 function closeTodoEdit(i) {
+    // changeDataBackend(i);
     document.getElementById('boEditPopUp' + i).classList.add('d-none');
     document.getElementById('boPopUpInfo' + i).classList.remove('d-none');
 }
@@ -280,22 +301,24 @@ function resetMobileAddTaskBtn(img) {
 }
 
 function BoardPrioColor(i) {
-    // let prioTodo = document.getElementsByClassName(`${element['prio']}`);
     let prioPopUp = document.getElementById('boPrioColor' + i).innerHTML;
     
 
-    if (prioPopUp.includes('Urgent')) {
+    if ( prioPopUp.includes('Urgent')) {
         document.getElementById('boPrioColor' + i).style.background = "#FF3D00";
+        BoardChangeToRed(i);
     } 
-    if (prioPopUp.includes('Medium')) {
+    if ( prioPopUp.includes('Medium')) {
         document.getElementById('boPrioColor' + i).style.background = "#FFA800";
         document.getElementById('boPrioImg' + i).src = './img/arrowMiddleWhite.png';
-       
+        document.getElementById('prioTodo' + i).src = './img/middle.png';
+        BoardChangeToOrange(i);
     }
-    if (prioPopUp.includes('Low')) {
+    if ( prioPopUp.includes('Low')) {
         document.getElementById('boPrioColor' + i).style.background = "#7AE229";
         document.getElementById('boPrioImg' + i).src = './img/arrowDownWhite.png';
-       
+        document.getElementById('prioTodo' + i).src = './img/down.png';
+        BoardChangeToGreen(i);
     }
     prioPopUp = document.getElementById('boPrioColor' + i).style.color = "#FFFFFF";  
 }
