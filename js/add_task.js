@@ -28,10 +28,10 @@ let colors = [
     }
 ];
 
-function addTask() {
+async function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = document.getElementById('design');
+    let category = document.getElementById('categoryContent');
     let categoryDefault = document.getElementById('dropdownArea');
     let contacts = document.getElementById('new_assigned');
     let date = document.getElementById('due_date');
@@ -41,7 +41,7 @@ function addTask() {
     let task = {
         "title": title.value,
         "description": description.value,
-        "category": category.value,
+        "category": category.innerHTML,
         "categoryColor": clickedColor,
         "contacts": contacts.value,
         "prio": prioStat,
@@ -73,12 +73,15 @@ function addTask() {
             <img class="item-img" src="./img/backoffice-img.png">
         </div>
     </div>`;
+    clickedColor = [];
     contacts.value = '';
     date.value = '';
     input.value = '';
-
-    backend.setItem("tasks", JSON.stringify(tasks));
+    urgentButtonDefault();
+    mediumButtonDefault();
+    lowButtonDefault();
     
+    await backend.setItem("tasks", JSON.stringify(tasks));  
 }
 
 // async function loadArrayFromBackend() {
@@ -189,7 +192,33 @@ function new_category() {
     `;
 }
 
-let allColors = ['./img/color-1.png','./img/color-2.png','./img/color-3.png','./img/color-4.png','./img/color-5.png','./img/color-6.png']
+let allColors = [
+    {
+        "img": './img/color-1.png',
+        "bg-color": ' #8AA4FF;'
+    },
+    {
+        "img": './img/color-2.png',
+        "bg-color": ' #FF0000;' 
+    },
+    {
+        "img": './img/color-3.png',
+        "bg-color": '#2AD300;'
+    },
+    {
+        "img": './img/color-4.png',
+        "bg-color": '#FF8A00;'
+    },
+    {
+        "img": './img/color-5.png',
+        "bg-color": '#E200BE;'
+    },
+    {
+        "img": './img/color-6.png',
+        "bg-color": '#0038FF;'
+    }
+];
+let backgroundColor = ['#8AA4FF;',''];
 let clickedColor = [];
 
 function fillInput() {
@@ -201,7 +230,7 @@ function fillInput() {
 }
 
 function pick_color(i) {
-    clickedColor.push(allColors[i]);
+    clickedColor.push(allColors[i]['bg-color']);
     document.getElementById('img-picker').classList.add("d-none");
     let design = document.getElementById('design');  
     document.getElementById('new-category').classList.remove("new_category");
@@ -209,10 +238,10 @@ function pick_color(i) {
     <div onclick="clearCategory()" class="design">
         <div class="add_changeColor">
             <div>
-                <span class="design-picked">${design.value}</span>
+                <span id="categoryContent" class="design-picked">${design.value}</span>
             </div>
             <div>
-                <img class="color add_setColor" src=${allColors[i]}>
+                <img class="color add_setColor" src=${allColors[i]['img']}>
             </div>    
         </div>
         <img class="open-img" src = "./img/open.png">

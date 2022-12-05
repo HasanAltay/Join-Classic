@@ -2,6 +2,10 @@ form {
     width: fit-content;
 }
 
+.add_main_format {
+    width: 100% !important;
+}
+
 .headline {
     font-weight: 700;
     font-size: 61px;
@@ -518,6 +522,8 @@ form {
 .task-btns {
     display: flex;
     justify-content: flex-end;
+    padding-bottom: 32px;
+    margin-top: 32px;
 }
 
 .create-task-btn {
@@ -1039,10 +1045,11 @@ form {
 }
 
 @media (min-width: 711px) and (max-width: 880px) {
-    
+
     .add_main_format {
         padding-left: 265px;
         padding-right: 45px;
+        width: 100% !important;
     }
 
     form {
@@ -1165,11 +1172,6 @@ form {
         height: unset;
     }
 
-    .task-btns {
-        padding-bottom: 32px;
-        margin-top: 32px;
-    }
-
     .create-task {
         font-size: 14px;
         height: unset;
@@ -1183,7 +1185,7 @@ form {
 }
 
 @media (min-width: 601px) and (max-width: 710px) {
-    
+
     .add_main_format {
         padding-left: 265px !important;
         padding-right: 45px;
@@ -1222,7 +1224,7 @@ form {
 
     .title {
         font-size: 18px;
-    }    
+    }
 
     .descriptionbox::placeholder {
         font-size: 14px;
@@ -1305,7 +1307,7 @@ form {
         height: 15px;
         top: 17px;
     }
-    
+
     .urgent {
         font-size: 14px;
         margin-right: unset;
@@ -1330,7 +1332,7 @@ form {
 
     .prio {
         font-size: 18px;
-    }    
+    }
 
     .prio-urgent {
         width: 90px;
@@ -1346,11 +1348,6 @@ form {
 
     .subtasks {
         font-size: 18px;
-    }    
-
-    .task-btns {
-        padding-bottom: 32px;
-        margin-top: 32px;
     }
 
     .create-task {
@@ -1366,7 +1363,7 @@ form {
 }
 
 @media (max-width: 600px) {
-    
+
     .add_main_format {
         padding-left: 32px !important;
         padding-right: 32px !important;
@@ -1405,7 +1402,7 @@ form {
 
     .title {
         font-size: 18px;
-    }    
+    }
 
     .descriptionbox::placeholder {
         font-size: 14px;
@@ -1488,7 +1485,7 @@ form {
         height: 15px;
         top: 17px;
     }
-    
+
     .urgent {
         font-size: 14px;
     }
@@ -1512,7 +1509,7 @@ form {
     .prio {
         font-size: 18px;
     }
-    
+
     .img-prio {
         width: 13px;
     }
@@ -1532,18 +1529,13 @@ form {
     .subtasks {
         font-size: 18px;
     }
-    
+
     .img-addSubtask {
         padding-left: 8px;
     }
 
     .img-cancelSubtask {
         padding-right: 8px;
-    }
-
-    .task-btns {
-        padding-bottom: 32px;
-        margin-top: 32px;
     }
 
     .create-task {
