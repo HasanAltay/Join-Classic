@@ -137,7 +137,7 @@ form {
     color: #000000;
     outline: none;
     font-family: 'Inter';
-    width: 265px;
+    width: calc(100% - 180px);
 }
 
 .categorybox::placeholder {
@@ -195,10 +195,13 @@ form {
     display: flex;
 }
 
+.disable {
+    pointer-events: none;
+}
+
 .add_changeColor {
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 
 .design-picked {
@@ -246,6 +249,7 @@ form {
     justify-content: space-between;
     align-items: center;
     padding: 13px 21px;
+    height: 51px;
 }
 
 .dropdown-child {
@@ -255,6 +259,11 @@ form {
     height: 51px;
     padding: 13px 21px;
     gap: 10px;
+}
+
+.item-img {
+    height: 20px;
+    width: 20px;
 }
 
 .dropdown-assigned {
@@ -680,6 +689,10 @@ form {
         width: 420px;
     }
 
+    .categorybox {
+        width: 125px;
+    }
+
     .assign-selection {
         width: unset;
     }
@@ -719,6 +732,10 @@ form {
         font-size: 16px;
     }
 
+    .dropdown-child {
+        align-items: unset;
+    }
+
     .titlebox::placeholder {
         font-size: 16px;
     }
@@ -738,13 +755,25 @@ form {
 
     .categorybox {
         font-size: 16px;
-        width: 200px;
+        width: 100px;
     }
 
     .categorybox::placeholder {
         font-size: 16px;
     }
 
+    .img-sales {
+        left: 70px;
+        top: 16px;
+    }
+
+    .img-backoffice {
+        top: 16px;
+    }
+
+    .backoffice {
+        width: 90px !important;
+    }
 
     .assignedbox {
         font-size: 16px;
@@ -860,7 +889,7 @@ form {
     .categorybox {
         font-size: 14px;
         height: 17px;
-        width: 174px;
+        width: 100px;
     }
 
     .assignedbox {
@@ -959,7 +988,8 @@ form {
     }
 
     .item-img {
-        width: 12px;
+        height: 15px;
+        width: 15px;
     }
 
     .img-cancelSubtask {
@@ -1023,7 +1053,7 @@ form {
     .img-sales {
         width: 15px;
         height: 15px;
-        top: 17px;
+        top: 18.5px;
         left: 70px;
     }
 
@@ -1032,7 +1062,12 @@ form {
         left: 100px;
         width: 15px;
         height: 15px;
-        top: 17px;
+        top: 18.5px;
+    }
+
+    .color {
+        width: 15px;
+        height: 15px;
     }
 
     .subtask-item {
@@ -1091,6 +1126,7 @@ form {
 
     .categorybox {
         font-size: 14px;
+        width: 100px;
     }
 
     .category-selection {
@@ -1110,6 +1146,16 @@ form {
         width: 15px;
         height: 15px;
         top: 17px;
+    }
+
+    .item-img {
+        height: 15px;
+        width: 15px;
+    }
+
+    .color {
+        width: 15px;
+        height: 15px;
     }
 
     .design-picked {
@@ -1256,6 +1302,7 @@ form {
 
     .categorybox {
         font-size: 14px;
+        width: 100px;
     }
 
     .category-selection {
@@ -1306,6 +1353,16 @@ form {
         width: 15px;
         height: 15px;
         top: 17px;
+    }
+
+    .item-img {
+        height: 15px;
+        width: 15px;
+    }
+
+    .color {
+        width: 15px;
+        height: 15px;
     }
 
     .urgent {
@@ -1434,6 +1491,7 @@ form {
 
     .categorybox {
         font-size: 14px;
+        width: 100px;
     }
 
     .category-selection {
@@ -1469,6 +1527,11 @@ form {
     .dropdown-item {
         font-size: 14px;
         height: unset;
+    }
+
+    .item-img {
+        height: 15px;
+        width: 15px;
     }
 
     .img-sales {
@@ -1562,5 +1625,10 @@ form {
     .create-task-btn {
         gap: 6px;
         margin-left: 16px;
+    }
+
+    .color {
+        width: 15px;
+        height: 15px;
     }
 }

@@ -210,6 +210,8 @@ function showCategoryDefault() {
 
 function new_category() {
     let new_category = document.getElementById('dropdown');
+    new_category.classList.add('height-default');
+    new_category.classList.remove('dropdown');
     new_category.innerHTML = /*html*/`
     <div id="new-category" class="new_category">
         <input id="design" class="categorybox" type="text" placeholder="New category name">
@@ -221,7 +223,7 @@ function new_category() {
     </div>
     `;
     document.getElementById('color-picker').innerHTML = /*html*/`
-    <div class="img-color-picker" id="img-picker">
+    <div class="img-color-picker disable" id="img-picker">
         <img class="color" onclick="pick_color(0)" src="./img/color-1.png">
         <img class="color" onclick="pick_color(1)" src="./img/color-2.png">
         <img class="color" onclick="pick_color(2)" src="./img/color-3.png">
@@ -273,24 +275,22 @@ function fillInput() {
     let input = document.getElementById('design');
     if (input.value == '') {return 0}
     else {
-        pick_color();
+        document.getElementById('img-picker').classList.remove('disable');
     } 
 }
 
 function pick_color(i) {
     clickedColor.push(allColors[i]['bg-color']);
+    document.getElementById('dropdown').classList.remove('height-default');
+    document.getElementById('dropdown').classList.remove('height');
     document.getElementById('img-picker').classList.add("d-none");
     let design = document.getElementById('design');  
     document.getElementById('new-category').classList.remove("new_category");
     document.getElementById('new-category').innerHTML = /*html*/`
     <div onclick="clearCategory()" class="design">
         <div class="add_changeColor">
-            <div>
-                <input id="design" class="categorybox sales design-picked caret-hidden" type="text" value= ${design.value}>
-            </div>
-            <div>
-                <img class="color add_setColor" src=${allColors[i]['img']}>
-            </div>    
+            <input id="design" class="categorybox design-picked caret-hidden" type="text" value= ${design.value}>
+            <img class="color add_setColor" src=${allColors[i]['img']}>
         </div>
         <img class="open-img" src = "./img/open.png">
     </div>
@@ -313,6 +313,7 @@ function pick_color(i) {
 function clearCategory() {
     document.getElementById('new-category').classList.remove("new_category");
     document.getElementById('img-picker').classList.add("d-none");
+    document.getElementById('dropdown').classList.add('dropdown');
     document.getElementById('dropdown').innerHTML = /*html*/`
     <div onclick="dropdownClear()" id="new_category" class="dropdown-container">
         <div class="categorybox">Select task category</div>
@@ -324,11 +325,11 @@ function clearCategory() {
         </div>
         <div onclick="showSales()" class="dropdown-child">
             <span class="dropdown-item">Sales</span>
-            <img src="./img/sales-img.png">
+            <img class="img-sales-clear" src="./img/sales-img.png">
         </div>
         <div onclick="backOffice()" class="dropdown-child">
             <span class="dropdown-item">Backoffice</span>
-            <img src="./img/backoffice-img.png">
+            <img class="img-backoffice-clear" src="./img/backoffice-img.png">
         </div>
     </div>`;
 }
@@ -340,6 +341,7 @@ function dropdownClear() {
 function showSales() {
     clickedColor.push(allColors[6]['bg-color']);
     let showSales = document.getElementById('dropdown');
+    showSales.classList.add('height-default');
     showSales.innerHTML = /*html*/`
     <div onclick="defaultModeCategory()" id="new-category" class="new_category">
         <div>
@@ -366,6 +368,7 @@ function showSales() {
 function backOffice() {
     clickedColor.push(allColors[7]['bg-color']);
     let backOffice = document.getElementById('dropdown');
+    backOffice.classList.add('height-default');
     backOffice.innerHTML = /*html*/`
     <div onclick="defaultModeCategory()" id="new-category" class="new_category">
         <div>
