@@ -268,9 +268,9 @@ function openTodoEdit(i) {
 // let tasks = [];
 
 // function changeDataBackend(i) {
-//     let title = document.getElementById(`bo_task_title${i}`);
-//     let description = document.getElementById(`bo_task_description${i}`);
-//     let date = document.getElementById(`bo_task_due_Date${i}`);
+//     title = document.getElementById(`bo_task_title${i}`);
+//     description = document.getElementById(`bo_task_description${i}`);
+//     date = document.getElementById(`bo_task_due_Date${i}`);
 //     // let contacts = document.getElementById(``);
 
 //     //sollte/muss ohne "let" funktionieren, da diese bereits in AddTask.js definiert ist.
@@ -284,10 +284,11 @@ function openTodoEdit(i) {
 //     };
 
 //     tasks.push(task);
+//     backend.setItem("tasks", JSON.stringify(tasks));
 // }
 
 function closeTodoEdit(i) {
-    // changeDataBackend(i);
+    changeDataBackend(i);
     document.getElementById('boEditPopUp' + i).classList.add('d-none');
     document.getElementById('boPopUpInfo' + i).classList.remove('d-none');
 }
