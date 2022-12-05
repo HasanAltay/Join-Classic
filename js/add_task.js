@@ -37,7 +37,6 @@ async function addTask() {
     let date = document.getElementById('due_date');
     let prioStat = setPrioStat();
     let subtask = document.getElementById('inputSubtask');
-    let subtasks = document.getElementById('subtaskItem');
 
     let task = {
         "title": title.value,
@@ -47,8 +46,7 @@ async function addTask() {
         "contacts": contacts.value,
         "prio": prioStat,
         "date": date.value,
-        "subtask": subtask.value,
-        "subtasks": subtasks.innerHTML,
+        "subtasks": subtasks,
         "status": "Todo"
     };
 
@@ -78,7 +76,7 @@ async function addTask() {
     clickedColor = [];
     contacts.value = '';
     date.value = '';
-    subtasks.innerHTML = '';
+    subtask.value = '';
     urgentButtonDefault();
     mediumButtonDefault();
     lowButtonDefault();
@@ -122,7 +120,7 @@ function showSubtask() {
     else {
         subtasks.push(input.value);
         subtask.innerHTML += /*html*/`
-        <li><input class="checkbox" type="checkbox"><span id="subtaskItem" class="subtask-item">${input.value}</span></li>`;
+        <li><input class="checkbox" type="checkbox"><span class="subtask-item">${input.value}</span></li>`;
     }
     clearInputSubtask();
 }
