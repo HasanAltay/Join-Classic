@@ -31,22 +31,24 @@ let colors = [
 async function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = document.getElementById('categoryContent');
+    let category = document.getElementById('design');
     let categoryDefault = document.getElementById('dropdownArea');
     let contacts = document.getElementById('new_assigned');
     let date = document.getElementById('due_date');
     let prioStat = setPrioStat();
-    let input = document.getElementById('inputSubtask');
+    let subtask = document.getElementById('inputSubtask');
+    let subtasks = document.getElementById('subtaskItem');
 
     let task = {
         "title": title.value,
         "description": description.value,
-        "category": category.innerHTML,
+        "category": category.value,
         "categoryColor": clickedColor,
         "contacts": contacts.value,
         "prio": prioStat,
         "date": date.value,
-        "subtasks": subtasks,
+        "subtask": subtask.value,
+        "subtasks": subtasks.innerHTML,
         "status": "Todo"
     };
 
@@ -76,7 +78,7 @@ async function addTask() {
     clickedColor = [];
     contacts.value = '';
     date.value = '';
-    input.value = '';
+    subtasks.innerHTML = '';
     urgentButtonDefault();
     mediumButtonDefault();
     lowButtonDefault();
@@ -120,7 +122,7 @@ function showSubtask() {
     else {
         subtasks.push(input.value);
         subtask.innerHTML += /*html*/`
-        <li><input class="checkbox" type="checkbox"><span class="subtask-item">${input.value}</span></li>`;
+        <li><input class="checkbox" type="checkbox"><span id="subtaskItem" class="subtask-item">${input.value}</span></li>`;
     }
     clearInputSubtask();
 }
@@ -195,11 +197,11 @@ function new_category() {
 let allColors = [
     {
         "img": './img/color-1.png',
-        "bg-color": ' #8AA4FF;'
+        "bg-color": '#8AA4FF;'
     },
     {
         "img": './img/color-2.png',
-        "bg-color": ' #FF0000;' 
+        "bg-color": '#FF0000;' 
     },
     {
         "img": './img/color-3.png',
@@ -216,9 +218,17 @@ let allColors = [
     {
         "img": './img/color-6.png',
         "bg-color": '#0038FF;'
+    },
+    {
+        "img": './img/sales-img.png',
+        "bg-color": '#FC71FF;' 
+    },
+    {
+        "img": './img/backoffice-img.png',
+        "bg-color": '#1FD7C1;'
     }
 ];
-let backgroundColor = ['#8AA4FF;',''];
+
 let clickedColor = [];
 
 function fillInput() {
@@ -238,7 +248,7 @@ function pick_color(i) {
     <div onclick="clearCategory()" class="design">
         <div class="add_changeColor">
             <div>
-                <span id="categoryContent" class="design-picked">${design.value}</span>
+                <input id="design" class="categorybox sales design-picked caret-hidden" type="text" value= ${design.value}>
             </div>
             <div>
                 <img class="color add_setColor" src=${allColors[i]['img']}>
@@ -290,6 +300,7 @@ function dropdownClear() {
 }
 
 function showSales() {
+    clickedColor.push(allColors[6]['bg-color']);
     let showSales = document.getElementById('dropdown');
     showSales.innerHTML = /*html*/`
     <div onclick="defaultModeCategory()" id="new-category" class="new_category">
@@ -315,6 +326,7 @@ function showSales() {
 }
 
 function backOffice() {
+    clickedColor.push(allColors[7]['bg-color']);
     let backOffice = document.getElementById('dropdown');
     backOffice.innerHTML = /*html*/`
     <div onclick="defaultModeCategory()" id="new-category" class="new_category">
