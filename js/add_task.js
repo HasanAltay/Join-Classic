@@ -37,6 +37,7 @@ async function addTask() {
     let date = document.getElementById('due_date');
     let prioStat = setPrioStat();
     let subtask = document.getElementById('inputSubtask');
+    let subtaskList = document.getElementById('list_subtask');
 
     let task = {
         "title": title.value,
@@ -77,6 +78,7 @@ async function addTask() {
     contacts.value = '';
     date.value = '';
     subtask.value = '';
+    subtaskList.innerHTML = '';
     urgentButtonDefault();
     mediumButtonDefault();
     lowButtonDefault();
@@ -89,6 +91,44 @@ async function addTask() {
 //     await downloadFromServer();
 //     tasks = JSON.parse(backend.getItem('tasks')) || [];
 // }
+
+function clearTask() {
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let categoryDefault = document.getElementById('dropdownArea');
+    let date = document.getElementById('due_date');
+    let subtask = document.getElementById('inputSubtask');
+    let subtaskList = document.getElementById('list_subtask');
+    
+    title.value = '';
+    description.value = '';
+    categoryDefault.innerHTML = /*html*/`
+    <div id="dropdown" class="category-selection">
+        <div onclick="showCategory()" id="new-category"  class="dropdown-container">
+            <div class="categorybox">Select task category</div>
+            <img class="open-img" src="./img/open.png">
+        </div>
+        <div class="dropdown-content" id="content">
+        <div onclick="new_category()" class="dropdown-child">
+            <span class="dropdown-item">New category</span>
+        </div>
+        <div onclick="showSales()" class="dropdown-child">
+            <span class="dropdown-item">Sales</span>
+            <img class="item-img" src="./img/sales-img.png">
+        </div>
+        <div onclick="backOffice()" class="dropdown-child">
+            <span class="dropdown-item">Backoffice</span>
+            <img class="item-img" src="./img/backoffice-img.png">
+        </div>
+    </div>`;
+    clickedColor = [];
+    date.value = '';
+    subtask.value = '';
+    subtaskList.innerHTML = '';
+    urgentButtonDefault();
+    mediumButtonDefault();
+    lowButtonDefault();
+}
 
 function setPrioStat() {
     let prioStat = '';
