@@ -288,7 +288,7 @@ function openTodoEdit(i) {
 // }
 
 function closeTodoEdit(i) {
-    changeDataBackend(i);
+    // changeDataBackend(i);
     document.getElementById('boEditPopUp' + i).classList.add('d-none');
     document.getElementById('boPopUpInfo' + i).classList.remove('d-none');
 }
