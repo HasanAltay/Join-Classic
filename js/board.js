@@ -182,7 +182,6 @@ function moveTo(status) {
 function filterTodos() {
     let search = document.getElementById('searchTodo').value;
     search = search.toLowerCase();
-    console.log(search);
 
     document.getElementById('todo').innerHTML = '';
     document.getElementById('inProgress').innerHTML = '';
@@ -244,34 +243,34 @@ function openTodoEdit(i) {
     document.getElementById('boPopUpInfo' + i).classList.add('d-none');
 }
 
-// function changeDataBackend(i) {
-//     title = document.getElementById(`bo_task_title${i}`);
-//     description = document.getElementById(`bo_task_description${i}`);
-//     date = document.getElementById(`bo_task_due_Date${i}`);
-//     // let contacts = document.getElementById(``);
-//     prioStat = BoardSetPrioStat();
+function changeDataBackend(i) {
+    title = document.getElementById(`bo_task_title${i}`);
+    description = document.getElementById(`bo_task_description${i}`);
+    date = document.getElementById(`bo_task_due_Date${i}`);
+    // let contacts = document.getElementById(``);
+    prioStat = BoardSetPrioStat();
 
    
-//     task = {
-//         "title": title.value,
-//         "description": description.value,
-//         "contacts": contacts.value,
-//         "prio": prioStat,
-//         "date": date.value,
-//     };
+    task = {
+        "title": title.value,
+        "description": description.value,
+        "contacts": contacts.value,
+        "prio": prioStat,
+        "date": date.value,
+    };
 
-//     tasks[i] = task; 
-//     backend.setItem("tasks", JSON.stringify(tasks));
-//     // loadArrayFromBackend();
-// }
+    tasks[i] = task; 
+    backend.setItem("tasks", JSON.stringify(tasks));
+    // loadArrayFromBackend();
+}
 
-// function BoardSetPrioStat() {
-//     prioStat = '';
-//     if (urgentClicked) prioStat = "Urgent";
-//     if (mediumClicked) prioStat = "Medium";
-//     if (lowClicked) prioStat = "Low";
-//     return prioStat;
-// }
+function BoardSetPrioStat() {
+    prioStat = '';
+    if (urgentClicked) prioStat = "Urgent";
+    if (mediumClicked) prioStat = "Medium";
+    if (lowClicked) prioStat = "Low";
+    return prioStat;
+}
 
 function closeTodoEdit(i, event) {
     changeDataBackend(i);
