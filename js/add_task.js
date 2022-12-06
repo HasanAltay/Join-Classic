@@ -24,7 +24,7 @@ let subtasks = [];
 async function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = document.getElementById('design');
+    let category = document.getElementById('categoryContent');
     let categoryDefault = document.getElementById('dropdownArea');
     let contacts = document.getElementById('new_assigned');
     let date = document.getElementById('due_date');
@@ -35,7 +35,7 @@ async function addTask() {
     let task = {
         "title": title.value,
         "description": description.value,
-        "category": category.value,
+        "category": category.innerHTML,
         "categoryColor": clickedColor,
         "contacts": contacts.value,
         "prio": prioStat,
@@ -282,10 +282,10 @@ function pick_color(i) {
     document.getElementById('new-category').innerHTML = /*html*/`
     <div onclick="clearCategory()" class="design">
         <div class="add_changeColor">
-            <input id="design" class="categorybox design-picked caret-hidden" type="text" value= ${design.value}>
-            <div>
-            <img class="color add_setColor" src=${allColors[i]['img']}>
+            <div class="categorybox design-picked caret-hidden">
+                <span id="categoryContent">${design.value}</span>
             </div>
+            <img class="color add_setColor" src=${allColors[i]['img']}>
         </div>
         <img class="open-img" src = "./img/open.png">
     </div>
@@ -339,9 +339,11 @@ function showSales() {
     showSales.classList.add('height-default');
     showSales.innerHTML = /*html*/`
     <div onclick="defaultModeCategory()" id="new-category" class="new_category">
-        <div>
-            <input id="design" class="categorybox sales caret-hidden" type="text" value="Sales">
-            <img class="img-sales" src="./img/sales-img.png">
+        <div class="add_changeColor">
+            <div class="categorybox design-picked caret-hidden">
+               <span id="categoryContent">Sales</span> 
+            </div>
+            <img class="color add_setColor" src=${allColors[6]['img']}>
         </div>
         <img class="open-img" src="./img/open.png">     
    </div>
@@ -366,9 +368,11 @@ function backOffice() {
     backOffice.classList.add('height-default');
     backOffice.innerHTML = /*html*/`
     <div onclick="defaultModeCategory()" id="new-category" class="new_category">
-        <div>
-            <input id="design" class="categorybox backoffice caret-hidden" type="text" value="Backoffice">
-            <img class="img-backoffice" src="./img/backoffice-img.png">
+        <div class="add_changeColor">
+            <div class="categorybox design-picked caret-hidden">
+                <span id="categoryContent">Backoffice</span>
+            </div>
+            <img class="color add_setColor" src=${allColors[7]['img']}>
         </div>
         <img class="open-img" src="./img/open.png">     
    </div>
