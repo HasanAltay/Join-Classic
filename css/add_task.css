@@ -97,6 +97,7 @@ form {
     border-radius: 10px;
     margin-top: 8px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .height {
@@ -137,7 +138,6 @@ form {
     color: #000000;
     outline: none;
     font-family: 'Inter';
-    width: calc(100% - 180px);
 }
 
 .categorybox::placeholder {
@@ -208,6 +208,7 @@ form {
     font-size: 21px;
     line-height: 120%;
     font-family: 'Inter';
+    width: 125px;
 }
 
 .design {
@@ -354,6 +355,7 @@ form {
     color: #000000;
     display: flex;
     align-items: center;
+    white-space: nowrap;
 }
 
 .right {

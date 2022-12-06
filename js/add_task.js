@@ -19,14 +19,7 @@ function inactiveMode(img) {
 }
 
 let tasks = [];
-
 let subtasks = [];
-
-let colors = [
-    {"name": 'blue',
-    "farbcode": 'rgb...'
-    }
-];
 
 async function addTask() {
     let title = document.getElementById('title');
@@ -223,7 +216,7 @@ function new_category() {
     </div>
     `;
     document.getElementById('color-picker').innerHTML = /*html*/`
-    <div class="img-color-picker disable" id="img-picker">
+    <div class="img-color-picker" id="img-picker">
         <img class="color" onclick="pick_color(0)" src="./img/color-1.png">
         <img class="color" onclick="pick_color(1)" src="./img/color-2.png">
         <img class="color" onclick="pick_color(2)" src="./img/color-3.png">
@@ -275,7 +268,7 @@ function fillInput() {
     let input = document.getElementById('design');
     if (input.value == '') {return 0}
     else {
-        document.getElementById('img-picker').classList.remove('disable');
+        alert("Please select a color, before you continue!")
     } 
 }
 
@@ -290,7 +283,9 @@ function pick_color(i) {
     <div onclick="clearCategory()" class="design">
         <div class="add_changeColor">
             <input id="design" class="categorybox design-picked caret-hidden" type="text" value= ${design.value}>
+            <div>
             <img class="color add_setColor" src=${allColors[i]['img']}>
+            </div>
         </div>
         <img class="open-img" src = "./img/open.png">
     </div>
