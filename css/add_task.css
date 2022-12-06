@@ -71,6 +71,7 @@ form {
     background: #FFFFFF;
     margin-top: 8px;
     outline: none;
+    resize: none;
 }
 
 .category {
