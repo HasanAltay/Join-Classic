@@ -200,14 +200,20 @@ function filterTodos() {
     searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
 }
 
-function openAddTask() {
-  document.getElementById('boAddTaskPopUp').classList.remove('d-none');
-  document.getElementById('boAddTaskPopUp').innerHTML = `<div>
-                  <div class="scale_include_down bo_addTask" data-template="./content/add_task.html">
-                  <button>x</button>
-                  </div>
-                </div>`;
-  includeHTML();
+// function openAddTask() {
+   
+//   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
+//   document.getElementById('boAddTaskPopUp').innerHTML = `<div>
+//                   <div class="scale_include_down bo_addTask" data-template="./content/add_task.html">
+//                   <button>x</button>
+//                   </div>
+//                 </div>`;
+//                 BoardChangesAddTask();
+//   includeHTML();
+// }
+
+function BoardChangesAddTask() {
+    document.getElementById('bo_changes_addTask').classList.remove('global_main_format');
 }
 
 // function closeAddTaskPopUp() {
