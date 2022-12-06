@@ -163,7 +163,7 @@ function showTodoPopUp(element, i) {
                 </div>
                  </div>
 
-                 <button onclick="closeTodoEdit(${i})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
+                 <button onclick="closeTodoEdit(${i}, event)" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
         </div>
     </div>`;
 
@@ -200,28 +200,23 @@ function filterTodos() {
     searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
 }
 
-// function openAddTask() {
+async function openAddTask() {
    
-//   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
-//   document.getElementById('boAddTaskPopUp').innerHTML = `<div>
-//                   <div id="boTemplateAddTask" data-template="./content/add_task.html">
-//                   <button>x</button>
-//                   </div>
-//                 </div>`;
-//                 // BoardChangesAddTask(); an der Stelle geht garnicht             
-//   includeHTML();
-//   BoardChangesAddTask();
-  
-// }
-// // class="scale_include_down bo_addTask"
-// function BoardChangesAddTask() {
-//     document.getElementById('bo_changes_addTask').classList.remove('global_main_format');
-//     document.getElementById('bo_changes_addTask').classList.remove('add_main_format');
-//     // document.getElementById('boTemplateAddTask').classList.add('bo_addTask_Temp');test, funktioniert nicht
-//     document.getElementById('bo_changes_addTask').classList.add('bo_addTask_Temp');
+  document.getElementById('boAddTaskPopUp').classList.remove('d-none');
+  document.getElementById('boAddTaskPopUp').innerHTML = `<div>
+                  <div id="boTemplateAddTask" data-template="./content/add_task.html">
+                  <button>x</button>
+                  </div>
+                </div>`;
+                           
+  await includeHTML();
+  BoardChangesAddTask(); 
+}
 
-    
-// }
+function BoardChangesAddTask() {
+    document.getElementById('bo_changes_addTask').classList.remove('global_main_format', 'add_main_format');
+    document.getElementById('bo_changes_addTask').classList.add('bo_addTask_Temp');  
+}
 
 // function closeAddTaskPopUp() {
 //     document.getElementById('boAddTaskPopUp').classList.add('d-none');
@@ -249,37 +244,40 @@ function openTodoEdit(i) {
     document.getElementById('boPopUpInfo' + i).classList.add('d-none');
 }
 
-function changeDataBackend(i) {
-    title = document.getElementById(`bo_task_title${i}`);
-    description = document.getElementById(`bo_task_description${i}`);
-    date = document.getElementById(`bo_task_due_Date${i}`);
-    // let contacts = document.getElementById(``);
+// function changeDataBackend(i) {
+//     title = document.getElementById(`bo_task_title${i}`);
+//     description = document.getElementById(`bo_task_description${i}`);
+//     date = document.getElementById(`bo_task_due_Date${i}`);
+//     // let contacts = document.getElementById(``);
+//     prioStat = BoardSetPrioStat();
 
    
-    task = {
-        "title": title.value,
-        "description": description.value,
-        "contacts": contacts.value,
-        // "prio": prioStat,?? Priority
-        "date": date.value,
-    };
+//     task = {
+//         "title": title.value,
+//         "description": description.value,
+//         "contacts": contacts.value,
+//         "prio": prioStat,
+//         "date": date.value,
+//     };
 
-    tasks[i] = task; 
-    backend.setItem("tasks", JSON.stringify(tasks));
-}
+//     tasks[i] = task; 
+//     backend.setItem("tasks", JSON.stringify(tasks));
+//     // loadArrayFromBackend();
+// }
 
-// function setPrioStat() {
-//     let prioStat = '';
-//     if (urgent_clicked) prioStat = "Urgent";
-//     if (medium_clicked) prioStat = "Medium";
-//     if (low_clicked) prioStat = "Low";
+// function BoardSetPrioStat() {
+//     prioStat = '';
+//     if (urgentClicked) prioStat = "Urgent";
+//     if (mediumClicked) prioStat = "Medium";
+//     if (lowClicked) prioStat = "Low";
 //     return prioStat;
 // }
 
-function closeTodoEdit(i) {
+function closeTodoEdit(i, event) {
     changeDataBackend(i);
     document.getElementById('boEditPopUp' + i).classList.add('d-none');
     document.getElementById('boPopUpInfo' + i).classList.remove('d-none');
+    event.stopPropagation();
 }
 
 function changeMobileAddTaskBtn(img) {
