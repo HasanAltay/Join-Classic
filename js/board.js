@@ -1,35 +1,3 @@
-// let todos = [
-//     {
-//         'id': 0,
-//         'department': 'Design',
-//         'title': 'Website redesign',
-//         'category': 'Todo',
-//         'description': 'Modify the contents of the main website'
-//     },
-//     {
-//         'id': 1,
-//         'department': 'Marketing',
-//         'title': 'Social media Strategy',
-//         'category': 'In progress',
-//         'description': 'Develop an ad campaign for brand positioning'
-//     },
-//     {
-//         'id': 2,
-//         'department': 'Sales',
-//         'title': 'Call potencial clients',
-//         'category': 'Awaiting Feedback',
-//         'description': 'Make the product presentation to the prospective buyers'
-//     },
-//     {
-//         'id': 3,
-//         'department': 'Backoffice',
-//         'title': 'Accounting Invoices',
-//         'category': 'Done',
-//         'description': 'Write open invoices for customer'
-//     }
-// ];
-
-
 let currentDraggedElement;
 let urgentClicked = false;
 let mediumClicked = false;
@@ -143,7 +111,8 @@ function showTodoPopUp(element, i) {
              <div id="boEditPopUp${i}" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="bo_task_title">Title</span>
-                    <input id="bo_task_title${i}" class="bo_task_titlebox" type="text" value="${element['title']}" placeholder="Enter a title" onfocus="this.placeholder=''"
+                    <input id="bo_task_title${i}" class="bo_task_titlebox" type="text" value="${element['title']}" placeholder="Enter a title" 
+                    onfocus="this.placeholder=''"
                     onblur="this.placeholder='Enter a title'">
                 </div>
 
@@ -231,13 +200,15 @@ function filterTodos() {
     searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
 }
 
-// function openAddTask() {
-//   document.getElementById('boAddTaskPopUp').classList.remove('document.getElementById('boAddTaskPopUp').innerHTML = `<div class="bo_addTask">
-//   <button>x</button>
-//   <div class="scale_include_down" data-template="./content/add_task.html"></div>
-//   </div>`;
-//   includeHTML();
-// }
+function openAddTask() {
+  document.getElementById('boAddTaskPopUp').classList.remove('d-none');
+  document.getElementById('boAddTaskPopUp').innerHTML = `<div>
+                  <div class="scale_include_down bo_addTask" data-template="./content/add_task.html">
+                  <button>x</button>
+                  </div>
+                </div>`;
+  includeHTML();
+}
 
 // function closeAddTaskPopUp() {
 //     document.getElementById('boAddTaskPopUp').classList.add('d-none');
@@ -265,30 +236,35 @@ function openTodoEdit(i) {
     document.getElementById('boPopUpInfo' + i).classList.add('d-none');
 }
 
-// let tasks = [];
+function changeDataBackend(i) {
+    title = document.getElementById(`bo_task_title${i}`);
+    description = document.getElementById(`bo_task_description${i}`);
+    date = document.getElementById(`bo_task_due_Date${i}`);
+    // let contacts = document.getElementById(``);
 
-// function changeDataBackend(i) {
-//     title = document.getElementById(`bo_task_title${i}`);
-//     description = document.getElementById(`bo_task_description${i}`);
-//     date = document.getElementById(`bo_task_due_Date${i}`);
-//     // let contacts = document.getElementById(``);
+   
+    task = {
+        "title": title.value,
+        "description": description.value,
+        "contacts": contacts.value,
+        // "prio": prioStat,?? Priority
+        "date": date.value,
+    };
 
-//     //sollte/muss ohne "let" funktionieren, da diese bereits in AddTask.js definiert ist.
-//     task = {
-//         "title": title.value,
-//         "description": description.value,
-//         "contacts": contacts.value,
-//         // "prio": prioStat,?? Priority
-//         "date": date.value,
-//         // "status": "Todo"?? bauche ich glaube ich nicht
-//     };
+    tasks[i] = task; 
+    backend.setItem("tasks", JSON.stringify(tasks));
+}
 
-//     tasks.push(task);
-//     backend.setItem("tasks", JSON.stringify(tasks));
+// function setPrioStat() {
+//     let prioStat = '';
+//     if (urgent_clicked) prioStat = "Urgent";
+//     if (medium_clicked) prioStat = "Medium";
+//     if (low_clicked) prioStat = "Low";
+//     return prioStat;
 // }
 
 function closeTodoEdit(i) {
-    // changeDataBackend(i);
+    changeDataBackend(i);
     document.getElementById('boEditPopUp' + i).classList.add('d-none');
     document.getElementById('boPopUpInfo' + i).classList.remove('d-none');
 }

@@ -13,6 +13,7 @@ async function NavRenderBoard() {
     await includeHTML();
     await loadArrayFromBackend();
     updateHTML();
+    BoardChangesAddTask();
 }
 
 
