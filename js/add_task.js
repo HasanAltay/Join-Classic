@@ -20,6 +20,7 @@ function inactiveMode(img) {
 
 let tasks = [];
 let subtasks = [];
+let teamUp = [];
 
 async function addTask() {
     let title = document.getElementById('title');
@@ -75,8 +76,8 @@ async function addTask() {
     urgentButtonDefault();
     mediumButtonDefault();
     lowButtonDefault();
-    
-    await backend.setItem("tasks", JSON.stringify(tasks));  
+
+    await backend.setItem("tasks", JSON.stringify(tasks));
 }
 
 // async function loadArrayFromBackend() {
@@ -92,7 +93,7 @@ function clearTask() {
     let date = document.getElementById('due_date');
     let subtask = document.getElementById('inputSubtask');
     let subtaskList = document.getElementById('list_subtask');
-    
+
     title.value = '';
     description.value = '';
     categoryDefault.innerHTML = /*html*/`
@@ -129,6 +130,24 @@ function setPrioStat() {
     if (medium_clicked) prioStat = "Medium";
     if (low_clicked) prioStat = "Low";
     return prioStat;
+}
+
+function dataSetting() {
+    let dateInput = document.getElementById('due_date');
+    dateInput.value = formatDate();
+    console.log(formatDate());
+}
+
+function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+}
+
+function formatDate(myDate = new Date()) {
+    return [
+      myDate.getFullYear(),
+      padTo2Digits(myDate.getMonth() + 1),
+      padTo2Digits(myDate.getDate()),
+    ].join('-');
 }
 
 function clear_subtaskInput() {
@@ -234,7 +253,7 @@ let allColors = [
     },
     {
         "img": './img/color-2.png',
-        "bg-color": '#FF0000;' 
+        "bg-color": '#FF0000;'
     },
     {
         "img": './img/color-3.png',
@@ -254,7 +273,7 @@ let allColors = [
     },
     {
         "img": './img/sales-img.png',
-        "bg-color": '#FC71FF;' 
+        "bg-color": '#FC71FF;'
     },
     {
         "img": './img/backoffice-img.png',
@@ -266,10 +285,10 @@ let clickedColor = [];
 
 function fillInput() {
     let input = document.getElementById('design');
-    if (input.value == '') {return 0}
+    if (input.value == '') { return 0 }
     else {
         alert("Please select a color, before you continue!")
-    } 
+    }
 }
 
 function pick_color(i) {
@@ -277,7 +296,7 @@ function pick_color(i) {
     document.getElementById('dropdown').classList.remove('height-default');
     document.getElementById('dropdown').classList.remove('height');
     document.getElementById('img-picker').classList.add("d-none");
-    let design = document.getElementById('design');  
+    let design = document.getElementById('design');
     document.getElementById('new-category').classList.remove("new_category");
     document.getElementById('new-category').innerHTML = /*html*/`
     <div onclick="clearCategory()" class="design">
