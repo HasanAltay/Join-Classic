@@ -203,13 +203,13 @@ form {
 .add_changeColor {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .design-picked {
     font-size: 21px;
     line-height: 120%;
     font-family: 'Inter';
-    width: 125px;
 }
 
 .design {
@@ -219,6 +219,7 @@ form {
     height: 51px;
     padding: 13px 21px;
     cursor: pointer;
+    gap: 10px;
 }
 
 .d-none {
@@ -681,19 +682,25 @@ form {
 
 @media (min-width: 1170px) and (max-width: 1300px) {
     .add_d-flex {
-        width: 840px;
+        width: 850px;
     }
 
     .left {
-        width: 420px;
+        width: 440px;
+        padding-right: 50px;
     }
 
     .right {
-        width: 420px;
+        width: 440px;
+        padding-left: 50px;
     }
 
     .categorybox {
-        width: 125px;
+        width: unset;
+    }
+
+    .category-selection {
+        width: unset;
     }
 
     .assign-selection {
@@ -722,6 +729,21 @@ form {
 }
 
 @media (min-width: 1000px) and (max-width: 1169px) {
+    
+    .add_d-flex {
+        width: 700px;
+    }
+
+    .left {
+        width: 350px;
+        padding-right: 15px;
+    }
+
+    .right {
+        width: 350px;
+        padding-left: 15px;
+    }
+
     .assign-selection {
         width: unset;
     }
@@ -758,11 +780,15 @@ form {
 
     .categorybox {
         font-size: 16px;
-        width: 100px;
+        width: unset;
     }
 
     .categorybox::placeholder {
         font-size: 16px;
+    }
+
+    .category-selection {
+        width: unset;
     }
 
     .img-sales {
@@ -811,15 +837,15 @@ form {
     }
 
     .prio-urgent {
-        width: 90px;
+        width: 100px;
     }
 
     .prio-medium {
-        width: 90px;
+        width: 110px;
     }
 
     .prio-low {
-        width: 90px;
+        width: 100px;
     }
 
     .create-task {
@@ -833,18 +859,6 @@ form {
         height: unset;
     }
 
-    .add_d-flex {
-        width: 680px;
-    }
-
-    .left {
-        width: 340px;
-    }
-
-    .right {
-        width: 340px;
-    }
-
     .img-cancelSubtask {
         padding-right: 8px;
     }
@@ -852,15 +866,22 @@ form {
     .img-addSubtask {
         padding-left: 8px;
     }
+
+    .color {
+        height: 15px;
+        width: 15px;
+    }
 }
 
 @media (min-width: 881px) and (max-width: 999px) {
+
     .assign-selection {
         width: unset;
     }
 
     .category-selection {
         height: unset;
+        width: unset;
     }
 
     .dropdown-container {
@@ -892,7 +913,7 @@ form {
     .categorybox {
         font-size: 14px;
         height: 17px;
-        width: 100px;
+        width: unset;
     }
 
     .assignedbox {
@@ -963,18 +984,18 @@ form {
     }
 
     .add_d-flex {
-        width: 550px;
+        width: 564px;
     }
 
     .left {
-        width: 275px;
-        padding-right: 16px;
+        width: 282px;
+        padding-right: 12px;
 
     }
 
     .right {
-        width: 275px;
-        padding-left: 16px;
+        width: 282px;
+        padding-left: 12px;
     }
 
     .headline {
@@ -1129,7 +1150,7 @@ form {
 
     .categorybox {
         font-size: 14px;
-        width: 100px;
+        width: unset;
     }
 
     .category-selection {
@@ -1305,7 +1326,7 @@ form {
 
     .categorybox {
         font-size: 14px;
-        width: 100px;
+        width: unset;
     }
 
     .category-selection {
@@ -1426,7 +1447,7 @@ form {
 
     .add_main_format {
         padding-left: 32px !important;
-        padding-right: 32px !important;
+        padding-right: 16px !important;
         padding-top: 110px !important;
         width: 100% !important;
     }
@@ -1494,11 +1515,12 @@ form {
 
     .categorybox {
         font-size: 14px;
-        width: 100px;
+        width: unset;
     }
 
     .category-selection {
         height: unset;
+        min-width: 270px;
     }
 
     .design-picked {
