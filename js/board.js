@@ -199,23 +199,23 @@ function filterTodos() {
     searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
 }
 
-async function openAddTask() {
+// async function openAddTask() {
    
-  document.getElementById('boAddTaskPopUp').classList.remove('d-none');
-  document.getElementById('boAddTaskPopUp').innerHTML = `<div>
-                  <div id="boTemplateAddTask" data-template="./content/add_task.html">
-                  <button>x</button>
-                  </div>
-                </div>`;
+//   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
+//   document.getElementById('boAddTaskPopUp').innerHTML = `<div>
+//                   <div id="boTemplateAddTask" data-template="./content/add_task.html">
+//                   <button>x</button>
+//                   </div>
+//                 </div>`;
                            
-  await includeHTML();
-  BoardChangesAddTask(); 
-}
+//   await includeHTML();
+//   BoardChangesAddTask(); 
+// }
 
-function BoardChangesAddTask() {
-    document.getElementById('bo_changes_addTask').classList.remove('global_main_format', 'add_main_format');
-    document.getElementById('bo_changes_addTask').classList.add('bo_addTask_Temp');  
-}
+// function BoardChangesAddTask() {
+//     document.getElementById('bo_changes_addTask').classList.remove('global_main_format', 'add_main_format');
+//     document.getElementById('bo_changes_addTask').classList.add('bo_addTask_Temp');  
+// }
 
 // function closeAddTaskPopUp() {
 //     document.getElementById('boAddTaskPopUp').classList.add('d-none');
@@ -243,40 +243,48 @@ function openTodoEdit(i) {
     document.getElementById('boPopUpInfo' + i).classList.add('d-none');
 }
 
-function changeDataBackend(i) {
-    title = document.getElementById(`bo_task_title${i}`);
-    description = document.getElementById(`bo_task_description${i}`);
-    date = document.getElementById(`bo_task_due_Date${i}`);
-    // let contacts = document.getElementById(``);
-    prioStat = BoardSetPrioStat();
+// function changeDataBackend(i) {
+//     title = document.getElementById(`bo_task_title${i}`);
+//     description = document.getElementById(`bo_task_description${i}`);
+//     date = document.getElementById(`bo_task_due_Date${i}`);
+//     // contacts = document.getElementById(`boNew_assigned${i}`);
+//     // prioStat = BoardSetPrioStat();
+//     // category = document.getElementById('design');
+//     // categoryDefault = document.getElementById('dropdownArea');
+//     // subtask = document.getElementById('inputSubtask');
+//     // subtaskList = document.getElementById('list_subtask');
 
    
-    task = {
-        "title": title.value,
-        "description": description.value,
-        "contacts": contacts.value,
-        "prio": prioStat,
-        "date": date.value,
-    };
+//     task = {
+//         "title": title.value,
+//         "description": description.value,
+//         // "category": category.value,
+//         // "categoryColor": clickedColor,
+//         // "contacts": contacts.value,
+//         // "prio": prioStat,
+//         "date": date.value,
+//         // "subtasks": subtasks,
+//         // "status": "Todo"
+//     };
 
-    tasks[i] = task; 
-    backend.setItem("tasks", JSON.stringify(tasks));
-    // loadArrayFromBackend();
-}
+//     tasks[i] = task; 
+//     backend.setItem("tasks", JSON.stringify(tasks));
+//     loadArrayFromBackend(); //Hier scheint das problem zu sein, mit dem unexpected end of JSON!!
+// }
 
-function BoardSetPrioStat() {
-    prioStat = '';
-    if (urgentClicked) prioStat = "Urgent";
-    if (mediumClicked) prioStat = "Medium";
-    if (lowClicked) prioStat = "Low";
-    return prioStat;
-}
+// function BoardSetPrioStat() {
+//     prioStat = '';
+//     if (urgentClicked) prioStat = "Urgent";
+//     if (mediumClicked) prioStat = "Medium";
+//     if (lowClicked) prioStat = "Low";
+//     return prioStat;
+// }
 
-function closeTodoEdit(i, event) {
+function closeTodoEdit(i) {
     changeDataBackend(i);
     document.getElementById('boEditPopUp' + i).classList.add('d-none');
     document.getElementById('boPopUpInfo' + i).classList.remove('d-none');
-    event.stopPropagation();
+
 }
 
 function changeMobileAddTaskBtn(img) {
