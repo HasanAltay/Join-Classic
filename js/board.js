@@ -62,7 +62,7 @@ function startDragging(id) {
 }
 
 function generateTodoHTML(element, i) {
-    return `<div onclick="openTodoInfo('bo_popUp${i}')" draggable="true" ondragstart="startDragging(${i})" class="bo_todo c-pointer">
+    return `<div onclick="openTodoInfo('${element['id']}')" draggable="true" ondragstart="startDragging(${i})" class="bo_todo c-pointer">
               <div class="bo_todo_infos">
                 <span class="bo_department font16-400">${element['category']}</span>
                 <br>
@@ -249,22 +249,19 @@ function openTodoEdit(i) {
 //     date = document.getElementById(`bo_task_due_Date${i}`);
 //     // contacts = document.getElementById(`boNew_assigned${i}`);
 //     // prioStat = BoardSetPrioStat();
-//     // category = document.getElementById('design');
-//     // categoryDefault = document.getElementById('dropdownArea');
-//     // subtask = document.getElementById('inputSubtask');
-//     // subtaskList = document.getElementById('list_subtask');
 
-   
+   //Die Sachen, die ich nicht verändere werden nach dem Doppelpunkt
+   //mit tasks[i]['x'] angegeben, somit entfällt dann auch Z. 252-255!!!!!!!!
 //     task = {
 //         "title": title.value,
 //         "description": description.value,
-//         // "category": category.value,
-//         // "categoryColor": clickedColor,
+//         // "category": tasks[i]['category'],
+//         // "categoryColor": tasks[i]['categoryColor'],
 //         // "contacts": contacts.value,
 //         // "prio": prioStat,
 //         "date": date.value,
-//         // "subtasks": subtasks,
-//         // "status": "Todo"
+//         // "subtasks": tasks[i]['subtasks'],
+//         // "status": "Todo"????
 //     };
 
 //     tasks[i] = task; 

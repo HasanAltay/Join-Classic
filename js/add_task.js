@@ -42,7 +42,8 @@ async function addTask() {
         "prio": prioStat,
         "date": date.value,
         "subtasks": subtasks,
-        "status": "Todo"
+        "status": "Todo",
+        "id": new Date().getTime()
     };
 
     tasks.push(task);
