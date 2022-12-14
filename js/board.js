@@ -282,6 +282,7 @@ function changeDataBackend(i) {
         "prio": prioStat,
         "date": date.value,
         "subtasks": tasks[i]['subtasks'],
+        "id": new Date().getTime()
         // "status": "Todo"????
     };
 
