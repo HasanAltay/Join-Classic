@@ -20,6 +20,7 @@ function updateHTML() {
     for (let i = 0; i < todo.length; i++) {
         const element = todo[i];
         document.getElementById('todo').innerHTML += generateTodoHTML(element, i);
+        // document.getElementById('bo_popUp').innerHTML += showTodoPopUp(element, i);
         // BoardPrioColor(i);
     }
 
@@ -31,6 +32,7 @@ function updateHTML() {
     for (let i = 0; i < inProgress.length; i++) {
         const element = inProgress[i];
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element, i);
+        // document.getElementById('bo_popUp').innerHTML += showTodoPopUp(element, i);
         // BoardPrioColor(i);
     }
 
@@ -42,6 +44,7 @@ function updateHTML() {
     for (let i = 0; i < awaitingFB.length; i++) {
         const element = awaitingFB[i];
         document.getElementById('awaitingFB').innerHTML += generateTodoHTML(element, i);
+        // document.getElementById('bo_popUp').innerHTML += showTodoPopUp(element, i);
         // BoardPrioColor(i);
     }
 
@@ -53,6 +56,7 @@ function updateHTML() {
     for (let i = 0; i < done.length; i++) {
         const element = done[i];
         document.getElementById('done').innerHTML += generateTodoHTML(element, i);
+        // document.getElementById('bo_popUp').innerHTML += showTodoPopUp(element, i);
         // BoardPrioColor(i);
     }
 }
@@ -80,7 +84,7 @@ function moveTo(status) {
 
 
 function generateTodoHTML(element, i) {
-    return `<div onclick="openTodoInfo('${element['id']}')" draggable="true" ondragstart="startDragging('${element['id']}')" class="bo_todo c-pointer">
+    return `<div onclick="openTodoInfo('${element}')" draggable="true" ondragstart="startDragging('${element['id']}')" class="bo_todo c-pointer">
               <div class="bo_todo_infos">
                 <span class="bo_department font16-400">${element['category']}</span>
                 <br>
@@ -94,16 +98,16 @@ function generateTodoHTML(element, i) {
                     <div class="${element['prio']}"><img id="prioTodo${i}" src="./img/up.png"></div>
                   </div>
                </div>
-               
+               ${showTodoPopUp(element, i)}
             </div>`;
 }
 
 
 function showTodoPopUp(element, i) {
-    return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
+    return `<div id="bo_popUp${element}" class="bo_pop_up d-none">
              <div class="bo_popup_todo_Info">
-                <div id="boPopUpInfo${i}">
-                   <button onclick="closeTodoInfo('bo_popUp${element['id']}', event)" class="bo_cancel_btn c-pointer">
+                <div id="boPopUpInfo${element}">
+                   <button onclick="closeTodoInfo('bo_popUp${element}', event)" class="bo_cancel_btn c-pointer">
                      <img src="./img/cancel.png">
                    </button>
                      <span class="bo_popUp_department">${element['category']}</span>
@@ -119,7 +123,7 @@ function showTodoPopUp(element, i) {
                             
                             <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Assigned to:</span>${element['contacts']}</div>
                                
-                            <button onclick="openTodoEdit(${element['id']})" class="bo_edit_todo c-pointer"
+                            <button onclick="openTodoEdit('${element}')" class="bo_edit_todo c-pointer"
                                  onmouseenter="changeEditBtn('./img/edit-light.png', ${element['id']})"
                                  onmouseleave="resetEditBtn('./img/edit-dark.png', ${element['id']})">
                                   <img id="boEditTodo${element['id']}" src="./img/edit-dark.png">
@@ -127,7 +131,7 @@ function showTodoPopUp(element, i) {
                 </div>
 
                
-             <div id="boEditPopUp${i}" class="bo_edit_task d-none">
+             <div id="boEditPopUp${element}" class="bo_edit_task d-none">
                 <div class="mb-40">
                  <span class="bo_task_title">Title</span>
                     <input id="bo_task_title${i}" class="bo_task_titlebox" type="text" value="${element['title']}" placeholder="Enter a title" 
@@ -215,9 +219,7 @@ async function openAddTask() {
     
   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
   document.getElementById('boAddTaskPopUp').innerHTML = `<div>
-                  <div id="boTemplateAddTask" data-template="./content/add_task.html">
-                  <button>x</button>
-                  </div>
+                  <div data-template="./content/add_task.html"></div>
                 </div>`;
                            
               await includeHTML();
@@ -227,6 +229,9 @@ async function openAddTask() {
 function BoardChangesAddTask() {
     document.getElementById('bo_changes_addTask').classList.remove('global_main_format', 'add_main_format');
     document.getElementById('bo_changes_addTask').classList.add('bo_addTask_Temp');  
+    document.getElementById('bo_changes_addTask').innerHTML += `
+            <img class="addTask_temp_close_btn" id="closeAddTaskBTN" onclick="closeAddTaskPopUp();  updateHTML();" src="./img/cancel.png">
+    `; 
 }
 
 function closeAddTaskPopUp() {
@@ -234,7 +239,7 @@ function closeAddTaskPopUp() {
 }
 
 function openTodoInfo(element) {
-    document.getElementById(`bo_popUp${element['id']}`).classList.remove('d-none');
+    document.getElementById(`bo_popUp${element}`).classList.remove('d-none');
 }
 
 function closeTodoInfo(id, event) {
@@ -242,17 +247,23 @@ function closeTodoInfo(id, event) {
     event.stopPropagation();
 }
 
-function changeEditBtn(img) {
+function changeEditBtn(img, i) {
     document.getElementById(`boEditTodo${i}`).src = img;
 }
 
-function resetEditBtn(img) {
+function resetEditBtn(img, i) {
     document.getElementById(`boEditTodo${i}`).src = img;
 }
 
-function openTodoEdit(i) {
-    document.getElementById(`boEditPopUp${i}`).classList.remove('d-none');
-    document.getElementById(`boPopUpInfo${i}`).classList.add('d-none');
+function openTodoEdit(element) {
+    document.getElementById(`boEditPopUp${element}`).classList.remove('d-none');
+    document.getElementById(`boPopUpInfo${element}`).classList.add('d-none');
+}
+
+function closeTodoEdit(i, element) {
+    changeDataBackend(i);
+    document.getElementById(`boEditPopUp${element}`).classList.add('d-none');
+    document.getElementById(`boPopUpInfo${element}`).classList.remove('d-none');
 }
 
 function changeDataBackend(i) {
@@ -285,13 +296,6 @@ function BoardSetPrioStat() {
     if (mediumClicked) prioStat = "Medium";
     if (lowClicked) prioStat = "Low";
     return prioStat;
-}
-
-function closeTodoEdit(i) {
-    changeDataBackend(i);
-    document.getElementById(`boEditPopUp${i}`).classList.add('d-none');
-    document.getElementById(`boPopUpInfo${i}`).classList.remove('d-none');
-
 }
 
 function changeMobileAddTaskBtn(img) {
