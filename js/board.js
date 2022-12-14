@@ -20,7 +20,7 @@ function updateHTML() {
     for (let i = 0; i < todo.length; i++) {
         const element = todo[i];
         document.getElementById('todo').innerHTML += generateTodoHTML(element, i);
-        BoardPrioColor(i)
+        // BoardPrioColor(i);
     }
 
 
@@ -31,7 +31,7 @@ function updateHTML() {
     for (let i = 0; i < inProgress.length; i++) {
         const element = inProgress[i];
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element, i);
-        BoardPrioColor(i)
+        // BoardPrioColor(i);
     }
 
 
@@ -42,7 +42,7 @@ function updateHTML() {
     for (let i = 0; i < awaitingFB.length; i++) {
         const element = awaitingFB[i];
         document.getElementById('awaitingFB').innerHTML += generateTodoHTML(element, i);
-        BoardPrioColor(i)
+        // BoardPrioColor(i);
     }
 
 
@@ -53,7 +53,7 @@ function updateHTML() {
     for (let i = 0; i < done.length; i++) {
         const element = done[i];
         document.getElementById('done').innerHTML += generateTodoHTML(element, i);
-        BoardPrioColor(i)
+        // BoardPrioColor(i);
     }
 }
 
@@ -61,8 +61,26 @@ function startDragging(id) {
     currentDraggedElement = id;
 }
 
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+
+/**
+ * Function to move the dragged element to the selected area
+ * filter the id which is the timestemp
+ * 
+ * @param {string} status - status changes on drop
+ */
+function moveTo(status) {
+    let draggedElement = tasks.filter(t => t['id'] == currentDraggedElement);
+    draggedElement[0]['status'] = status;
+    updateHTML();
+}
+
+
 function generateTodoHTML(element, i) {
-    return `<div onclick="openTodoInfo('${element['id']}')" draggable="true" ondragstart="startDragging(${i})" class="bo_todo c-pointer">
+    return `<div onclick="openTodoInfo('${element['id']}')" draggable="true" ondragstart="startDragging('${element['id']}')" class="bo_todo c-pointer">
               <div class="bo_todo_infos">
                 <span class="bo_department font16-400">${element['category']}</span>
                 <br>
@@ -76,15 +94,16 @@ function generateTodoHTML(element, i) {
                     <div class="${element['prio']}"><img id="prioTodo${i}" src="./img/up.png"></div>
                   </div>
                </div>
-                ${showTodoPopUp(element, i)}
+               
             </div>`;
 }
 
+
 function showTodoPopUp(element, i) {
-    return `<div id="bo_popUp${i}" class="bo_pop_up d-none">
+    return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
              <div class="bo_popup_todo_Info">
                 <div id="boPopUpInfo${i}">
-                   <button onclick="closeTodoInfo('bo_popUp${i}', event)" class="bo_cancel_btn c-pointer">
+                   <button onclick="closeTodoInfo('bo_popUp${element['id']}', event)" class="bo_cancel_btn c-pointer">
                      <img src="./img/cancel.png">
                    </button>
                      <span class="bo_popUp_department">${element['category']}</span>
@@ -100,10 +119,10 @@ function showTodoPopUp(element, i) {
                             
                             <div class="mt-25 font21-400"><span class="mr-20 bo_font21-700">Assigned to:</span>${element['contacts']}</div>
                                
-                            <button onclick="openTodoEdit(${i})" class="bo_edit_todo c-pointer"
-                                 onmouseenter="changeEditBtn('./img/edit-light.png', ${i})"
-                                 onmouseleave="resetEditBtn('./img/edit-dark.png', ${i})">
-                                  <img id="boEditTodo${i}" src="./img/edit-dark.png">
+                            <button onclick="openTodoEdit(${element['id']})" class="bo_edit_todo c-pointer"
+                                 onmouseenter="changeEditBtn('./img/edit-light.png', ${element['id']})"
+                                 onmouseleave="resetEditBtn('./img/edit-dark.png', ${element['id']})">
+                                  <img id="boEditTodo${element['id']}" src="./img/edit-dark.png">
                                 </button>
                 </div>
 
@@ -170,14 +189,6 @@ function showTodoPopUp(element, i) {
 
 }
 
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function moveTo(status) {
-    tasks[currentDraggedElement]['status'] = status;
-    updateHTML();
-}
 
 function filterTodos() {
     let search = document.getElementById('searchTodo').value;
@@ -199,30 +210,31 @@ function filterTodos() {
     searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
 }
 
-// async function openAddTask() {
-   
-//   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
-//   document.getElementById('boAddTaskPopUp').innerHTML = `<div>
-//                   <div id="boTemplateAddTask" data-template="./content/add_task.html">
-//                   <button>x</button>
-//                   </div>
-//                 </div>`;
+
+async function openAddTask() {
+    
+  document.getElementById('boAddTaskPopUp').classList.remove('d-none');
+  document.getElementById('boAddTaskPopUp').innerHTML = `<div>
+                  <div id="boTemplateAddTask" data-template="./content/add_task.html">
+                  <button>x</button>
+                  </div>
+                </div>`;
                            
-//   await includeHTML();
-//   BoardChangesAddTask(); 
-// }
+              await includeHTML();
+  BoardChangesAddTask(); 
+}
 
-// function BoardChangesAddTask() {
-//     document.getElementById('bo_changes_addTask').classList.remove('global_main_format', 'add_main_format');
-//     document.getElementById('bo_changes_addTask').classList.add('bo_addTask_Temp');  
-// }
+function BoardChangesAddTask() {
+    document.getElementById('bo_changes_addTask').classList.remove('global_main_format', 'add_main_format');
+    document.getElementById('bo_changes_addTask').classList.add('bo_addTask_Temp');  
+}
 
-// function closeAddTaskPopUp() {
-//     document.getElementById('boAddTaskPopUp').classList.add('d-none');
-// }
+function closeAddTaskPopUp() {
+    document.getElementById('boAddTaskPopUp').classList.add('d-none');
+}
 
-function openTodoInfo(id) {
-    document.getElementById(id).classList.remove('d-none');
+function openTodoInfo(element) {
+    document.getElementById(`bo_popUp${element['id']}`).classList.remove('d-none');
 }
 
 function closeTodoInfo(id, event) {
@@ -230,57 +242,55 @@ function closeTodoInfo(id, event) {
     event.stopPropagation();
 }
 
-function changeEditBtn(img, i) {
-    document.getElementById('boEditTodo' + i).src = img;
+function changeEditBtn(img) {
+    document.getElementById(`boEditTodo${i}`).src = img;
 }
 
-function resetEditBtn(img, i) {
-    document.getElementById('boEditTodo' + i).src = img;
+function resetEditBtn(img) {
+    document.getElementById(`boEditTodo${i}`).src = img;
 }
 
 function openTodoEdit(i) {
-    document.getElementById('boEditPopUp' + i).classList.remove('d-none');
-    document.getElementById('boPopUpInfo' + i).classList.add('d-none');
+    document.getElementById(`boEditPopUp${i}`).classList.remove('d-none');
+    document.getElementById(`boPopUpInfo${i}`).classList.add('d-none');
 }
 
-// function changeDataBackend(i) {
-//     title = document.getElementById(`bo_task_title${i}`);
-//     description = document.getElementById(`bo_task_description${i}`);
-//     date = document.getElementById(`bo_task_due_Date${i}`);
-//     // contacts = document.getElementById(`boNew_assigned${i}`);
-//     // prioStat = BoardSetPrioStat();
+function changeDataBackend(i) {
+    title = document.getElementById(`bo_task_title${i}`);
+    description = document.getElementById(`bo_task_description${i}`);
+    date = document.getElementById(`bo_task_due_Date${i}`);
+    contacts = document.getElementById(`boNew_assigned${i}`);
+    prioStat = BoardSetPrioStat();
 
-   //Die Sachen, die ich nicht verändere werden nach dem Doppelpunkt
-   //mit tasks[i]['x'] angegeben, somit entfällt dann auch Z. 252-255!!!!!!!!
-//     task = {
-//         "title": title.value,
-//         "description": description.value,
-//         // "category": tasks[i]['category'],
-//         // "categoryColor": tasks[i]['categoryColor'],
-//         // "contacts": contacts.value,
-//         // "prio": prioStat,
-//         "date": date.value,
-//         // "subtasks": tasks[i]['subtasks'],
-//         // "status": "Todo"????
-//     };
+    task = {
+        "title": title.value,
+        "description": description.value,
+        "category": tasks[i]['category'],
+        "categoryColor": tasks[i]['categoryColor'],
+        "contacts": contacts.value,
+        "prio": prioStat,
+        "date": date.value,
+        "subtasks": tasks[i]['subtasks'],
+        // "status": "Todo"????
+    };
 
-//     tasks[i] = task; 
-//     backend.setItem("tasks", JSON.stringify(tasks));
-//     loadArrayFromBackend(); //Hier scheint das problem zu sein, mit dem unexpected end of JSON!!
-// }
+    tasks[i] = task; 
+    backend.setItem("tasks", JSON.stringify(tasks));
+    loadArrayFromBackend();
+}
 
-// function BoardSetPrioStat() {
-//     prioStat = '';
-//     if (urgentClicked) prioStat = "Urgent";
-//     if (mediumClicked) prioStat = "Medium";
-//     if (lowClicked) prioStat = "Low";
-//     return prioStat;
-// }
+function BoardSetPrioStat() {
+    prioStat = '';
+    if (urgentClicked) prioStat = "Urgent";
+    if (mediumClicked) prioStat = "Medium";
+    if (lowClicked) prioStat = "Low";
+    return prioStat;
+}
 
 function closeTodoEdit(i) {
     changeDataBackend(i);
-    document.getElementById('boEditPopUp' + i).classList.add('d-none');
-    document.getElementById('boPopUpInfo' + i).classList.remove('d-none');
+    document.getElementById(`boEditPopUp${i}`).classList.add('d-none');
+    document.getElementById(`boPopUpInfo${i}`).classList.remove('d-none');
 
 }
 
@@ -293,54 +303,54 @@ function resetMobileAddTaskBtn(img) {
 }
 
 function BoardPrioColor(i) {
-    let prioPopUp = document.getElementById('boPrioColor' + i).innerHTML;
+    let prioPopUp = document.getElementById(`boPrioColor${i}`).innerHTML;
     
 
-    if ( prioPopUp.includes('Urgent')) {
-        document.getElementById('boPrioColor' + i).style.background = "#FF3D00";
+    if (prioPopUp.includes('Urgent')) {
+        document.getElementById(`boPrioColor${i}`).style.background = "#FF3D00";
         BoardChangeToRed(i);
     } 
-    if ( prioPopUp.includes('Medium')) {
-        document.getElementById('boPrioColor' + i).style.background = "#FFA800";
-        document.getElementById('boPrioImg' + i).src = './img/arrowMiddleWhite.png';
-        document.getElementById('prioTodo' + i).src = './img/middle.png';
+    if (prioPopUp.includes('Medium')) {
+        document.getElementById(`boPrioColor${i}`).style.background = "#FFA800";
+        document.getElementById(`boPrioImg${i}`).src = './img/arrowMiddleWhite.png';
+        document.getElementById(`prioTodo${i}`).src = './img/middle.png';
         BoardChangeToOrange(i);
     }
-    if ( prioPopUp.includes('Low')) {
-        document.getElementById('boPrioColor' + i).style.background = "#7AE229";
-        document.getElementById('boPrioImg' + i).src = './img/arrowDownWhite.png';
-        document.getElementById('prioTodo' + i).src = './img/down.png';
+    if (prioPopUp.includes('Low')) {
+        document.getElementById(`boPrioColor${i}`).style.background = "#7AE229";
+        document.getElementById(`boPrioImg${i}`).src = './img/arrowDownWhite.png';
+        document.getElementById(`prioTodo${i}`).src = './img/down.png';
         BoardChangeToGreen(i);
     }
-    prioPopUp = document.getElementById('boPrioColor' + i).style.color = "#FFFFFF";  
+    prioPopUp = document.getElementById(`boPrioColor${i}`).style.color = "#FFFFFF";  
 }
 
 function BoardUrgentButtonDefault(i) {
-    document.getElementById('boPrioUrgent' + i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('boWhiteUrgent' + i).style.color = "#000000";
-    document.getElementById('boImg-up-white' + i).src = "./img/up.png";
+    document.getElementById(`boPrioUrgent${i}`).style.backgroundColor = "#FFFFFF";
+    document.getElementById(`boWhiteUrgent${i}`).style.color = "#000000";
+    document.getElementById(`boImg-up-white${i}`).src = "./img/up.png";
     urgentClicked = false;
 }
 
 function BoardMediumButtonDefault(i) {
-    document.getElementById('boPrioMedium' + i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('boWhiteMedium' + i).style.color = "#000000";
-    document.getElementById('boImg-middle-white' + i).src = "./img/middle.png";
+    document.getElementById(`boPrioMedium${i}`).style.backgroundColor = "#FFFFFF";
+    document.getElementById(`boWhiteMedium${i}`).style.color = "#000000";
+    document.getElementById(`boImg-middle-white${i}`).src = "./img/middle.png";
     mediumClicked = false;
 }
 
 function BoardLowButtonDefault(i) {
-    document.getElementById('boPrioLow' + i).style.backgroundColor = "#FFFFFF";
-    document.getElementById('boWhiteLow' + i).style.color = "#000000";
-    document.getElementById('boImg-down-white' + i).src = "./img/down.png";
+    document.getElementById(`boPrioLow${i}`).style.backgroundColor = "#FFFFFF";
+    document.getElementById(`boWhiteLow${i}`).style.color = "#000000";
+    document.getElementById(`boImg-down-white${i}`).src = "./img/down.png";
     lowClicked = false;
 }
 
 function BoardChangeToRed(i) {
     if (urgentClicked == false) {
-        document.getElementById('boPrioUrgent' + i).style.backgroundColor = "#FF3D00";
-        document.getElementById('boWhiteUrgent' + i).style.color = "#FFFFFF";
-        document.getElementById('boImg-up-white' + i).src = "./img/arrowUpWhite.png";
+        document.getElementById(`boPrioUrgent${i}`).style.backgroundColor = "#FF3D00";
+        document.getElementById(`boWhiteUrgent${i}`).style.color = "#FFFFFF";
+        document.getElementById(`boImg-up-white${i}`).src = "./img/arrowUpWhite.png";
         urgentClicked = true;
     } else {
         BoardUrgentButtonDefault(i);
@@ -351,9 +361,9 @@ function BoardChangeToRed(i) {
 
 function BoardChangeToOrange(i) {
     if (mediumClicked == false) {
-        document.getElementById('boPrioMedium' + i).style.backgroundColor = "#FFA800";
-        document.getElementById('boWhiteMedium' + i).style.color = "#FFFFFF";
-        document.getElementById('boImg-middle-white' + i).src = "./img/arrowMiddleWhite.png";
+        document.getElementById(`boPrioMedium${i}`).style.backgroundColor = "#FFA800";
+        document.getElementById(`boWhiteMedium${i}`).style.color = "#FFFFFF";
+        document.getElementById(`boImg-middle-white${i}`).src = "./img/arrowMiddleWhite.png";
         mediumClicked = true;
     } else {
         BoardMediumButtonDefault(i);
@@ -364,9 +374,9 @@ function BoardChangeToOrange(i) {
 
 function BoardChangeToGreen(i) {
     if (lowClicked == false) {
-        document.getElementById('boPrioLow' + i).style.backgroundColor = "#7AE229";
-        document.getElementById('boWhiteLow' + i).style.color = "#FFFFFF";
-        document.getElementById('boImg-down-white' + i).src = "./img/arrowDownWhite.png";
+        document.getElementById(`boPrioLow${i}`).style.backgroundColor = "#7AE229";
+        document.getElementById(`boWhiteLow${i}`).style.color = "#FFFFFF";
+        document.getElementById(`boImg-down-white${i}`).src = "./img/arrowDownWhite.png";
         lowClicked = true;
     } else {
         BoardLowButtonDefault(i);
@@ -376,10 +386,10 @@ function BoardChangeToGreen(i) {
 }
 
 function BoardShowAssigned(i) {
-    document.getElementById('boDropdownAssigned' + i).classList.add('bo_task_height');
+    document.getElementById(`boDropdownAssigned${i}`).classList.add('bo_task_height');
     if (dropdownClicked == false) {
-        document.getElementById("boContent-assigned" + i).classList.toggle("bo_task_show");
-        document.getElementById("boDropdownAssigned" + i).classList.add("bo_task_dropdown");
+        document.getElementById(`boContent-assigned${i}`).classList.toggle("bo_task_show");
+        document.getElementById(`boDropdownAssigned${i}`).classList.add("bo_task_dropdown");
         dropdownClicked = true;
     } else {
         BoardShowAssignedDefault(i);
@@ -387,14 +397,14 @@ function BoardShowAssigned(i) {
 }
 
 function BoardShowAssignedDefault(i) {
-    document.getElementById("boContent-assigned" + i).classList.toggle("bo_task_show");
-    document.getElementById("boDropdownAssigned" + i).classList.remove("bo_task_dropdown");
+    document.getElementById(`boContent-assigned${i}`).classList.toggle("bo_task_show");
+    document.getElementById(`boDropdownAssigned${i}`).classList.remove("bo_task_dropdown");
     dropdownClicked = false;
 }
 
 function BoardClickyou(event, i) {
     event.stopPropagation();
-    let click = document.getElementById('boAssigned-you' + i);
+    let click = document.getElementById(`boAssigned-you${i}`);
     if (clicked_You == false) {
         click.innerHTML = `
         <span class="bo_dropdown-item">You</span>
@@ -405,14 +415,14 @@ function BoardClickyou(event, i) {
     } else {
         click.innerHTML = `
         <span class="bo_dropdown-item">You</span>
-        <div class="bo_rectangle" id='bo_rectangle${i}'></div>`;
+        <div class="bo_rectangle" id='bo_rectangle${i}'div>`;
         clicked_You = false;
     }
 }
 
 function BoardClickcontact(event, i) {
     event.stopPropagation();
-    let click = document.getElementById('boAssigned-contact' + i);
+    let click = document.getElementById(`boAssigned-contact${i}`);
     if (clicked_Contact == false) {
         click.innerHTML = `
     <span class="bo_dropdown-item">Laura Numey</span>
@@ -421,7 +431,7 @@ function BoardClickcontact(event, i) {
     </div>`;
         clicked_Contact = true;
     } else {
-        click.innerHTML = /*html*/`
+        click.innerHTML = `
         <span class="bo_dropdown-item">Laura Numey</span>
         <div class="bo_rectangle" id='bo_rectangle${i}'></div>`;
         clicked_Contact = false;
@@ -429,14 +439,14 @@ function BoardClickcontact(event, i) {
 }
 
 function BoardClickinvite(i) {
-    let invite = document.getElementById('boDropdownAssigned' + i);
+    let invite = document.getElementById(`boDropdownAssigned${i}`);
     invite.innerHTML = `
     <div id="boContact${i}" class="new_category">
         <input id="boEmail" onclick="BoardSelect_email(i)" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
         <div class="img_new_category">
-            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode()">
+            <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode(i)">
             <img src="./img/vertical.png">
-            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="BoardSelect_email()">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="BoardSelect_email(i)">
         </div>
     </div>
     `;
@@ -444,27 +454,27 @@ function BoardClickinvite(i) {
 
 function BoardSelect_email(i) {
     document.getElementById('boContact').innerHTML = `
-    <input id="boEmail${i}" onclick="BoardSelection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
+    <input id="boEmail${i}" onclick="BoardSelection(i)" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
     <div class="img_new_category">
-        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode()">
+        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="BoardDefaultMode(i)">
         <img src="./img/vertical.png">
-        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="BoardSelection()">
+        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="BoardSelection(i)">
     </div>`;
-    document.getElementById('boEmail' + i).value = "laura@gmail.com";
+    document.getElementById(`boEmail${i}`).value = "laura@gmail.com";
 }
 
 function BoardDefaultMode(i) {
-    document.getElementById('boDropdownAssigned' + i).innerHTML = `
-    <div onclick="BoardShowAssigned(i)" id="boNew_assigned${i}" class="bo_task_dropdown-container">
+    document.getElementById(`boDropdownAssigned${i}`).innerHTML = `
+    <div onclick="BoardShowAssigned(i)" id='boNew_assigned${i}' class="bo_task_dropdown-container">
         <div class="bo_task_assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
     </div>
     <div class="bo_task_dropdown-content" id="boContent-assigned${i}">
-        <div id="boAssigned-you${i}" onclick="BoardClickyou(event, i)" class="bo_dropdown-assigned">
+        <div id='boAssigned-you${i}' onclick="BoardClickyou(event, i)" class="bo_dropdown-assigned">
             <span class="bo_dropdown-item">You</span>
             <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
-        <div id="boAssigned-contact${i}" onclick="BoardClickcontact(event, i)" class="bo_dropdown-assigned">
+        <div id='boAssigned-contact${i}' onclick="BoardClickcontact(event, i)" class="bo_dropdown-assigned">
             <span class="bo_dropdown-item">Laura Numey</span>
             <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
@@ -476,27 +486,27 @@ function BoardDefaultMode(i) {
 }
 
 function BoardSelection(i) {
-    document.getElementById('boDropdownAssigned' + i).classList.remove("bo_task_dropdown");
-    document.getElementById('boDropdownAssigned' + i).classList.remove("bo_task_height");
-    document.getElementById('boDropdownAssigned' + i).classList.add("bo_task_height-default");
-    document.getElementById('boDropdownAssigned' + i).innerHTML = /*html*/`
-    <div onclick="BoardRestartDefault()" id="boNew_assigned${i}" class="bo_task_dropdown-container">
+    document.getElementById(`boDropdownAssigned${i}`).classList.remove("bo_task_dropdown");
+    document.getElementById(`boDropdownAssigned${i}`).classList.remove("bo_task_height");
+    document.getElementById(`boDropdownAssigned${i}`).classList.add("bo_task_height-default");
+    document.getElementById(`boDropdownAssigned${i}`).innerHTML = `
+    <div onclick="BoardRestartDefault(i)" id='boNew_assigned${i}' class="bo_task_dropdown-container">
         <div class="bo_task_assignedbox">Select contacts to assign</div>
         <img src="./img/open.png">
     </div>
-    <div id="boInitials${i}">
+    <div id='boInitials${i}'>
         <img class="bo_task_initials" src="./img/contactSM.png">
         <img class="bo_task_initials" src="./img/contactEV.png">
         <img class="bo_task_initials" src="./img/contactMV.png">
     </div>
-    <div class="bo_task_dropdown-content" id="boContent-assigned${i}">
-        <div id="boAssigned-you${i}" onclick="BoardClickyou(event, i)" class="bo_dropdown-assigned">
+    <div class="bo_task_dropdown-content" id='boContent-assigned${i}'>
+        <div id='boAssigned-you${i}' onclick="BoardClickyou(event, i)" class="bo_dropdown-assigned">
             <span class="bo_dropdown-item">You</span>
             <div class="bo_rectangle" id="bo_rectangle${i}"></div>
         </div>
-        <div id="boAssigned-contact${i}" onclick="BoardClickcontact(event, i)" class="bo_dropdown-assigned">
+        <div id='boAssigned-contact${i}' onclick="BoardClickcontact(event, i)" class="bo_dropdown-assigned">
             <span class="bo_dropdown-item">Laura Numey</span>
-            <div class="bo_rectangle" id="bo_rectangle${i}"></div>
+            <div class="bo_rectangle" id='bo_rectangle${i}'></div>
         </div>
         <div onclick="BoardClickinvite(i)" class="bo_dropdown-assigned">
             <span class="bo_dropdown-item">Invite new contact</span>
@@ -506,7 +516,7 @@ function BoardSelection(i) {
 }
 
 function BoardRestartDefault(i) {
-    document.getElementById('boDropdownAssigned' + i).classList.add("bo_task_dropdown");
-    document.getElementById('boInitials' + i).classList.add("d-none");
-    document.getElementById('boContent-assigned' + i).classList.toggle("bo_task_show");
+    document.getElementById(`boDropdownAssigned${i}`).classList.add("bo_task_dropdown");
+    document.getElementById(`boInitials${i}`).classList.add("d-none");
+    document.getElementById(`boContent-assigned${i}`).classList.toggle("bo_task_show");
 }
