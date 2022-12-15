@@ -214,7 +214,9 @@ function filterTodos() {
     searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
 }
 
-
+/**
+ * Function to render the addTask section into the board section
+ */
 async function openAddTask() {
     
   document.getElementById('boAddTaskPopUp').classList.remove('d-none');
@@ -226,6 +228,9 @@ async function openAddTask() {
   BoardChangesAddTask(); 
 }
 
+/** 
+ * Function to change the css attributes on the rendered addTask section
+ */
 function BoardChangesAddTask() {
     document.getElementById('bo_changes_addTask').classList.remove('global_main_format', 'add_main_format');
     document.getElementById('bo_changes_addTask').classList.add('bo_addTask_Temp');  
@@ -234,38 +239,80 @@ function BoardChangesAddTask() {
     `; 
 }
 
+/**
+ * Function to close the rendered addTask section
+ */
 function closeAddTaskPopUp() {
     document.getElementById('boAddTaskPopUp').classList.add('d-none');
 }
 
+/**
+ * Function to open the information of a todo
+ * 
+ * @param {number} id - the id is the timestemp
+ */
 function openTodoInfo(id) {
     document.getElementById(`bo_popUp${id}`).classList.remove('d-none');
 }
 
+/**
+ * Function to close the information of a todo
+ * 
+ * @param {number} id - the id is the timestemp
+ * @param {string} event - for the stopPropagation, so that the popUp only closes when the "x-btn" is clicked
+ */
 function closeTodoInfo(id, event) {
     document.getElementById(`bo_popUp${id}`).classList.add('d-none');
     event.stopPropagation();
 }
 
+/**
+ * on hover the image will change to a lighter one
+ * 
+ * @param {path} img - image from the light edit button
+ * @param {number} id - the id is the timestemp
+ */
 function changeEditBtn(img, id) {
     document.getElementById(`boEditTodo${id}`).src = img;
 }
 
+/**
+ * on hover the image will change back to the dark one
+ * 
+ * @param {path} img - image from the dark edit button
+ * @param {number} id - the id is the timestemp
+ */
 function resetEditBtn(img, id) {
     document.getElementById(`boEditTodo${id}`).src = img;
 }
 
+/**
+ * Function to open the second popUp to edit the todo
+ * 
+ * @param {number} id - the id is the timestemp
+ */
 function openTodoEdit(id) {
     document.getElementById(`boEditPopUp${id}`).classList.remove('d-none');
     document.getElementById(`boPopUpInfo${id}`).classList.add('d-none');
 }
 
+/**
+ * Function to close the second popUp to edit the todo
+ * and save the changes
+ * 
+ * @param {number} id - the id is the timestemp
+ */
 function closeTodoEdit(id) {
     changeDataBackend(id);
     document.getElementById(`boEditPopUp${id}`).classList.add('d-none');
     document.getElementById(`boPopUpInfo${id}`).classList.remove('d-none');
 }
 
+/**
+ * Function to save the changes on the todos
+ * 
+ * @param {number} i - the timestemp
+ */
 async function changeDataBackend(i) {
     title = document.getElementById(`bo_task_title${i}`);
     description = document.getElementById(`bo_task_description${i}`);
@@ -292,6 +339,11 @@ async function changeDataBackend(i) {
     await loadArrayFromBackend();
 }
 
+/**
+ * Function to check which priority is choosed
+ * 
+ * @returns - returns the status from the currently clicked prio button
+ */
 function BoardSetPrioStat() {
     prioStat = '';
     if (urgentClicked) prioStat = "Urgent";
