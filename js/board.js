@@ -6,7 +6,6 @@ let dropdownClicked = false;
 let clicked_You = false;
 let clicked_Contact = false;
 
-
 async function loadArrayFromBackend() {
     // tasks = getArrayFromBackend('tasks');
      await downloadFromServer();
@@ -21,7 +20,6 @@ function updateHTML() {
     for (let i = 0; i < todo.length; i++) {
         const element = todo[i];
         document.getElementById('todo').innerHTML += generateTodoHTML(element, i);
-        // document.getElementById('bo_popUp').innerHTML += showTodoPopUp(element, i);
         BoardPrioColor(`${element['id']}`);
     }
 
@@ -33,7 +31,6 @@ function updateHTML() {
     for (let i = 0; i < inProgress.length; i++) {
         const element = inProgress[i];
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element, i);
-        // document.getElementById('bo_popUp').innerHTML += showTodoPopUp(element, i);
         BoardPrioColor(`${element['id']}`);
     }
 
@@ -45,7 +42,6 @@ function updateHTML() {
     for (let i = 0; i < awaitingFB.length; i++) {
         const element = awaitingFB[i];
         document.getElementById('awaitingFB').innerHTML += generateTodoHTML(element, i);
-        // document.getElementById('bo_popUp').innerHTML += showTodoPopUp(element, i);
         BoardPrioColor(`${element['id']}`);
     }
 
@@ -57,7 +53,6 @@ function updateHTML() {
     for (let i = 0; i < done.length; i++) {
         const element = done[i];
         document.getElementById('done').innerHTML += generateTodoHTML(element, i);
-        // document.getElementById('bo_popUp').innerHTML += showTodoPopUp(element, i);
         BoardPrioColor(`${element['id']}`);
     }
 }
@@ -83,11 +78,10 @@ function moveTo(status) {
     updateHTML();
 }
 
-
 function generateTodoHTML(element, i) {
     return `<div onclick="openTodoInfo(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="bo_todo c-pointer">
               <div class="bo_todo_infos">
-                <span class="bo_department font16-400">${element['category']}</span>
+                <span style="background: ${element['categoryColor'][0]}" class="bo_department font16-400">${element['category']}</span>
                 <br>
                   <div class="bo_todo_title font16-700">${element['title']}</div>
                    <div>
@@ -98,11 +92,10 @@ function generateTodoHTML(element, i) {
                     <div>${element['contacts']}</div>
                     <div class="${element['prio']}"><img id="prioTodo${element['id']}" src="./img/up.png"></div>
                   </div>
-               </div>
-               ${showTodoPopUp(element, i)}
-            </div>`;
+               </div>     
+            </div>
+            ${showTodoPopUp(element, i)}`;
 }
-
 
 function showTodoPopUp(element, i) {
     return `<div id="bo_popUp${element['id']}" class="bo_pop_up d-none">
@@ -111,7 +104,7 @@ function showTodoPopUp(element, i) {
                    <button onclick="closeTodoInfo(${element['id']}, event)" class="bo_cancel_btn c-pointer">
                      <img src="./img/cancel.png">
                    </button>
-                     <span class="bo_popUp_department">${element['category']}</span>
+                     <span style="background: ${element['categoryColor'][0]}" class="bo_popUp_department">${element['category']}</span>
                      <br>
                      <div class="mt-25 font61-700">${element['title']}</div>
                         <div>
@@ -190,8 +183,6 @@ function showTodoPopUp(element, i) {
                  <button onclick="closeTodoEdit(${element['id']})" class="bo_button_dark ">Ok<img src="./img/check.png"></button>
         </div>
     </div>`;
-
-
 }
 
 
@@ -231,6 +222,7 @@ async function openAddTask() {
 
 /** 
  * Function to change the css attributes on the rendered addTask section
+ * 
  */
 function BoardChangesAddTask() {
     document.getElementById('bo_changes_addTask').classList.remove('global_main_format', 'add_main_format');
@@ -322,6 +314,7 @@ async function changeDataBackend(i) {
     prioStat = BoardSetPrioStat();
 
     let changedTask = tasks.filter(t => t['id'] == i);
+    let idxOfChangedTask = tasks.indexOf(changedTask[0]);
     
     task = {
         "title": title.value,
@@ -333,16 +326,17 @@ async function changeDataBackend(i) {
         "date": date.value,
         "subtasks": changedTask[0]['subtasks'],
         "status": changedTask[0]['status'],
+        "id": changedTask[0]['id']
     };
 
-    
-    changedTask[0] = task; 
-    await backend.setItem("tasks", JSON.stringify(changedTask)); // so werden die Änderungen übernommen, aber das restliche JSON komplett überschrieben
-    await loadArrayFromBackend();//Funktioniert nur bei reload
+
+    tasks[idxOfChangedTask] = task;
+    console.log('tasks', tasks);
+    await backend.setItem("tasks", JSON.stringify(tasks));
+    await loadArrayFromBackend();
+    updateHTML();
 }
-//änderungen nur sichtbar bei reload mit F5
-//await backend.setItem("tasks", JSON.stringify(tasks));
-//so wars ursprünglich, dann werden die Änderungen aber nicht übernommen, tasks, changed task geht nicht, dann kommt ein leeres array
+
 
 /**
  * Function to check which priority is choosed
