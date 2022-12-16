@@ -6,6 +6,7 @@ let dropdownClicked = false;
 let clicked_You = false;
 let clicked_Contact = false;
 
+
 async function loadArrayFromBackend() {
     // tasks = getArrayFromBackend('tasks');
      await downloadFromServer();
@@ -334,10 +335,14 @@ async function changeDataBackend(i) {
         "status": changedTask[0]['status'],
     };
 
+    
     changedTask[0] = task; 
-   await backend.setItem("tasks", JSON.stringify(tasks));
-    await loadArrayFromBackend();
+    await backend.setItem("tasks", JSON.stringify(changedTask)); // so werden die Änderungen übernommen, aber das restliche JSON komplett überschrieben
+    await loadArrayFromBackend();//Funktioniert nur bei reload
 }
+//änderungen nur sichtbar bei reload mit F5
+//await backend.setItem("tasks", JSON.stringify(tasks));
+//so wars ursprünglich, dann werden die Änderungen aber nicht übernommen, tasks, changed task geht nicht, dann kommt ein leeres array
 
 /**
  * Function to check which priority is choosed
