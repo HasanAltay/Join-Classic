@@ -75,28 +75,25 @@
     display: none;
 }
 
-/* .bo_addTask {
-    /* width: 900px; */
-   
-    /* padding-top: 50px;
-    padding-left: 170px; 
-}
-
-.scale_include_down {
-    
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-} */
-
 .bo_addTask_Temp {
     scale: 75%;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
-    padding: 32px;
+    padding: 80px;
+    position: relative;
+}
+
+.addTask_temp_close_btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 32px;
+    height: 32px;
+}
+
+.addTask_temp_close_btn:hover {
+    transform: scale(1.2); 
 }
 
 .bo_search_input::placeholder {
