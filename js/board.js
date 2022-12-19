@@ -9,7 +9,7 @@ let clicked_Contact = false;
 async function loadArrayFromBackend() {
     // tasks = getArrayFromBackend('tasks');
      await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('tasks')) || [];    
+    tasks = await JSON.parse(backend.getItem('tasks')) || [];    
 }
 
 function updateHTML() {
@@ -72,9 +72,10 @@ function allowDrop(ev) {
  * 
  * @param {string} status - status changes on drop
  */
-function moveTo(status) {
+async function moveTo(status) {
     let draggedElement = tasks.filter(t => t['id'] == currentDraggedElement);
     draggedElement[0]['status'] = status;
+    await backend.setItem("tasks", JSON.stringify(tasks));
     updateHTML();
 }
 
@@ -200,10 +201,43 @@ function filterTodos() {
     let searchedInAwaitingFeedback = tasks.filter(t => t.status == "Awaiting Feedback" && t.title.toLowerCase().includes(search))
     let searchedInDone = tasks.filter(t => t.status == "Done" && t.title.toLowerCase().includes(search))
 
-    searchedTodo.forEach(t => document.getElementById('todo').innerHTML += generateTodoHTML(t))
-    searchedInProgress.forEach(t => document.getElementById('inProgress').innerHTML += generateTodoHTML(t))
-    searchedInAwaitingFeedback.forEach(t => document.getElementById('awaitingFB').innerHTML += generateTodoHTML(t))
-    searchedInDone.forEach(t => document.getElementById('done').innerHTML += generateTodoHTML(t))
+    searchedTodo.forEach(t => {
+        document.getElementById('todo').innerHTML += generateTodoHTML(t); 
+        BoardPrioColor(t['id']); 
+        BoardUrgentButtonDefault(t['id']);  
+        BoardMediumButtonDefault(t['id']);
+        BoardLowButtonDefault(t['id']);
+    })
+
+    searchedInProgress.forEach(t => { 
+        document.getElementById('inProgress').innerHTML += generateTodoHTML(t);
+        BoardPrioColor(t['id']); 
+        BoardUrgentButtonDefault(t['id']);  
+        BoardMediumButtonDefault(t['id']);
+        BoardLowButtonDefault(t['id']);
+    })
+
+    searchedInAwaitingFeedback.forEach(t => {
+        document.getElementById('awaitingFB').innerHTML += generateTodoHTML(t);
+        BoardPrioColor(t['id']); 
+        BoardUrgentButtonDefault(t['id']);  
+        BoardMediumButtonDefault(t['id']);
+        BoardLowButtonDefault(t['id']);
+    })
+
+    searchedInDone.forEach(t => {
+        document.getElementById('done').innerHTML += generateTodoHTML(t);
+        BoardPrioColor(t['id']); 
+        BoardUrgentButtonDefault(t['id']);  
+        BoardMediumButtonDefault(t['id']);
+        BoardLowButtonDefault(t['id']);
+    })
+
+    
+    
+   
+   
+   
 }
 
 /**
@@ -331,7 +365,6 @@ async function changeDataBackend(i) {
 
 
     tasks[idxOfChangedTask] = task;
-    console.log('tasks', tasks);
     await backend.setItem("tasks", JSON.stringify(tasks));
     await loadArrayFromBackend();
     updateHTML();
