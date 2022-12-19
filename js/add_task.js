@@ -132,23 +132,23 @@ function setPrioStat() {
     return prioStat;
 }
 
-function dataSetting() {
-    let dateInput = document.getElementById('due_date');
-    dateInput.value = formatDate();
-    console.log(formatDate());
-}
+// function dataSetting() {
+//     let dateInput = document.getElementById('due_date');
+//     dateInput.value = formatDate();
+//     console.log(formatDate());
+// }
 
-function padTo2Digits(num) {
-    return num.toString().padStart(2, '0');
-}
+// function padTo2Digits(num) {
+//     return num.toString().padStart(2, '0');
+// }
 
-function formatDate(myDate = new Date()) {
-    return [
-      myDate.getFullYear(),
-      padTo2Digits(myDate.getMonth() + 1),
-      padTo2Digits(myDate.getDate()),
-    ].join('-');
-}
+// function formatDate(myDate = new Date()) {
+//     return [
+//       myDate.getFullYear(),
+//       padTo2Digits(myDate.getMonth() + 1),
+//       padTo2Digits(myDate.getDate()),
+//     ].join('-');
+// }
 
 function clear_subtaskInput() {
     let typeSubtask = document.getElementById('img-replace');
@@ -226,7 +226,7 @@ function new_category() {
     new_category.classList.remove('dropdown');
     new_category.innerHTML = /*html*/`
     <div id="new-category" class="new_category">
-        <input id="design" class="categorybox" type="text" placeholder="New category name">
+        <input id="design" class="categorybox" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
         <div class="img_new_category">
             <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="new_category()">
             <img src="./img/vertical.png">
@@ -499,25 +499,14 @@ function clickinvite() {
     let invite = document.getElementById('dropdownAssigned');
     invite.innerHTML = /*html*/`
     <div id="contact" class="new_category">
-        <input id="email" onclick="select_email()" class="categorybox caret-hidden" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
+        <input id="email" class="categorybox" type="text" placeholder="Contact email" onfocus="this.placeholder=''" onblur="this.placeholder='Contact email'">
         <div class="img_new_category">
             <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="defaultMode()">
             <img src="./img/vertical.png">
-            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="select_email()">
+            <img class="img-addSubtask" src='./img/addSubtask.png' onclick="selection()">
         </div>
     </div>
     `;
-}
-
-function select_email() {
-    document.getElementById('contact').innerHTML = /*html*/`
-    <input id="email" onclick="selection()" class="categorybox caret-hidden" type="text" placeholder="New category name" onfocus="this.placeholder=''" onblur="this.placeholder='New category name'">
-    <div class="img_new_category">
-        <img class="img-cancelSubtask" src='./img/subtask-cancel.png' onclick="defaultMode()">
-        <img src="./img/vertical.png">
-        <img class="img-addSubtask" src='./img/addSubtask.png' onclick="selection()">
-    </div>`;
-    document.getElementById('email').value = "laura@gmail.com";
 }
 
 function defaultMode() {
@@ -571,6 +560,12 @@ function selection() {
             <img class="img-invite" src="./img/invite-sign.png">
         </div>
     </div>`;
+    document.getElementById('initials').innerHTML += allColors.filter(initials);
+    console.log(allColors.filter(initials));
+}
+
+function initials() {
+   return allColors[0]['img'];
 }
 
 function restartDefault() {

@@ -154,7 +154,6 @@ form {
     align-items: center;
     height: 51px;
     padding: 13px 21px;
-    cursor: pointer;
     font-family: 'Inter';
 }
 
@@ -253,6 +252,7 @@ form {
     align-items: center;
     padding: 13px 21px;
     height: 51px;
+    cursor: pointer;
 }
 
 .dropdown-child {
@@ -347,7 +347,6 @@ form {
     background: #FFFFFF;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
-    cursor: pointer;
 }
 
 .assignedbox {
@@ -761,7 +760,15 @@ form {
         align-items: unset;
     }
 
+    .titlebox {
+        font-size: 16px;
+    }
+
     .titlebox::placeholder {
+        font-size: 16px;
+    }
+
+    .descriptionbox {
         font-size: 16px;
     }
 
@@ -894,15 +901,19 @@ form {
         justify-content: unset;
     }
 
+    .titlebox {
+        font-size: 14px;
+    }
+
     .titlebox::placeholder {
         font-size: 14px;
     }
 
-    .descriptionbox::placeholder {
+    .descriptionbox {
         font-size: 14px;
     }
 
-    .subtasks-input::placeholder {
+    .descriptionbox::placeholder {
         font-size: 14px;
     }
 
@@ -1132,7 +1143,15 @@ form {
         font-size: 48px;
     }
 
+    .titlebox {
+        font-size: 14px;
+    }
+
     .titlebox::placeholder {
+        font-size: 14px;
+    }
+
+    .descriptionbox {
         font-size: 14px;
     }
 
@@ -1289,7 +1308,7 @@ form {
     }
 
     .titlebox {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .title {
@@ -1301,7 +1320,7 @@ form {
     }
 
     .descriptionbox {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .description {
@@ -1473,12 +1492,12 @@ form {
         font-size: 44px;
     }
 
-    .titlebox::placeholder {
+    .titlebox {
         font-size: 14px;
     }
 
-    .titlebox {
-        font-size: 18px;
+    .titlebox::placeholder {
+        font-size: 14px;
     }
 
     .title {
@@ -1490,7 +1509,7 @@ form {
     }
 
     .descriptionbox {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .description {
