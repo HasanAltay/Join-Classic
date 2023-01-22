@@ -175,6 +175,10 @@
     margin-top: 25px;
 }
 
+.mr-var {
+    margin-right: 100px;
+}
+
 .button_dark {
     display: flex;
     justify-content: center;
