@@ -1,0 +1,22 @@
+@import '../scss/add_task';
+@import '../scss/board';
+@import '../scss/colors';
+@import '../scss/contacts';
+@import '../scss/globals';
+@import '../scss/infos';
+@import '../scss/login';
+@import '../scss/nav_left';
+@import '../scss/summary';
+@import '../scss/top_bar';
+@import '../scss/fonts';
+
+body {
+  margin: 0;
+  scroll-behavior: smooth;
+  font-family: 'Inter';
+}
+
+/* .main {
+  display: flex;
+  width: 100vw;
+} */

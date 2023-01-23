@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" class="notranslate" translate="no">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge notranslate">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="notranslate">
-    <meta name="googlebots" content="notranslate">
-    <title>Kanban Project Management Tool</title>
-    <link rel="icon" href="./img/logo.png">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./css/nav_left.css">
-    <link rel="stylesheet" href="./css/top_bar.css">
-    <link rel="stylesheet" href="./css/summary.css">
-    <link rel="stylesheet" href="./css/board.css">
-    <link rel="stylesheet" href="./css/contacts.css">
-    <link rel="stylesheet" href="./css/add_task.css">
-    <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/colors.css">
-    <link rel="stylesheet" href="./css/infos.css">
-    <script src="./backend/mini_backend.js"></script>
-    <script src="./js/includeHTML.js"></script>
-    <script src="./js/summary.js"></script>
-    <script src="./js/nav_left.js"></script>
-    <script src="./js/user.js"></script>
-    <script src="./js/login.js"></script>
-    <script src="./js/add_task.js"></script>
-    <script src="./js/board.js"></script>
-    <script src="./js/contacts.js"></script>
-    <script src="./js/top_bar.js"></script>
-    <script src="./js/colors.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
-</head>
-<body onload="includeHTML()">
-    <div></div>
-    <div class="main">
-        <div data-template="./content/nav_left.html" style="z-index: 12;"></div>
-        <div data-template="./content/top_bar.html"></div>
-        <div id="includeHTML">
-            <div data-template="./content/summary.html" onclick="closeLogout(); closeLogoutMobile();"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge notranslate">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="notranslate">
+        <meta name="googlebots" content="notranslate">
+        <title>Kanban Project Management Tool</title>
+        <link rel="icon" href="./img/logo.png">
+        <link rel="stylesheet" href="./css/main.css">
+        <script src="./backend/mini_backend.js"></script>
+        <script src="./js/add_task.js"></script>
+        <script src="./js/animations.js"></script>
+        <script src="./js/board.js"></script>
+        <script src="./js/colors.js"></script>
+        <script src="./js/contacts.js"></script>
+        <script src="./js/help.js"></script>
+        <script src="./js/includeHTML.js"></script>
+        <script src="./js/login.js"></script>
+        <script src="./js/nav_left.js"></script>
+        <script src="./js/summary.js"></script>
+        <script src="./js/top_bar.js"></script>
+        <script src="./js/user.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    </head>
+    <body onload="includeHTML()">
+        <div></div>
+        <div class="main">
+            <div data-template="./content/nav_left.html" style="z-index: 12;"></div>
+            <div data-template="./content/top_bar.html"></div>
+            <div id="includeHTML">
+                <div data-template="./content/summary.html"
+                    onclick="closeLogout(); closeLogoutMobile();"></div>
+            </div>
+            <div data-template="./content/nav_mobile.html"></div>
         </div>
-        <div data-template="./content/nav_mobile.html"></div>
-    </div>
-</body>
+    </body>
 </html>

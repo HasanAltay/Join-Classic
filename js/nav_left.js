@@ -76,6 +76,7 @@ function NavClick(x) {
             contacts.className = "nav_btn";
             privacy.className = "nav_btn";
             imprint.className = "nav_btn";
+            NavClickMobile(0);
     }
     else if (x == 1) {
         summary.className = "nav_btn_picked";
@@ -84,6 +85,7 @@ function NavClick(x) {
             contacts.className = "nav_btn";
             privacy.className = "nav_btn";
             imprint.className = "nav_btn";
+            // NavClickMobile(1);
     }
     else if (x == 2) {
             summary.className = "nav_btn";
@@ -128,38 +130,38 @@ function NavClick(x) {
 }
 
 
-function NavClickMobile(x) {
+function NavClickMobile(mx) {
     let summary = document.getElementById('nav_summary_mobile');
     let board = document.getElementById('nav_board_mobile');
     let add_task = document.getElementById('nav_add_task_mobile');
     let contacts = document.getElementById('nav_contacts_mobile');
 
-    if (x == 0) {
+    if (mx == 0) {
             summary.className = "nav_btns_mobile";
             board.className = "nav_btns_mobile";
             add_task.className = "nav_btns_mobile";
             contacts.className = "nav_btns_mobile";
     }
-    else if (x == 1) {
+    else if (mx == 1) {
         summary.className = "nav_btns_mobile_picked";
             board.className = "nav_btns_mobile";
             add_task.className = "nav_btns_mobile";
             contacts.className = "nav_btns_mobile";
     }
-    else if (x == 2) {
+    else if (mx == 2) {
             summary.className = "nav_btns_mobile";
         board.className = "nav_btns_mobile_picked";
             add_task.className = "nav_btns_mobile";
             contacts.className = "nav_btns_mobile";
     }
-    else if (x == 3) {
+    else if (mx == 3) {
             summary.className = "nav_btns_mobile";
             board.className = "nav_btns_mobile";
         add_task.className = "nav_btns_mobile_picked";
             contacts.className = "nav_btns_mobile";
 
     }
-    else if (x == 4) {
+    else if (mx == 4) {
             summary.className = "nav_btns_mobile";
             board.className = "nav_btns_mobile";
             add_task.className = "nav_btns_mobile";
