@@ -1,7 +1,7 @@
 function animations() {
-  pixelAnimation();
+
   logoAnimation();
-  backgroundAnimation();
+
 }
 
 
