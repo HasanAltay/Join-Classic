@@ -9,41 +9,50 @@
 	flex-direction: row;
 	height: 89px;
 	min-width: 100vw;
-	background-color: #FFFFFF;
+	background-color: #2F3449;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 	z-index: 8;
 	-moz-user-select: none;
 	-khtml-user-select: none;
 	user-select: none;
+	color: white;
+
 	span {
 		display: flex;
-		font-size: 21px;
-		font-weight: 400;
+		font-size: 19px;
+		font-weight: 200;
 		padding: 20px 0px 20px 300px;
 		white-space: nowrap;
 	}
 }
+
 .nav_top_bar_right {
 	display: flex;
 	align-items: center;
 	padding-right: 30px;
 }
+
 .nav_top_bar_icon {
 	padding-right: 25px;
 	padding-left: 25px;
 	cursor: pointer;
+	filter: brightness(150%);
+
 	&:hover {
-		filter: invert(1);
+		filter: brightness(80%);
 	}
+
 	&:active {
-		transform: scale(105%);
+		transform: scale(0.9);
 	}
 }
+
 .nav_top_bar_profile {
 	height: 42px;
-	border: solid 1px #FFFFFF;
+	border: solid 3px #FFFFFF;
 	border-radius: 100%;
 }
+
 .nav_top_bar_profile_border {
 	display: flex;
 	align-items: center;
@@ -51,10 +60,12 @@
 	border: solid 3px #2A3647;
 	border-radius: 100%;
 	cursor: pointer;
+
 	&:hover {
 		border: solid 3px #67A3E8;
 	}
 }
+
 .nav_top_bar_profile_border_mobile {
 	display: none;
 	align-items: center;
@@ -65,6 +76,7 @@
 	width: 37px;
 	cursor: pointer;
 }
+
 .nav_logout {
 	display: none;
 	font-size: 16px;
@@ -81,11 +93,13 @@
 	color: #CDCDCD;
 	cursor: pointer;
 	text-decoration: none;
+
 	&:hover {
 		color: white;
 		background-color: #29ABE2;
 	}
 }
+
 .nav_logout_mobile {
 	display: none;
 	font-size: 16px;
@@ -98,6 +112,7 @@
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 	border-radius: 20px 0px 20px 20px;
 	cursor: pointer;
+
 	a {
 		color: #CDCDCD;
 		text-decoration: none;
@@ -106,43 +121,53 @@
 		padding-right: 25px;
 		padding-left: 25px;
 		border-radius: 20px 0px 20px 20px;
+
 		&:hover {
 			color: white;
 			background-color: #29ABE2;
 		}
+
 		&:active {
 			color: white;
 		}
 	}
 }
-.mobile_logo_hidden {
-	display: none;
-	width: 32px;
-	margin-left: 25px;
+
+.nav_top_bar_logo {
+	display: flex;
+	width: 40px;
+	margin-left: 40px;
 	cursor: pointer;
 }
+
 @media (max-width: 600px) {
 	.nav_top_bar {
 		span {
 			display: none;
 		}
+
 		justify-content: space-between;
 		height: 79px;
 	}
+
 	.nav_top_bar_icon {
 		display: none;
 	}
+
 	.nav_top_bar_profile_border {
 		display: none;
 	}
+
 	.nav_top_bar_profile_border_mobile {
 		display: block;
 	}
+
 	.nav_top_bar_profile {
 		height: 33px;
 		border: solid 1px #FFFFFF;
 		border-radius: 100%;
 	}
+
 	.mobile_logo_hidden {
 		display: block;
 	}

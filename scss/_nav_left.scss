@@ -4,23 +4,20 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #2a3647;
-  width: 232px;
+  background-color: transparent;
+  width: 180px;
+  margin-left: 20px;
   height: 100vh;
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
-  z-index: 12;
+  z-index: 8;
 }
-.nav_logo {
-  width: 100px;
-  margin-top: 66px;
-  cursor: pointer;
-}
+
 .nav_btn {
   display: flex;
   float: right;
-  color: #cdcdcd;
+  color: #091931;
   cursor: pointer;
   width: 100%;
   align-items: center;
@@ -31,6 +28,8 @@
 .nav_btn:hover {
   background-color: rgba(104, 164, 232, 0.25);
   transition: all 125ms ease-in-out;
+  border-radius: 10px;
+  color: #091931;
 }
 .nav_btn a {
   width: 80px;
@@ -43,7 +42,8 @@
   align-items: center;
   justify-content: center;
   height: 46px;
-  background-color: #091931;
+  background-color: #2F3449;
+  border-radius: 10px;
   color: white;
   filter: brightness(105%);
   transition: all 125ms ease-in-out;
@@ -57,7 +57,7 @@
   justify-content: left;
   margin-right: 20px;
   height: 20px;
-  filter: brightness(105%);
+  filter: brightness(100%);
 }
 .nav_btn img {
   display: flex;
@@ -65,7 +65,7 @@
   justify-content: left;
   margin-right: 20px;
   height: 20px;
-  filter: brightness(80%);
+  filter: brightness(40%);
 }
 .nav_menu_box {
   display: flex;
@@ -73,6 +73,7 @@
   justify-content: space-between;
   width: 100%;
   min-height: 220px;
+  margin-top: 175px;
 }
 .nav_menu_box_info {
   display: flex;

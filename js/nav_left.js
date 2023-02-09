@@ -11,7 +11,6 @@ async function NavRenderBoard() {
     <div data-template="./content/board.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
-    await loadArrayFromBackend();
     updateHTML();
 }
 
@@ -29,7 +28,6 @@ async function NavRenderContacts() {
     <div data-template="./content/contacts.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
-    await initContacts();
 }
 
 
