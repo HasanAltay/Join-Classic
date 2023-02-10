@@ -6,30 +6,25 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	flex-direction: row;
+	// flex-direction: row;
 	height: 89px;
 	min-width: 100vw;
 	background-color: #2F3449;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 	z-index: 8;
-	-moz-user-select: none;
-	-khtml-user-select: none;
-	user-select: none;
 	color: white;
 
 	span {
 		display: flex;
 		font-size: 19px;
 		font-weight: 200;
-		padding: 20px 0px 20px 300px;
-		white-space: nowrap;
 	}
 }
 
 .nav_top_bar_right {
 	display: flex;
 	align-items: center;
-	padding-right: 30px;
+	padding-right: 20px;
 }
 
 .nav_top_bar_icon {
@@ -72,8 +67,8 @@
 	justify-content: center;
 	border-radius: 100%;
 	border: solid 2px #2A3647;
-	height: 37px;
-	width: 37px;
+	height: 40px;
+	width: 40px;
 	cursor: pointer;
 }
 
@@ -136,7 +131,7 @@
 .nav_top_bar_logo {
 	display: flex;
 	width: 40px;
-	margin-left: 40px;
+	margin-left: 30px;
 	cursor: pointer;
 }
 
@@ -159,16 +154,17 @@
 	}
 
 	.nav_top_bar_profile_border_mobile {
-		display: block;
+		display: flex;
 	}
 
 	.nav_top_bar_profile {
-		height: 33px;
-		border: solid 1px #FFFFFF;
+		height: 40px;
+		border: solid 2px #FFFFFF;
 		border-radius: 100%;
 	}
 
-	.mobile_logo_hidden {
-		display: block;
+	.nav_top_bar_logo {
+		margin-left: 20px;
+		width: 30px;
 	}
 }

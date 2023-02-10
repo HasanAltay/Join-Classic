@@ -1,7 +1,6 @@
 .board_main {
   background-color: rgba(0, 255, 255, 0.404);
   height: 800px;
-  width: 100vw;
 }
 
 .board_search_bar {
@@ -9,20 +8,66 @@
   width: 500px;
   justify-content: space-between;
   max-height: 55px;
-
+  position: relative;
   input {
     border-radius: 10px;
     border: 1px solid rgb(204, 204, 204);
     height: 51px;
     width: 251px;
-
-  &::placeholder {
-    text-indent: 20px;
+    padding: 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
     font-size: 16px;
-    font-weight: 100;
-    color: rgb(204, 204, 204);
+    padding-right: 50px;
+
+    &::placeholder {
+      color: rgb(204, 204, 204);
+      width: 100px;
+    }
+    &:focus-visible {
+      outline: 1px solid #29ABE2;
+    }
   }
+
+  .search_img {
+    position: absolute;
+    top: 10px;
+    left: 200px;
   }
+
+  .button_dark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    background-color: #2A3647;
+    border-radius: 8px;
+    border: none;
+    height: 50px;
+    padding: 4px 40px;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+    white-space: nowrap;
+    margin-left: 20px;
+  
+    &:hover {
+      background-color: #29ABE2;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      transition: all 100ms ease-in-out;
+    }
+  
+    &:active {
+      background-color: #091931;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+  
 
 
 }
+
+
