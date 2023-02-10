@@ -1,0 +1,28 @@
+.board_main {
+  background-color: rgba(0, 255, 255, 0.404);
+  height: 800px;
+  width: 100vw;
+}
+
+.board_search_bar {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  max-height: 55px;
+
+  input {
+    border-radius: 10px;
+    border: 1px solid rgb(204, 204, 204);
+    height: 51px;
+    width: 251px;
+
+  &::placeholder {
+    text-indent: 20px;
+    font-size: 16px;
+    font-weight: 100;
+    color: rgb(204, 204, 204);
+  }
+  }
+
+
+}
