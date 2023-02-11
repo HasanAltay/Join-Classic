@@ -220,6 +220,7 @@
 	cursor: pointer;
 	transition: all 100ms ease-in-out;
 	white-space: nowrap;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 
 	&:hover {
 		background-color: #29ABE2;
@@ -249,6 +250,7 @@
 	cursor: pointer;
 	transition: all 100ms ease-in-out;
 	white-space: nowrap;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 
 	&:hover {
 		border: 2px solid #29ABE2;
@@ -271,9 +273,11 @@
 @media (max-width: 600px) {
 	.global_main_format {
 		padding-left: unset;
-		padding-top: unset;
+		padding-top: 80px;
 		padding-right: unset;
 		padding-bottom: unset;
+		overflow: hidden;
+		height: calc(100vh - 80px);
 	}
 
 	.font61-700 {

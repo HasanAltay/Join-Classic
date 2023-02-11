@@ -1,0 +1,32 @@
+[
+	{ 
+    "name": "Max",
+    "surname": "Mustermann",
+	  "phone": "069 000 xxx",
+	  "mail": "max@mustermann.de"
+	},
+	{ 
+    "name": "Sabine",
+    "surname": "Mustermann",
+	  "phone": "069 100 xxx",
+	  "mail": "sabine@mustermann.de"
+	},
+  { 
+    "name": "Julia",
+    "surname": "Mustermann",
+	  "phone": "069 200 xxx",
+	  "mail": "julia@mustermann.de"
+	},
+  { 
+    "name": "Heinz",
+    "surname": "Mustermann",
+	  "phone": "069 300 xxx",
+	  "mail": "heinz@mustermann.de"
+	},
+	{ 
+    "name": "Adam",
+    "surname": "Mustermann",
+	  "phone": "069 400 xxx",
+	  "mail": "adam@mustermann.de"
+	}
+]
