@@ -1,5 +1,6 @@
 let jsonFromServer = {};
 let BASE_SERVER_URL;
+setURL('https://hasanaltay.de/portfolio-web/Join-classic/backend');
 
 const backend = {
     setItem: function(key, item) {

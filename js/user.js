@@ -1,5 +1,4 @@
 let users = [];
-setURL('https://gruppe-375.developerakademie.net/backend');
 
 async function init() {
     await downloadFromServer();

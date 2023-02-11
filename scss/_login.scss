@@ -93,10 +93,16 @@ body {
   font-size: 21px;
   line-height: 120%;
   margin-bottom: 40px;
+  padding-right: 60px;
+
+  &:focus-visible {
+    outline: 1px solid #29ABE2;
+  }
 }
 
 .login_input::placeholder {
   color: #d1d1d1;
+  margin-right: 50px;
 }
 
 .login_access a {
@@ -247,9 +253,9 @@ body {
 
 .login_logo_animation {
   position: fixed;
-  width: 102px;
-  height: 122px;
-  top: 65px;
+  width: calc(102px / 1.2);
+  height: calc(122px / 1.2);
+  top: 50px;
   left: 65px;
   z-index: 21;
   animation-name: logoSlideSmaller;
@@ -262,7 +268,7 @@ body {
     top: 40%;
     left: 45%;
     filter: opacity(0%);
-    transform: scale(2);
+    transform: scale(2.4);
   }
 
   50% {
@@ -273,7 +279,7 @@ body {
   }
 
   100% {
-    top: 65px;
+    top: 50px;
     left: 65px;
     transform: scale(1);
   }
@@ -291,8 +297,8 @@ body {
   position: fixed;
   display: flex;
   align-items: center;
-  top: 60px;
-  right: 90px;
+  top: 50px;
+  right: 60px;
   animation-name: slideSignUp;
   animation-duration: 4000ms;
 }
@@ -300,7 +306,7 @@ body {
 @keyframes slideSignUp {
   0% {
     filter: opacity(0%);
-    top: 60px;
+    top: 50px;
     right: -90px;
   }
 
