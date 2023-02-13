@@ -28,5 +28,11 @@
     "surname": "Mustermann",
 	  "phone": "069 400 xxx",
 	  "mail": "adam@mustermann.de"
+	},
+	{ 
+    "name": "Jutta",
+    "surname": "Mustermann",
+	  "phone": "069 200 xxx",
+	  "mail": "julia@mustermann.de"
 	}
 ]

@@ -37,6 +37,8 @@
 	width: 100%;
 	max-width: 760px;
 	gap: 25px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .sum_squares {
@@ -59,6 +61,12 @@
 	cursor: pointer;
 	transition: all 100ms ease-in-out;
 
+	span {
+		font-size: 21px;
+		font-weight: 400;
+		width: 140px;
+	}
+
 	&:hover {
 		background-color: #2A3647;
 		color: white;
@@ -75,7 +83,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 560px;
+	max-width: 560px;
+	width: 100%;
 	height: 170px;
 	background: #FFFFFF;
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -98,15 +107,21 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-right: 2px solid #D1D1D1;
+	border-right: 1px solid #ebe1e1;
 	height: 102px;
-	width: 200px;
 	text-align: center;
 	padding-right: 25px;
 	margin-right: 50px;
+	padding-left: 20px;
 
-	img {
-		margin-right: 30px;
+	div {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	#sum_urgent {
+		font-size: 47px;
+		font-weight: 700;
 	}
 }
 
@@ -115,7 +130,7 @@
 	flex-direction: column;
 	height: 102px;
 	justify-content: center;
-	width: 230px;
+	padding-right: 20px;
 
 	span {
 		font-weight: 700;
@@ -156,6 +171,17 @@
 	img {
 		width: 60px;
 	}
+	div {
+		span {
+			font-size: 64px;
+			font-weight: 600px;
+		}
+		a {
+			font-size: 21px;
+			font-weight: 400;
+			width: 65px;
+		}
+	}
 }
 
 .sum_bottom_done {
@@ -183,6 +209,17 @@
 	}
 	img {
 		width: 60px;
+	}
+	div {
+		span {
+			font-size: 64px;
+			font-weight: 600px;
+		}
+		a {
+			font-size: 21px;
+			font-weight: 400;
+			width: 65px;
+		}
 	}
 }
 
@@ -243,55 +280,118 @@
 	color: #29ABE2;
 }
 
-// @media (max-width: 1280px) {
-// 	.sum_daytime {
-// 		font-size: 24px;
-// 	}
-// 	.sum_user {
-// 		font-size: 32px;
-// 	}
-// }
-// @media (max-width: 1080px) {
-// 	.sum_main_child {
-// 		transform: scale(80%);
-// 		transform-origin: left top;
-// 		justify-content: left;
-// 	}
-// 	.sum_subtitle {
-// 		font-size: 16px;
-// 	}
-// }
 @media (max-width: 600px) {
-	// .sum_main {
-	// 	padding-top: 0px;
-	// }
 
-	// .sum_subtitle {
-	// 	display: none;
-	// }
+	.sum_middle {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 120px;
+	}
 
-	// .sum_title {
-	// 	padding-top: 20px;
-	// 	padding-left: 25px;
-	// 	font-size: 47px;
-	// 	font-weight: 700;
-	// 	margin-bottom: 25px;
-	// }
+	.sum_squares {
+		min-width: unset;
+		min-height: unset;
+		height: 70px;
+		width: 100%;
+		flex-direction: row;
+		margin-right: unset;
+		margin-left: unset;
+		text-align: unset;
+		justify-content: space-around;
+		a {
+			font-size: 35px;
+		}
+		span {
+			font-size: 16px;
+			text-align: left;
+			width: 145px;
+		}
+		
+	}
 
-	// .sum_main_child {
-	// 	padding-top: 60px;
-	// 	transform-origin: top;
-	// 	justify-content: center;
-	// 	// padding-left: 25px;
-	// 	// zoom: 100%;
-	// }
+	.sum_mobile_top_text {
+		top: 100px;
+	}
 
 	.sum_frame_squares {
 		margin-top: 60px;
-		transform-origin: center center;
-		// justify-content: center;
-		transform: scale(100vw);
 		max-width: 100%;
+		gap: 15px;
+		padding-left: 20px;
+		padding-right: 20px;
+
+
+	}
+
+	.sum_frame_deadline {
+		margin-left: 5px;
+		span {
+			font-size: 16px;
+		}
+	}
+
+	.sum_frame_urgent {
+		height: unset;
+		width: unset;
+		padding-right: 10px;
+		margin-right: 10px;
+
+		div {
+			margin-right: 5px;
+			margin-left: 5px;
+		}
+
+		img {
+			margin-right: unset;
+			width: 40px;
+		}
+
+		#sum_urgent {
+			font-size: 30px;
+		}
+
+	}
+
+	.sum_bottom_todo {
+		width: 100%;
+		height: 70px;
+		justify-content: space-around;
+		img { 
+			width: 40px;
+		}
+		div {
+			display: flex;
+			align-items: center;
+			span {
+				font-size: 45px;
+			}
+			a {
+				font-size: 16px;
+				margin-left: 50px;
+			}
+		}
+	}
+
+	.sum_bottom_done {
+		width: 100%;
+		height: 70px;
+		justify-content: space-around;
+		img { 
+			width: 40px;
+		}
+		div {
+			display: flex;
+			align-items: center;
+			span {
+				font-size: 45px;
+			}
+			a {
+				font-size: 16px;
+				margin-left: 50px;
+			}
+		}
 	}
 
 	.sum_greeting {

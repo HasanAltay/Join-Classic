@@ -28,6 +28,8 @@ async function NavRenderContacts() {
     <div data-template="./content/contacts.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
+    await fetchContacts();
+    // initList();
 }
 
 
