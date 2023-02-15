@@ -1,63 +1,203 @@
 <div class="global_main_format">
-  <div class="task_main">
+    <form
+        class="task_main"
+        id="add_new_task"
+        onsubmit="addTask()"
+        method="POST"
+    >
+        <input
+            type="text"
+            placeholder="Enter a title"
+            name="title"
+            maxlength="36"
+            id="title"
+            title="Enter a title for your new Task!"
+        />
+        <div class="assign_dropdown">
+            <div class="assign_dropdown_titel">
+                <span>Select contacts to assign</span
+                ><img src="/img/dd_blue.png" />
+            </div>
+            <div class="assign_dropdown-content">
+                <p>You</p>
+            </div>
+        </div>
 
-    <input type="text" placeholder="Enter a title" name="title" maxlength="36">
-    <div class="assign_dropdown">
-      <div class="assign_dropdown_titel"><span>Select contacts to assign</span><img
-          src="/img/dd_blue.png"></div>
-      <div class="assign_dropdown-content">
-        <p>You</p>
-      </div>
-    </div>
+        <div>
+            <input
+                type="date"
+                name="date"
+                id="date"
+                class="task_date"
+            />
+        </div>
 
-    <div>
-      <input type="date" name="date" id="date" class="task_date">
-    </div>
+        <div class="assign_dropdown" type="checkbox" name="categorie">
+            <div class="assign_dropdown_titel">
+                <span>Select task categorie</span><img src="/img/dd_blue.png" />
+            </div>
+            <div class="assign_dropdown-content">
+                <p>Sales</p>
+                <p>Backoffice</p>
+                <p>Design</p>
+            </div>
+        </div>
 
-    <div class="assign_dropdown">
-      <div class="assign_dropdown_titel"><span>Select task categorie</span><img
-          src="/img/dd_blue.png"></div>
-      <div class="assign_dropdown-content">
-        <p>Sales</p>
-        <p>Backoffice</p>
-        <p>Design</p>       
-      </div>
-    </div>
+        <div class="select-box">
+            <div class="select-box__current" tabindex="1">
+                <div class="select-box__value">
+                    <input
+                        class="select-box__input"
+                        type="radio"
+                        id="0"
+                        value="1"
+                        name="Ben"
+                        checked="checked"
+                    />
+                    <p class="select-box__input-text">Management</p>
+                </div>
+                <div class="select-box__value">
+                    <input
+                        class="select-box__input"
+                        type="radio"
+                        id="1"
+                        value="2"
+                        name="Ben"
+                        checked="checked"
+                    />
+                    <p class="select-box__input-text">Sales</p>
+                </div>
+                <div class="select-box__value">
+                    <input
+                        class="select-box__input"
+                        type="radio"
+                        id="2"
+                        value="3"
+                        name="Ben"
+                        checked="checked"
+                    />
+                    <p class="select-box__input-text">Backoffice</p>
+                </div>
+                <div class="select-box__value">
+                    <input
+                        class="select-box__input"
+                        type="radio"
+                        id="3"
+                        value="4"
+                        name="Ben"
+                        checked="checked"
+                    />
+                    <p class="select-box__input-text">Design</p>
+                </div>
+                <div class="select-box__value">
+                    <input
+                        class="select-box__input"
+                        type="radio"
+                        id="4"
+                        value="5"
+                        name="Ben"
+                        checked="checked"
+                    />
+                    <p class="select-box__input-text">Select task categorie</p>
+                </div>
+                <img
+                    class="select-box__icon"
+                    src="/img/dd_blue.png"
+                    alt="Arrow Icon"
+                    aria-hidden="true"
+                />
+            </div>
+            <ul class="select-box__list">
+                <li>
+                    <label
+                        class="select-box__option"
+                        for="0"
+                        aria-hidden="aria-hidden"
+                        >Management</label
+                    >
+                </li>
+                <li>
+                    <label
+                        class="select-box__option"
+                        for="1"
+                        aria-hidden="aria-hidden"
+                        >Sales</label
+                    >
+                </li>
+                <li>
+                    <label
+                        class="select-box__option"
+                        for="2"
+                        aria-hidden="aria-hidden"
+                        >Backoffice</label
+                    >
+                </li>
+                <li>
+                    <label
+                        class="select-box__option"
+                        for="3"
+                        aria-hidden="aria-hidden"
+                        >Design</label
+                    >
+                </li>
+                <li>
+                    <label
+                        class="select-box__option"
+                        for="4"
+                        aria-hidden="aria-hidden"
+                        >Select task categorie</label
+                    >
+                </li>
+            </ul>
+        </div>
 
-    <div class="task_priorities">
+        <div class="task_priorities">
+            <button
+                type="checkbox"
+                id="urgent"
+                class="pr_urgent"
+                onclick="SetPriority(1,
+        'urgent')"
+            >
+                Urgent<img src="/img/urgent.png" id="urgent_img" />
+            </button>
 
-      <button type="checkbox" id="urgent" class="pr_urgent" onclick="SetPriority(1,
-        'urgent')">Urgent<img src="/img/urgent.png"></button>
+            <button
+                type="checkbox"
+                id="medium"
+                class="pr_medium"
+                onclick="SetPriority(2,
+        'medium')"
+            >
+                Medium<img src="/img/medium.png" id="medium_img" />
+            </button>
 
-      <button type="button" id="medium" class="pr_medium" onclick="SetPriority(2,
-        'medium')">Medium<img src="/img/medium.png"></button>
+            <button
+                type="checkbox"
+                id="low"
+                class="pr_low"
+                onclick="SetPriority(3,
+        'low')"
+            >
+                Low<img src="/img/low.png" id="low_img" />
+            </button>
+        </div>
 
-      <button type="button" id="low" class="pr_low" onclick="SetPriority(3,
-        'low')">Low<img src="/img/low.png"></button>
+        <div class="task_textarea">
+            <textarea
+                name="textarea"
+                placeholder="Enter a Description"
+                maxlength="300"
+                type="text"
+                id="textarea"
+            ></textarea>
+        </div>
 
-    </div>
-
-    <div class="task_textarea">
-      <textarea name="textarea" placeholder="Enter a Description"
-        maxlength="300"></textarea>
-    </div>
-
-    <div class="task_confirmation_btns">
-      <div class="button_bright">Clear</div><div class="button_dark">Create Task</div>
-    </div>
-
-
-
-
-
-
-
-
-
-  </div>
-
-
-
-
-
+        <div class="task_confirmation_btns">
+            <button class="button_bright" onclick="clearForm('add_new_task')">
+                Clear
+            </button>
+            <button class="button_dark" type="submit">Create Task</button>
+        </div>
+    </form>
 </div>
