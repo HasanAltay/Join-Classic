@@ -13,7 +13,9 @@
             id="title"
             title="Enter a title for your new Task!"
         />
-        <div class="assign_dropdown">
+
+
+        <!-- <div class="assign_dropdown">
             <div class="assign_dropdown_titel">
                 <span>Select contacts to assign</span
                 ><img src="/img/dd_blue.png" />
@@ -21,7 +23,9 @@
             <div class="assign_dropdown-content">
                 <p>You</p>
             </div>
-        </div>
+        </div> -->
+
+        
 
         <div>
             <input
@@ -34,122 +38,19 @@
 
         <div class="assign_dropdown" type="checkbox" name="categorie">
             <div class="assign_dropdown_titel">
-                <span>Select task categorie</span><img src="/img/dd_blue.png" />
+                <span>Select contact to assign</span><img src="/img/dd_blue.png" />
             </div>
-            <div class="assign_dropdown-content">
-                <p>Sales</p>
-                <p>Backoffice</p>
-                <p>Design</p>
+            <div class="assign_dropdown-content" id="assign_dropdown_list">
+                <div class="assign_dropdown_option">
+                    <div class="assign_initials" style="background-color:${color}">${letters}</div>
+                    <span class="assign_details_name">${name} ${surname}</span>
+                </div>
             </div>
         </div>
+          
 
-        <div class="select-box">
-            <div class="select-box__current" tabindex="1">
-                <div class="select-box__value">
-                    <input
-                        class="select-box__input"
-                        type="radio"
-                        id="0"
-                        value="1"
-                        name="Ben"
-                        checked="checked"
-                    />
-                    <p class="select-box__input-text">Management</p>
-                </div>
-                <div class="select-box__value">
-                    <input
-                        class="select-box__input"
-                        type="radio"
-                        id="1"
-                        value="2"
-                        name="Ben"
-                        checked="checked"
-                    />
-                    <p class="select-box__input-text">Sales</p>
-                </div>
-                <div class="select-box__value">
-                    <input
-                        class="select-box__input"
-                        type="radio"
-                        id="2"
-                        value="3"
-                        name="Ben"
-                        checked="checked"
-                    />
-                    <p class="select-box__input-text">Backoffice</p>
-                </div>
-                <div class="select-box__value">
-                    <input
-                        class="select-box__input"
-                        type="radio"
-                        id="3"
-                        value="4"
-                        name="Ben"
-                        checked="checked"
-                    />
-                    <p class="select-box__input-text">Design</p>
-                </div>
-                <div class="select-box__value">
-                    <input
-                        class="select-box__input"
-                        type="radio"
-                        id="4"
-                        value="5"
-                        name="Ben"
-                        checked="checked"
-                    />
-                    <p class="select-box__input-text">Select task categorie</p>
-                </div>
-                <img
-                    class="select-box__icon"
-                    src="/img/dd_blue.png"
-                    alt="Arrow Icon"
-                    aria-hidden="true"
-                />
-            </div>
-            <ul class="select-box__list">
-                <li>
-                    <label
-                        class="select-box__option"
-                        for="0"
-                        aria-hidden="aria-hidden"
-                        >Management</label
-                    >
-                </li>
-                <li>
-                    <label
-                        class="select-box__option"
-                        for="1"
-                        aria-hidden="aria-hidden"
-                        >Sales</label
-                    >
-                </li>
-                <li>
-                    <label
-                        class="select-box__option"
-                        for="2"
-                        aria-hidden="aria-hidden"
-                        >Backoffice</label
-                    >
-                </li>
-                <li>
-                    <label
-                        class="select-box__option"
-                        for="3"
-                        aria-hidden="aria-hidden"
-                        >Design</label
-                    >
-                </li>
-                <li>
-                    <label
-                        class="select-box__option"
-                        for="4"
-                        aria-hidden="aria-hidden"
-                        >Select task categorie</label
-                    >
-                </li>
-            </ul>
-        </div>
+        <!-- <div id="category_dropdown"></div> -->
+
 
         <div class="task_priorities">
             <button
