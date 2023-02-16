@@ -11,7 +11,6 @@ async function NavRenderBoard() {
     <div data-template="./content/board.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
-    // updateHTML();
 }
 
 
@@ -20,6 +19,8 @@ async function NavRenderAddTask() {
     <div data-template="./content/add_task.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
+    initAssignDropDown();
+    categoryDropdown();
 }
 
 
@@ -29,7 +30,6 @@ async function NavRenderContacts() {
     `;
     await includeHTML();
     await fetchContacts();
-    // initList();
 }
 
 

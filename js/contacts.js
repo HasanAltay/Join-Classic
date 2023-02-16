@@ -1,6 +1,6 @@
 let contacts;
 let sortedContacts = {};
-
+let contactsListTasks = [];
 
 async function fetchContacts() {
     resetList();
@@ -24,8 +24,8 @@ async function fetchContacts() {
         });
 }
 
-
 function initList() {
+    contactsListTasks = [];
     for (let i = 0; i < contacts.length; i++) {
         let firstLetter = contacts[i].name[0].toUpperCase();
         if (!sortedContacts[firstLetter]) {
@@ -46,25 +46,24 @@ function initList() {
             let surname = sortedContacts[letter][i].surname;
             let mail = sortedContacts[letter][i].mail;
             let phone = sortedContacts[letter][i].phone;
-            const color = getColor(letters);
-            console.log(color);
+            let color = getColor(letters);
             letter_box.innerHTML += /*html*/ `
-        <button class="contacts_files" id="files" 
-          onclick="initDetails('${letters}','${name}','${surname}','${mail}','${phone}','${color}');showDetails()">
-          <div class="contacts_initials" id="initials" style="background-color:${color}">${letters}</div>
-          <div class="contacts_name_email" id="name_email">
-            <span>${name} ${surname}</span>
-            <a>${mail}</a>
-          </div>
-        </button>
+            <button class="contacts_files" id="files" 
+              onclick="initDetails('${letters}','${name}','${surname}','${mail}','${phone}','${color}');showDetails()">
+              <div class="contacts_initials" id="initials" style="background-color:${color}">${letters}</div>
+              <div class="contacts_name_email" id="name_email">
+                <span>${name} ${surname}</span>
+                <a>${mail}</a>
+              </div>
+            </button>
       `;
+        contactsListTasks.push([letters,name,surname,color]);
         }
     }
 }
 
-
 function initDetails(letters, name, surname, mail, phone, color) {
-    console.log(letters, name, mail, phone);
+    // console.log(letters, name, mail, phone);
     let contacts_details = document.getElementById("contacts_details");
     contacts_details.innerHTML = `
     <div class="details_header">
@@ -89,7 +88,6 @@ function initDetails(letters, name, surname, mail, phone, color) {
     addContact();
 }
 
-
 function addContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.innerHTML = `
@@ -113,38 +111,30 @@ function addContact() {
   `;
 }
 
-
 function resetList() {
     contacts = [];
     sortedContacts = [];
 }
-
 
 function showDetails() {
     let details = document.getElementById("contacts_details");
     details.style.display = "flex";
 }
 
-
 function closeDetails() {
     let details = document.getElementById("contacts_details");
     details.style.display = "none";
 }
-
 
 function showAddContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.style.display = "block";
 }
 
-
 function closeAddContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.style.display = "none";
 }
-
-
-
 
 // function submitContact() {
 //     let myForm = document.getElementById("myForm");

@@ -31,3 +31,28 @@ async function asyncForEach(array, callback) {
         await callback(array[index], index, array);
     }
 }
+
+fetch('/content/add_task.html')
+.then(response => response.text())
+.then(data => {
+    const pageContainer = document.getElementById('page-container');
+    pageContainer.innerHTML += data;
+});
+
+fetch('/content/contacts.html')
+.then(response => response.text())
+.then(async data => {
+    const pageContainer = document.getElementById('page-container');
+    pageContainer.innerHTML += data;
+    await fetchContacts();
+    // initAssignDropDown();
+});
+
+
+
+fetch('/content/board.html')
+.then(response => response.text())
+.then(data => {
+    const pageContainer = document.getElementById('page-container');
+    pageContainer.innerHTML += data;
+});
