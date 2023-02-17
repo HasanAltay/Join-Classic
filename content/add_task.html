@@ -3,7 +3,7 @@
         class="task_main"
         id="add_new_task"
         onsubmit="addTask()"
-        method="POST"
+        
     >
         <input
             type="text"
@@ -16,7 +16,7 @@
 
         <div class="assign_dropdown" type="checkbox" name="categorie">
             <div class="assign_dropdown_titel">
-                <span>Select contact to assign</span><img src="/img/dd_blue.png" />
+                <span id="assign_contacts_placeholder">Select contact to assign</span><img src="/img/dd_blue.png" />
             </div>
             <div class="assign_dropdown-content" id="assign_dropdown_list"></div>
         </div>
@@ -30,7 +30,8 @@
         
         <div class="assign_dropdown" type="checkbox" name="categorie">
             <div class="assign_dropdown_titel">
-                <span>Select task categorie</span><img src="/img/dd_blue.png" />
+                <span id="assign_placeholder">Select task categorie</span>
+                <img src="/img/dd_blue.png" />
             </div>
             <div class="assign_dropdown-content" id="category_dropdown"></div>
         </div>

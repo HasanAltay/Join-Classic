@@ -21,11 +21,15 @@ let categories = [
         color: "#EFD100",
     },
 ];
+let setCategory;
+let setPriority;
+let setAssignContacts = [];
+let placeholder = true;
+let pickedContacts = [];
 
 function SetPriority(num, set) {
     event.preventDefault();
-    console.log(set);
-
+    setPriority = set;
     let urgent = document.getElementById("urgent");
     let medium = document.getElementById("medium");
     let low = document.getElementById("low");
@@ -74,17 +78,17 @@ function SetPriority(num, set) {
 }
 
 function addTask() {
-    event.preventDefault(list);
+    event.preventDefault();
     let title = document.getElementById("title").value;
     let textarea = document.getElementById("textarea").value;
     let date = document.getElementById("date").value;
 
-    console.log(title, textarea, date);
-    tasks.push({
-        Titel: title,
-        Textarea: textarea,
-        Date: date,
-    });
+    console.log(title, textarea, date, setCategory, setPriority);
+    // tasks.push({
+    //     Titel: title,
+    //     Textarea: textarea,
+    //     Date: date,
+    // });
     console.log(tasks);
 }
 
@@ -103,12 +107,54 @@ function initAssignDropDown() {
     for (let i = 0; i < contactsListTasks.length; i++) {
         const list = contactsListTasks[i];
         assign_dropdown_list.innerHTML += `
-    <button onclick="addTask(list)">
-      <div class="assign_initials" style="background-color:${list[3]}">${list[0]}</div>
-      <span class="assign_details_name">${list[1]} ${list[2]}</span>
-    </button>
-  `;
+            <button onclick="setContacts('${list[0]}','${list[3]}','${i}')">
+            <div class="assign_initials" style="background-color:${list[3]}">${list[0]}</div>
+            <span class="assign_details_name">${list[1]} ${list[2]}</span>
+            </button>
+        `;
     }
+}
+
+function setContacts(initials, color, i) {
+    event.preventDefault();
+    let assign_contacts_placeholder = document.getElementById(
+        "assign_contacts_placeholder"
+    );
+    let pickedContactIds = pickedContacts.map(contact => contact.id);
+
+    if (pickedContacts.length === 0) {
+        assign_contacts_placeholder.innerHTML = "";
+        placeholder = false;
+    }
+
+    if (pickedContactIds.includes(`user${i}`)) {
+        return; // Exit the function if the contact has already been picked
+    }
+
+    if (pickedContacts.length >= 7) {
+        return; // Exit the function if there are already 7 picked contacts
+    }
+
+    let pickedContact = document.createElement("div");
+    pickedContact.setAttribute("id", `user${i}`);
+    pickedContact.classList.add("picked_contacts");
+    pickedContact.style.backgroundColor = color;
+    pickedContact.textContent = initials;
+    assign_contacts_placeholder.appendChild(pickedContact);
+    pickedContacts.push(pickedContact);
+
+    // Add event listener to remove contact when clicked
+    pickedContact.addEventListener("click", () => {
+        pickedContact.remove(); // Remove the contact from the DOM
+        pickedContacts = pickedContacts.filter(
+            contact => contact.id !== `user${i}`
+        ); // Remove the contact from the array
+
+        if (pickedContacts.length === 0) {
+            assign_contacts_placeholder.innerHTML = "Select contact to assign";
+            placeholder = true;
+        }
+    });
 }
 
 function categoryDropdown() {
@@ -117,10 +163,51 @@ function categoryDropdown() {
     for (let i = 0; i < categories.length; i++) {
         const category = categories[i];
         category_dropdown.innerHTML += `
-  <button>
-    <div class="assign_initials" style="background-color:${category.color}"></div>
-    <span class="assign_details_name">${category.category}</span>
-  </button>
-`;
+            <button onclick="setCategoryOption('${category.category}', '${category.color}')">
+                <div class="assign_initials" style="background-color:${category.color}"></div>
+                <span class="assign_details_name">${category.category}</span>
+            </button>
+        `;
     }
+
+    category_dropdown.innerHTML += `
+        <div class="assign_category_input">
+            <input type="text" placeholder="Add new category" id="category_name_input">
+            <input type="color" id="category_color_input" value="#000000">
+            <button onclick="addCategory()" id="category_btn_input">Add</button>
+        </div>
+    `;
+}
+
+function addCategory() {
+    event.preventDefault();
+    let category_name_input = document.getElementById("category_name_input");
+    let category_color_input = document.getElementById("category_color_input");
+
+    let newCategory = {
+        category: category_name_input.value,
+        color: category_color_input.value,
+    };
+
+    categories.push(newCategory);
+
+    let category_dropdown = document.getElementById("category_dropdown");
+    category_dropdown.innerHTML = "";
+    categoryDropdown();
+
+    // Clear the input fields
+    category_name_input.value = "";
+    category_color_input.value = "#000000";
+}
+
+function setCategoryOption(category, color) {
+    event.preventDefault();
+    console.log(category, color);
+    let assign_placeholder = document.getElementById("assign_placeholder");
+    assign_placeholder.innerHTML = `
+        <div style="background-color:${color}" class="assign_set_category">
+            ${category}
+        </div>
+    `;
+    setCategory = category;
 }
