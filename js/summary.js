@@ -32,7 +32,7 @@ function generateGreeting(time) {
         greeting.push('Good night');
     }
     let greet = greeting[0];
-    console.log(time, greet);
+    // console.log(time, greet);
     document.getElementById('sum_daytime').innerHTML = `${greet},`;
     document.getElementById('sum_daytime_mobile').innerHTML = `${greet},`;
 }

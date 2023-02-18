@@ -84,11 +84,14 @@ function addTask() {
     let date = document.getElementById("date").value;
 
     console.log(title, textarea, date, setCategory, setPriority);
-    // tasks.push({
-    //     Titel: title,
-    //     Textarea: textarea,
-    //     Date: date,
-    // });
+    tasks.push({
+        Titel: title,
+        Contacts: pickedContacts,
+        Deadline: date,
+        Category: setCategory,
+        Priority: setPriority,
+        Description: textarea,
+    });
     console.log(tasks);
 }
 
