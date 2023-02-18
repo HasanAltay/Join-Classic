@@ -45,10 +45,7 @@ fetch('/content/contacts.html')
     const pageContainer = document.getElementById('page-container');
     pageContainer.innerHTML += data;
     await fetchContacts();
-    // initAssignDropDown();
 });
-
-
 
 fetch('/content/board.html')
 .then(response => response.text())

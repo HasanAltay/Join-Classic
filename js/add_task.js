@@ -26,6 +26,42 @@ let setPriority;
 let setAssignContacts = [];
 let placeholder = true;
 let pickedContacts = [];
+let addedCategory;
+
+function createAddTaskJSON() {
+    event.preventDefault();
+    let title = document.getElementById("title").value;
+    let textarea = document.getElementById("textarea").value;
+    let date = document.getElementById("date").value;
+
+    console.log(title, textarea, date, setCategory, setPriority);
+
+    if (addedCategory == undefined) {
+        tasks.push({
+            Titel: title,
+            Contacts: pickedContacts,
+            Deadline: date,
+            Category: setCategory,
+            Priority: setPriority,
+            Description: textarea,
+        });
+    } else {
+        tasks.push({
+            Titel: title,
+            Contacts: pickedContacts,
+            Deadline: date,
+            Category: addedCategory,
+            Priority: setPriority,
+            Description: textarea,
+        });
+        
+    }
+    addTask();
+}
+
+function addTask() {
+    console.log(tasks);
+}
 
 function SetPriority(num, set) {
     event.preventDefault();
@@ -77,24 +113,6 @@ function SetPriority(num, set) {
     }
 }
 
-function addTask() {
-    event.preventDefault();
-    let title = document.getElementById("title").value;
-    let textarea = document.getElementById("textarea").value;
-    let date = document.getElementById("date").value;
-
-    console.log(title, textarea, date, setCategory, setPriority);
-    tasks.push({
-        Titel: title,
-        Contacts: pickedContacts,
-        Deadline: date,
-        Category: setCategory,
-        Priority: setPriority,
-        Description: textarea,
-    });
-    console.log(tasks);
-}
-
 function onFormSubmit() {
     event.preventDefault();
     // your Javascript code here
@@ -144,7 +162,8 @@ function setContacts(initials, color, i) {
     pickedContact.style.backgroundColor = color;
     pickedContact.textContent = initials;
     assign_contacts_placeholder.appendChild(pickedContact);
-    pickedContacts.push(pickedContact);
+    // pickedContacts.push(pickedContact);
+    pickedContacts.push({initials, color, i});
 
     // Add event listener to remove contact when clicked
     pickedContact.addEventListener("click", () => {
@@ -193,6 +212,7 @@ function addCategory() {
     };
 
     categories.push(newCategory);
+    addedCategory = newCategory;
 
     let category_dropdown = document.getElementById("category_dropdown");
     category_dropdown.innerHTML = "";
@@ -214,3 +234,11 @@ function setCategoryOption(category, color) {
     `;
     setCategory = category;
 }
+
+
+
+
+
+
+
+

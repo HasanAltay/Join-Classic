@@ -1,101 +1,89 @@
 <div class="global_main_format">
-  <div class="board_main">
-    <div class="board_search_bar">
-      <input type="text" placeholder="Find Task">
-      <img src="/img/search.png" class="search_img">
-      <div class="button_dark">Add task</div>
-    </div>
-    <div class="board_tasks">
+    <div class="board_main">
+        <div class="board_search_bar">
+            <input type="text" placeholder="Find Task" />
+            <img src="/img/search.png" class="search_img" />
+            <div class="button_dark">Add task</div>
+        </div>
 
-      <div class="add-task-container">
-        <input type="text" maxlength="12" id="taskText" placeholder="New Task..." onkeydown="if (event.keyCode == 13)
-                              document.getElementById('add').click()">
-        <button id="add" class="button add-button" onclick="addTaskToBoard()">Add New Task</button>
-      </div>
-      
-      <div class="main-container">
-        <ul class="columns">
-      
-          <li class="column to-do-column">
-            <div class="column-header">
-              <h4>To Do</h4>
-            </div>
-            <ul class="task-list" id="to-do">
-              <li class="task">
-                <p>Analysis</p>
-              </li>
-              <li class="task">
-                <p>Coding</p>
-              </li>
-              <li class="task">
-                <p>Card Sorting</p>
-              </li>
-              <li class="task">
-                <p>Measure</p>
-              </li>
-            </ul>
-          </li>
-      
-          <li class="column doing-column">
-            <div class="column-header">
-              <h4>Doing</h4>
-            </div>
-            <ul class="task-list" id="doing">
-              <li class="task">
-                <p>Hypothesis</p>
-              </li>
-              <li class="task">
-                <p>User Testing</p>
-              </li>
-              <li class="task">
-                <p>Prototype</p>
-              </li>
-            </ul>
-          </li>
-      
-          <li class="column done-column">
-            <div class="column-header">
-              <h4>Done</h4>
-            </div>
-            <ul class="task-list" id="done">
-              <li class="task">
-                <p>Ideation</p>
-              </li>
-              <li class="task">
-                <p>Sketches</p>
-              </li>
-            </ul>
-          </li>
-      
-          <li class="column trash-column">
-            <div class="column-header">
-              <h4>Trash</h4>
-            </div>
-            <ul class="task-list" id="trash">
-              <li class="task">
-                <p>Interviews</p>
-              </li>
-              <li class="task">
-                <p>Research</p>
-              </li>
-      
-            </ul>
-            <div class="column-button">
-              <button class="button delete-button" onclick="emptyTrash()">Delete</button>
-            </div>
-          </li>
-      
-        </ul>
-      </div>
+        <div class="board_tasks">
+
+
+              <div class="list-wrapper">
+                <div class="column">
+                  <div class="column-header"><a>To Do</a><img src="/img/plus-dark.png"></div>
+                  <div class="card-wrapper">
+                    <div class="card">
+                      <div class="header">
+                        <div class="title">
+                          <span>Design</span>
+                        </div>
+                      </div>
+                      <div class="body">
+                        <p>Website redesign</p>
+                      </div>
+                      <div class="caption">Modify the contents of the main website...</div>
+                    </div>
+                    <div class="card">
+                      <div class="header">
+                        <div class="title">
+                          <span>🧑‍🍳 점심 만들기</span>
+                        </div>
+                      </div>
+                      <div class="body">
+                        <p>덮밥을 만든다.</p>
+                      </div>
+                      <div class="caption">padosum</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="column-header"><a>In progress</a><img src="/img/plus-dark.png"></div>
+                  <div class="card-wrapper">
+                    <div class="card">
+                      <div class="header">
+                        <div class="title">🏄‍♂️ 서핑하기</div>
+                      </div>
+                      <div class="body">
+                        <p>🏄‍♂️ 🏄‍♀️ 🏄</p>
+                      </div>
+                      <div class="caption">padosum</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="column-header"><a>Await feedback</a><img src="/img/plus-dark.png"></div>
+                  <div class="card-wrapper">
+                    <div class="card">
+                      <div class="header">
+                        <div class="title">🧑‍🎓 공부하기</div>
+                      </div>
+                      <div class="body">hello
+                      </div>
+                      <div class="caption">padosum</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="column-header"><a>Done</a><img src="/img/plus-dark.png"></div>
+                  <div class="card-wrapper">
+                    <div class="card">
+                      <div class="header">
+                        <div class="title">🏄‍♂️ 서핑하기</div>
+                      </div>
+                      <div class="body">
+                        <p>🏄‍♂️ 🏄‍♀️ 🏄</p>
+                      </div>
+                      <div class="caption">padosum</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ghost"></div>
 
 
 
-
+        </div>
 
     </div>
-
-
-
-
-
-  </div>
+</div>

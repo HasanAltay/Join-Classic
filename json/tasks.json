@@ -1,0 +1,16 @@
+[
+  {
+    "Category": "Design",
+    "Contacts": [
+      {
+        "0": "div#user1.picked_contacts",
+        "1": "div#user2.picked_contacts",
+        "2": "div#user3.picked_contacts"
+      }
+    ],
+    "Deadline": "2023-03-30",
+    "Description": "Make the product presentation to prospective buyers",
+    "Priority": "urgent",
+    "Titel": "Call potential clients"
+  }
+]

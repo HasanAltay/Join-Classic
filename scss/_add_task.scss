@@ -292,6 +292,8 @@
         textarea {
             border-radius: 10px;
             width: 100%;
+            max-width: 425px;
+            min-width: 200px;
             height: 100px;
             min-height: 100px;
             max-height: 200px;
@@ -310,7 +312,35 @@
             &:focus-visible {
                 outline: 1px solid #29abe2;
             }
+
+            overflow-y: scroll;
+            scrollbar-width: auto;
+          
+            /* Firefox */
+            scrollbar-color: #ffffff #ffffff;
+          
+              /* Chrome, Edge, and Safari */
+            &::-webkit-scrollbar {
+              width: 10px;
+            }
+          
+            &::-webkit-scrollbar-track {
+              background-color: #ffffff;
+              margin-top: 10px;
+              margin-bottom: 10px;
+            }
+          
+            &::-webkit-scrollbar-thumb {
+              background-color: #2a36472c;
+              border-radius: 10px;
+              border: 3px solid white;
+            }
         }
+    }
+
+    #charCount {
+        font-size: 33px;
+        background-color: #29abe2;
     }
 
     .task_date {

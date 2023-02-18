@@ -13,15 +13,15 @@
 	},
   { 
     "name": "Julia",
-    "surname": "Mustermann",
+    "surname": "Roberts",
 	  "phone": "069 200 xxx",
 	  "mail": "julia@mustermann.de"
 	},
   { 
-    "name": "Heinz",
-    "surname": "Mustermann",
-	  "phone": "069 300 xxx",
-	  "mail": "heinz@mustermann.de"
+    "name": "Quentin",
+    "surname": "Tarantino",
+	  "phone": "011 300 234 432",
+	  "mail": "quentinsplace@gmx.com"
 	},
 	{ 
     "name": "Adam",
@@ -30,9 +30,9 @@
 	  "mail": "adam@mustermann.de"
 	},
 	{ 
-    "name": "Jutta",
-    "surname": "Mustermann",
-	  "phone": "069 200 xxx",
-	  "mail": "julia@mustermann.de"
+    "name": "Satoshi",
+    "surname": "Nakamoto",
+	  "phone": "006 786 203 432",
+	  "mail": "satoshi@btc.com"
 	}
 ]

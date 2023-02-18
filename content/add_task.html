@@ -2,14 +2,14 @@
     <form
         class="task_main"
         id="add_new_task"
-        onsubmit="addTask()"
+        onsubmit="createAddTaskJSON()"
         
     >
         <input
             type="text"
             placeholder="Enter a title"
             name="title"
-            maxlength="36"
+            maxlength="33"
             id="title"
             title="Enter a title for your new Task!" required
         />
@@ -72,11 +72,24 @@
             <textarea
                 name="textarea"
                 placeholder="Enter a Description"
-                maxlength="300"
+                maxlength="250"
                 type="text"
                 id="textarea" required
             ></textarea>
+            <div id="charCount">sasasdfsad</div>
         </div>
+
+        <script>
+            const textarea = document.getElementById("textarea");
+            const charCount = document.getElementById("charCount");
+            textarea.addEventListener("input", () => {
+                const text = textarea.value;
+                const maxChars = textarea.maxLength;
+                const numChars = text.length;
+                console.log(numChars, numChars);
+                charCount.textContent = `${numChars}/${maxChars}`;
+            });
+        </script>
 
         <div class="task_confirmation_btns">
             <button class="button_bright" onclick="clearForm('add_new_task')">
