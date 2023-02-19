@@ -4,7 +4,7 @@ let contactsListTasks = [];
 
 async function fetchContacts() {
     resetList();
-    fetch("/json/contacts.json")
+    fetch("./json/contacts.json")
         .then(data => data.json())
         .then(data => {
             // sorts the json array by the first letter of the first entry.
@@ -82,7 +82,7 @@ function initDetails(letters, name, surname, mail, phone, color) {
       <div>${phone}</div>
     </div>
     <button class="button_dark new_contact_pos" onclick="showAddContact()">Add contact</button>
-    <img class="mobile_arrow" src="/img/left_arrow_blue.png" onclick="closeDetails()">
+    <img class="mobile_arrow" src="./img/left_arrow_blue.png" onclick="closeDetails()">
     <div class="contact_new" id="contact_new"></div>
   `;
     addContact();
@@ -92,7 +92,7 @@ function addContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.innerHTML = `
       <div class="contact_new_top">
-        <img src="/img/logo_topbar.png">
+        <img src="./img/logo_topbar.png">
         <span>Add contact</span>
         <a>Tasks are better with a team!</a>
       </div>

@@ -33,14 +33,14 @@ async function asyncForEach(array, callback) {
     }
 }
 
-fetch('/content/add_task.html')
+fetch('./content/add_task.html')
 .then(response => response.text())
 .then(data => {
     const pageContainer = document.getElementById('page-container');
     pageContainer.innerHTML += data;
 });
 
-fetch('/content/contacts.html')
+fetch('./content/contacts.html')
 .then(response => response.text())
 .then(async data => {
     const pageContainer = document.getElementById('page-container');
@@ -48,7 +48,7 @@ fetch('/content/contacts.html')
     await fetchContacts();
 });
 
-fetch('/content/board.html')
+fetch('./content/board.html')
 .then(response => response.text())
 .then(data => {
     const pageContainer = document.getElementById('page-container');
