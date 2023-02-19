@@ -169,6 +169,13 @@
   justify-content: space-between;
   margin: 10px;
 }
+.task_main .assign_category_input img {
+  width: 24px;
+  position: absolute;
+  bottom: 33px;
+  right: 120px;
+  pointer-events: none;
+}
 .task_main .assign_category_input #category_name_input {
   font-size: 16px;
   font-weight: 400;
@@ -336,6 +343,16 @@
 .task_main .task_priorities button img {
   width: 20px;
   margin-left: 10px;
+}
+
+#the-count {
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+#the-count span {
+  color: rgb(204, 204, 204);
+  font-size: 13px;
 }
 
 @media (max-width: 600px) {

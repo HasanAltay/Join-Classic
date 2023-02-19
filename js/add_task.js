@@ -34,7 +34,7 @@ function createAddTaskJSON() {
     let textarea = document.getElementById("textarea").value;
     let date = document.getElementById("date").value;
 
-    console.log(title, textarea, date, setCategory, setPriority);
+    // console.log(title, textarea, date, setCategory, setPriority);
 
     if (addedCategory == undefined) {
         tasks.push({
@@ -54,12 +54,28 @@ function createAddTaskJSON() {
             Priority: setPriority,
             Description: textarea,
         });
-        
     }
+    saveTaskToBackend();
     addTask();
 }
 
 function addTask() {
+    event.preventDefault();
+    todo_wrapper = document.createElement("first-wrapper-todo");
+    todo_wrapper,
+        (innerHTML = `
+        <div class="card">
+            <div class="header">
+                <div class="title">
+                    <span>${tasks.title}</span>
+                </div>
+                </div>
+                <div class="body">
+                <p>Website redesign</p>
+                </div>
+            <div class="caption">...</div>
+        </div>
+    `);
     console.log(tasks);
 }
 
@@ -195,7 +211,8 @@ function categoryDropdown() {
     category_dropdown.innerHTML += `
         <div class="assign_category_input">
             <input type="text" placeholder="Add new category" id="category_name_input">
-            <input type="color" id="category_color_input" value="#000000">
+            <input type="color" id="category_color_input" value="#ffffff">
+            <img src="/img/color-wheel.png">
             <button onclick="addCategory()" id="category_btn_input">Add</button>
         </div>
     `;
@@ -225,20 +242,12 @@ function addCategory() {
 
 function setCategoryOption(category, color) {
     event.preventDefault();
-    console.log(category, color);
+    // console.log(category, color);
     let assign_placeholder = document.getElementById("assign_placeholder");
     assign_placeholder.innerHTML = `
         <div style="background-color:${color}" class="assign_set_category">
             ${category}
         </div>
     `;
-    setCategory = category;
+    setCategory = {category, color};
 }
-
-
-
-
-
-
-
-

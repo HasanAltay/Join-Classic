@@ -1,35 +1,46 @@
 let jsonFromServer = {};
 let BASE_SERVER_URL;
-setURL('https://hasanaltay.de/portfolio-web/Join-classic/backend');
+setURL("https://hasanaltay.de/portfolio-web/Join-classic/backend");
+
+async function saveTaskToBackend() {
+    let users = [];
+
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem("users")) || [];
+
+    users.push(tasks);
+    backend.setItem("users", JSON.stringify(users));
+}
 
 const backend = {
-    setItem: function(key, item) {
+    setItem: function (key, item) {
         jsonFromServer[key] = item;
         return saveJSONToServer();
     },
-    saveContacts: function(key, item) {
+    saveContacts: function (key, item) {
         jsonFromServer[key] = item;
         return saveContactsToServer();
     },
-    getItem: function(key) {
+    getItem: function (key) {
         if (!jsonFromServer[key]) {
             return null;
         }
         return jsonFromServer[key];
     },
-    deleteItem: function(key) {
+    deleteItem: function (key) {
         delete jsonFromServer[key];
         return saveJSONToServer();
-    }
+    },
 };
-window.onload = async function() {
+
+window.onload = async function () {
     downloadFromServer();
-}
+};
 
 async function downloadFromServer() {
     let result = await loadJSONFromServer();
     jsonFromServer = JSON.parse(result);
-    console.log('Loaded', result);
+    console.log("Loaded", result);
 }
 
 function setURL(url) {
@@ -42,23 +53,27 @@ function setURL(url) {
  */
 
 async function loadJSONFromServer() {
-    let response = await fetch(BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime()));
+    let response = await fetch(
+        BASE_SERVER_URL +
+            "/nocors.php?json=database&noache=" +
+            new Date().getTime()
+    );
     return await response.text();
-
 }
 
 function loadJSONFromServerOld() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         let xhttp = new XMLHttpRequest();
         let proxy = determineProxySettings();
-        let serverURL = proxy + BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime());
+        let serverURL =
+            proxy +
+            BASE_SERVER_URL +
+            "/nocors.php?json=database&noache=" +
+            new Date().getTime();
 
+        xhttp.open("GET", serverURL);
 
-
-
-        xhttp.open('GET', serverURL);
-
-        xhttp.onreadystatechange = function(oEvent) {
+        xhttp.onreadystatechange = function (oEvent) {
             if (xhttp.readyState === 4) {
                 if (xhttp.status >= 200 && xhttp.status <= 399) {
                     resolve(xhttp.responseText);
@@ -68,27 +83,25 @@ function loadJSONFromServerOld() {
             }
         };
 
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.setRequestHeader(
+            "Content-Type",
+            "application/json;charset=UTF-8"
+        );
         xhttp.send();
-
     });
 }
-
-
-
-
 
 /**
  * Saves a JSON or JSON Array to the Server
  */
 function saveJSONToServer() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         let xhttp = new XMLHttpRequest();
         let proxy = determineProxySettings();
-        let serverURL = proxy + BASE_SERVER_URL + '/save_json.php';
-        xhttp.open('POST', serverURL);
+        let serverURL = proxy + BASE_SERVER_URL + "/save_json.php";
+        xhttp.open("POST", serverURL);
 
-        xhttp.onreadystatechange = function(oEvent) {
+        xhttp.onreadystatechange = function (oEvent) {
             if (xhttp.readyState === 4) {
                 if (xhttp.status >= 200 && xhttp.status <= 399) {
                     resolve(xhttp.responseText);
@@ -98,21 +111,22 @@ function saveJSONToServer() {
             }
         };
 
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.setRequestHeader(
+            "Content-Type",
+            "application/json;charset=UTF-8"
+        );
         xhttp.send(JSON.stringify(jsonFromServer));
-
     });
 }
-
 
 function saveContactsToServer() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         let xhttp = new XMLHttpRequest();
         let proxy = determineProxySettings();
-        let serverURL = proxy + BASE_SERVER_URL + '/save_contacts.php';
-        xhttp.open('POST', serverURL);
+        let serverURL = proxy + BASE_SERVER_URL + "/save_contacts.php";
+        xhttp.open("POST", serverURL);
 
-        xhttp.onreadystatechange = function(oEvent) {
+        xhttp.onreadystatechange = function (oEvent) {
             if (xhttp.readyState === 4) {
                 if (xhttp.status >= 200 && xhttp.status <= 399) {
                     resolve(xhttp.responseText);
@@ -122,19 +136,20 @@ function saveContactsToServer() {
             }
         };
 
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.setRequestHeader(
+            "Content-Type",
+            "application/json;charset=UTF-8"
+        );
         xhttp.send(JSON.stringify(jsonFromServer));
-
     });
 }
 
-
 function determineProxySettings() {
-    return '';
+    return "";
 
-    if (window.location.href.indexOf('.developerakademie.com') > -1) {
-        return '';
+    if (window.location.href.indexOf(".developerakademie.com") > -1) {
+        return "";
     } else {
-        return 'https://cors-anywhere.herokuapp.com/';
+        return "https://cors-anywhere.herokuapp.com/";
     }
 }

@@ -3,6 +3,7 @@ async function includeHTML() {
     if (templatesContainer.length == 0) return; // there are no templates container
     await asyncForEach(templatesContainer, includeTemplate);
     await includeHTML(); // included templates can have nested data-templates
+    eventListeners();
 }
 
 function getAllTemplatesContainer() {
@@ -53,3 +54,16 @@ fetch('/content/board.html')
     const pageContainer = document.getElementById('page-container');
     pageContainer.innerHTML += data;
 });
+
+// counts the letters in add task textarea
+function eventListeners() {
+    const textarea = document.getElementById("textarea");
+    textarea.addEventListener("input", function() {
+        const textarea = document.getElementById("textarea");
+        const text = textarea.value;
+        const letterCount = text.length;
+        const countDisplay = document.getElementById("current");
+        countDisplay.innerText = letterCount;
+    });
+}
+
