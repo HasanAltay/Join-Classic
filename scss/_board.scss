@@ -5,11 +5,16 @@
 
 .board_search_bar {
   display: flex;
-  width: 500px;
+  max-width: 720px;
   justify-content: space-between;
-  max-height: 55px;
+  max-height: 50px;
   position: relative;
   margin-bottom: 70px;
+
+  .mobile {
+    display: none;
+	}
+
   input {
     border-radius: 10px;
     border: 1px solid rgb(204, 204, 204);
@@ -21,6 +26,7 @@
     font-weight: 400;
     font-size: 16px;
     padding-right: 50px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 
     &::placeholder {
       color: rgb(204, 204, 204);
@@ -38,7 +44,7 @@
   }
 
   .button_dark {
-    display: flex;
+    // display: flex;
     justify-content: center;
     align-items: center;
     color: white;
@@ -49,11 +55,12 @@
     border-radius: 8px;
     border: none;
     height: 50px;
-    padding: 4px 40px;
+    padding: 4px 20px;
     cursor: pointer;
     transition: all 100ms ease-in-out;
     white-space: nowrap;
     margin-left: 20px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
   
     &:hover {
       background-color: #29ABE2;
@@ -66,8 +73,6 @@
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
   }
-
-
 }
 
 .board_tasks {
@@ -78,6 +83,7 @@
   .list-wrapper {
     display: flex;
     gap: 30px;
+    max-width: 720px;
     flex-wrap: wrap;
   }
   
@@ -205,5 +211,31 @@
 .priority {
   width: 24px;
   height: 24px;
+}
+
+
+
+@media (max-width: 600px) {
+  .board_main {
+    padding: 15px;
+
+  }
+  .board_search_bar {
+    // margin-top: 10px;
+
+    .mobile {
+      display: flex;
+    }
+  
+    .desktop {
+      display: none;
+    }
+  }
+
+  .list-wrapper {
+    justify-content: center;
+  }
+
+
 }
 

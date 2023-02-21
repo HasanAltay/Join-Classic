@@ -57,15 +57,21 @@ function createAddTaskJSON() {
     }
 
     tasksToServer.push(tasks);
-    backend.setItem('tasks', JSON.stringify(tasks));
-    showConfirmation();
+    backend.setItem("tasks", JSON.stringify(tasks));
+    let a = true;
+    showConfirmationAddTask(a);
 }
 
-function showConfirmation() {
-    let a = true;
-    NavRenderAddTask();
-    NavClick(3);
-    showConfirmationAddTask(a);
+function showConfirmationAddTask(a) {
+    let task_added_confirmation = document.getElementById(
+        "task_added_confirmation"
+    );
+    if (a) {
+        task_added_confirmation.style.visibility = "visible";
+    }
+    if (!a) {
+        task_added_confirmation.style.visibility = "hidden";
+    }
 }
 
 function SetPriority(num, set) {
@@ -240,14 +246,3 @@ function setCategoryOption(category, color) {
     `;
     setCategory = {category, color};
 }
-
-function showConfirmationAddTask(a) {
-let task_added_confirmation = document.getElementById("task_added_confirmation");
-    if (a) {
-    task_added_confirmation.style.visibility = 'visible';
-    }
-    if (!a) {
-        task_added_confirmation.style.visibility = 'hidden';
-    }
-}
-
