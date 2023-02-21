@@ -55,29 +55,35 @@ function createAddTaskJSON() {
             Description: textarea,
         });
     }
-    saveTaskToBackend();
-    addTask();
+
+    tasksToServer.push(tasks);
+    backend.setItem('tasks', JSON.stringify(tasks));
+
+    // saveTaskToBackend();
+    // addTask();
 }
 
-function addTask() {
-    event.preventDefault();
-    todo_wrapper = document.createElement("first-wrapper-todo");
-    todo_wrapper,
-        (innerHTML = `
-        <div class="card">
-            <div class="header">
-                <div class="title">
-                    <span>${tasks.title}</span>
-                </div>
-                </div>
-                <div class="body">
-                <p>Website redesign</p>
-                </div>
-            <div class="caption">...</div>
-        </div>
-    `);
-    console.log(tasks);
-}
+
+
+// function addTask() {
+//     event.preventDefault();
+//     todo_wrapper = document.createElement("first-wrapper-todo");
+//     todo_wrapper,
+//         (innerHTML = `
+//         <div class="card">
+//             <div class="header">
+//                 <div class="title">
+//                     <span>${tasks.title}</span>
+//                 </div>
+//                 </div>
+//                 <div class="body">
+//                 <p>Website redesign</p>
+//                 </div>
+//             <div class="caption">...</div>
+//         </div>
+//     `);
+//     console.log(tasks);
+// }
 
 function SetPriority(num, set) {
     event.preventDefault();
@@ -197,17 +203,15 @@ function setContacts(initials, color, i) {
 
 function categoryDropdown() {
     let category_dropdown = document.getElementById("category_dropdown");
-
     for (let i = 0; i < categories.length; i++) {
         const category = categories[i];
         category_dropdown.innerHTML += `
-            <button onclick="setCategoryOption('${category.category}', '${category.color}')">
+            <button onclick="setCategoryOption('${category.category}','${category.color}')">
                 <div class="assign_initials" style="background-color:${category.color}"></div>
                 <span class="assign_details_name">${category.category}</span>
             </button>
         `;
     }
-
     category_dropdown.innerHTML += `
         <div class="assign_category_input">
             <input type="text" placeholder="Add new category" id="category_name_input">

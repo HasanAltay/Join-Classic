@@ -1,3 +1,6 @@
+setURL("https://hasanaltay.de/portfolio-web/Join-classic/backend");
+let tasksToServer = [];
+
 async function includeHTML() {
     const templatesContainer = getAllTemplatesContainer();
     if (templatesContainer.length == 0) return; // there are no templates container
@@ -7,7 +10,7 @@ async function includeHTML() {
 }
 
 function getAllTemplatesContainer() {
-    return document.querySelectorAll('[data-template]');
+    return document.querySelectorAll("[data-template]");
 }
 
 async function includeTemplate(container) {
@@ -17,12 +20,12 @@ async function includeTemplate(container) {
     container.removeAttribute("data-template"); // otherwise recursion will find this container again
 }
 
-async function getTemplateContent(templatePath){
-    try{
+async function getTemplateContent(templatePath) {
+    try {
         const response = await fetch(templatePath);
         const content = await response.text();
         return content;
-    }catch(error){
+    } catch (error) {
         return "PAGE NOT FOUND";
     }
 }
@@ -33,32 +36,39 @@ async function asyncForEach(array, callback) {
     }
 }
 
-fetch('./content/add_task.html')
-.then(response => response.text())
-.then(data => {
-    const pageContainer = document.getElementById('page-container');
-    pageContainer.innerHTML += data;
-});
+fetch("./content/add_task.html")
+    .then(response => response.text())
+    .then(data => {
+        const pageContainer = document.getElementById("page-container");
+        pageContainer.innerHTML += data;
+    });
 
-fetch('./content/contacts.html')
-.then(response => response.text())
-.then(async data => {
-    const pageContainer = document.getElementById('page-container');
-    pageContainer.innerHTML += data;
-    await fetchContacts();
-});
+fetch("./content/contacts.html")
+    .then(response => response.text())
+    .then(async data => {
+        const pageContainer = document.getElementById("page-container");
+        pageContainer.innerHTML += data;
+        await fetchContacts();
+    });
 
-fetch('./content/board.html')
-.then(response => response.text())
-.then(data => {
-    const pageContainer = document.getElementById('page-container');
-    pageContainer.innerHTML += data;
-});
+fetch("./content/board.html")
+    .then(response => response.text())
+    .then(data => {
+        const pageContainer = document.getElementById("page-container");
+        pageContainer.innerHTML += data;
+    });
 
-// counts the letters in add task textarea
+async function initBackend() {
+    await downloadFromServer();
+    tasksToServer = JSON.parse(backend.getItem("tasks")) || [];
+    loadWrappersFromServer();
+}
+
 function eventListeners() {
+    initBackend(); // backend for add Tasks Data
+    // counts the letters in add task textarea
     const textarea = document.getElementById("textarea");
-    textarea.addEventListener("input", function() {
+    textarea.addEventListener("input", function () {
         const textarea = document.getElementById("textarea");
         const text = textarea.value;
         const letterCount = text.length;
@@ -66,4 +76,3 @@ function eventListeners() {
         countDisplay.innerText = letterCount;
     });
 }
-

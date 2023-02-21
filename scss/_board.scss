@@ -144,11 +144,15 @@
   .card .body {
     font-size: 14px;
     overflow-wrap: break-word;
+    color: #29ABE2;
   }
   
   .card .caption {
-    font-size: 12px;
-    color: #bdbdbd;
+    font-size: 14px;
+    color: #9b9999;
+    font-weight: 400;
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
   }
   
   .ghost {
@@ -158,5 +162,47 @@
     width: 350px;
   }
   
+}
+
+.wrapper_category {
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.assigns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px;
+  max-width: 160px;
+}
+
+.wrapper_assigns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 35px;
+  min-width: 35px;
+  height: 35px;
+  color: white;
+  font-weight: 400;
+  font-size: 10px;
+  border: 2px solid rgb(255, 255, 255);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.16);
+}
+
+.wrapper_footer {
+  display: flex;
+  align-items: end;
+}
+
+.priority {
+  width: 24px;
+  height: 24px;
 }
 

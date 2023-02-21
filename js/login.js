@@ -1,5 +1,5 @@
 function login() {
-    document.getElementById('login_access').innerHTML = /*html*/`
+    document.getElementById("login_access").innerHTML = /*html*/ `
             <span class="font61-700">Log in</span>
             <div class="login_blue_line"></div>
             <form>
@@ -24,9 +24,8 @@ function login() {
     `;
 }
 
-
 function forgotPassword() {
-    document.getElementById('login_access').innerHTML = /*html*/`
+    document.getElementById("login_access").innerHTML = /*html*/ `
             <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
                 <img src="./img/left_arrow_blue.png">
             </div>
@@ -45,9 +44,8 @@ function forgotPassword() {
     `;
 }
 
-
 function signUp() {
-    document.getElementById('login_access').innerHTML = /*html*/`
+    document.getElementById("login_access").innerHTML = /*html*/ `
         <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
             <img src="./img/left_arrow_blue.png">
         </div>
@@ -69,9 +67,8 @@ function signUp() {
     `;
 }
 
-
 function resetPassword() {
-    document.getElementById('login_access').innerHTML = /*html*/`
+    document.getElementById("login_access").innerHTML = /*html*/ `
     <div class="c-pointer scale-105 login_arrow_left" onclick="forgotPassword()">
         <img src="./img/left_arrow_blue.png">
     </div>
@@ -91,21 +88,12 @@ function resetPassword() {
 `;
 }
 
-
 function hideLogin() {
-    document.getElementById('login').style.visibility = "hidden";
-    document.getElementById('animation').style.visibility = "hidden";
+    document.getElementById("login").style.visibility = "hidden";
+    document.getElementById("animation").style.visibility = "hidden";
     NavRenderSummary();
 }
-
 
 function enterAsGuest() {
     window.location = "./home.html";
 }
-
-
-// function mobileResCheck() {
-//     if (screen.width <= 600) {
-//         window.location = "./mobile.html";
-//     }
-// }
