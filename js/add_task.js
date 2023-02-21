@@ -58,32 +58,15 @@ function createAddTaskJSON() {
 
     tasksToServer.push(tasks);
     backend.setItem('tasks', JSON.stringify(tasks));
-
-    // saveTaskToBackend();
-    // addTask();
+    showConfirmation();
 }
 
-
-
-// function addTask() {
-//     event.preventDefault();
-//     todo_wrapper = document.createElement("first-wrapper-todo");
-//     todo_wrapper,
-//         (innerHTML = `
-//         <div class="card">
-//             <div class="header">
-//                 <div class="title">
-//                     <span>${tasks.title}</span>
-//                 </div>
-//                 </div>
-//                 <div class="body">
-//                 <p>Website redesign</p>
-//                 </div>
-//             <div class="caption">...</div>
-//         </div>
-//     `);
-//     console.log(tasks);
-// }
+function showConfirmation() {
+    let a = true;
+    NavRenderAddTask();
+    NavClick(3);
+    showConfirmationAddTask(a);
+}
 
 function SetPriority(num, set) {
     event.preventDefault();
@@ -143,6 +126,8 @@ function onFormSubmit() {
 function clearForm(formId) {
     const form = document.getElementById(formId);
     form.reset();
+    NavRenderAddTask();
+    NavClick(3);
 }
 
 function initAssignDropDown() {
@@ -255,3 +240,14 @@ function setCategoryOption(category, color) {
     `;
     setCategory = {category, color};
 }
+
+function showConfirmationAddTask(a) {
+let task_added_confirmation = document.getElementById("task_added_confirmation");
+    if (a) {
+    task_added_confirmation.style.visibility = 'visible';
+    }
+    if (!a) {
+        task_added_confirmation.style.visibility = 'hidden';
+    }
+}
+
