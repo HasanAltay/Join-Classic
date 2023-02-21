@@ -110,26 +110,31 @@ function loadWrappersFromServer() {
                 ${taskServer.Description}
               </div>
               <div class="wrapper_footer">
-                <div class="assigns" id="wrapper_assigns"></div>
+                <div class="assigns" id="wrapper_assigns_${i}"></div>
                 <img class="priority" src="./img/${taskServer.Priority}.png">
-                  
               </div>
             </div>
           </div>
           `;
         console.log(taskServer.Contacts);
+       
+        console.log(i);
 
         for (let j = 0; j < taskServer.Contacts.length; j++) {
           const contacts = taskServer.Contacts[j];
-          let wrapper_assigns = document.getElementById('wrapper_assigns');
+          let wrapper_assigns = document.getElementById('wrapper_assigns_'+ i);
           wrapper_assigns.innerHTML += ``;
           wrapper_assigns.innerHTML += `
             <div class="wrapper_assigns" style="background-color:${contacts.color}">
             ${contacts.initials}
             </div>
-          `;
+          `; 
+          console.log('wrapper_assigns_'+ i);
         }
+
     }
+
+
 
 
 }
