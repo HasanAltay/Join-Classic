@@ -1,3 +1,24 @@
+urgent = 0;
+deadline = "May 09, 2023";
+board = 0;
+inProgress = 0;
+awaitFeedback = 0;
+todo = 0;
+done = 0;
+
+
+function initSummary() {
+    document.getElementById('sum_board').innerHTML = board;
+    document.getElementById('sum_progress').innerHTML = inProgress;
+    document.getElementById('sum_freedback').innerHTML = awaitFeedback;
+    document.getElementById('sum_todo').innerHTML = todo;
+    document.getElementById('sum_done').innerHTML = done;
+    document.getElementById('sum_deadline').innerHTML = deadline;
+    document.getElementById('sum_urgent').innerHTML = todo;
+}
+
+
+
 function SumTodoChangeImage(img) {
     document.getElementById('sum_todo_img').src = img;
 }

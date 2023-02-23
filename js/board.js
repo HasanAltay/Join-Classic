@@ -1,3 +1,51 @@
+function loadWrappersFromServer() {
+    for (let i = 0; i < tasksToServer.length; i++) {
+      const wrapper_0 = document.getElementById("wrapper_0");
+      // wrapper_0.innerHTML = ``;
+      wrapper_0.innerHTML += `
+      <div class="card">
+        <div class="header">
+          <div class="title" id="card_category">
+            <span class="wrapper_category" 
+            style="background-color:${tasksToServer[i][0][3][1]}">
+            ${tasksToServer[i][0][3][0]}
+            </span>
+            <img class="delete" src="./img/delete.png" onclick="deleteCard()">
+          </div>
+        </div>
+        <div class="body" id="card_titel"><p>${tasksToServer[i][0][0]}</p></div>
+        <div class="caption" id="card_description">${tasksToServer[i][0][5]}</div>
+        <div class="wrapper_footer" id="card_footer">
+          <div class="assigns" id="wrapper_assigns_${i}"></div>
+            <img class="priority" src="./img/${tasksToServer[i][0][4]}.png">
+          </div>
+        </div>
+      </div>
+    `;
+
+      const assigns = tasksToServer[i][0][1];
+      for (let j = 0; j < assigns.length; j++) {
+          let wrapper_assigns = document.getElementById(
+              `wrapper_assigns_${i}`
+          );
+          wrapper_assigns.innerHTML += `
+            <div class="wrapper_assigns" style="background-color:${assigns[j][1]}">
+            ${assigns[j][0]}
+            </div>
+          `;
+        }
+    }
+
+    board = tasksToServer.length;
+    // initSummary();
+}
+
+
+function deleteCard() {
+  console.log('deleteCard');
+}
+
+
 document.addEventListener("DOMContentLoaded", e => {
     const list = document.querySelector(".list-wrapper");
     let pointerDown = false;
@@ -54,7 +102,6 @@ document.addEventListener("DOMContentLoaded", e => {
                 return;
             }
 
-            // 쥐고 있는 카드 복사
             const placeCard = ghost.firstChild.cloneNode(true);
             placeCard.classList.replace("dragging", "afterimage");
             const fromCard = document.querySelector(".afterimage");
@@ -88,53 +135,3 @@ document.addEventListener("DOMContentLoaded", e => {
         activeCard.classList.remove("afterimage");
     });
 });
-
-function loadWrappersFromServer() {
-    for (let i = 0; i < tasksToServer.length; i++) {
-        const taskServer = tasksToServer[i];
-        let wrapper_0 = document.getElementById("wrapper_0");
-        wrapper_0.innerHTML += ``;
-        wrapper_0.innerHTML += `
-          <div class="card">
-            <div class="header">
-              <div class="title">
-                <span class="wrapper_category" 
-                  style="background-color:${taskServer.Category.color}">
-                ${taskServer.Category.category}</span>
-              </div>
-            </div>
-              <div class="body">
-                <p>${taskServer.Titel}</p>
-              </div>
-              <div class="caption">
-                ${taskServer.Description}
-              </div>
-              <div class="wrapper_footer">
-                <div class="assigns" id="wrapper_assigns_${i}"></div>
-                <img class="priority" src="./img/${taskServer.Priority}.png">
-              </div>
-            </div>
-          </div>
-          `;
-        console.log(taskServer.Contacts);
-       
-        console.log(i);
-
-        for (let j = 0; j < taskServer.Contacts.length; j++) {
-          const contacts = taskServer.Contacts[j];
-          let wrapper_assigns = document.getElementById('wrapper_assigns_'+ i);
-          wrapper_assigns.innerHTML += ``;
-          wrapper_assigns.innerHTML += `
-            <div class="wrapper_assigns" style="background-color:${contacts.color}">
-            ${contacts.initials}
-            </div>
-          `; 
-          console.log('wrapper_assigns_'+ i);
-        }
-
-    }
-
-
-
-
-}

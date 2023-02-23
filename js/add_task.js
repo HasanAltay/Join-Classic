@@ -1,32 +1,21 @@
 let tasks = [];
+
 let categories = [
-    {
-        category: "Sales",
-        color: "#EE55FF",
-    },
-    {
-        category: "Design",
-        color: "#E88300",
-    },
-    {
-        category: "Backoffice",
-        color: "#6DD8BE",
-    },
-    {
-        category: "Marketing",
-        color: "#5000FF",
-    },
-    {
-        category: "Media",
-        color: "#EFD100",
-    },
+    ["Sales", "#EE55FF"],
+    ["Design", "#E88300"],
+    ["Backoffice", "#6DD8BE"],
+    ["Marketing", "#5000FF"],
+    ["Media", "#EFD100"],
 ];
-let setCategory;
+
+let setCategory = [];
 let setPriority;
 let setAssignContacts = [];
 let placeholder = true;
 let pickedContacts = [];
-let addedCategory;
+let addedCategory = [];
+let progress = 0;
+
 
 function createAddTaskJSON() {
     event.preventDefault();
@@ -34,45 +23,156 @@ function createAddTaskJSON() {
     let textarea = document.getElementById("textarea").value;
     let date = document.getElementById("date").value;
 
-    // console.log(title, textarea, date, setCategory, setPriority);
+    tasks = [];
+    tasks.push([
+        title,
+        pickedContacts,
+        date,
+        setCategory,
+        setPriority,
+        textarea,
+        progress,
+    ]);
 
-    if (addedCategory == undefined) {
-        tasks.push({
-            Titel: title,
-            Contacts: pickedContacts,
-            Deadline: date,
-            Category: setCategory,
-            Priority: setPriority,
-            Description: textarea,
-        });
-    } else {
-        tasks.push({
-            Titel: title,
-            Contacts: pickedContacts,
-            Deadline: date,
-            Category: addedCategory,
-            Priority: setPriority,
-            Description: textarea,
-        });
-    }
+    // Load existing tasks from the backend
+    let existingTasks = JSON.parse(backend.getItem("tasks")) || [];
+    existingTasks.push(tasks);
 
-    tasksToServer.push(tasks);
-    backend.setItem("tasks", JSON.stringify(tasks));
+    // Write the updated tasks array back to the backend
+    backend.setItem("tasks", JSON.stringify(existingTasks));
+
+
+    // Load existing tasks from the backend
+    // let existingTasks = JSON.parse(backend.getItem("tasks")) || [];
+    // existingTasks.push(tasks);
+    // tasksToServer = existingTasks;
+
+    // backend.setItem("tasks", JSON.stringify(tasks));
+
+    // tasksToServer.push(tasks);
+    // console.log(tasksToServer);
+
+    console.log(tasks);
     let a = true;
     showConfirmationAddTask(a);
 }
 
-function showConfirmationAddTask(a) {
-    let task_added_confirmation = document.getElementById(
-        "task_added_confirmation"
-    );
-    if (a) {
-        task_added_confirmation.style.visibility = "visible";
-    }
-    if (!a) {
-        task_added_confirmation.style.visibility = "hidden";
+
+function initAssignDropDown() {
+    let assign_dropdown_list = document.getElementById("assign_dropdown_list");
+    for (let i = 0; i < contactsListTasks.length; i++) {
+        const list = contactsListTasks[i];
+        assign_dropdown_list.innerHTML += `
+            <button onclick="setContacts('${list[0]}','${list[3]}','${i}')">
+            <div class="assign_initials" style="background-color:${list[3]}">${list[0]}</div>
+            <span class="assign_details_name">${list[1]} ${list[2]}</span>
+            </button>
+        `;
     }
 }
+
+
+function setContacts(initials, color, i) {
+    event.preventDefault();
+    let assign_contacts_placeholder = document.getElementById(
+        "assign_contacts_placeholder"
+    );
+    let pickedContactIds = pickedContacts.map(contact => contact.id);
+
+    if (pickedContacts.length === 0) {
+        assign_contacts_placeholder.innerHTML = "";
+        placeholder = false;
+    }
+
+    if (pickedContactIds.includes(`user${i}`)) {
+        return; // Exit the function if the contact has already been picked
+    }
+
+    if (pickedContacts.length >= 7) {
+        return; // Exit the function if there are already 7 picked contacts
+    }
+
+    let pickedContact = document.createElement("div");
+    pickedContact.setAttribute("id", `user${i}`);
+    pickedContact.classList.add("picked_contacts");
+    pickedContact.style.backgroundColor = color;
+    pickedContact.textContent = initials;
+    assign_contacts_placeholder.appendChild(pickedContact);
+    pickedContacts.push([initials, color]);
+
+    // Add event listener to remove contact when clicked
+    pickedContact.addEventListener("click", () => {
+        pickedContact.remove(); // Remove the contact from the DOM
+        pickedContacts = pickedContacts.filter(
+            contact => contact.id !== `user${i}`
+        ); // Remove the contact from the array
+
+        if (pickedContacts.length === 0) {
+            assign_contacts_placeholder.innerHTML = "Select contact to assign";
+            placeholder = true;
+        }
+    });
+}
+
+
+function categoryDropdown() {
+    let category_dropdown = document.getElementById("category_dropdown");
+    for (let i = 0; i < categories.length; i++) {
+        const category = categories[i];
+        category_dropdown.innerHTML += `
+            <button onclick="setCategoryOption('${category[0]}','${category[1]}')">
+                <div class="assign_initials" style="background-color:${category[1]}"></div>
+                <span class="assign_details_name">${category[0]}</span>
+            </button>
+        `;
+    }
+    category_dropdown.innerHTML += `
+        <div class="assign_category_input">
+            <input type="text" placeholder="Add new category" id="category_name_input">
+            <div class="color_picker_btn">
+                <input type="color" id="category_color_input" value="#ffffff">
+                <img src="./img/color-wheel.png">
+            </div>
+            <button onclick="addCategory()" id="category_btn_input">Add</button>
+        </div>
+    `;
+}
+
+
+function addCategory() {
+    event.preventDefault();
+    // adds new category to select from dropdown list
+    let new_input = document.getElementById("category_name_input");
+    let color_input = document.getElementById("category_color_input");
+
+    categories.push([new_input.value, color_input.value]);
+
+    setCategory = [];
+    setCategory.push(new_input.value, color_input.value);
+
+    let category_dropdown = document.getElementById("category_dropdown");
+    category_dropdown.innerHTML = "";
+    categoryDropdown();
+
+    // Clear the input fields
+    category_name_input.value = "";
+    category_color_input.value = "#000000";
+}
+
+
+function setCategoryOption(category, color) {
+    event.preventDefault();
+    // console.log(category, color);
+    let assign_placeholder = document.getElementById("assign_placeholder");
+    assign_placeholder.innerHTML = `
+        <div style="background-color:${color}" class="assign_set_category">
+            ${category}
+        </div>
+    `;
+    setCategory = [];
+    setCategory.push(category, color);
+}
+
 
 function SetPriority(num, set) {
     event.preventDefault();
@@ -80,7 +180,6 @@ function SetPriority(num, set) {
     let urgent = document.getElementById("urgent");
     let medium = document.getElementById("medium");
     let low = document.getElementById("low");
-
     let urgent_img = document.getElementById("urgent_img");
     let medium_img = document.getElementById("medium_img");
     let low_img = document.getElementById("low_img");
@@ -124,125 +223,29 @@ function SetPriority(num, set) {
     }
 }
 
+
+function showConfirmationAddTask(a) {
+    let task_added_confirmation = document.getElementById(
+        "task_added_confirmation"
+    );
+    if (a) {
+        task_added_confirmation.style.visibility = "visible";
+    }
+    if (!a) {
+        task_added_confirmation.style.visibility = "hidden";
+    }
+}
+
+
 function onFormSubmit() {
     event.preventDefault();
     // your Javascript code here
 }
+
 
 function clearForm(formId) {
     const form = document.getElementById(formId);
     form.reset();
     NavRenderAddTask();
     NavClick(3);
-}
-
-function initAssignDropDown() {
-    let assign_dropdown_list = document.getElementById("assign_dropdown_list");
-    for (let i = 0; i < contactsListTasks.length; i++) {
-        const list = contactsListTasks[i];
-        assign_dropdown_list.innerHTML += `
-            <button onclick="setContacts('${list[0]}','${list[3]}','${i}')">
-            <div class="assign_initials" style="background-color:${list[3]}">${list[0]}</div>
-            <span class="assign_details_name">${list[1]} ${list[2]}</span>
-            </button>
-        `;
-    }
-}
-
-function setContacts(initials, color, i) {
-    event.preventDefault();
-    let assign_contacts_placeholder = document.getElementById(
-        "assign_contacts_placeholder"
-    );
-    let pickedContactIds = pickedContacts.map(contact => contact.id);
-
-    if (pickedContacts.length === 0) {
-        assign_contacts_placeholder.innerHTML = "";
-        placeholder = false;
-    }
-
-    if (pickedContactIds.includes(`user${i}`)) {
-        return; // Exit the function if the contact has already been picked
-    }
-
-    if (pickedContacts.length >= 7) {
-        return; // Exit the function if there are already 7 picked contacts
-    }
-
-    let pickedContact = document.createElement("div");
-    pickedContact.setAttribute("id", `user${i}`);
-    pickedContact.classList.add("picked_contacts");
-    pickedContact.style.backgroundColor = color;
-    pickedContact.textContent = initials;
-    assign_contacts_placeholder.appendChild(pickedContact);
-    // pickedContacts.push(pickedContact);
-    pickedContacts.push({initials, color, i});
-
-    // Add event listener to remove contact when clicked
-    pickedContact.addEventListener("click", () => {
-        pickedContact.remove(); // Remove the contact from the DOM
-        pickedContacts = pickedContacts.filter(
-            contact => contact.id !== `user${i}`
-        ); // Remove the contact from the array
-
-        if (pickedContacts.length === 0) {
-            assign_contacts_placeholder.innerHTML = "Select contact to assign";
-            placeholder = true;
-        }
-    });
-}
-
-function categoryDropdown() {
-    let category_dropdown = document.getElementById("category_dropdown");
-    for (let i = 0; i < categories.length; i++) {
-        const category = categories[i];
-        category_dropdown.innerHTML += `
-            <button onclick="setCategoryOption('${category.category}','${category.color}')">
-                <div class="assign_initials" style="background-color:${category.color}"></div>
-                <span class="assign_details_name">${category.category}</span>
-            </button>
-        `;
-    }
-    category_dropdown.innerHTML += `
-        <div class="assign_category_input">
-            <input type="text" placeholder="Add new category" id="category_name_input">
-            <input type="color" id="category_color_input" value="#ffffff">
-            <img src="./img/color-wheel.png">
-            <button onclick="addCategory()" id="category_btn_input">Add</button>
-        </div>
-    `;
-}
-
-function addCategory() {
-    event.preventDefault();
-    let category_name_input = document.getElementById("category_name_input");
-    let category_color_input = document.getElementById("category_color_input");
-
-    let newCategory = {
-        category: category_name_input.value,
-        color: category_color_input.value,
-    };
-
-    categories.push(newCategory);
-    addedCategory = newCategory;
-
-    let category_dropdown = document.getElementById("category_dropdown");
-    category_dropdown.innerHTML = "";
-    categoryDropdown();
-
-    // Clear the input fields
-    category_name_input.value = "";
-    category_color_input.value = "#000000";
-}
-
-function setCategoryOption(category, color) {
-    event.preventDefault();
-    // console.log(category, color);
-    let assign_placeholder = document.getElementById("assign_placeholder");
-    assign_placeholder.innerHTML = `
-        <div style="background-color:${color}" class="assign_set_category">
-            ${category}
-        </div>
-    `;
-    setCategory = {category, color};
 }

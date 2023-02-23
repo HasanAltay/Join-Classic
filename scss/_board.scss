@@ -145,6 +145,23 @@
   .card .title {
     font-size: 16px;
     font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .card .delete {
+    cursor: pointer;
+    filter: grayscale(1) brightness(150%);
+    z-index: 99;
+
+    &:hover {
+      filter: unset;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
   }
   
   .card .body {

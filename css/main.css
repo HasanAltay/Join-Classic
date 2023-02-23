@@ -169,18 +169,21 @@
   justify-content: space-between;
   margin: 10px;
 }
-.task_main .assign_category_input img {
+.task_main .assign_category_input .color_picker_btn {
+  position: relative;
+}
+.task_main .assign_category_input .color_picker_btn img {
   width: 24px;
   position: absolute;
-  bottom: 33px;
-  right: 120px;
+  bottom: 13px;
+  right: 27px;
   pointer-events: none;
 }
 .task_main .assign_category_input #category_name_input {
   font-size: 16px;
   font-weight: 400;
   width: 220px;
-  min-width: 180px;
+  min-width: 40px;
   height: 50px;
   margin-right: 10px;
 }
@@ -221,7 +224,7 @@
   border-radius: 8px;
   border: none;
   height: 50px;
-  padding: 4px 40px;
+  padding: 4px 20px;
   cursor: pointer;
   transition: all 100ms ease-in-out;
   white-space: nowrap;
@@ -248,7 +251,7 @@
   border-radius: 8px;
   border: 1px solid #2a3647;
   height: 50px;
-  padding: 4px 40px;
+  padding: 4px 20px;
   cursor: pointer;
   transition: all 100ms ease-in-out;
   white-space: nowrap;
@@ -516,6 +519,20 @@
 .board_tasks .card .title {
   font-size: 16px;
   font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.board_tasks .card .delete {
+  cursor: pointer;
+  filter: grayscale(1) brightness(150%);
+  z-index: 99;
+}
+.board_tasks .card .delete:hover {
+  filter: unset;
+}
+.board_tasks .card .delete:active {
+  transform: scale(0.9);
 }
 .board_tasks .card .body {
   font-size: 14px;
