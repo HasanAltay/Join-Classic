@@ -1,4 +1,4 @@
-[
+{"contacts": [
 	{ 
     "name": "Max",
     "surname": "Mustermann",
@@ -34,5 +34,5 @@
     "surname": "Nakamoto",
 	  "phone": "006 786 203 432",
 	  "mail": "satoshi@btc.com"
-	}
-]
+	}]
+}

@@ -1,0 +1,38 @@
+{"contacts": [
+	{ 
+    "name": "Max",
+    "surname": "Mustermann",
+	  "phone": "069 000 xxx",
+	  "mail": "max@mustermann.de"
+	},
+	{ 
+    "name": "Sabine",
+    "surname": "Mustermann",
+	  "phone": "069 100 xxx",
+	  "mail": "sabine@mustermann.de"
+	},
+  { 
+    "name": "Julia",
+    "surname": "Roberts",
+	  "phone": "069 200 xxx",
+	  "mail": "julia@mustermann.de"
+	},
+  { 
+    "name": "Quentin",
+    "surname": "Tarantino",
+	  "phone": "011 300 234 432",
+	  "mail": "quentinsplace@gmx.com"
+	},
+	{ 
+    "name": "Adam",
+    "surname": "Mustermann",
+	  "phone": "069 400 xxx",
+	  "mail": "adam@mustermann.de"
+	},
+	{ 
+    "name": "Satoshi",
+    "surname": "Nakamoto",
+	  "phone": "006 786 203 432",
+	  "mail": "satoshi@btc.com"
+	}]
+}

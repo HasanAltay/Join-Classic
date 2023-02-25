@@ -48,7 +48,7 @@ fetch("./content/contacts.html")
     .then(async data => {
         const pageContainer = document.getElementById("page-container");
         pageContainer.innerHTML += data;
-        await fetchContacts();
+        // await initLettersFromContacts();
     });
 
 fetch("./content/board.html")
@@ -66,6 +66,7 @@ async function initBackend() {
 
 function eventListeners() {
     initBackend(); // backend for add Tasks Data
+    initLettersFromContacts();
     // counts the letters in add task textarea
     const textarea = document.getElementById("textarea");
     textarea.addEventListener("input", function () {

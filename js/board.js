@@ -1,50 +1,9 @@
-// function loadWrappersFromServer() {
-//     for (let i = 0; i < tasksToServer.length; i++) {
-//       const wrapper_0 = document.getElementById("wrapper_0");
-//       // wrapper_0.innerHTML = ``;
-//       wrapper_0.innerHTML += `
-//       <div class="card">
-//         <div class="header">
-//           <div class="title" id="card_category">
-//             <span class="wrapper_category" 
-//             style="background-color:${tasksToServer[i][0][3][1]}">
-//             ${tasksToServer[i][0][3][0]}
-//             </span>
-//             <img class="delete" src="./img/delete.png" onclick="deleteCard()">
-//           </div>
-//         </div>
-//         <div class="body" id="card_titel"><p>${tasksToServer[i][0][0]}</p></div>
-//         <div class="caption" id="card_description">${tasksToServer[i][0][5]}</div>
-//         <div class="wrapper_footer" id="card_footer">
-//           <div class="assigns" id="wrapper_assigns_${i}"></div>
-//             <img class="priority" src="./img/${tasksToServer[i][0][4]}.png">
-//           </div>
-//         </div>
-//       </div>
-//     `;
-
-//       const assigns = tasksToServer[i][0][1];
-//       for (let j = 0; j < assigns.length; j++) {
-//           let wrapper_assigns = document.getElementById(
-//               `wrapper_assigns_${i}`
-//           );
-//           wrapper_assigns.innerHTML += `
-//             <div class="wrapper_assigns" style="background-color:${assigns[j][1]}">
-//             ${assigns[j][0]}
-//             </div>
-//           `;
-//         }
-//     }
-
-//     board = tasksToServer.length;
-//     // initSummary();
-// }
+let wrapperNo;
 
 
 function loadWrappersFromServer() {
   for (let i = 0; i < tasksToServer.length; i++) {
     const wrapper_0 = document.getElementById("wrapper_0");
-    // wrapper_0.innerHTML = ``;
     wrapper_0.innerHTML += `
     <div class="card" id="card_${i}">
       <div class="header">
@@ -79,11 +38,21 @@ function loadWrappersFromServer() {
       }
       
     // Add event listener to the delete button inside the card
-    const deleteButton = wrapper_0.querySelector('.card #delete_' +i);
-    console.log('.card #delete_' +i)
-    deleteButton.addEventListener('pointerdown', (event) => {
+    wrapperNo = i;
+    // const deleteButton = wrapper_0.querySelector('.card #delete_' +i);
+    // console.log('.card #delete_' +i);
+    // console.log(wrapperNo);
+    // deleteButton.addEventListener('pointerdown', (event) => {
+    //   event.stopPropagation();
+    // });
+    const wrapper = document.getElementById("wrapper_0");
+    const deleteButton = wrapper.querySelector('.card #delete_'+wrapperNo);
+    deleteButton.addEventListener('pointerdown', (event) => {      
       event.stopPropagation();
     });
+
+
+
   }
 
   board = tasksToServer.length;
@@ -91,14 +60,16 @@ function loadWrappersFromServer() {
 }
 
 
-
 function deleteCard() {
-  console.log('x');
+  console.log('.card #delete_'+wrapperNo)
 }
 
 
+
+
+
 document.addEventListener("DOMContentLoaded", e => {
-    const list = document.querySelector(".list-wrapper");
+    // const list = document.querySelector(".list-wrapper");
     let pointerDown = false;
     let shiftX = 0;
     let shiftY = 0;

@@ -1,43 +1,56 @@
-let contacts;
+let contacts = [];
 let sortedContacts = {};
 let contactsListTasks = [];
 
-async function fetchContacts() {
-    resetList();
-    fetch("./json/contacts.json")
-        .then(data => data.json())
-        .then(data => {
-            // sorts the json array by the first letter of the first entry.
-            data.sort(function (a, b) {
-                let nameA = a.name.charAt(0).toLowerCase();
-                let nameB = b.name.charAt(0).toLowerCase();
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
-                return 0;
-            });
-            contacts = data;
-            initList();
-        });
+function saveNewContact() {
+    const add_name = document.getElementById("name").value;
+    const add_surname = document.getElementById("surname").value;
+    const add_mail = document.getElementById("mail").value;
+    const add_phone = document.getElementById("phone").value;
+    const new_contact = {
+        name: add_name,
+        surname: add_surname,
+        phone: add_phone,
+        mail: add_mail,
+    };
+    contacts.push(new_contact);
+    backend.saveContacts("contacts", JSON.stringify(contacts));
 }
 
-function initList() {
+async function initLettersFromContacts() {
+    contacts.sort(function (a, b) {
+        let nameA = a.name.charAt(0).toLowerCase();
+        let nameB = b.name.charAt(0).toLowerCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    });
+    sortedContacts = {}; // clear sortedContacts object
+    letter_box.innerHTML = ""; // clear letter_box element
+    initList(contacts);
+}
+
+function initList(contacts) {
     contactsListTasks = [];
+    let letter_box = document.getElementById("letter_box");
     for (let i = 0; i < contacts.length; i++) {
-        let firstLetter = contacts[i].name[0].toUpperCase();
+      
+        // console.log(contacts);
+        const firstLetter = contacts[i].name[0].toUpperCase();
         if (!sortedContacts[firstLetter]) {
             sortedContacts[firstLetter] = [];
         }
         sortedContacts[firstLetter].push(contacts[i]);
+        // console.log(sortedContacts);
     }
     for (let letter in sortedContacts) {
-        let letter_box = document.getElementById("letter_box");
         letter_box.innerHTML += `
-      <a class="contacts_letters">${letter}</a>
-    `;
+          <a class="contacts_letters">${letter}</a>
+        `;
         for (let i = 0; i < sortedContacts[letter].length; i++) {
             let name_letter = sortedContacts[letter][i].name.slice(0, 1);
             let surname_letter = sortedContacts[letter][i].surname.slice(0, 1);
@@ -47,23 +60,25 @@ function initList() {
             let mail = sortedContacts[letter][i].mail;
             let phone = sortedContacts[letter][i].phone;
             let color = getColor(letters);
+
+            contactsListTasks.push([letters, name, surname, color]);
             letter_box.innerHTML += /*html*/ `
-            <button class="contacts_files" id="files" 
-              onclick="initDetails('${letters}','${name}','${surname}','${mail}','${phone}','${color}');showDetails()">
-              <div class="contacts_initials" id="initials" style="background-color:${color}">${letters}</div>
-              <div class="contacts_name_email" id="name_email">
-                <span>${name} ${surname}</span>
-                <a>${mail}</a>
-              </div>
-            </button>
-      `;
-        contactsListTasks.push([letters,name,surname,color]);
+              <button class="contacts_files" id="files" 
+                onclick="initDetails('${letters}','${name}','${surname}','${mail}','${phone}','${color}');showDetails()">
+                <div class="contacts_initials" id="initials" style="background-color:${color}">${letters}</div>
+                <div class="contacts_name_email" id="name_email">
+                  <span>${name} ${surname}</span>
+                  <a>${mail}</a>
+                </div>
+              </button>
+            `;
+            
         }
     }
 }
 
+// show detailed contact list informations on right side
 function initDetails(letters, name, surname, mail, phone, color) {
-    // console.log(letters, name, mail, phone);
     let contacts_details = document.getElementById("contacts_details");
     contacts_details.innerHTML = `
     <div class="details_header">
@@ -88,27 +103,38 @@ function initDetails(letters, name, surname, mail, phone, color) {
     addContact();
 }
 
+// adds new contact to the list
 function addContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.innerHTML = `
-      <div class="contact_new_top">
-        <img src="./img/logo_topbar.png">
-        <span>Add contact</span>
-        <a>Tasks are better with a team!</a>
-      </div>
-      <form class="contact_new_bottom" id="myForm" onsubmit="onFormSubmit();">
-
-        <input type="text" placeholder="Name" name="name" maxlength="36" id="name">
-        <input type="text" placeholder="Surname" name="surname" maxlength="36" id="surname">
-        <input type="email" placeholder="Email" name="mail" maxlength="36" id="mail">
-        <input type="number" placeholder="Phone" name="phone" maxlength="16" id="phone">
-
-        <div class="contact_new_btns">
-          <button class="button_bright" onclick="closeAddContact()">Cancel</button>
-          <input type="submit" class="button_dark" onclick="submitContact()" value="Add">
-        </div>
-      </form>
+    <div class="contact_new_top"> 
+      <img src="./img/logo_topbar.png"> 
+      <span>Add contact</span> 
+      <a>Tasks are better with a team!</a> 
+    </div> 
+    <form class="contact_new_bottom" id="myForm" onsubmit="onFormSubmit();"> 
+      <input type="text" placeholder="Name" name="name" maxlength="36" id="name"> 
+      <input type="text" placeholder="Surname" name="surname" maxlength="36" id="surname"> 
+      <input type="email" placeholder="Email" name="mail" maxlength="36" id="mail"> 
+      <input type="tel" placeholder="Phone" name="phone" id="phone" pattern="[0-9]{10,16}" title="Please enter a valid phone number (between 10 and 16 digits)"> 
+      <div class="contact_new_btns"> 
+        <button class="button_bright" onclick="closeAddContact()">Cancel</button> 
+        <button type="submit" class="button_dark" onclick="saveNewContact();showConfirmationAddContact(a=true);" value="Add">Add</button> 
+      </div> 
+    </form>
   `;
+}
+
+function showConfirmationAddContact(a) {
+    let contact_added_confirmation = document.getElementById(
+        "contact_added_confirmation"
+    );
+    if (a) {
+        contact_added_confirmation.style.visibility = "visible";
+    }
+    if (!a) {
+        contact_added_confirmation.style.visibility = "hidden";
+    }
 }
 
 function resetList() {
@@ -135,80 +161,3 @@ function closeAddContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.style.display = "none";
 }
-
-// function submitContact() {
-//     let myForm = document.getElementById("myForm");
-//     myForm.addEventListener("submit", function (event) {
-//         event.preventDefault();
-
-//         let name = document.getElementById("name").value;
-//         let surname = document.getElementById("surname").value;
-//         let mail = document.getElementById("mail").value;
-//         let phone = document.getElementById("phone").value;
-
-//         // create an object with the new data
-//         let newData = {
-//             name: name,
-//             surname: surname,
-//             mail: mail,
-//             phone: phone,
-//         };
-
-//         // send a POST request to the server to update the JSON file
-//         fetch("/json/contacts.json", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(newData),
-//         })
-//             .then(response => response.json())
-//             .then(data => console.log(data))
-//             .catch(error => console.error(error));
-//     });
-
-//     // const http = require("http");
-//     // const fs = require("fs");
-
-//     http.createServer((req, res) => {
-//         if (req.method === "POST" && req.url === "/json/contacts.json") {
-//             let body = "";
-
-//             req.on("data", chunk => {
-//                 body += chunk;
-//             });
-
-//             req.on("end", () => {
-//                 let newData = JSON.parse(body);
-
-//                 // read the existing data from the JSON file
-//                 fs.readFile("/json/contacts.json", (err, data) => {
-//                     if (err) {
-//                         res.statusCode = 500;
-//                         res.end("Error reading data file");
-//                         return;
-//                     }
-
-//                     let jsonData = JSON.parse(data);
-
-//                     // add the new data to the existing data
-//                     jsonData.push(newData);
-
-//                     // write the updated data back to the JSON file
-//                     fs.writeFile("/json/contacts.json", JSON.stringify(jsonData), err => {
-//                         if (err) {
-//                             res.statusCode = 500;
-//                             res.end("Error writing data file");
-//                             return;
-//                         }
-
-//                         res.setHeader("Content-Type", "application/json");
-//                         res.end(JSON.stringify(jsonData));
-//                     });
-//                 });
-//             });
-//         }
-//     }).listen(3000, () => {
-//         console.log("Server running on port 3000");
-//     });
-// }
