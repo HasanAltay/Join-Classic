@@ -133,6 +133,8 @@
 
   a {
     font-weight: bold;
+    text-decoration: none;
+    color:#2b70d1;
   }
 }
 
@@ -276,11 +278,17 @@
     height: calc(100vh - 160px);
     top: 80px;
     left: 0;
-    padding-left: 20px;
+    padding-left: 30px;
     padding-right: 20px;
 
+    b {
+      font-size: 14px;
+    }
+
     a {
-      font-size: 14px
+      font-size: 14px;
+      text-decoration: none;
+      color: #2b70d1;
     }
   }
 
@@ -304,10 +312,11 @@
   }
 
   .details_header {
-    padding-top: 60px;
+    padding-top: 70px;
   }
 
   .contacts_list {
+    padding-top: 50px;
     max-width: unset;
     width: unset;
     min-width: 100%;
@@ -347,6 +356,7 @@
   .contact_new_top {
     height: 30%;
     border-radius: unset;
+    padding-top: 30px;
   }
 
   .contact_new_bottom {

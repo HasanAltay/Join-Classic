@@ -1,33 +1,30 @@
 <div class="global_main_format">
-    <form
-        class="task_main"
-        id="add_new_task"
-        onsubmit="createAddTaskJSON()"
-        
-    >
+    <div class="mobile_topbar_title">Kanban Project Management Tool</div>
+    <form class="task_main" id="add_new_task" onsubmit="createAddTaskJSON()">
         <input
             type="text"
             placeholder="Enter a title"
             name="title"
             maxlength="33"
             id="title"
-            title="Enter a title for your new Task!" required
+            title="Enter a title for your new Task!"
+            required
         />
 
         <div class="assign_dropdown" type="checkbox" name="categorie">
             <div class="assign_dropdown_titel">
-                <span id="assign_contacts_placeholder">Select contact to assign</span><img src="./img/dd_blue.png" />
+                <span id="assign_contacts_placeholder"
+                    >Select contact to assign</span
+                ><img src="./img/dd_blue.png" />
             </div>
-            <div class="assign_dropdown-content" id="assign_dropdown_list"></div>
+            <div
+                class="assign_dropdown-content"
+                id="assign_dropdown_list"
+            ></div>
         </div>
 
-        <input
-            type="date"
-            name="date"
-            id="date"
-            class="task_date" required
-        />
-        
+        <input type="date" name="date" id="date" class="task_date" required />
+
         <div class="assign_dropdown" type="checkbox" name="categorie">
             <div class="assign_dropdown_titel">
                 <span id="assign_placeholder">Select task categorie</span>
@@ -74,27 +71,30 @@
                 placeholder="Enter a Description"
                 maxlength="250"
                 type="text"
-                id="textarea" required
+                id="textarea"
+                required
             ></textarea>
             <div id="the-count">
                 <span id="current">0</span>
                 <span id="maximum">/250</span>
-              </div>
+            </div>
         </div>
 
         <div class="task_confirmation_btns">
             <button class="button_bright" onclick="clearForm('add_new_task')">
                 Clear
             </button>
-            <button class="button_dark" type="submit">Create Task</button>
+            <button class="button_dark" type="submit">Create Task<img src="./img/check.png"></button>
         </div>
     </form>
 
-
     <div class="confirmation" id="task_added_confirmation">
         <span>Task added to Board!</span>
-        <button class="button_dark" onclick="NavRenderBoard(); NavClick(2); showConfirmationAddTask(a=false);">Confirm</button>
-      </div>
+        <button
+            class="button_dark"
+            onclick="NavRenderBoard(); NavClick(2); showConfirmationAddTask(a=false);"
+        >
+            Confirm
+        </button>
+    </div>
 </div>
-
-

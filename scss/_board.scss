@@ -11,15 +11,27 @@
   position: relative;
   margin-bottom: 70px;
 
+  div {
+    position: relative;
+    .search_img {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+
   .mobile {
     display: none;
 	}
 
   input {
+    position: relative;
     border-radius: 10px;
     border: 1px solid rgb(204, 204, 204);
-    height: 51px;
-    width: 251px;
+    height: 50px;
+    width: 100%;
+    max-width: 250px;
+    min-width: 165px;
     padding: 20px;
     font-family: 'Inter';
     font-style: normal;
@@ -37,14 +49,7 @@
     }
   }
 
-  .search_img {
-    position: absolute;
-    top: 10px;
-    left: 200px;
-  }
-
   .button_dark {
-    // display: flex;
     justify-content: center;
     align-items: center;
     color: white;
@@ -230,18 +235,22 @@
   height: 24px;
 }
 
-
-
 @media (max-width: 600px) {
+
   .board_main {
     padding: 15px;
+    padding-top: 60px;
 
   }
   .board_search_bar {
-    // margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 
     .mobile {
       display: flex;
+      img {
+        margin-left: unset!important;
+      }
     }
   
     .desktop {
@@ -251,8 +260,15 @@
 
   .list-wrapper {
     justify-content: center;
+    gap: unset!important;
+  }
+
+  .board_tasks .column {
+    width: unset;
+    min-width: 100vw;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
 
 }
-

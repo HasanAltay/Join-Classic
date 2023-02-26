@@ -1,19 +1,65 @@
-urgent = 0;
-deadline = "May 09, 2023";
-board = 0;
-inProgress = 0;
-awaitFeedback = 0;
-todo = 0;
-done = 0;
+let urgent = 0;
+let deadline = "May 09, 2023";
+let board = 0;
+let inProgress = 0;
+let awaitFeedback = 0;
+let todo = 0;
+let done = 0;
 
 function initSummary() {
-    document.getElementById("sum_board").innerHTML = board;
-    document.getElementById("sum_progress").innerHTML = inProgress;
-    document.getElementById("sum_freedback").innerHTML = awaitFeedback;
-    document.getElementById("sum_todo").innerHTML = todo;
-    document.getElementById("sum_done").innerHTML = done;
-    document.getElementById("sum_deadline").innerHTML = deadline;
-    document.getElementById("sum_urgent").innerHTML = todo;
+    const sum_frame_squares = document.getElementById("sum_frame_squares");
+    sum_frame_squares.innerHTML = /*html*/ `
+        <div class="sum_middle">
+        <div class="sum_frame_urgent">
+            <img src="./img/urgent_summary.png"/>
+            <div>
+                <span id="sum_urgent">${urgent}</span><br />
+                <a style="font-size: 16px; font-weight: 400">Urgent</a>
+            </div>
+        </div>
+        <div class="sum_frame_deadline">
+            <span id="sum_deadline">${deadline}</span>
+            <a>Upcoming Deadline</a>
+        </div>
+        </div>
+        <div class="sum_squares">
+            <div>
+                <img src="./img/kanban.png">
+                <a id="sum_board">${board}</a>
+            </div>
+            <span>Tasks in Board</span>
+        </div>
+        <div class="sum_squares">
+            <div>
+                <img src="./img/in-progress.png">
+                <a id="sum_progress">${inProgress}</a>
+            </div>
+            <span>Tasks in Progress</span>
+        </div>
+        <div class="sum_squares">
+            <div>
+                <img src="./img/comment.png">
+                <a id="sum_freedback">${awaitFeedback}</a>
+            </div>
+            <span>Awaiting Feedback</span>
+        </div>
+        <div class="sum_squares">
+            <div>
+                <img id="sum_todo_img" src="./img/todo.png" />
+                <a id="sum_todo">${todo}</a>
+            </div>
+            <span>Tasks To-Do</span>
+        </div>
+        <div class="sum_squares">
+            <div>
+                <img id="sum_done_img" src="./img/done.png" />
+                <a id="sum_done">${done}</a>
+            </div>
+            <span>Tasks Done</span>
+        </div>
+    `;
+    getTime();
+    NavClick(1);
 }
 
 function SumTodoChangeImage(img) {

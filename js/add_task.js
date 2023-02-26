@@ -16,7 +16,6 @@ let pickedContacts = [];
 let addedCategory = [];
 let progress = 0;
 
-
 function createAddTaskJSON() {
     event.preventDefault();
     let title = document.getElementById("title").value;
@@ -41,22 +40,18 @@ function createAddTaskJSON() {
     // Write the updated tasks array back to the backend
     backend.setItem("tasks", JSON.stringify(existingTasks));
 
-
     // Load existing tasks from the backend
     // let existingTasks = JSON.parse(backend.getItem("tasks")) || [];
     // existingTasks.push(tasks);
     // tasksToServer = existingTasks;
 
     // backend.setItem("tasks", JSON.stringify(tasks));
-
     // tasksToServer.push(tasks);
-    // console.log(tasksToServer);
 
     console.log(tasks);
     let a = true;
     showConfirmationAddTask(a);
 }
-
 
 function initAssignDropDown() {
     let assign_dropdown_list = document.getElementById("assign_dropdown_list");
@@ -70,8 +65,7 @@ function initAssignDropDown() {
         `;
     }
 }
-
-
+  
 function setContacts(initials, color, i) {
     event.preventDefault();
     let assign_contacts_placeholder = document.getElementById(
@@ -114,7 +108,6 @@ function setContacts(initials, color, i) {
     });
 }
 
-
 function categoryDropdown() {
     let category_dropdown = document.getElementById("category_dropdown");
     for (let i = 0; i < categories.length; i++) {
@@ -138,7 +131,6 @@ function categoryDropdown() {
     `;
 }
 
-
 function addCategory() {
     event.preventDefault();
     // adds new category to select from dropdown list
@@ -159,7 +151,6 @@ function addCategory() {
     category_color_input.value = "#000000";
 }
 
-
 function setCategoryOption(category, color) {
     event.preventDefault();
     // console.log(category, color);
@@ -172,7 +163,6 @@ function setCategoryOption(category, color) {
     setCategory = [];
     setCategory.push(category, color);
 }
-
 
 function SetPriority(num, set) {
     event.preventDefault();
@@ -223,7 +213,6 @@ function SetPriority(num, set) {
     }
 }
 
-
 function showConfirmationAddTask(a) {
     let task_added_confirmation = document.getElementById(
         "task_added_confirmation"
@@ -236,12 +225,10 @@ function showConfirmationAddTask(a) {
     }
 }
 
-
 function onFormSubmit() {
     event.preventDefault();
     // your Javascript code here
 }
-
 
 function clearForm(formId) {
     const form = document.getElementById(formId);

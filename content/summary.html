@@ -1,75 +1,13 @@
-<!-- ids  
-    sum_board = x Tasks in Board
-    sum_progress = x Tasks in Progress
-    sum_freedback = x Awaiting Feedback
-    sum_urgent = x Urgent
-    sum_deadline = Month(in letters) Day(xx), year(xxxx)
-    sum_todo = x To-Do
-    sum_done = x Done 
-    sum_daytime = Good morning, Good day, Good evening
-    sum_user = Name Surname
- -->
 <div class="global_main_format">
-    
-    <div class="sum_mobile_top_text">Kanban Project Management Tool</div>
-    
+    <div class="mobile_topbar_title">Kanban Project Management Tool</div>
     <div>
         <div class="sum_greeting">
             <div class="sum_daytime" id="sum_daytime"></div>
             <div class="sum_user" id="sum_user">Guest</div>
         </div>
-
-        <div class="sum_frame_squares">
-            <div class="sum_middle">
-                <div class="sum_frame_urgent">
-                    <img src="./img/urgent_summary.png" onload="getTime();NavClick(1)">
-                    <div>
-                        <span id="sum_urgent">1</span><br>
-                        <a style="font-size: 16px; font-weight: 400;">Urgent</a>
-                    </div>
-                </div>
-                <div class="sum_frame_deadline">
-                    <span id="sum_deadline">December 12, 2022</span>
-                    <a>Upcoming Deadline</a>
-                </div>
-            </div>
-
-            <div class="sum_squares"><a id="sum_board">5</a>
-                <span>Tasks in Board</span>
-            </div>
-
-            <div class="sum_squares"><a id="sum_progress">2</a>
-                <span>Tasks in Progress</span>
-            </div>
-
-            <div class="sum_squares"><a id="sum_freedback">2</a>
-                <span>Awaiting Feedback</span>
-            </div>
-
-            <div class="sum_bottom_todo"
-                onmouseover="SumTodoChangeImage('./img/todo_bright.png')"
-                onmouseout="SumTodoChangeImage('./img/todo.png')">
-                <img id="sum_todo_img" src="./img/todo.png">
-                <div>
-                    <span id="sum_todo">1</span><br>
-                    <a>To-Do</a>
-                </div>
-            </div>
-
-            <div class="sum_bottom_done"
-                onmouseover="SumDoneChangeImage('./img/done_bright.png')"
-                onmouseout="SumDoneChangeImage('./img/done.png')">
-                <img id="sum_done_img" src="./img/done.png">
-                <div>
-                    <span id="sum_done">1</span><br>
-                    <a>Done</a>
-                </div>
-            </div>
-
-        </div>
+        <div class="sum_frame_squares" id="sum_frame_squares"></div>
     </div>
 </div>
-
 <div class="sum_greeting_mobile" id="sum_greeting_mobile">
     <div class="sum_daytime_mobile" id="sum_daytime_mobile"></div>
     <div class="sum_user_mobile" id="sum_user">Guest</div>

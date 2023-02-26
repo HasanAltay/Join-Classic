@@ -1,97 +1,71 @@
 <div class="global_main_format">
+    <div class="mobile_topbar_title">Kanban Project Management Tool</div>
     <div class="board_main">
         <div class="board_search_bar">
-            <input type="text" placeholder="Find Task" />
-            <img src="./img/search.png" class="search_img" />
-            <button class="button_dark mobile" onclick="NavRenderAddTask(); NavClick(3)">+</button>
-            <dbutton class="button_dark desktop" onclick="NavRenderAddTask(); NavClick(3)">Add task</button>
-            
+            <div>
+              <input type="text" placeholder="Find Task" />
+              <img src="./img/search.png" class="search_img" />
+            </div>
+            <button
+                class="button_dark mobile"
+                onclick="NavRenderAddTask(); NavClick(3)"
+            ><img src="./img/plus_white.png" />
+            </button>
+            <button
+                class="button_dark desktop"
+                onclick="NavRenderAddTask(); NavClick(3)"
+            >
+                Add task<img src="./img/plus_white.png" />
+            </button>
         </div>
 
         <div class="board_tasks">
-
-              <div class="list-wrapper">
+            <div class="list-wrapper">
                 <div class="column">
-                  <div class="column-header"><a>To Do</a><img src="./img/plus-dark.png"></div>
-                  <div class="card-wrapper" id="wrapper_0">
-
-                    <!-- <div class="card">
-                      <div class="header">
-                        <div class="title">
-                          <span>Design</span>
-                        </div>
-                      </div>
-                      <div class="body">
-                        <p>Website redesign</p>
-                      </div>
-                      <div class="caption">Modify the contents of the main website...</div>
-                    </div> -->
-
-                  </div>
+                    <div class="column-header">
+                        <a>To Do</a
+                        ><img
+                            src="./img/plus-dark.png"
+                            onclick="NavRenderAddTask(); NavClick(3)"
+                        />
+                    </div>
+                    <div class="card-wrapper" id="wrapper_0"></div>
                 </div>
 
                 <div class="column">
-                  <div class="column-header"><a>In progress</a><img src="./img/plus-dark.png"></div>
+                    <div class="column-header">
+                        <a>In progress</a
+                        ><img
+                            src="./img/plus-dark.png"
+                            onclick="NavRenderAddTask(); NavClick(3)"
+                        />
+                    </div>
 
-                  <div class="card-wrapper" id="wrapper_1">
-
-                    <!-- <div class="card">
-                      <div class="header">
-                        <div class="title">
-                          <span>Design</span>
-                        </div>
-                      </div>
-                      <div class="body">
-                        <p>Wrapper 1</p>
-                      </div>
-                      <div class="caption">Descriptions</div>
-                    </div> -->
-
-                  </div>
+                    <div class="card-wrapper" id="wrapper_1"></div>
                 </div>
 
                 <div class="column">
-                  <div class="column-header"><a>Await feedback</a><img src="./img/plus-dark.png"></div>
-                  <div class="card-wrapper" id="wrapper_2">
-
-                    <!-- <div class="card">
-                      <div class="header">
-                        <div class="title">
-                          <span>Design</span>
-                        </div>
-                      </div>
-                      <div class="body">
-                        <p>Wrapper 2</p>
-                      </div>
-                      <div class="caption">Descriptions</div>
-                    </div> -->
-
-                  </div>
+                    <div class="column-header">
+                        <a>Await feedback</a
+                        ><img
+                            src="./img/plus-dark.png"
+                            onclick="NavRenderAddTask(); NavClick(3)"
+                        />
+                    </div>
+                    <div class="card-wrapper" id="wrapper_2"></div>
                 </div>
                 <div class="column">
-                  <div class="column-header"><a>Done</a><img src="./img/plus-dark.png"></div>
-                  <div class="card-wrapper" id="wrapper_4">
-
-                    <!-- <div class="card">
-                      <div class="header">
-                        <div class="title">
-                          <span>Design</span>
-                        </div>
-                      </div>
-                      <div class="body">
-                        <p>Wrapper 3</p>
-                      </div>
-                      <div class="caption">Descriptions</div>
-                    </div> -->
-
-                  </div>
+                    <div class="column-header">
+                        <a>Done</a
+                        ><img
+                            src="./img/plus-dark.png"
+                            onclick="NavRenderAddTask(); NavClick(3)"
+                        />
+                    </div>
+                    <div class="card-wrapper" id="wrapper_4"></div>
                 </div>
-              </div>
-              <div class="ghost"></div>
-
+            </div>
+            <div class="ghost"></div>
         </div>
-
     </div>
 </div>
-
-

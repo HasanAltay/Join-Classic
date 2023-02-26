@@ -89,14 +89,14 @@ function initDetails(letters, name, surname, mail, phone, color) {
       <span class="contacts_h2">Contact Information<br><br></span>
     </div>
     <div>
-      <a>Email<br><br></a>
-      <div>${mail}<br><br></div>
+      <b>Email<br><br></b>
+      <a href="mailto:${mail}">${mail}<br><br></a>
     </div>
     <div>
-      <a>Mobil<br><br></a>
-      <div>${phone}</div>
+      <b>Phone<br><br></b>
+      <a href="tel:${phone}">${phone}</a>
     </div>
-    <button class="button_dark new_contact_pos" onclick="showAddContact()">Add contact</button>
+    <button class="button_dark new_contact_pos" onclick="showAddContact()">Add contact<img src="./img/add_contact.png"></button>
     <img class="mobile_arrow" src="./img/left_arrow_blue.png" onclick="closeDetails()">
     <div class="contact_new" id="contact_new"></div>
   `;

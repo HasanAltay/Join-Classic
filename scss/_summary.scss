@@ -55,11 +55,20 @@
 	background-color: white;
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 	border-radius: 30px;
-	font-size: 64px;
-	font-style: normal;
-	font-weight: 600;
+	font-size: 47px;
+	font-weight: 700;
 	cursor: pointer;
 	transition: all 100ms ease-in-out;
+
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	a {
+		margin-left: 10px;
+	}
 
 	span {
 		font-size: 21px;
@@ -68,7 +77,7 @@
 	}
 
 	&:hover {
-		background-color: #2A3647;
+		background-color: #29ABE2;
 		color: white;
 		transform: scale(1.05);
 		transition: all 100ms ease-in-out;
@@ -76,6 +85,16 @@
 
 	&:active {
 		transform: scale(1);
+	}
+
+	img {
+		height: 32px;
+		transition: all 100ms ease-in-out;
+	}
+
+	&:hover img {
+		filter: invert(1);
+		transition: all 100ms ease-in-out;
 	}
 }
 
@@ -92,7 +111,7 @@
 	cursor: pointer;
 
 	&:hover {
-		background-color: #2A3647;
+		background-color: #29ABE2;
 		color: white;
 		transform: scale(1.02);
 		transition: all 100ms ease-in-out;
@@ -123,6 +142,11 @@
 		font-size: 47px;
 		font-weight: 700;
 	}
+
+	img {
+		border-radius: 50%;
+		border: 3px solid white;
+	}
 }
 
 .sum_frame_deadline {
@@ -145,93 +169,15 @@
 	}
 }
 
-.sum_bottom_todo {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	width: 170px;
-	height: 170px;
-	background: #FFFFFF;
-	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-	border-radius: 30px;
-	text-align: center;
-	cursor: pointer;
-
-	&:hover {
-		background-color: #2A3647;
-		color: white;
-		transform: scale(1.05);
-		transition: all 100ms ease-in-out;
-	}
-
-	&:active {
-		transform: scale(1);
-	}
-	img {
-		width: 60px;
-	}
-	div {
-		span {
-			font-size: 64px;
-			font-weight: 600px;
-		}
-		a {
-			font-size: 21px;
-			font-weight: 400;
-			width: 65px;
-		}
-	}
-}
-
-.sum_bottom_done {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	width: 170px;
-	height: 170px;
-	background: #FFFFFF;
-	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-	border-radius: 30px;
-	text-align: center;
-	cursor: pointer;
-
-	&:hover {
-		background-color: #2A3647;
-		color: white;
-		transform: scale(1.05);
-		transition: all 100ms ease-in-out;
-	}
-
-	&:active {
-		transform: scale(1);
-	}
-	img {
-		width: 60px;
-	}
-	div {
-		span {
-			font-size: 64px;
-			font-weight: 600px;
-		}
-		a {
-			font-size: 21px;
-			font-weight: 400;
-			width: 65px;
-		}
-	}
-}
-
 .sum_daytime {
 	font-weight: 500;
-	font-size: 47px;
+	font-size: 42px;
 	color: #2A3647;
 }
 
 .sum_user {
 	font-weight: 700;
-	font-size: 64px;
+	font-size: 52px;
 	color: #29ABE2;
 }
 
@@ -246,14 +192,6 @@
 .sum_mobile_subtitle {
 	display: none;
 	padding-left: 25px;
-}
-
-.sum_mobile_top_text {
-	display: none;
-	position: absolute;
-	top: 120px;
-	left: 40px;
-	color: #29ABE2;
 }
 
 .sum_blue_line_mobile {
@@ -302,17 +240,17 @@
 		justify-content: space-around;
 		a {
 			font-size: 35px;
+			padding-right: 30px;
+			border-right: 1px solid #ebe1e1;
 		}
 		span {
 			font-size: 16px;
 			text-align: left;
 			width: 145px;
 		}
-		
-	}
-
-	.sum_mobile_top_text {
-		top: 100px;
+		img {
+			margin-right: 10px;
+		}	
 	}
 
 	.sum_frame_squares {
@@ -321,8 +259,6 @@
 		gap: 15px;
 		padding-left: 20px;
 		padding-right: 20px;
-
-
 	}
 
 	.sum_frame_deadline {
@@ -351,7 +287,6 @@
 		#sum_urgent {
 			font-size: 30px;
 		}
-
 	}
 
 	.sum_bottom_todo {
@@ -399,10 +334,6 @@
 	}
 
 	.sum_mobile_subtitle {
-		display: block;
-	}
-
-	.sum_mobile_top_text {
 		display: block;
 	}
 

@@ -216,7 +216,7 @@
 	border-radius: 8px;
 	border: none;
 	height: 50px;
-	padding: 4px 40px;
+	padding: 4px 20px;
 	cursor: pointer;
 	transition: all 100ms ease-in-out;
 	white-space: nowrap;
@@ -232,6 +232,11 @@
 		background-color: #091931;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	}
+
+	img {
+		height: 20px;
+		margin-left: 10px;
+	}
 }
 
 .button_bright {
@@ -246,7 +251,7 @@
 	border-radius: 8px;
 	border: 1px solid #2A3647;
 	height: 50px;
-	padding: 4px 40px;
+	padding: 4px 20px;
 	cursor: pointer;
 	transition: all 100ms ease-in-out;
 	white-space: nowrap;
@@ -293,6 +298,14 @@
 	}
 }
 
+.mobile_topbar_title {
+	display: none;
+	position: absolute;
+	left: 20px;
+	color: #29ABE2;
+	top: 100px;
+}
+
 @media (max-width: 600px) {
 	.global_main_format {
 		padding-left: unset;
@@ -305,6 +318,11 @@
 
 	.font61-700 {
 		font-size: 47px;
+	}
+
+	.mobile_topbar_title {
+		display: block;
+		white-space: nowrap;
 	}
 
 

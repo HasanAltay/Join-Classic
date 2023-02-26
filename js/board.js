@@ -1,6 +1,5 @@
 let wrapperNo;
 
-
 function loadWrappersFromServer() {
   for (let i = 0; i < tasksToServer.length; i++) {
     const wrapper_0 = document.getElementById("wrapper_0");
@@ -35,39 +34,47 @@ function loadWrappersFromServer() {
           ${assigns[j][0]}
           </div>
         `;
-      }
-      
-    // Add event listener to the delete button inside the card
+    }
     wrapperNo = i;
-    // const deleteButton = wrapper_0.querySelector('.card #delete_' +i);
-    // console.log('.card #delete_' +i);
-    // console.log(wrapperNo);
-    // deleteButton.addEventListener('pointerdown', (event) => {
-    //   event.stopPropagation();
-    // });
+
+    // Add event listener to the delete button inside the card
     const wrapper = document.getElementById("wrapper_0");
     const deleteButton = wrapper.querySelector('.card #delete_'+wrapperNo);
     deleteButton.addEventListener('pointerdown', (event) => {      
       event.stopPropagation();
     });
 
-
-
+    // Event listener for search bar input changes
+    const searchInput = document.querySelector('.board_search_bar input');
+    searchInput.addEventListener('input', searchTasks);
   }
 
   board = tasksToServer.length;
-  // initSummary();
 }
-
 
 function deleteCard() {
   console.log('.card #delete_'+wrapperNo)
 }
 
+function searchTasks() {
+  const input = document.querySelector('.board_search_bar input');
+  const filter = input.value.toUpperCase();
+  const cards = document.querySelectorAll('.card');
 
+  cards.forEach(card => {
+    const title = card.querySelector('#card_titel p').textContent.toUpperCase();
+    const category = card.querySelector('.wrapper_category').textContent.toUpperCase();
+    const description = card.querySelector('#card_description').textContent.toUpperCase();
 
+    if (title.indexOf(filter) > -1 || category.indexOf(filter) > -1 || description.indexOf(filter) > -1) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
 
-
+// drag and drop functionality for cards in board
 document.addEventListener("DOMContentLoaded", e => {
     // const list = document.querySelector(".list-wrapper");
     let pointerDown = false;

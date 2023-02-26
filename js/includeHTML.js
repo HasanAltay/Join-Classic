@@ -58,6 +58,14 @@ fetch("./content/board.html")
         pageContainer.innerHTML += data;
     });
 
+fetch("./content/summary.html")
+    .then(response => response.text())
+    .then(data => {
+        const pageContainer = document.getElementById("page-container");
+        pageContainer.innerHTML += data;
+        NavRenderSummary();
+    });
+
 async function initBackend() {
     await downloadFromServer();
     tasksToServer = JSON.parse(backend.getItem("tasks")) || [];
