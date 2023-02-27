@@ -157,7 +157,7 @@
   .card .delete {
     cursor: pointer;
     filter: grayscale(1) brightness(150%);
-    z-index: 99;
+    z-index: 8;
 
     &:hover {
       filter: unset;
@@ -191,7 +191,7 @@
 }
 
 .wrapper_category {
-  border-radius: 5px;
+  border-radius: 10px;
   color: white;
   font-size: 16px;
   font-weight: 300;
@@ -236,7 +236,7 @@
 @media (max-width: 600px) {
 
   .board_main {
-    padding-top: 160px;
+    padding-top: 20px;
 
   }
   .board_search_bar {

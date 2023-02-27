@@ -3,7 +3,6 @@ async function NavRenderSummary() {
     <div data-template="./content/summary.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
-    initSummary();
 }
 
 async function NavRenderBoard() {
@@ -27,7 +26,6 @@ async function NavRenderContacts() {
     <div data-template="./content/contacts.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
-    await initLettersFromContacts();
 }
 
 async function NavRenderPrivacy() {

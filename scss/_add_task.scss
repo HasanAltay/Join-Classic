@@ -8,7 +8,6 @@
     width: 100%;
     max-width: 455px;
     max-height: 600px;
-    // padding-top: 80px;
 
     .dropdown_button {
         display: flex;
@@ -147,7 +146,7 @@
 
     .assign_set_category {
         padding: 5px;
-        border-radius: 5px;
+        border-radius: 10px;
         color: white;
         font-family: "Inter";
         font-style: normal;
@@ -371,6 +370,9 @@
         display: flex;
         gap: 10px;
         button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 300;
             font-size: 16px;
             width: 135px;
@@ -405,12 +407,16 @@
 }
 
 @media (max-width: 600px) {
-    // .global_main_format {
-    //     align-items: baseline!important;
-    // }
-
     .task_main {
         gap: 15px;
-        margin-top: 30px;
+        margin-top: 20px;
+
+        .task_priorities button {
+            font-size: 14px;
+        }
+    }
+
+    .task_confirmation_btns {
+        justify-content: center !important;
     }
 }

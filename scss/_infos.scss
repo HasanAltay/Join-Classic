@@ -1,10 +1,9 @@
 .info_main {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	text-align: left;
-	width: 615px;
+	max-width: 615px;
 }
 
 .info_text_box {
@@ -16,8 +15,8 @@
 @media (max-width: 600px) {
 
 	.info_format {
-		padding-left: 25px;
-		padding-top: 50px;
+		padding-left: 20px;
+		padding-top: 20px;
 		padding-bottom: 40px;
 	}
 

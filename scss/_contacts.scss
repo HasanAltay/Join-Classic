@@ -57,6 +57,8 @@
 }
 
 .contacts_name_email {
+  display: flex;
+  flex-direction: column;
   a {
     font-size: 13px;
     color: #29ABE2;
@@ -289,7 +291,7 @@
     a {
       font-size: 14px;
       text-decoration: none;
-      color: #2b70d1;
+      color: #829AF0;
     }
   }
 
@@ -317,11 +319,11 @@
   }
 
   .details_header {
-    padding-top: 70px;
+    padding-top: 20px;
   }
 
   .contacts_list {
-    padding-top: 160px;
+    padding-top: 0px;
     max-width: unset;
     width: unset;
     min-width: 100%;
@@ -357,12 +359,12 @@
     border-radius: unset;
     min-height: unset;
     box-shadow: unset;
+    min-height: 550px;
   }
 
   .contact_new_top {
     height: 30%;
     border-radius: unset;
-    padding-top: 30px;
   }
 
   .contact_new_bottom {

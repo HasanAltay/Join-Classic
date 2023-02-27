@@ -9,6 +9,10 @@ let done = 0;
 function initSummary() {
     const sum_frame_squares = document.getElementById("sum_frame_squares");
     sum_frame_squares.innerHTML = /*html*/ `
+        <div class="sum_greeting">
+            <div class="sum_daytime" id="sum_daytime"></div>
+            <div class="sum_user" id="sum_user">Guest</div>
+        </div>
         <div class="sum_middle">
         <div class="sum_frame_urgent">
             <img src="./img/urgent_summary.png"/>
@@ -59,15 +63,6 @@ function initSummary() {
         </div>
     `;
     getTime();
-    NavClick(1);
-}
-
-function SumTodoChangeImage(img) {
-    document.getElementById("sum_todo_img").src = img;
-}
-
-function SumDoneChangeImage(img) {
-    document.getElementById("sum_done_img").src = img;
 }
 
 function getTime() {
@@ -90,12 +85,5 @@ function generateGreeting(time) {
         greeting.push("Good night");
     }
     let greet = greeting[0];
-    // console.log(time, greet);
     document.getElementById("sum_daytime").innerHTML = `${greet},`;
-    document.getElementById("sum_daytime_mobile").innerHTML = `${greet},`;
-}
-
-function NoMobileGreeting() {
-    document.getElementsByClassName("sum_greeting_mobile").style =
-        "display:none";
 }
