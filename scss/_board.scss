@@ -1,5 +1,4 @@
 .board_main {
-  // background-color: rgba(0, 255, 255, 0.404);
   height: 800px;
 }
 
@@ -189,7 +188,6 @@
     position: absolute;
     width: 350px;
   }
-  
 }
 
 .wrapper_category {
@@ -238,8 +236,7 @@
 @media (max-width: 600px) {
 
   .board_main {
-    padding: 15px;
-    padding-top: 60px;
+    padding-top: 160px;
 
   }
   .board_search_bar {
@@ -269,6 +266,4 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-
-
 }

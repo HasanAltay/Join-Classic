@@ -3,10 +3,11 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 30px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
   width: 100%;
   max-width: 455px;
+  max-height: 600px;
 }
 .task_main .dropdown_button, .task_main .assign_category_input #category_color_input, .task_main .assign_category_input #category_btn_input {
   display: flex;
@@ -19,6 +20,7 @@
   border-radius: 8px;
   border: 1px solid #2a3647;
   height: 50px;
+  min-height: 50px;
   width: 60px;
   cursor: pointer;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
@@ -62,6 +64,7 @@
   background-color: white;
   width: 100%;
   height: 50px;
+  min-height: 50px;
   padding-left: 20px;
   align-items: center;
   border-radius: 10px;
@@ -319,6 +322,7 @@
   font-weight: 400;
   font-size: 16px;
   cursor: pointer;
+  min-height: 50px;
 }
 .task_main .task_date:focus-visible {
   outline: 1px solid #29abe2;
@@ -362,7 +366,7 @@
 @media (max-width: 600px) {
   .task_main {
     gap: 15px;
-    margin-top: 60px;
+    margin-top: 30px;
   }
 }
 .board_main {
@@ -583,8 +587,7 @@
 
 @media (max-width: 600px) {
   .board_main {
-    padding: 15px;
-    padding-top: 60px;
+    padding-top: 160px;
   }
   .board_search_bar {
     margin-left: 20px;
@@ -756,7 +759,8 @@
 
 .details_name {
   font-weight: 700;
-  font-size: 32px;
+  font-size: 3vw;
+  white-space: nowrap;
 }
 
 .details_initials {
@@ -764,10 +768,10 @@
   font-size: 32px;
   background-color: #2b70d1;
   border-radius: 100%;
-  width: 90px;
-  height: 90px;
-  min-width: 90px;
-  min-height: 90px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -788,7 +792,7 @@
 .mobile_arrow {
   display: none;
   position: absolute;
-  top: 20px;
+  top: 18px;
   right: 30px;
   width: 25px;
   height: 23px;
@@ -876,8 +880,8 @@
   .contacts_details {
     display: none;
     position: fixed;
-    height: calc(100vh - 160px);
-    top: 80px;
+    height: calc(100vh - 159px);
+    top: 79px;
     left: 0;
     padding-left: 30px;
     padding-right: 20px;
@@ -906,15 +910,19 @@
     font-size: 16px;
     margin-right: 10px;
   }
+  .details_name {
+    white-space: unset;
+  }
   .details_header {
     padding-top: 70px;
   }
   .contacts_list {
-    padding-top: 50px;
+    padding-top: 160px;
     max-width: unset;
     width: unset;
     min-width: 100%;
     height: 100%;
+    min-height: unset !important;
     border-radius: unset;
     scrollbar-width: auto;
     box-shadow: unset;
@@ -955,17 +963,8 @@
     padding: 20px;
   }
 }
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-          user-select: none;
-}
-
 .global_main_format {
   display: flex;
-  align-items: baseline;
   justify-content: center;
   padding-top: 170px;
   padding-bottom: 110px;
@@ -1240,29 +1239,24 @@
   padding: 20px;
 }
 
-.mobile_topbar_title {
-  display: none;
-  position: absolute;
-  left: 20px;
-  color: #29ABE2;
-  top: 100px;
-}
-
 @media (max-width: 600px) {
   .global_main_format {
     padding-left: unset;
     padding-top: 80px;
     padding-right: unset;
     padding-bottom: unset;
-    overflow: hidden;
     height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .global_main_format::-webkit-scrollbar {
+    display: none;
   }
   .font61-700 {
     font-size: 47px;
-  }
-  .mobile_topbar_title {
-    display: block;
-    white-space: nowrap;
   }
 }
 .info_main {
@@ -1294,7 +1288,7 @@
   .info_arrow_space {
     padding-right: 30px;
     position: absolute;
-    top: 100px;
+    top: 98px;
     right: 0px;
   }
 }
@@ -1302,7 +1296,6 @@ body {
   margin: 0;
   padding: 0;
   background: #f6f7f8;
-  overflow: hidden;
 }
 
 .login_frame {
@@ -2224,7 +2217,8 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 120px;
+    height: 110px;
+    border-radius: 10px;
   }
   .sum_squares {
     min-width: unset;
@@ -2236,6 +2230,7 @@ body {
     margin-left: unset;
     text-align: unset;
     justify-content: space-around;
+    border-radius: 10px;
   }
   .sum_squares a {
     font-size: 35px;
@@ -2582,9 +2577,16 @@ body {
   src: url("../fonts/inter-v12-latin-900.eot"); /* IE9 Compat Modes */
   src: local(""), url("../fonts/inter-v12-latin-900.eot?#iefix") format("embedded-opentype"), url("../fonts/inter-v12-latin-900.woff2") format("woff2"), url("../fonts/inter-v12-latin-900.woff") format("woff"), url("../fonts/inter-v12-latin-900.ttf") format("truetype"), url("../fonts/inter-v12-latin-900.svg#Inter") format("svg"); /* Legacy iOS */
 }
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
+}
+
 body {
   margin: 0;
-  scroll-behavior: smooth;
   font-family: "Inter";
 }
 

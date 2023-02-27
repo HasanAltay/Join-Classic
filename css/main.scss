@@ -1,6 +1,5 @@
 @import '../scss/add_task';
 @import '../scss/board';
-@import '../scss/colors';
 @import '../scss/contacts';
 @import '../scss/globals';
 @import '../scss/infos';
@@ -9,14 +8,17 @@
 @import '../scss/summary';
 @import '../scss/top_bar';
 @import '../scss/fonts';
-// @import '../node_modules/bulma/bulma';
 
-
-
+* {
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
 
 body {
   margin: 0;
-  scroll-behavior: smooth;
   font-family: 'Inter';
 }
 

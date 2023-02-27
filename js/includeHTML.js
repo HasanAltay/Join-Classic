@@ -74,7 +74,7 @@ async function initBackend() {
 
 function eventListeners() {
     initBackend(); // backend for add Tasks Data
-    initLettersFromContacts();
+    // initLettersFromContacts();
     // counts the letters in add task textarea
     const textarea = document.getElementById("textarea");
     textarea.addEventListener("input", function () {

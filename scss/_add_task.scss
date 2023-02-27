@@ -3,10 +3,12 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 30px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 100%;
     max-width: 455px;
+    max-height: 600px;
+    // padding-top: 80px;
 
     .dropdown_button {
         display: flex;
@@ -19,6 +21,7 @@
         border-radius: 8px;
         border: 1px solid #2a3647;
         height: 50px;
+        min-height: 50px;
         width: 60px;
         cursor: pointer;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
@@ -65,6 +68,7 @@
         background-color: white;
         width: 100%;
         height: 50px;
+        min-height: 50px;
         padding-left: 20px;
         align-items: center;
         border-radius: 10px;
@@ -357,7 +361,7 @@
         font-weight: 400;
         font-size: 16px;
         cursor: pointer;
-
+        min-height: 50px;
         &:focus-visible {
             outline: 1px solid #29abe2;
         }
@@ -401,8 +405,12 @@
 }
 
 @media (max-width: 600px) {
+    // .global_main_format {
+    //     align-items: baseline!important;
+    // }
+
     .task_main {
         gap: 15px;
-        margin-top: 60px;
+        margin-top: 30px;
     }
 }

@@ -152,7 +152,8 @@
 
 .details_name {
   font-weight: 700;
-  font-size: 32px;
+  font-size: 3vw;
+  white-space: nowrap;
 }
 
 .details_initials {
@@ -160,10 +161,10 @@
   font-size: 32px;
   background-color: #2b70d1;
   border-radius: 100%;
-  width: 90px;
-  height: 90px;
-  min-width: 90px;
-  min-height: 90px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -184,7 +185,7 @@
 .mobile_arrow {
   display: none;
   position: absolute;
-  top: 20px;
+  top: 18px;
   right: 30px;
   width: 25px;
   height: 23px;
@@ -275,8 +276,8 @@
   .contacts_details {
     display: none;
     position: fixed;
-    height: calc(100vh - 160px);
-    top: 80px;
+    height: calc(100vh - 159px);
+    top: 79px;
     left: 0;
     padding-left: 30px;
     padding-right: 20px;
@@ -311,16 +312,21 @@
     margin-right: 10px;
   }
 
+  .details_name {
+    white-space: unset;
+  }
+
   .details_header {
     padding-top: 70px;
   }
 
   .contacts_list {
-    padding-top: 50px;
+    padding-top: 160px;
     max-width: unset;
     width: unset;
     min-width: 100%;
     height: 100%;
+    min-height: unset!important;
     border-radius: unset;
     scrollbar-width: auto;
     box-shadow: unset;

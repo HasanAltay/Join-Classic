@@ -2,37 +2,43 @@
 	{ 
     "name": "Max",
     "surname": "Mustermann",
-	  "phone": "069 000 xxx",
+	  "phone": "+49 160 000 100",
 	  "mail": "max@mustermann.de"
 	},
 	{ 
     "name": "Sabine",
     "surname": "Mustermann",
-	  "phone": "069 100 xxx",
+	  "phone": "+49 160 200 120",
 	  "mail": "sabine@mustermann.de"
 	},
   { 
     "name": "Julia",
     "surname": "Roberts",
-	  "phone": "069 200 xxx",
-	  "mail": "julia@mustermann.de"
+	  "phone": "+49 160 300 190",
+	  "mail": "julia_roberts721@aol.com"
 	},
   { 
     "name": "Quentin",
     "surname": "Tarantino",
-	  "phone": "011 300 234 432",
+	  "phone": "+10 160 400 200",
 	  "mail": "quentinsplace@gmx.com"
 	},
 	{ 
     "name": "Adam",
-    "surname": "Mustermann",
-	  "phone": "069 400 xxx",
-	  "mail": "adam@mustermann.de"
+    "surname": "Hausmann",
+	  "phone": "+49 160 500 666",
+	  "mail": "adam233@hausmann.de"
+	},
+	{ 
+    "name": "Adnan",
+    "surname": "Andersmann",
+	  "phone": "+49 160 500 666",
+	  "mail": "adnan8367@gmx.de"
 	},
 	{ 
     "name": "Satoshi",
     "surname": "Nakamoto",
-	  "phone": "006 786 203 432",
-	  "mail": "satoshi@btc.com"
+	  "phone": "+49 170 340 222",
+	  "mail": "satoshi.n@btc.com"
 	}]
 }

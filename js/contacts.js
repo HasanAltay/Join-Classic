@@ -36,9 +36,9 @@ async function initLettersFromContacts() {
 
 function initList(contacts) {
     contactsListTasks = [];
+    
     let letter_box = document.getElementById("letter_box");
     for (let i = 0; i < contacts.length; i++) {
-      
         // console.log(contacts);
         const firstLetter = contacts[i].name[0].toUpperCase();
         if (!sortedContacts[firstLetter]) {
@@ -54,7 +54,7 @@ function initList(contacts) {
         for (let i = 0; i < sortedContacts[letter].length; i++) {
             let name_letter = sortedContacts[letter][i].name.slice(0, 1);
             let surname_letter = sortedContacts[letter][i].surname.slice(0, 1);
-            let letters = name_letter + surname_letter;
+            let letters = (name_letter+surname_letter).toUpperCase();
             let name = sortedContacts[letter][i].name;
             let surname = sortedContacts[letter][i].surname;
             let mail = sortedContacts[letter][i].mail;
@@ -64,15 +64,16 @@ function initList(contacts) {
             contactsListTasks.push([letters, name, surname, color]);
             letter_box.innerHTML += /*html*/ `
               <button class="contacts_files" id="files" 
-                onclick="initDetails('${letters}','${name}','${surname}','${mail}','${phone}','${color}');showDetails()">
-                <div class="contacts_initials" id="initials" style="background-color:${color}">${letters}</div>
+                onclick="initDetails('${letters}','${name}','${surname}',
+                '${mail}','${phone}','${color}');showDetails()">
+                <div class="contacts_initials" id="initials" 
+                  style="background-color:${color}">${letters}</div>
                 <div class="contacts_name_email" id="name_email">
                   <span>${name} ${surname}</span>
                   <a>${mail}</a>
                 </div>
               </button>
             `;
-            
         }
     }
 }
@@ -97,7 +98,7 @@ function initDetails(letters, name, surname, mail, phone, color) {
       <a href="tel:${phone}">${phone}</a>
     </div>
     <button class="button_dark new_contact_pos" onclick="showAddContact()">Add contact<img src="./img/add_contact.png"></button>
-    <img class="mobile_arrow" src="./img/left_arrow_blue.png" onclick="closeDetails()">
+    <img class="mobile_arrow" src="./img/left_arrow.png" onclick="closeDetails()">
     <div class="contact_new" id="contact_new"></div>
   `;
     addContact();
