@@ -10,6 +10,7 @@ async function NavRenderBoard() {
     <div data-template="./content/board.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
+    initSortArrays();
 }
 
 async function NavRenderAddTask() {

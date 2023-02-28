@@ -63,8 +63,11 @@ function initSummary() {
         </div>
     `;
     getTime();
+    countUrgent();
+    findClosestDate();
 }
 
+// Get the local time
 function getTime() {
     let currentTime = new Date();
     let currentHour = currentTime.getHours().toString().padStart(2, "0");
@@ -73,6 +76,7 @@ function getTime() {
     generateGreeting(formattedTime);
 }
 
+// Generate greeting for every Time of the Day
 function generateGreeting(time) {
     let greeting = [];
     if (time >= 0600 && time < 1200) {
@@ -87,3 +91,30 @@ function generateGreeting(time) {
     let greet = greeting[0];
     document.getElementById("sum_daytime").innerHTML = `${greet},`;
 }
+
+// Count Urgents in Array
+function countUrgent() {
+    let count = 0;
+    for (let i = 0; i < tasksToServer.length; i++) {
+      const priority = tasksToServer[i][0][4];
+        if (priority === "urgent") {
+          count++;
+        }
+    }
+    // console.log("Total Urgent Count: " + count);
+    urgent = count;
+  }
+  
+  // Deadline. Closest Date in Array
+  function findClosestDate() {
+    let closestDate = new Date(tasksToServer[0][0][2]);
+    for (let i = 1; i < tasksToServer.length; i++) {
+      const dateString = tasksToServer[i][0][2];
+      const currentDate = new Date(dateString);
+      if (currentDate > new Date() && currentDate < closestDate) {
+        closestDate = currentDate;
+      }
+    }
+    // console.log("Closest upcoming date: " + closestDate.toDateString());
+    deadline = closestDate.toDateString();
+  }

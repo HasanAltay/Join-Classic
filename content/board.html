@@ -2,22 +2,26 @@
     <div class="board_main">
         <div class="board_search_bar">
             <div>
-              <input type="text" placeholder="Find Task" />
-              <img src="./img/search.png" class="search_img" />
+                <input type="text" placeholder="Find Task" />
+                <img
+                    src="./img/search.png"
+                    class="search_img"
+                    alt="Search Input Icon"
+                />
             </div>
             <button
                 class="button_dark mobile"
                 onclick="NavRenderAddTask(); NavClick(3)"
-            ><img src="./img/plus_white.png" />
+            >
+                <img src="./img/plus_white.png" alt="Plus Icon" />
             </button>
             <button
                 class="button_dark desktop"
                 onclick="NavRenderAddTask(); NavClick(3)"
             >
-                Add task<img src="./img/plus_white.png" />
+                Add task<img src="./img/plus_white.png" alt="Plus Icon" />
             </button>
         </div>
-
         <div class="board_tasks">
             <div class="list-wrapper">
                 <div class="column">
@@ -26,29 +30,30 @@
                         ><img
                             src="./img/plus-dark.png"
                             onclick="NavRenderAddTask(); NavClick(3)"
+                            alt="Dark Plus Icon"
                         />
                     </div>
                     <div class="card-wrapper" id="wrapper_0"></div>
                 </div>
-
                 <div class="column">
                     <div class="column-header">
                         <a>In progress</a
                         ><img
                             src="./img/plus-dark.png"
                             onclick="NavRenderAddTask(); NavClick(3)"
+                            alt="Dark Plus Icon"
                         />
                     </div>
 
                     <div class="card-wrapper" id="wrapper_1"></div>
                 </div>
-
                 <div class="column">
                     <div class="column-header">
                         <a>Await feedback</a
                         ><img
                             src="./img/plus-dark.png"
                             onclick="NavRenderAddTask(); NavClick(3)"
+                            alt="Dark Plus Icon"
                         />
                     </div>
                     <div class="card-wrapper" id="wrapper_2"></div>
@@ -59,6 +64,7 @@
                         ><img
                             src="./img/plus-dark.png"
                             onclick="NavRenderAddTask(); NavClick(3)"
+                            alt="Dark Plus Icon"
                         />
                     </div>
                     <div class="card-wrapper" id="wrapper_4"></div>

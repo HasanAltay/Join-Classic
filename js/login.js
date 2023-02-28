@@ -4,9 +4,9 @@ function login() {
             <div class="login_blue_line"></div>
             <form>
             <div class="login_pos_rel">
-                <input placeholder="Email" id="email_login" type="email" class="login_input" name="email" required>
+                <input placeholder="Email" id="email_login" type="email" class="login_input" name="email" required autocomplete="username">
                 <img src="./img/mail.png" class="login_mail_png">
-                <input placeholder="Password" id="password_login" type="password" class="login_input" name="password" required>
+                <input placeholder="Password" id="password_login" type="password" class="login_input" name="password" required autocomplete="current-password">
                 <img src="./img/secure.png" class="login_secure_png">  
             </div>
             <div class="login_forgot">
@@ -57,7 +57,7 @@ function signUp() {
                 <img src="./img/name.png" class="sign_name_png">
                 <input placeholder="Email" id="email" type="email" class="login_input" required>
                 <img src="./img/mail.png" class="sign_mail_png">
-                <input placeholder="Password" id="password" type="password" class="login_input" required>
+                <input placeholder="Password" id="password" type="password" class="login_input" required autocomplete="new-password">
                 <img src="./img/secure.png" class="sign_secure_png">
                 <div>
                     <button class="button_dark">Sign up</button>
@@ -76,7 +76,7 @@ function resetPassword() {
     <div class="login_blue_line"></div>
     <span class="font21-400 txt-cr mb-40">Change your account password</span>
     <div class="login_pos_rel">
-        <input placeholder="New password" id="new_password" type="password" class="login_input">
+        <input placeholder="New password" id="new_password" type="password" class="login_input" autocomplete="new-password">
     </div>
     <div class="login_pos_rel">
         <input placeholder="Confirm password" id="confirm_password" type="password" class="login_input">

@@ -130,9 +130,6 @@
   font-size: 16px;
   font-weight: 100;
 }
-.task_main .assign_dropdown:hover .assign_dropdown-content {
-  visibility: visible;
-}
 .task_main .assign_set_category {
   padding: 5px;
   border-radius: 10px;
@@ -274,7 +271,7 @@
 .task_main .task_textarea textarea {
   border-radius: 10px;
   width: 100%;
-  max-width: 425px;
+  max-width: 415px;
   min-width: 200px;
   height: 100px;
   min-height: 100px;

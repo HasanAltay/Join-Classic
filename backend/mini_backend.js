@@ -41,8 +41,8 @@ async function downloadFromServer() {
     let contacts_result = await loadCONTACTSFromServer();
     jsonFromServer = JSON.parse(result);
     jsonContactsFromServer = JSON.parse(contacts_result);
-    console.log("Loaded", jsonFromServer);
-    console.log("Loaded", jsonContactsFromServer);
+    // console.log("Loaded", jsonFromServer);
+    // console.log("Loaded", jsonContactsFromServer);
     contacts = [];
     for (let i = 0; i < jsonContactsFromServer.contacts.length; i++) {
         const contacts_list = jsonContactsFromServer.contacts[i];

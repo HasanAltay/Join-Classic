@@ -14,7 +14,7 @@
             <div class="assign_dropdown_titel" onclick="assignsOpenClose()">
                 <span id="assign_contacts_placeholder"
                     >Select contact to assign</span
-                ><img src="./img/dd_blue.png" />
+                ><img src="./img/dd_blue.png" alt="Drop Down Arrow">
             </div>
             <div
                 class="assign_dropdown-content"
@@ -27,7 +27,7 @@
         <div class="assign_dropdown" type="checkbox" name="categorie">
             <div class="assign_dropdown_titel" onclick="categoriesOpenClose()">
                 <span id="assign_placeholder">Select task categorie</span>
-                <img src="./img/dd_blue.png" />
+                <img src="./img/dd_blue.png" alt="Drop Down Arrow">
             </div>
             <div 
                 class="assign_dropdown-content" 
@@ -37,33 +37,30 @@
 
         <div class="task_priorities">
             <button
-                type="checkbox"
                 id="urgent"
                 class="pr_urgent"
                 onclick="SetPriority(1,
         'urgent')"
             >
-                Urgent<img src="./img/urgent.png" id="urgent_img" />
+                Urgent<img src="./img/urgent.png" id="urgent_img" alt="Urgent Icon">
             </button>
 
             <button
-                type="checkbox"
                 id="medium"
                 class="pr_medium"
                 onclick="SetPriority(2,
         'medium')"
             >
-                Medium<img src="./img/medium.png" id="medium_img" />
+                Medium<img src="./img/medium.png" id="medium_img" alt="Medium Icon">
             </button>
 
             <button
-                type="checkbox"
                 id="low"
                 class="pr_low"
                 onclick="SetPriority(3,
         'low')"
             >
-                Low<img src="./img/low.png" id="low_img" />
+                Low<img src="./img/low.png" id="low_img" alt="Low Icon">
             </button>
         </div>
 
@@ -86,7 +83,7 @@
             <button class="button_bright" onclick="clearForm('add_new_task')">
                 Clear
             </button>
-            <button class="button_dark" type="submit">Create Task<img src="./img/check.png"></button>
+            <button class="button_dark" type="submit">Create Task<img src="./img/check.png" alt="Check Icon"></button>
         </div>
     </form>
 
