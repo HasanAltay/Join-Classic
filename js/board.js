@@ -76,11 +76,21 @@ function searchTasks() {
 
 // drag and drop functionality for cards in board
 document.addEventListener("DOMContentLoaded", e => {
-    // const list = document.querySelector(".list-wrapper");
     let pointerDown = false;
     let shiftX = 0;
     let shiftY = 0;
     loadWrappersFromServer();
+
+    // Check if the device is a touch device
+    const isTouchDevice =
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0;
+
+    // Log a message if the device is a touch device
+    if (isTouchDevice) {
+      console.log('This is a touch device');
+    }
 
     window.addEventListener(
         "pointerdown",
@@ -163,4 +173,96 @@ document.addEventListener("DOMContentLoaded", e => {
         const activeCard = document.querySelector(".afterimage");
         activeCard.classList.remove("afterimage");
     });
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  let dragging = null;
+  let shiftX = 0;
+  let shiftY = 0;
+
+  // touch event listeners for starting and ending drag
+  document.addEventListener("touchstart", e => {
+    const card = e.target.closest(".card");
+    if (!card) return;
+
+    // clone the card and add it to a 'ghost' element
+    const cloneCard = card.cloneNode(true);
+    cloneCard.classList.add("dragging");
+    const ghost = document.querySelector(".ghost");
+    ghost.appendChild(cloneCard);
+
+    // calculate the offset between the touch position and the card's position
+    const rect = card.getBoundingClientRect();
+    shiftX = e.touches[0].clientX - rect.left;
+    shiftY = e.touches[0].clientY - rect.top;
+
+    // set the initial position of the ghost element
+    ghost.style.cssText = `width: ${
+      card.offsetWidth
+    }px; transform: translateX(${e.touches[0].pageX - shiftX}px) translateY(${
+      e.touches[0].pageY - shiftY
+    }px)`;
+
+    dragging = card;
+    dragging.style.opacity = 0.5;
+  }, { passive: false });
+
+  document.addEventListener("touchend", e => {
+    if (!dragging) return;
+
+    // remove the ghost element and restore the opacity of the dragged card
+    const ghost = document.querySelector(".ghost");
+    ghost.innerHTML = "";
+    dragging.style.opacity = 1;
+
+    dragging = null;
+  }, { passive: false });
+
+  // touch event listener for dragging the card
+  document.addEventListener("touchmove", e => {
+    e.preventDefault();
+
+    if (!dragging) return;
+
+    // move the ghost element with the touch movement
+    const ghost = document.querySelector(".ghost");
+    ghost.hidden = true;
+    const pointedEl = document.elementFromPoint(
+      e.touches[0].clientX,
+      e.touches[0].clientY
+    );
+    const closestCard = pointedEl.closest(".card");
+    const column = pointedEl.closest(".column");
+    ghost.hidden = false;
+
+    ghost.style.cssText = `width: ${
+      ghost.offsetWidth
+    }px; transform: translateX(${e.touches[0].pageX - shiftX}px) translateY(${
+      e.touches[0].pageY - shiftY
+    }px)`;
+
+    if (!column) {
+      return;
+    }
+
+    const placeCard = ghost.firstChild.cloneNode(true);
+    placeCard.classList.add("afterimage");
+    const fromCard = document.querySelector(".afterimage");
+
+    if (closestCard) {
+      if (closestCard.classList.contains("afterimage")) {
+        return;
+      }
+
+      closestCard.before(placeCard);
+    } else {
+      const cardWrapper = column.querySelector(".card-wrapper");
+      cardWrapper.appendChild(placeCard);
+    }
+
+    fromCard.remove();
+  }, { passive: false });
 });
