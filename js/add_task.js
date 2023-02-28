@@ -16,6 +16,10 @@ let pickedContacts = [];
 let addedCategory = [];
 let progress = 0;
 
+// dropdown menus open or close status
+let assignOpen = false;
+let categoryOpen = false;
+
 function createAddTaskJSON() {
     event.preventDefault();
     let title = document.getElementById("title").value;
@@ -51,6 +55,7 @@ function createAddTaskJSON() {
     console.log(tasks);
     let a = true;
     showConfirmationAddTask(a);
+    dropDownOpenClose();
 }
 
 function initAssignDropDown() {
@@ -65,20 +70,20 @@ function initAssignDropDown() {
         `;
     }
 }
-  
+
 function setContacts(initials, color, i) {
     event.preventDefault();
     let assign_contacts_placeholder = document.getElementById(
         "assign_contacts_placeholder"
     );
-    let pickedContactIds = pickedContacts.map(contact => contact.id);
+    let pickedContactIds = pickedContacts.map(contact => contact[0]);
 
     if (pickedContacts.length === 0) {
         assign_contacts_placeholder.innerHTML = "";
         placeholder = false;
     }
 
-    if (pickedContactIds.includes(`user${i}`)) {
+    if (pickedContactIds.includes(initials)) {
         return; // Exit the function if the contact has already been picked
     }
 
@@ -98,13 +103,15 @@ function setContacts(initials, color, i) {
     pickedContact.addEventListener("click", () => {
         pickedContact.remove(); // Remove the contact from the DOM
         pickedContacts = pickedContacts.filter(
-            contact => contact.id !== `user${i}`
+            contact => contact[0] !== initials
         ); // Remove the contact from the array
 
-        if (pickedContacts.length === 0) {
+        // Sets the placeholder text back if all contacts were removed
+        if (pickedContacts.length === 0) { 
             assign_contacts_placeholder.innerHTML = "Select contact to assign";
             placeholder = true;
         }
+        !assignsOpenClose();
     });
 }
 
@@ -113,7 +120,7 @@ function categoryDropdown() {
     for (let i = 0; i < categories.length; i++) {
         const category = categories[i];
         category_dropdown.innerHTML += `
-            <button onclick="setCategoryOption('${category[0]}','${category[1]}')">
+            <button onclick="setCategoryOption('${category[0]}','${category[1]}');categoriesOpenClose()">
                 <div class="assign_initials" style="background-color:${category[1]}"></div>
                 <span class="assign_details_name">${category[0]}</span>
             </button>
@@ -131,12 +138,11 @@ function categoryDropdown() {
     `;
 }
 
+// adds new category to select from dropdown list
 function addCategory() {
     event.preventDefault();
-    // adds new category to select from dropdown list
     let new_input = document.getElementById("category_name_input");
     let color_input = document.getElementById("category_color_input");
-
     categories.push([new_input.value, color_input.value]);
 
     setCategory = [];
@@ -213,6 +219,7 @@ function SetPriority(num, set) {
     }
 }
 
+// shows confirmation menu if task is added
 function showConfirmationAddTask(a) {
     let task_added_confirmation = document.getElementById(
         "task_added_confirmation"
@@ -230,9 +237,34 @@ function onFormSubmit() {
     // your Javascript code here
 }
 
+// clears the input fields of the form and refreshes hole section
 function clearForm(formId) {
     const form = document.getElementById(formId);
     form.reset();
     NavRenderAddTask();
     NavClick(3);
+}
+
+// open and close for contacts assigns dropdown 
+function assignsOpenClose() {
+    const assignsContent = document.getElementById("assign_dropdown_list");
+    if (assignOpen == false) {
+        assignsContent.style.visibility = "visible";
+        assignOpen = true;
+    } else if (assignOpen == true) {
+        assignsContent.style.visibility = "hidden";
+        assignOpen = false;
+    }
+}
+
+// open and close for categories dropdown 
+function categoriesOpenClose() {
+    const categoriesContent = document.getElementById("category_dropdown");
+    if (categoryOpen == false) {
+        categoriesContent.style.visibility = "visible";
+        categoryOpen = true;
+    } else if (categoryOpen == true) {
+        categoriesContent.style.visibility = "hidden";
+        categoryOpen = false;
+    }
 }
