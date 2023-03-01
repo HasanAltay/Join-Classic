@@ -68,7 +68,7 @@ fetch("./content/summary.html")
 async function initBackend() {
     await downloadFromServer();
     tasksToServer = JSON.parse(backend.getItem("tasks")) || [];
-    loadWrappersFromServer();
+    initBoard();
     initLettersFromContacts();
     initSummary();
 }

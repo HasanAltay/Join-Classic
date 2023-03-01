@@ -321,6 +321,9 @@
   cursor: pointer;
   min-height: 50px;
 }
+.task_main .task_date::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
 .task_main .task_date:focus-visible {
   outline: 1px solid #29abe2;
 }
@@ -367,6 +370,7 @@
   .task_main {
     gap: 15px;
     margin-top: 20px;
+    margin-bottom: 100px;
   }
   .task_main .task_priorities button {
     font-size: 14px;
@@ -594,6 +598,7 @@
 @media (max-width: 600px) {
   .board_main {
     padding-top: 20px;
+    margin-bottom: 100px;
   }
   .board_search_bar {
     margin-left: 20px;
@@ -895,6 +900,7 @@
     left: 0;
     padding-left: 30px;
     padding-right: 20px;
+    margin-bottom: 100px;
   }
   .contacts_details b {
     font-size: 14px;
@@ -936,6 +942,7 @@
     border-radius: unset;
     scrollbar-width: auto;
     box-shadow: unset;
+    margin-bottom: 100px;
   }
   .new_contact_pos {
     display: none;
@@ -2260,7 +2267,7 @@ body {
     gap: 15px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
   }
   .sum_frame_deadline {
     margin-left: 5px;
@@ -2285,55 +2292,15 @@ body {
   .sum_frame_urgent #sum_urgent {
     font-size: 30px;
   }
-  .sum_bottom_todo {
-    width: 100%;
-    height: 70px;
-    justify-content: space-around;
-  }
-  .sum_bottom_todo img {
-    width: 40px;
-  }
-  .sum_bottom_todo div {
-    display: flex;
-    align-items: center;
-  }
-  .sum_bottom_todo div span {
-    font-size: 45px;
-  }
-  .sum_bottom_todo div a {
-    font-size: 16px;
-    margin-left: 50px;
-  }
-  .sum_bottom_done {
-    width: 100%;
-    height: 70px;
-    justify-content: space-around;
-  }
-  .sum_bottom_done img {
-    width: 40px;
-  }
-  .sum_bottom_done div {
-    display: flex;
-    align-items: center;
-  }
-  .sum_bottom_done div span {
-    font-size: 45px;
-  }
-  .sum_bottom_done div a {
-    font-size: 16px;
-    margin-left: 50px;
-  }
   .sum_greeting {
     margin-bottom: 0;
+    font-size: 42px;
   }
   .sum_blue_line_mobile {
     display: block;
   }
   .sum_user {
     font-size: 28px;
-  }
-  .sum_greeting {
-    font-size: 42px;
   }
 }
 .nav_top_bar {

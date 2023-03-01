@@ -357,6 +357,9 @@
         font-size: 16px;
         cursor: pointer;
         min-height: 50px;
+        &::-webkit-calendar-picker-indicator { 
+            cursor: pointer;
+        }
         &:focus-visible {
             outline: 1px solid #29abe2;
         }
@@ -406,6 +409,7 @@
     .task_main {
         gap: 15px;
         margin-top: 20px;
+        margin-bottom: 100px;
 
         .task_priorities button {
             font-size: 14px;

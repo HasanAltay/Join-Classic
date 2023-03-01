@@ -5,49 +5,120 @@ let awaitingFeedback = [];
 let tasksDone = [];
 
 function initSortArrays() {
-  for (let i = 0; i < tasksToServer.length; i++) {
-    const task = tasksToServer[i];
-    const titel = tasksToServer[i][0][0];
-    const wrapper = tasksToServer[i][0][6];
-    const priority = tasksToServer[i][0][4];
-    console.log(titel,'= Wrapper:',wrapper,'/ 3');
-    sortTasksArraysForBoard(i);
-    sortTasksServerToArrays(task,wrapper);
-  }
+    for (let i = 0; i < tasksToServer.length; i++) {
+        const task = tasksToServer[i];
+        const titel = tasksToServer[i][0][0];
+        const wrapper = tasksToServer[i][0][6];
+        const priority = tasksToServer[i][0][4];
+        // console.log(titel,'= Wrapper:',wrapper,'/ 3');
+        sortTasksArraysForBoard(i);
+        sortTasksServerToArrays(task, wrapper);
+    }
 }
 
 function sortTasksArraysForBoard(task) {
-  // console.log('urgent = ',task[3]);
+    // console.log('urgent = ',task[3]);
 }
 
-function sortTasksServerToArrays(task,wrapper) {
+function sortTasksServerToArrays(task, wrapper) {
+    console.log(wrapper);
     if (wrapper == 0) {
-      tasksToDo.push(task);
+        tasksToDo.push(task);
     }
     if (wrapper == 1) {
-      tasksInProgress.push(task);
+        tasksInProgress.push(task);
     }
     if (wrapper == 2) {
-      awaitingFeedback.push(task);
+        awaitingFeedback.push(task);
     }
     if (wrapper == 3) {
-      tasksDone.push(task);
+        tasksDone.push(task);
     }
-  // console.log(tasksToDo,'|',tasksInProgress,'|',awaitingFeedback,'|',tasksDone);
+
+    consoleLogTasks();
+}
+
+function consoleLogTasks() {
+    console.log("%cTo-Do: ", "color: orange; font-size: 16px", tasksToDo);
+    console.log(
+        "%cIn Progress: ",
+        "color: orange; font-size: 16px",
+        tasksInProgress
+    );
+    console.log(
+        "%cAwaiting Feedback: ",
+        "color: orange; font-size: 16px",
+        awaitingFeedback
+    );
+    console.log("%cDone: ", "color: orange; font-size: 16px", tasksDone);
+}
+
+function initBoard() {
+    const board_tasks = document.getElementById("board_tasks");
+    board_tasks.innerHTML = `
+    <div class="list-wrapper" id="list_wrapper">
+      <div class="column">
+          <div class="column-header">
+              <a>To Do</a
+              ><img
+                  src="./img/plus-dark.png"
+                  onclick="NavRenderAddTask(); NavClick(3)"
+                  alt="Dark Plus Icon"
+              />
+          </div>
+          <div class="card-wrapper" id="wrapper_0" data="0"></div>
+      </div>
+      <div class="column">
+          <div class="column-header">
+              <a>In progress</a
+              ><img
+                  src="./img/plus-dark.png"
+                  onclick="NavRenderAddTask(); NavClick(3)"
+                  alt="Dark Plus Icon"
+              />
+          </div>
+          <div class="card-wrapper" id="wrapper_1" data="1"></div>
+      </div>
+      <div class="column">
+          <div class="column-header">
+              <a>Await feedback</a
+              ><img
+                  src="./img/plus-dark.png"
+                  onclick="NavRenderAddTask(); NavClick(3)"
+                  alt="Dark Plus Icon"
+              />
+          </div>
+          <div class="card-wrapper" id="wrapper_2" data="2"></div>
+      </div>
+      <div class="column">
+          <div class="column-header">
+              <a>Done</a
+              ><img
+                  src="./img/plus-dark.png"
+                  onclick="NavRenderAddTask(); NavClick(3)"
+                  alt="Dark Plus Icon"
+              />
+          </div>
+          <div class="card-wrapper" id="wrapper_3" data="3"></div>
+      </div>
+    </div>
+    <div class="ghost"></div>
+  `;
+    loadWrappersFromServer();
 }
 
 function loadWrappersFromServer() {
-  for (let i = 0; i < tasksToServer.length; i++) {
-    const wrapper_0 = document.getElementById("wrapper_0");
-    wrapper_0.innerHTML += `
-    <div class="card" id="card_${i}">
+    for (let i = 0; i < tasksToServer.length; i++) {
+        const wrapper_0 = document.getElementById("wrapper_0");
+        wrapper_0.innerHTML += `
+    <div class="card" id="card_${i}" data-i="${i}">
       <div class="header">
         <div class="title" id="card_category">
           <span class="wrapper_category" 
           style="background-color:${tasksToServer[i][0][3][1]}">
           ${tasksToServer[i][0][3][0]}
           </span>
-          <img src="./img/delete.png" id="delete_${i}" class="delete" onclick="deleteCard()" >
+          <img src="./img/delete.png" id="delete_${i}" class="delete" onclick="deletedCardNo()" >
         </div>
       </div>
       <div class="body" id="card_titel"><p>${tasksToServer[i][0][0]}</p></div>
@@ -59,174 +130,296 @@ function loadWrappersFromServer() {
       </div>
     </div>
   `;
-
-    const assigns = tasksToServer[i][0][1];
-    for (let j = 0; j < assigns.length; j++) {
-        let wrapper_assigns = document.getElementById(
-            `wrapper_assigns_${i}`
-        );
-        wrapper_assigns.innerHTML += `
-          <div class="wrapper_assigns" style="background-color:${assigns[j][1]}">
-          ${assigns[j][0]}
-          </div>
-        `;
+        initAssignsForCard(i);
+        wrapperNo = i;
+        deleteCard();
+        searchTasks();
     }
-    wrapperNo = i;
-
-    // Add event listener to the delete button inside the card
-    const wrapper = document.getElementById("wrapper_0");
-    const deleteButton = wrapper.querySelector('.card #delete_'+wrapperNo);
-    deleteButton.addEventListener('pointerdown', (event) => {      
-      event.stopPropagation();
-    });
-
-    // Event listener for search bar input changes
-    const searchInput = document.querySelector('.board_search_bar input');
-    searchInput.addEventListener('input', searchTasks);
-  }
-
-  board = tasksToServer.length;
+    board = tasksToServer.length;
 }
 
-function deleteCard() {
-  console.log('.card #delete_'+wrapperNo)
+function deletedCardNo() {
+    console.log(".card #delete_" + wrapperNo);
+}
+
+function initAssignsForCard(i) {
+    const assigns = tasksToServer[i][0][1];
+    for (let j = 0; j < assigns.length; j++) {
+        let wrapper_assigns = document.getElementById(`wrapper_assigns_${i}`);
+        wrapper_assigns.innerHTML += `
+    <div class="wrapper_assigns" style="background-color:${assigns[j][1]}">
+    ${assigns[j][0]}
+    </div>
+  `;
+    }
 }
 
 function searchTasks() {
-  const input = document.querySelector('.board_search_bar input');
-  const filter = input.value.toUpperCase();
-  const cards = document.querySelectorAll('.card');
+    const searchInput = document.querySelector(".board_search_bar input");
+    // Event listener for search bar input changes
+    searchInput.addEventListener("input", searchTasks);
+    const filter = searchInput.value.toUpperCase();
+    const cards = document.querySelectorAll(".card");
 
-  cards.forEach(card => {
-    const title = card.querySelector('#card_titel p').textContent.toUpperCase();
-    const category = card.querySelector('.wrapper_category').textContent.toUpperCase();
-    const description = card.querySelector('#card_description').textContent.toUpperCase();
+    cards.forEach(card => {
+        const title = card
+            .querySelector("#card_titel p")
+            .textContent.toUpperCase();
+        const category = card
+            .querySelector(".wrapper_category")
+            .textContent.toUpperCase();
+        const description = card
+            .querySelector("#card_description")
+            .textContent.toUpperCase();
 
-    if (title.indexOf(filter) > -1 || category.indexOf(filter) > -1 || description.indexOf(filter) > -1) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
-  });
+        if (
+            title.indexOf(filter) > -1 ||
+            category.indexOf(filter) > -1 ||
+            description.indexOf(filter) > -1
+        ) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
 }
 
-// drag and drop functionality for cards in board
-document.addEventListener("DOMContentLoaded", e => {
-    let pointerDown = false;
-    let shiftX = 0;
-    let shiftY = 0;
-    loadWrappersFromServer();
+function deleteCard() {
+    // Add event listener to the delete button inside the card
+    const wrapper = document.getElementById("wrapper_0");
+    const deleteButton = wrapper.querySelector(".card #delete_" + wrapperNo);
+    deleteButton.addEventListener("pointerdown", event => {
+        event.stopPropagation();
+    });
+}
 
-    // Check if the device is a touch device and log a message
+
+
+
+
+// drag and drop functionality for cards in board
+document.addEventListener('DOMContentLoaded', e => {
+  const list = document.querySelector('.list-wrapper')
+  let pointerDown = false
+  let shiftX = 0
+  let shiftY = 0
+  loadWrappersFromServer();
+
+  // Check if the device is a touch device and log a message
     const isTouchDevice =
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      navigator.msMaxTouchPoints > 0;
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0;
     if (isTouchDevice) {
-      console.log('This is a touch device');
+        console.log("This is a touch device");
     }
 
-    window.addEventListener(
-        "pointerdown",
-        ({clientX, clientY, pageX, pageY, target}) => {
-            const card = target.closest(".card");
-            if (!card) return;
+  window.addEventListener(
+    'pointerdown',
+    ({ clientX, clientY, pageX, pageY, target }) => {
+      const card = target.closest('.card')
+      if (!card) return
 
-            const cloneCard = card.cloneNode(true);
-            cloneCard.classList.add("dragging");
-            const ghost = document.querySelector(".ghost");
-            ghost.appendChild(cloneCard);
+      const cloneCard = card.cloneNode(true)
+      cloneCard.classList.add('dragging')
+      const ghost = document.querySelector('.ghost')
+      ghost.appendChild(cloneCard)
 
-            shiftX = clientX - card.getBoundingClientRect().left;
-            shiftY = clientY - card.getBoundingClientRect().top;
+      shiftX = clientX - card.getBoundingClientRect().left
+      shiftY = clientY - card.getBoundingClientRect().top
 
-            ghost.style.cssText = `width: ${
-                card.offsetWidth
-            }px; transform: translateX(${pageX - shiftX}px) translateY(${
-                pageY - shiftY
-            }px)`;
+      ghost.style.cssText = `width: ${
+        card.offsetWidth
+      }px; transform: translateX(${pageX - shiftX}px) translateY(${
+        pageY - shiftY
+      }px)`
 
-            pointerDown = true;
-            card.classList.add("afterimage");
-        }
-    );
+      pointerDown = true
+      card.classList.add('afterimage')
+    }
+  )
 
-    window.addEventListener(
-        "pointermove",
-        ({clientX, clientY, pageX, pageY, target}) => {
-            if (!pointerDown) {
-                return;
-            }
+  window.addEventListener(
+    'pointermove',
+    ({ clientX, clientY, pageX, pageY, target }) => {
+      if (!pointerDown) {
+        return
+      }
 
-            const ghost = document.querySelector(".ghost");
-            ghost.hidden = true;
-            const pointedEl = document.elementFromPoint(clientX, clientY);
-            const closestCard = pointedEl.closest(".card");
-            const column = pointedEl.closest(".column");
-            ghost.hidden = false;
+      const ghost = document.querySelector('.ghost')
+      ghost.hidden = true
+      const pointedEl = document.elementFromPoint(clientX, clientY)
+      const closestCard = pointedEl.closest('.card')
+      const column = pointedEl.closest('.column')
+      ghost.hidden = false
 
-            ghost.style.cssText = `width: ${
-                ghost.offsetWidth
-            }px; transform: translateX(${pageX - shiftX}px) translateY(${
-                pageY - shiftY
-            }px)`;
+      ghost.style.cssText = `width: ${
+        ghost.offsetWidth
+      }px; transform: translateX(${pageX - shiftX}px) translateY(${
+        pageY - shiftY
+      }px)`
 
-            if (!column) {
-                return;
-            }
+      if (!column) {
+        return
+      }
 
-            const placeCard = ghost.firstChild.cloneNode(true);
-            placeCard.classList.replace("dragging", "afterimage");
-            const fromCard = document.querySelector(".afterimage");
+      // Copying a card you're holding
+      const placeCard = ghost.firstChild.cloneNode(true)
+      placeCard.classList.replace('dragging', 'afterimage')
+      const fromCard = document.querySelector('.afterimage')
 
-            if (closestCard) {
-                if (closestCard.classList.contains("afterimage")) {
-                    return;
-                }
-
-                closestCard.before(placeCard);
-
-            } else {
-                const cardWrapper = column.querySelector(".card-wrapper");
-                cardWrapper.appendChild(placeCard);
-            }
-
-            fromCard.remove();
-
-            // from here it log out the position of the card -->
-            if (closestCard) {
-              if (closestCard.classList.contains("afterimage")) {
-                  return;
-              }
-          
-              closestCard.before(placeCard);
-          
-              console.log(`Placed ${placeCard.innerText} in ${closestCard.parentNode.parentNode.querySelector('.column-header').innerText}`);
-          } else {
-              const cardWrapper = column.querySelector(".card-wrapper");
-              cardWrapper.appendChild(placeCard);
-          
-              console.log(`Placed ${placeCard.innerText} in ${cardWrapper.parentNode.querySelector('.column-header').innerText}`);
-          }
-          // <-- till here
-          
-        }
-    );
-
-    window.addEventListener("pointerup", e => {
-        if (!pointerDown) {
-            return;
+      if (closestCard) {
+        if (closestCard.classList.contains('afterimage')) {
+          return
         }
 
-        pointerDown = false;
+        closestCard.before(placeCard)
+      } else {
+        const cardWrapper = column.querySelector('.card-wrapper')
+        cardWrapper.appendChild(placeCard)
+      }
 
-        const ghost = document.querySelector(".ghost");
-        ghost.innerHTML = "";
+      fromCard.remove()
+    }
+  )
 
-        const activeCard = document.querySelector(".afterimage");
-        activeCard.classList.remove("afterimage");
-    });
-});
+  window.addEventListener('pointerup', e => {
+    if (!pointerDown) {
+      return
+    }
+
+    pointerDown = false
+
+    const ghost = document.querySelector('.ghost')
+    ghost.innerHTML = ''
+
+    const activeCard = document.querySelector('.afterimage')
+    activeCard.classList.remove('afterimage')
+  })
+})
+
+
+
+
+
+// document.addEventListener("DOMContentLoaded", e => {
+//     let pointerDown = false;
+//     let shiftX = 0;
+//     let shiftY = 0;
+//     loadWrappersFromServer();
+
+//     // Check if the device is a touch device and log a message
+//     const isTouchDevice =
+//         "ontouchstart" in window ||
+//         navigator.maxTouchPoints > 0 ||
+//         navigator.msMaxTouchPoints > 0;
+//     if (isTouchDevice) {
+//         console.log("This is a touch device");
+//     }
+
+//     window.addEventListener(
+//         "pointerdown",
+//         ({clientX, clientY, pageX, pageY, target}) => {
+//             const card = target.closest(".card");
+//             if (!card) return;
+
+//             const cloneCard = card.cloneNode(true);
+//             cloneCard.classList.add("dragging");
+//             const ghost = document.querySelector(".ghost");
+//             ghost.appendChild(cloneCard);
+
+//             shiftX = clientX - card.getBoundingClientRect().left;
+//             shiftY = clientY - card.getBoundingClientRect().top;
+
+//             ghost.style.cssText = `width: ${
+//                 card.offsetWidth
+//             }px; transform: translateX(${pageX - shiftX}px) translateY(${
+//                 pageY - shiftY
+//             }px)`;
+
+//             pointerDown = true;
+//             card.classList.add("afterimage");
+//         }
+//     );
+
+//     window.addEventListener(
+//         "pointermove",
+//         ({clientX, clientY, pageX, pageY, target}) => {
+//             if (!pointerDown) {
+//                 return;
+//             }
+
+//             const ghost = document.querySelector(".ghost");
+//             ghost.hidden = true;
+//             const pointedEl = document.elementFromPoint(clientX, clientY);
+//             const closestCard = pointedEl.closest(".card");
+//             const i = closestCard ? closestCard.dataset.i : null;
+//             const column = pointedEl.closest(".column");
+//             if (!column) {
+//                 return;
+//             }
+//             const currentWrapper = column.querySelector(".card-wrapper");
+//             ghost.hidden = false;
+
+//             ghost.style.cssText = `width: ${
+//                 ghost.offsetWidth
+//             }px; transform: translateX(${pageX - shiftX}px) translateY(${
+//                 pageY - shiftY
+//             }px)`;
+
+//             if (!column) {
+//                 return;
+//             }
+
+//             const placeCard = ghost.firstChild.cloneNode(true);
+//             placeCard.classList.replace("dragging", "afterimage");
+//             const fromCard = document.querySelector(".afterimage");
+
+//             if (
+//                 closestCard &&
+//                 closestCard !== fromCard &&
+//                 currentWrapper !== previousWrapper
+//             ) {
+//                 closestCard.before(placeCard);
+//                 console.log(`Dragged card ${closestCard.id} to wrapper ${closestCard.id}`);
+//             } else {
+//                 currentWrapper.appendChild(placeCard);
+//             }
+
+//             fromCard.remove();
+
+//             previousWrapper = currentWrapper;
+//         }
+//     );
+
+//     window.addEventListener("pointerup", e => {
+//         if (!pointerDown) {
+//             return;
+//         }
+
+//         pointerDown = false;
+
+//         const ghost = document.querySelector(".ghost");
+//         ghost.innerHTML = "";
+
+//         const activeCard = document.querySelector(".afterimage");
+//         activeCard.classList.remove("afterimage");
+//     });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
