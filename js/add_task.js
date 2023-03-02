@@ -96,8 +96,16 @@ function setContacts(initials, color, i) {
     pickedContact.classList.add("picked_contacts");
     pickedContact.style.backgroundColor = color;
     pickedContact.textContent = initials;
+    
+    // Create and position the "x" icon
+    let deleteIcon = document.createElement("img");
+    deleteIcon.src = "./img/delete.png";
+    deleteIcon.classList.add("delete_icon");
+    pickedContact.appendChild(deleteIcon);
+    
     assign_contacts_placeholder.appendChild(pickedContact);
     pickedContacts.push([initials, color]);
+    
 
     // Add event listener to remove contact when clicked
     pickedContact.addEventListener("click", () => {

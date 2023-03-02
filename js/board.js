@@ -5,15 +5,17 @@ let awaitingFeedback = [];
 let tasksDone = [];
 
 function initSortArrays() {
+    tasksToDo = [];
+    tasksInProgress = [];
+    awaitingFeedback = [];
+    tasksDone = [];
     for (let i = 0; i < tasksToServer.length; i++) {
         const task = tasksToServer[i];
-        const titel = tasksToServer[i][0][0];
         const wrapper = tasksToServer[i][0][6];
-        const priority = tasksToServer[i][0][4];
-        // console.log(titel,'= Wrapper:',wrapper,'/ 3');
         sortTasksArraysForBoard(i);
         sortTasksServerToArrays(task, wrapper);
     }
+    consoleLogTasks();
 }
 
 function sortTasksArraysForBoard(task) {
@@ -21,7 +23,6 @@ function sortTasksArraysForBoard(task) {
 }
 
 function sortTasksServerToArrays(task, wrapper) {
-    console.log(wrapper);
     if (wrapper == 0) {
         tasksToDo.push(task);
     }
@@ -34,23 +35,6 @@ function sortTasksServerToArrays(task, wrapper) {
     if (wrapper == 3) {
         tasksDone.push(task);
     }
-
-    consoleLogTasks();
-}
-
-function consoleLogTasks() {
-    console.log("%cTo-Do: ", "color: orange; font-size: 16px", tasksToDo);
-    console.log(
-        "%cIn Progress: ",
-        "color: orange; font-size: 16px",
-        tasksInProgress
-    );
-    console.log(
-        "%cAwaiting Feedback: ",
-        "color: orange; font-size: 16px",
-        awaitingFeedback
-    );
-    console.log("%cDone: ", "color: orange; font-size: 16px", tasksDone);
 }
 
 function initBoard() {
@@ -66,7 +50,7 @@ function initBoard() {
                   alt="Dark Plus Icon"
               />
           </div>
-          <div class="card-wrapper" id="wrapper_0" data="0"></div>
+          <div class="card-wrapper" id="wrapper_0"></div>
       </div>
       <div class="column">
           <div class="column-header">
@@ -77,7 +61,7 @@ function initBoard() {
                   alt="Dark Plus Icon"
               />
           </div>
-          <div class="card-wrapper" id="wrapper_1" data="1"></div>
+          <div class="card-wrapper" id="wrapper_1"></div>
       </div>
       <div class="column">
           <div class="column-header">
@@ -88,7 +72,7 @@ function initBoard() {
                   alt="Dark Plus Icon"
               />
           </div>
-          <div class="card-wrapper" id="wrapper_2" data="2"></div>
+          <div class="card-wrapper" id="wrapper_2"></div>
       </div>
       <div class="column">
           <div class="column-header">
@@ -99,7 +83,7 @@ function initBoard() {
                   alt="Dark Plus Icon"
               />
           </div>
-          <div class="card-wrapper" id="wrapper_3" data="3"></div>
+          <div class="card-wrapper" id="wrapper_3"></div>
       </div>
     </div>
     <div class="ghost"></div>
@@ -107,41 +91,53 @@ function initBoard() {
     loadWrappersFromServer();
 }
 
+// loads the taks from database.json in backend folder.
 function loadWrappersFromServer() {
     for (let i = 0; i < tasksToServer.length; i++) {
         const wrapper_0 = document.getElementById("wrapper_0");
-        wrapper_0.innerHTML += `
-    <div class="card" id="card_${i}" data-i="${i}">
-      <div class="header">
-        <div class="title" id="card_category">
-          <span class="wrapper_category" 
-          style="background-color:${tasksToServer[i][0][3][1]}">
-          ${tasksToServer[i][0][3][0]}
-          </span>
-          <img src="./img/delete.png" id="delete_${i}" class="delete" onclick="deletedCardNo()" >
+        const wrapper_1 = document.getElementById("wrapper_1");
+        const wrapper_2 = document.getElementById("wrapper_2");
+        const wrapper_3 = document.getElementById("wrapper_3");
+        const card_content = `
+        <div class="card" id="card_${i}">
+          <div class="header">
+            <div class="title" id="card_category">
+              <span class="wrapper_category" 
+              style="background-color:${tasksToServer[i][0][3][1]}">
+              ${tasksToServer[i][0][3][0]}
+              </span>
+              <img src="./img/delete.png" id="delete_${i}" class="delete" onclick="deletedCardNo(${i})" >
+            </div>
+          </div>
+          <div class="body" id="card_titel"><p>${tasksToServer[i][0][0]}</p></div>
+          <div class="caption" id="card_description">${tasksToServer[i][0][5]}</div>
+          <div class="wrapper_footer" id="card_footer">
+            <div class="assigns" id="wrapper_assigns_${i}"></div>
+              <img class="priority" src="./img/${tasksToServer[i][0][4]}.png">
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="body" id="card_titel"><p>${tasksToServer[i][0][0]}</p></div>
-      <div class="caption" id="card_description">${tasksToServer[i][0][5]}</div>
-      <div class="wrapper_footer" id="card_footer">
-        <div class="assigns" id="wrapper_assigns_${i}"></div>
-          <img class="priority" src="./img/${tasksToServer[i][0][4]}.png">
-        </div>
-      </div>
-    </div>
-  `;
+      `;
+        if (tasksToServer[i][0][6] == 0) {
+            wrapper_0.innerHTML += card_content;
+        }
+        if (tasksToServer[i][0][6] == 1) {
+            wrapper_1.innerHTML += card_content;
+        }
+        if (tasksToServer[i][0][6] == 2) {
+            wrapper_2.innerHTML += card_content;
+        }
+        if (tasksToServer[i][0][6] == 3) {
+            wrapper_3.innerHTML += card_content;
+        }
         initAssignsForCard(i);
         wrapperNo = i;
-        deleteCard();
         searchTasks();
     }
     board = tasksToServer.length;
 }
 
-function deletedCardNo() {
-    console.log(".card #delete_" + wrapperNo);
-}
-
+// inits the assigned contacts from list
 function initAssignsForCard(i) {
     const assigns = tasksToServer[i][0][1];
     for (let j = 0; j < assigns.length; j++) {
@@ -150,8 +146,10 @@ function initAssignsForCard(i) {
     <div class="wrapper_assigns" style="background-color:${assigns[j][1]}">
     ${assigns[j][0]}
     </div>
-  `;
+    `;
     }
+    deleteCard();
+    countCardsInWrappers();
 }
 
 function searchTasks() {
@@ -185,27 +183,75 @@ function searchTasks() {
 }
 
 function deleteCard() {
-    // Add event listener to the delete button inside the card
-    const wrapper = document.getElementById("wrapper_0");
-    const deleteButton = wrapper.querySelector(".card #delete_" + wrapperNo);
-    deleteButton.addEventListener("pointerdown", event => {
-        event.stopPropagation();
-    });
+    // Iterate over all four wrappers
+    for (let i = 0; i < 4; i++) {
+        let wrapper = document.getElementById("wrapper_" + i);
+        // Iterate over all cards in the wrapper
+        const cards = wrapper.querySelectorAll(".card");
+        cards.forEach(card => {
+            // Find the delete button in the card
+            const deleteButton = card.querySelector(`[id^='delete_']`);
+            if (deleteButton) {
+                // Add event listener to the delete button inside the card
+                deleteButton.addEventListener("pointerdown", event => {
+                    event.stopPropagation();
+                });
+            }
+        });
+    }
 }
 
+function deletedCardNo(i) {
 
+    console.log(
+        "%cCard %c%d %cDeleted",
+        "color: red; font-size: 16px",
+        "color: yellow; font-size: 16px",
+        i,
+        "color: red; font-size: 16px;"
+    );
+}
 
-
+function consoleLogTasks() {
+    console.log(
+        "%cTo-Do: %c%d",
+        "color: orange; font-size: 16px",
+        "color: yellow; font-size: 16px",
+        tasksToDo.length,
+        tasksToDo
+    );
+    console.log(
+        "%cIn progress: %c%d",
+        "color: orange; font-size: 16px",
+        "color: yellow; font-size: 16px",
+        tasksInProgress.length,
+        tasksInProgress
+    );
+    console.log(
+        "%cAwaiting Feedback: %c%d",
+        "color: orange; font-size: 16px",
+        "color: yellow; font-size: 16px",
+        awaitingFeedback.length,
+        awaitingFeedback
+    );
+    console.log(
+        "%cDone: %c%d",
+        "color: orange; font-size: 16px",
+        "color: yellow; font-size: 16px",
+        tasksDone.length,
+        tasksDone
+    );
+}
 
 // drag and drop functionality for cards in board
-document.addEventListener('DOMContentLoaded', e => {
-  const list = document.querySelector('.list-wrapper')
-  let pointerDown = false
-  let shiftX = 0
-  let shiftY = 0
-  loadWrappersFromServer();
+document.addEventListener("DOMContentLoaded", e => {
+    const list = document.querySelector(".list-wrapper");
+    let pointerDown = false;
+    let shiftX = 0;
+    let shiftY = 0;
+    loadWrappersFromServer();
 
-  // Check if the device is a touch device and log a message
+    // Check if the device is a touch device and log a message
     const isTouchDevice =
         "ontouchstart" in window ||
         navigator.maxTouchPoints > 0 ||
@@ -214,93 +260,89 @@ document.addEventListener('DOMContentLoaded', e => {
         console.log("This is a touch device");
     }
 
-  window.addEventListener(
-    'pointerdown',
-    ({ clientX, clientY, pageX, pageY, target }) => {
-      const card = target.closest('.card')
-      if (!card) return
+    window.addEventListener(
+        "pointerdown",
+        ({clientX, clientY, pageX, pageY, target}) => {
+            const card = target.closest(".card");
+            if (!card) return;
 
-      const cloneCard = card.cloneNode(true)
-      cloneCard.classList.add('dragging')
-      const ghost = document.querySelector('.ghost')
-      ghost.appendChild(cloneCard)
+            const cloneCard = card.cloneNode(true);
+            cloneCard.classList.add("dragging");
+            const ghost = document.querySelector(".ghost");
+            ghost.appendChild(cloneCard);
 
-      shiftX = clientX - card.getBoundingClientRect().left
-      shiftY = clientY - card.getBoundingClientRect().top
+            shiftX = clientX - card.getBoundingClientRect().left;
+            shiftY = clientY - card.getBoundingClientRect().top;
 
-      ghost.style.cssText = `width: ${
-        card.offsetWidth
-      }px; transform: translateX(${pageX - shiftX}px) translateY(${
-        pageY - shiftY
-      }px)`
+            ghost.style.cssText = `width: ${
+                card.offsetWidth
+            }px; transform: translateX(${pageX - shiftX}px) translateY(${
+                pageY - shiftY
+            }px)`;
 
-      pointerDown = true
-      card.classList.add('afterimage')
-    }
-  )
+            pointerDown = true;
+            card.classList.add("afterimage");
+        }
+    );
 
-  window.addEventListener(
-    'pointermove',
-    ({ clientX, clientY, pageX, pageY, target }) => {
-      if (!pointerDown) {
-        return
-      }
+    window.addEventListener(
+        "pointermove",
+        ({clientX, clientY, pageX, pageY, target}) => {
+            if (!pointerDown) {
+                return;
+            }
 
-      const ghost = document.querySelector('.ghost')
-      ghost.hidden = true
-      const pointedEl = document.elementFromPoint(clientX, clientY)
-      const closestCard = pointedEl.closest('.card')
-      const column = pointedEl.closest('.column')
-      ghost.hidden = false
+            const ghost = document.querySelector(".ghost");
+            ghost.hidden = true;
+            const pointedEl = document.elementFromPoint(clientX, clientY);
+            const closestCard = pointedEl.closest(".card");
+            const column = pointedEl.closest(".column");
+            ghost.hidden = false;
 
-      ghost.style.cssText = `width: ${
-        ghost.offsetWidth
-      }px; transform: translateX(${pageX - shiftX}px) translateY(${
-        pageY - shiftY
-      }px)`
+            ghost.style.cssText = `width: ${
+                ghost.offsetWidth
+            }px; transform: translateX(${pageX - shiftX}px) translateY(${
+                pageY - shiftY
+            }px)`;
 
-      if (!column) {
-        return
-      }
+            if (!column) {
+                return;
+            }
 
-      // Copying a card you're holding
-      const placeCard = ghost.firstChild.cloneNode(true)
-      placeCard.classList.replace('dragging', 'afterimage')
-      const fromCard = document.querySelector('.afterimage')
+            // Copying a card you're holding
+            const placeCard = ghost.firstChild.cloneNode(true);
+            placeCard.classList.replace("dragging", "afterimage");
+            const fromCard = document.querySelector(".afterimage");
 
-      if (closestCard) {
-        if (closestCard.classList.contains('afterimage')) {
-          return
+            if (closestCard) {
+                if (closestCard.classList.contains("afterimage")) {
+                    return;
+                }
+
+                closestCard.before(placeCard);
+            } else {
+                const cardWrapper = column.querySelector(".card-wrapper");
+                cardWrapper.appendChild(placeCard);
+            }
+
+            fromCard.remove();
+        }
+    );
+
+    window.addEventListener("pointerup", e => {
+        if (!pointerDown) {
+            return;
         }
 
-        closestCard.before(placeCard)
-      } else {
-        const cardWrapper = column.querySelector('.card-wrapper')
-        cardWrapper.appendChild(placeCard)
-      }
+        pointerDown = false;
 
-      fromCard.remove()
-    }
-  )
+        const ghost = document.querySelector(".ghost");
+        ghost.innerHTML = "";
 
-  window.addEventListener('pointerup', e => {
-    if (!pointerDown) {
-      return
-    }
-
-    pointerDown = false
-
-    const ghost = document.querySelector('.ghost')
-    ghost.innerHTML = ''
-
-    const activeCard = document.querySelector('.afterimage')
-    activeCard.classList.remove('afterimage')
-  })
-})
-
-
-
-
+        const activeCard = document.querySelector(".afterimage");
+        activeCard.classList.remove("afterimage");
+    });
+});
 
 // document.addEventListener("DOMContentLoaded", e => {
 //     let pointerDown = false;
@@ -406,23 +448,6 @@ document.addEventListener('DOMContentLoaded', e => {
 //         activeCard.classList.remove("afterimage");
 //     });
 // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   let dragging = null;

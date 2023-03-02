@@ -1,5 +1,5 @@
 let urgent = 0;
-let deadline = "May 09, 2023";
+let deadline = "Mon May 09 2023";
 let board = 0;
 let inProgress = 0;
 let awaitFeedback = 0;
@@ -65,6 +65,7 @@ function initSummary() {
     getTime();
     countUrgent();
     findClosestDate();
+    countCardsInWrappers();
 }
 
 // Get the local time
@@ -118,3 +119,12 @@ function countUrgent() {
     // console.log("Closest upcoming date: " + closestDate.toDateString());
     deadline = closestDate.toDateString();
   }
+
+  // counts tasks/cards in wrappers 0-3 and sets the variables for summary
+  function countCardsInWrappers() {
+    todo = document.querySelectorAll("#wrapper_0 .card").length;
+    inProgress = document.querySelectorAll("#wrapper_1 .card").length;
+    awaitFeedback = document.querySelectorAll("#wrapper_2 .card").length;
+    done = document.querySelectorAll("#wrapper_3 .card").length;
+  }
+  

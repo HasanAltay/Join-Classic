@@ -146,6 +146,7 @@
   max-width: 425px;
 }
 .task_main .picked_contacts {
+  position: relative;
   padding: 5px;
   border-radius: 50%;
   color: white;
@@ -364,6 +365,18 @@
 #the-count span {
   color: rgb(204, 204, 204);
   font-size: 13px;
+}
+
+.delete_icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 1px solid #29abe2;
+  padding: 2px;
 }
 
 @media (max-width: 600px) {
