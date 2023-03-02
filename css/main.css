@@ -1301,7 +1301,6 @@
   padding-right: 20px;
   padding-bottom: 20px;
   display: flex;
-  flex-direction: column;
 }
 
 @media (max-width: 600px) {
@@ -1313,11 +1312,6 @@
   .info_format span {
     font-size: 32px;
     padding-right: 50px;
-  }
-  .info_text_box {
-    padding-right: 20px;
-    padding-bottom: 25px;
-    display: flex;
   }
   .info_arrow_space {
     padding-right: 30px;
