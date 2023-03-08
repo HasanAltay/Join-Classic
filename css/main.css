@@ -71,9 +71,6 @@
   padding-right: 20px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 }
-.task_main .assign_dropdown:hover {
-  border-radius: 10px 10px 0px 0px;
-}
 .task_main .assign_dropdown_titel {
   display: flex;
   justify-content: space-between;
@@ -85,7 +82,7 @@
   visibility: hidden;
   position: absolute;
   flex-direction: column;
-  top: 50px;
+  top: 40px;
   left: 0;
   background-color: white;
   width: 100%;
@@ -164,6 +161,7 @@
   margin: 2px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.16);
   color: white;
+  z-index: 6;
 }
 .task_main .assign_category_input {
   display: flex;
@@ -398,7 +396,7 @@
 
 .board_search_bar {
   display: flex;
-  max-width: 720px;
+  max-width: 970px;
   justify-content: space-between;
   max-height: 50px;
   position: relative;
@@ -478,7 +476,7 @@
 .board_tasks .list-wrapper {
   display: flex;
   gap: 30px;
-  max-width: 720px;
+  max-width: 970px;
   flex-wrap: wrap;
 }
 .board_tasks .column {
@@ -769,7 +767,8 @@
   background-color: #F6F7F9;
 }
 .contacts_details a {
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 400;
   text-decoration: none;
   color: #2b70d1;
 }
@@ -780,10 +779,29 @@
   max-height: 90px;
   margin-bottom: 30px;
 }
+.details_header a {
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
+.details_header img {
+  width: 13px;
+  margin-right: 5px;
+}
 
 .contacts_h2 {
   font-weight: 700;
   font-size: 19px;
+}
+.contacts_h2 a {
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
+.contacts_h2 img {
+  width: 11px;
+  margin-right: 5px;
+  margin-left: 30px;
 }
 
 .details_name {

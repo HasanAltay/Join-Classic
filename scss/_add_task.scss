@@ -74,9 +74,9 @@
         padding-right: 20px;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 
-        &:hover {
-            border-radius: 10px 10px 0px 0px;
-        }
+        // &:hover {
+        //     border-radius: 10px 10px 0px 0px;
+        // }
     }
 
     .assign_dropdown_titel {
@@ -91,7 +91,7 @@
         visibility: hidden;
         position: absolute;
         flex-direction: column;
-        top: 50px;
+        top: 40px;
         left: 0;
         background-color: white;
         width: 100%;
@@ -176,6 +176,7 @@
         margin: 2px;
         box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.16);
         color: white;
+        z-index: 6;
     }
 
     .assign_category_input {

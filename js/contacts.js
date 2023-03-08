@@ -84,10 +84,10 @@ function initDetails(letters, name, surname, mail, phone, color) {
     contacts_details.innerHTML = `
     <div class="details_header">
       <div class="details_initials" style="background-color:${color}">${letters}</div>
-      <span class="details_name">${name} ${surname}</span>
+      <span class="details_name">${name} ${surname}<br><a><img src="./img/plus_blue.png">Add Task</a></span>
     </div>
     <div>
-      <span class="contacts_h2">Contact Information<br><br></span>
+      <span class="contacts_h2">Contact Information<a><img src="./img/pen_blue.png">Edit Contact</a><br><br></span>
     </div>
     <div>
       <b>Email<br><br></b>
