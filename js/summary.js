@@ -106,8 +106,14 @@ function countUrgent() {
     urgent = count;
   }
   
-  // Deadline. Closest Date in Array
+  // Shows Deadline. Closest Date in Array. Check also if no date.
   function findClosestDate() {
+    if (!tasksToServer || tasksToServer.length === 0) {
+      // No tasks found, set deadline to null or another appropriate value
+      deadline = null;
+      return;
+    }
+  
     let closestDate = new Date(tasksToServer[0][0][2]);
     for (let i = 1; i < tasksToServer.length; i++) {
       const dateString = tasksToServer[i][0][2];
@@ -116,7 +122,6 @@ function countUrgent() {
         closestDate = currentDate;
       }
     }
-    // console.log("Closest upcoming date: " + closestDate.toDateString());
     deadline = closestDate.toDateString();
   }
 

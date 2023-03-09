@@ -36,7 +36,7 @@ async function initLettersFromContacts() {
 
 function initList(contacts) {
     contactsListTasks = [];
-    
+
     let letter_box = document.getElementById("letter_box");
     for (let i = 0; i < contacts.length; i++) {
         // console.log(contacts);
@@ -54,7 +54,7 @@ function initList(contacts) {
         for (let i = 0; i < sortedContacts[letter].length; i++) {
             let name_letter = sortedContacts[letter][i].name.slice(0, 1);
             let surname_letter = sortedContacts[letter][i].surname.slice(0, 1);
-            let letters = (name_letter+surname_letter).toUpperCase();
+            let letters = (name_letter + surname_letter).toUpperCase();
             let name = sortedContacts[letter][i].name;
             let surname = sortedContacts[letter][i].surname;
             let mail = sortedContacts[letter][i].mail;
@@ -87,7 +87,7 @@ function initDetails(letters, name, surname, mail, phone, color) {
       <span class="details_name">${name} ${surname}<br><a><img src="./img/plus_blue.png">Add Task</a></span>
     </div>
     <div>
-      <span class="contacts_h2">Contact Information<a><img src="./img/pen_blue.png">Edit Contact</a><br><br></span>
+      <span class="contacts_h2">Contact Information<a onclick="showEditContact()"><img src="./img/pen_blue.png">Edit Contact</a><br><br></span>
     </div>
     <div>
       <b>Email<br><br></b>
@@ -100,15 +100,18 @@ function initDetails(letters, name, surname, mail, phone, color) {
     <button class="button_dark new_contact_pos" onclick="showAddContact()">Add contact<img src="./img/add_contact.png"></button>
     <img class="mobile_arrow" src="./img/left_arrow.png" onclick="closeDetails()">
     <div class="contact_new" id="contact_new"></div>
+    <div class="contact_new" id="contact_edit"></div>
   `;
     addContact();
+    editContact();
 }
 
 // adds new contact to the list
 function addContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.innerHTML = `
-    <div class="contact_new_top"> 
+    <div class="contact_new_top">
+      <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeAddContact()"> 
       <img src="./img/logo_topbar.png"> 
       <span>Add contact</span> 
       <a>Tasks are better with a team!</a> 
@@ -124,6 +127,28 @@ function addContact() {
       </div> 
     </form>
   `;
+}
+
+// edit existing contact from the list
+function editContact() {
+    let contact_edit = document.getElementById("contact_edit");
+    contact_edit.innerHTML = `
+  <div class="contact_new_top">
+    <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeEditContact()">
+    <img class="contacts_new_logo" src="./img/logo_topbar.png">    
+    <span>Edit contact</span>  
+  </div> 
+  <form class="contact_new_bottom" id="myForm" onsubmit="onFormSubmit();"> 
+    <input type="text" placeholder="Name" name="name" maxlength="36" id="name"> 
+    <input type="text" placeholder="Surname" name="surname" maxlength="36" id="surname"> 
+    <input type="email" placeholder="Email" name="mail" maxlength="36" id="mail"> 
+    <input type="tel" placeholder="Phone" name="phone" id="phone" pattern="[0-9]{10,16}" title="Please enter a valid phone number (between 10 and 16 digits)"> 
+    <div class="contact_new_btns"> 
+      <button class="button_bright" onclick="closeEditContact()">Cancel</button> 
+      <button type="submit" class="button_dark" onclick="saveNewContact();showConfirmationAddContact(a=true);" value="Add">Save</button> 
+    </div> 
+  </form>
+`;
 }
 
 function showConfirmationAddContact(a) {
@@ -161,4 +186,14 @@ function showAddContact() {
 function closeAddContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.style.display = "none";
+}
+
+function showEditContact() {
+    let contact_edit = document.getElementById("contact_edit");
+    contact_edit.style.display = "block";
+}
+
+function closeEditContact() {
+    let contact_edit = document.getElementById("contact_edit");
+    contact_edit.style.display = "none";
 }

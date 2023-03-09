@@ -55,7 +55,7 @@ function createAddTaskJSON() {
     console.log(tasks);
     let a = true;
     showConfirmationAddTask(a);
-    dropDownOpenClose();
+    // dropDownOpenClose();
 }
 
 function initAssignDropDown() {
@@ -63,7 +63,7 @@ function initAssignDropDown() {
     for (let i = 0; i < contactsListTasks.length; i++) {
         const list = contactsListTasks[i];
         assign_dropdown_list.innerHTML += `
-            <button onclick="setContacts('${list[0]}','${list[3]}','${i}')">
+            <button onclick="setContacts('${list[0]}','${list[3]}','${i}','${list[1]}','${list[2]}')">
             <div class="assign_initials" style="background-color:${list[3]}">${list[0]}</div>
             <span class="assign_details_name">${list[1]} ${list[2]}</span>
             </button>
@@ -71,7 +71,7 @@ function initAssignDropDown() {
     }
 }
 
-function setContacts(initials, color, i) {
+function setContacts(initials, color, i, name, surname) {
     event.preventDefault();
     let assign_contacts_placeholder = document.getElementById(
         "assign_contacts_placeholder"
@@ -104,7 +104,7 @@ function setContacts(initials, color, i) {
     pickedContact.appendChild(deleteIcon);
     
     assign_contacts_placeholder.appendChild(pickedContact);
-    pickedContacts.push([initials, color]);
+    pickedContacts.push([initials, color, name, surname]);
     
 
     // Add event listener to remove contact when clicked

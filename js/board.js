@@ -106,7 +106,10 @@ function loadWrappersFromServer() {
               style="background-color:${tasksToServer[i][0][3][1]}">
               ${tasksToServer[i][0][3][0]}
               </span>
-              <img src="./img/delete.png" id="delete_${i}" class="delete" onclick="deletedCardNo(${i})" >
+              <div class="card_btns">
+                <img src="./img/pen_blue.png" id="edit_${i}" class="edit" onclick="editCardNo(${i})" alt="Edit Task">
+                <img src="./img/delete.png" id="delete_${i}" class="delete" onclick="deletedCardNo(${i})" alt="Delete Task">
+              </div>
             </div>
           </div>
           <div class="body" id="card_titel"><p>${tasksToServer[i][0][0]}</p></div>
@@ -140,6 +143,7 @@ function loadWrappersFromServer() {
 // inits the assigned contacts from list
 function initAssignsForCard(i) {
     const assigns = tasksToServer[i][0][1];
+    // console.log(assigns)
     for (let j = 0; j < assigns.length; j++) {
         let wrapper_assigns = document.getElementById(`wrapper_assigns_${i}`);
         wrapper_assigns.innerHTML += `
@@ -150,6 +154,7 @@ function initAssignsForCard(i) {
     }
     deleteCard();
     countCardsInWrappers();
+    editCard();
 }
 
 function searchTasks() {
@@ -183,7 +188,7 @@ function searchTasks() {
 }
 
 function deleteCard() {
-    // Iterate over all four wrappers
+    // Iterate over all four wrappers and adds the delete button to the event handlers
     for (let i = 0; i < 4; i++) {
         let wrapper = document.getElementById("wrapper_" + i);
         // Iterate over all cards in the wrapper
@@ -201,8 +206,75 @@ function deleteCard() {
     }
 }
 
-function deletedCardNo(i) {
+function editCard() {
+    // Iterate over all four wrappers and adds the edit button to the event handlers
+    for (let i = 0; i < 4; i++) {
+        let wrapper = document.getElementById("wrapper_" + i);
+        // Iterate over all cards in the wrapper
+        const cards = wrapper.querySelectorAll(".card");
+        cards.forEach(card => {
+            // Find the delete button in the card
+            const editButton = card.querySelector(`[id^='edit_']`);
+            if (editButton) {
+                // Add event listener to the delete button inside the card
+                editButton.addEventListener("pointerdown", event => {
+                    event.stopPropagation();
+                    showEditTask();
+                    editCardNo(i);
+                });
+            }
+        });
+    }
+}
 
+function editCardNo(i) {
+    let edit_task = document.getElementById("edit_task");
+    edit_task.innerHTML = `
+    <img class="edit_task_close_btn" src="./img/cancel.png" onclick="closeEditTask()">
+    <div class="card" id="card_${i}">
+    <div class="header">
+      <div class="title" id="card_category">
+        <span class="wrapper_category" 
+        style="background-color:${tasksToServer[i][0][3][1]}">
+        ${tasksToServer[i][0][3][0]}
+        </span>
+      </div>
+    </div>
+    <div class="edit_card_titel"><p>${tasksToServer[i][0][0]}</p></div>
+    <div class="edit_card_caption" id="card_description">${tasksToServer[i][0][5]}</div>
+    <div class="edit_card_details">
+        <div><span>Due Date: </span><a>${tasksToServer[i][0][2]}</a></div>
+        <div><span>Priority: </span><a>${tasksToServer[i][0][4]}<img class="priority" src="./img/${tasksToServer[i][0][4]}.png"></a></div>
+        <div>
+            <span>Assigned To: </span>
+            <div class="edit_card_assigns" id="edit_assigns"></div>
+        </div>
+    </div>
+    `;
+
+    const assigns = tasksToServer[i][0][1];
+    for (let j = 0; j < assigns.length; j++) {
+        let edit_assigns = document.getElementById(`edit_assigns`);
+        edit_assigns.innerHTML += `
+        <div class="wrapper_assigns" style="background-color:${assigns[j][1]}">
+        ${assigns[j][0]}
+        </div>
+        <span> </span>
+        `;
+    }
+}
+
+function showEditTask() {
+    let edit_task = document.getElementById("edit_task");
+    edit_task.style.display = "block";
+}
+
+function closeEditTask() {
+    let edit_task = document.getElementById("edit_task");
+    edit_task.style.display = "none";
+}
+
+function deletedCardNo(i) {
     console.log(
         "%cCard %c%d %cDeleted",
         "color: red; font-size: 16px",
