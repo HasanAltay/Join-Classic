@@ -229,9 +229,10 @@ function editCard() {
 
 function editCardNo(i) {
     let edit_task = document.getElementById("edit_task");
+    let priority = tasksToServer[i][0][4].charAt(0).toUpperCase() +  tasksToServer[i][0][4].slice(1);
     edit_task.innerHTML = `
     <img class="edit_task_close_btn" src="./img/cancel.png" onclick="closeEditTask()">
-    <div class="card" id="card_${i}">
+
     <div class="header">
       <div class="title" id="card_category">
         <span class="wrapper_category" 
@@ -240,26 +241,40 @@ function editCardNo(i) {
         </span>
       </div>
     </div>
-    <div class="edit_card_titel"><p>${tasksToServer[i][0][0]}</p></div>
+    <div class="edit_card_titel">${tasksToServer[i][0][0]}</div>
     <div class="edit_card_caption" id="card_description">${tasksToServer[i][0][5]}</div>
+
     <div class="edit_card_details">
-        <div><span>Due Date: </span><a>${tasksToServer[i][0][2]}</a></div>
-        <div><span>Priority: </span><a>${tasksToServer[i][0][4]}<img class="priority" src="./img/${tasksToServer[i][0][4]}.png"></a></div>
         <div>
-            <span>Assigned To: </span>
-            <div class="edit_card_assigns" id="edit_assigns"></div>
+            <b>Due Date:&emsp;</b>
+            <a>${tasksToServer[i][0][2]}</a>
         </div>
-    </div>
+        <div>
+            <b>Priority:&emsp;</b>
+            <a class="edit_task_priority">${priority}
+                <img class="priority" src="./img/${tasksToServer[i][0][4]}.png">
+            </a>
+        </div>
+        <div>
+            <b>Assigned To: </b>
+        </div>
+            <div class="edit_card_assigns" id="edit_assigns">
+        </div>
+        <div class="edit_card_footer">
+            <button class="task_edit_button">
+                <img src="./img/pen.png">
+            </button>
+        </div>
     `;
 
     const assigns = tasksToServer[i][0][1];
     for (let j = 0; j < assigns.length; j++) {
         let edit_assigns = document.getElementById(`edit_assigns`);
         edit_assigns.innerHTML += `
-        <div class="wrapper_assigns" style="background-color:${assigns[j][1]}">
-        ${assigns[j][0]}
+        <div class="edit_assigns_list">
+            <div class="edit_assigns_circles" style="background-color:${assigns[j][1]}">${assigns[j][0]}</div>
+            <a>${assigns[j][2]} ${assigns[j][3]}</a>
         </div>
-        <span> </span>
         `;
     }
 }

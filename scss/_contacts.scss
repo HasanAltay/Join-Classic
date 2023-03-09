@@ -115,7 +115,7 @@
 
 .details_main {
   position: relative;
-  max-width: 550px;
+  max-width: 500px;
   height: calc(100vh - 280px);
   padding-left: 40px;
   padding-right: 40px;
@@ -125,10 +125,11 @@
 .contacts_details {
   position: relative;
   width: 100%;
-  max-width: 550px;
+  max-width: 500px;
+  min-width: 400px;
   height: calc(100vh - 280px);
-  padding-left: 40px;
-  padding-right: 40px;
+  // padding-left: 40px;
+  // padding-right: 40px;
   display: flex;
   flex-direction: column;
   background-color: #F6F7F9;
@@ -221,21 +222,24 @@
 
 .contact_new {
   display: none;
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 500px;
+  max-width: 420px;
+  min-width: 360px;
   height: calc(100vh - 280px);
-  z-index: 9;
+  z-index: 14;
   border-radius: 10px;
-  min-height: 500px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.16);
+  min-height: 550px;
+  max-height: 650px;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .contact_new_top {
   background-color: #32314B;
-  height: 35%;
+  height: 30%;
   border-radius: 10px 10px 0px 0px;
   color: white;
   display: flex;
@@ -243,7 +247,7 @@
   align-items: center;
   justify-content: center ;
 
-  .contact_new_logo {
+  .contacts_logo {
     width: 40px;
     height: 49px;
   }
@@ -256,12 +260,13 @@
   a {
     font-weight: 400;
     font-size: 19px;
+    color: #29ABE2;
   }
 }
 
 .contact_new_bottom {
   background-color: white;
-  height: 65%;
+  height: 70%;
   border-radius: 0px 0px 10px 10px;
   display: flex;
   flex-direction: column;
@@ -269,6 +274,13 @@
   gap: 20px;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
 
   input {
     border-radius: 10px;
@@ -295,7 +307,7 @@
 .contact_new_btns {
   display: flex;
   gap: 20px;
-  margin-top: 20px;
+  // margin-top: 20px;
 }
 
 .contact_new_edit_close_btn {
@@ -316,11 +328,17 @@
     display: none;
     position: fixed;
     height: calc(100vh - 159px);
+    min-width: unset;
+    min-height: unset;
+    // height: 100vh;
     top: 79px;
+    // top: 0;
     left: 0;
     padding-left: 30px;
     padding-right: 20px;
+    padding-top: 20px;
     margin-bottom: 100px;
+
 
     b {
       font-size: 14px;
@@ -392,23 +410,25 @@
   }
 
   .contact_new {
-    top: -1px;
+    // top: 0;
+    // left: 0;
     max-width: unset;
-    height: calc(100vh - 160px);
+    // height: calc(100vh - 160px);
+    height: 100vh;
     border-radius: unset;
-    min-height: unset;
+    max-height: unset;
     box-shadow: unset;
-    min-height: 550px;
+    // min-height: 550px;
   }
 
   .contact_new_top {
-    height: 30%;
+    height: 35%;
     border-radius: unset;
   }
 
   .contact_new_bottom {
     background-color: white;
-    height: 70%;
+    height: 65%;
     border-radius: unset;
     display: flex;
     flex-direction: column;

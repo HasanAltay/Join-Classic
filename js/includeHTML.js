@@ -84,4 +84,10 @@ function eventListeners() {
         const countDisplay = document.getElementById("current");
         countDisplay.innerText = letterCount;
     });
+    
+    // no older dates at input date
+    // Get the current date and format it as yyyy-MM-dd
+    var today = new Date().toISOString().slice(0, 10);
+    // Set the value of the "today" variable as the min attribute of the input element
+    document.getElementById("date").min = today;
 }

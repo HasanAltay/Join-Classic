@@ -99,8 +99,6 @@ function initDetails(letters, name, surname, mail, phone, color) {
     </div>
     <button class="button_dark new_contact_pos" onclick="showAddContact()">Add contact<img src="./img/add_contact.png"></button>
     <img class="mobile_arrow" src="./img/left_arrow.png" onclick="closeDetails()">
-    <div class="contact_new" id="contact_new"></div>
-    <div class="contact_new" id="contact_edit"></div>
   `;
     addContact();
     editContact();
@@ -112,7 +110,7 @@ function addContact() {
     contact_new.innerHTML = `
     <div class="contact_new_top">
       <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeAddContact()"> 
-      <img src="./img/logo_topbar.png"> 
+      <img class="contacts_logo" src="./img/logo_topbar.png"> 
       <span>Add contact</span> 
       <a>Tasks are better with a team!</a> 
     </div> 
@@ -135,7 +133,7 @@ function editContact() {
     contact_edit.innerHTML = `
   <div class="contact_new_top">
     <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeEditContact()">
-    <img class="contacts_new_logo" src="./img/logo_topbar.png">    
+    <img class="contacts_logo" src="./img/logo_topbar.png">    
     <span>Edit contact</span>  
   </div> 
   <form class="contact_new_bottom" id="myForm" onsubmit="onFormSubmit();"> 
@@ -144,7 +142,6 @@ function editContact() {
     <input type="email" placeholder="Email" name="mail" maxlength="36" id="mail"> 
     <input type="tel" placeholder="Phone" name="phone" id="phone" pattern="[0-9]{10,16}" title="Please enter a valid phone number (between 10 and 16 digits)"> 
     <div class="contact_new_btns"> 
-      <button class="button_bright" onclick="closeEditContact()">Cancel</button> 
       <button type="submit" class="button_dark" onclick="saveNewContact();showConfirmationAddContact(a=true);" value="Add">Save</button> 
     </div> 
   </form>

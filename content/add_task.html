@@ -27,9 +27,9 @@
             name="date"
             id="date"
             class="task_date"
-            required
             pattern="\d{4}-\d{2}-\d{2}"
-            min="{{ date('Y-m-d') }}"
+            required
+            min="{{ today }}"
         />
 
         <div class="assign_dropdown" type="checkbox" name="categorie">
@@ -81,14 +81,14 @@
             <textarea
                 name="textarea"
                 placeholder="Enter a Description"
-                maxlength="250"
+                maxlength="130"
                 type="text"
                 id="textarea"
                 required
             ></textarea>
             <div id="the-count">
                 <span id="current">0</span>
-                <span id="maximum">/250</span>
+                <span id="maximum">/130</span>
             </div>
         </div>
 
