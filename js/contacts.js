@@ -14,29 +14,38 @@ function saveNewContact() {
         mail: add_mail,
     };
     contacts.push(new_contact);
+
+    // console.log(contacts);
+
     backend.saveContacts("contacts", JSON.stringify(contacts));
+    console.log("Server:", jsonContactsFromServer.contacts);
+    // downloadFromServer();
+    // initLettersFromContacts();
 }
 
 async function initLettersFromContacts() {
-    contacts.sort(function (a, b) {
-        let nameA = a.name.charAt(0).toLowerCase();
-        let nameB = b.name.charAt(0).toLowerCase();
-        if (nameA < nameB) {
-            return -1;
-        }
-        if (nameA > nameB) {
-            return 1;
-        }
-        return 0;
-    });
-    sortedContacts = {}; // clear sortedContacts object
-    letter_box.innerHTML = ""; // clear letter_box element
-    initList(contacts);
+  // console.log(typeof contacts);
+    if (contacts.length > 0) {
+        contacts.sort(function (a, b) {
+            let nameA = (a.name || "").charAt(0).toLowerCase();
+            let nameB = (b.name || "").charAt(0).toLowerCase();
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        });
+        sortedContacts = {}; // clear sortedContacts object
+        letter_box.innerHTML = ""; // clear letter_box element
+        // console.log(contacts);
+        initList(contacts);
+    }
 }
 
 function initList(contacts) {
     contactsListTasks = [];
-
     let letter_box = document.getElementById("letter_box");
     for (let i = 0; i < contacts.length; i++) {
         // console.log(contacts);
@@ -45,7 +54,7 @@ function initList(contacts) {
             sortedContacts[firstLetter] = [];
         }
         sortedContacts[firstLetter].push(contacts[i]);
-        // console.log(sortedContacts);
+        // console.log(firstLetter);
     }
     for (let letter in sortedContacts) {
         letter_box.innerHTML += `
@@ -102,6 +111,7 @@ function initDetails(letters, name, surname, mail, phone, color) {
   `;
     addContact();
     editContact();
+    // console.log(contacts);
 }
 
 // adds new contact to the list
@@ -114,7 +124,7 @@ function addContact() {
       <span>Add contact</span> 
       <a>Tasks are better with a team!</a> 
     </div> 
-    <form class="contact_new_bottom" id="myForm" onsubmit="onFormSubmit();"> 
+    <form class="contact_new_bottom" id="add_contact" onsubmit="onFormSubmit();"> 
       <input type="text" placeholder="Name" name="name" maxlength="36" id="name"> 
       <input type="text" placeholder="Surname" name="surname" maxlength="36" id="surname"> 
       <input type="email" placeholder="Email" name="mail" maxlength="36" id="mail"> 
@@ -136,7 +146,7 @@ function editContact() {
     <img class="contacts_logo" src="./img/logo_topbar.png">    
     <span>Edit contact</span>  
   </div> 
-  <form class="contact_new_bottom" id="myForm" onsubmit="onFormSubmit();"> 
+  <form class="contact_new_bottom" id="edit_contact" onsubmit="onFormSubmit();"> 
     <input type="text" placeholder="Name" name="name" maxlength="36" id="name"> 
     <input type="text" placeholder="Surname" name="surname" maxlength="36" id="surname"> 
     <input type="email" placeholder="Email" name="mail" maxlength="36" id="mail"> 
