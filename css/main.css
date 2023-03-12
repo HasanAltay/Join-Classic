@@ -1438,21 +1438,27 @@
   position: fixed;
   left: 50% 50%;
   top: 50%;
-  width: 300px;
-  height: 170px;
+  max-width: 320px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   justify-content: space-between;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
   z-index: 99;
 }
 .confirmation span {
   font-size: 21px;
   font-weight: 700;
   padding: 20px;
+}
+.confirmation div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 600px) {

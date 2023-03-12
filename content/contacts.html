@@ -1,16 +1,23 @@
 <div class="global_main_format">
-  <div class="contacts_main">
-    <div class="contacts_list">
-      <div class="contacts_letter_box" id="letter_box"></div>
+    <div class="contacts_main">
+        <div class="contacts_list">
+            <div class="contacts_letter_box" id="letter_box"></div>
+        </div>
+        <div class="details_main">
+            <div id="contacts_details" class="contacts_details"></div>
+            <div class="contact_new" id="contact_new"></div>
+            <div class="contact_new" id="contact_edit"></div>
+        </div>
     </div>
-    <div class="details_main">
-      <div id="contacts_details" class="contacts_details"></div>
-      <div class="contact_new" id="contact_new"></div>
-      <div class="contact_new" id="contact_edit"></div>
+    <div class="confirmation" id="contact_confirmation">
+        <span id="confirm_msg"></span>
+        <div>
+          <button
+              class="button_dark"
+              onclick="NavRenderContacts(); NavClick(4); showConfirmationContact(false);"
+          >
+              Confirm
+          </button>
+      </div>
     </div>
-  </div>
-  <div class="confirmation" id="contact_added_confirmation">
-    <span>New Contact added!</span>
-    <button class="button_dark" onclick="NavRenderContacts(); NavClick(4); showConfirmationAddContact(a=false);">Confirm</button>
-  </div>
 </div>
