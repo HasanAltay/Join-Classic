@@ -179,6 +179,11 @@
     font-weight: 700;
     font-size: 52px;
     color: #29abe2;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 .sum_greeting {
@@ -187,6 +192,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 520px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .sum_mobile_subtitle {

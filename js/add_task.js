@@ -136,7 +136,7 @@ function categoryDropdown() {
     }
     category_dropdown.innerHTML += `
         <div class="assign_category_input">
-            <input type="text" placeholder="Add new category" id="category_name_input">
+            <input type="text" placeholder="Add new category" id="category_name_input" maxlength="12">
             <div class="color_picker_btn">
                 <input type="color" id="category_color_input" value="#ffffff">
                 <img src="./img/color-wheel.png">

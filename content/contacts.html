@@ -20,4 +20,21 @@
           </button>
       </div>
     </div>
+    <div class="confirmation" id="contact_delete">
+        <span id="confirm_msg_delete"></span>
+        <div>
+            <button
+            class="button_bright"
+            onclick="showConfirmationDeleteContact(false);" style="transition: none!important;"
+        >
+            Cancel
+        </button>
+          <button
+              class="button_delete"
+              onclick="NavRenderContacts(); NavClick(4); showConfirmationDeleteContact(false); deleteContact()"
+          >
+              Confirm
+          </button>
+      </div>
+    </div>
 </div>

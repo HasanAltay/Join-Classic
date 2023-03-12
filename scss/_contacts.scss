@@ -59,9 +59,18 @@
 .contacts_name_email {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   a {
     font-size: 13px;
     color: #29ABE2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -320,6 +329,34 @@
 
   &:active {
     transform: scale(0.9);
+  }
+}
+
+.button_delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  background-color: red;
+  border-radius: 8px;
+  border: none;
+  height: 50px;
+  padding: 4px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+
+  &:hover {
+    background-color: rgb(145, 5, 5);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active {
+      background-color: #091931;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 }
 

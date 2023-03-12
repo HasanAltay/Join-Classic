@@ -170,6 +170,7 @@ function editContact(name, surname, mail, phone) {
         }
     }
     let msg = "Your change is saved!";
+    let msg_del = "Do you really want to delete this contact?";
     let contact_edit = document.getElementById("contact_edit");
     contact_edit.innerHTML = `
   <div class="contact_new_top">
@@ -184,6 +185,11 @@ function editContact(name, surname, mail, phone) {
     <input type="tel" placeholder="Phone" name="phone" id="edit_phone" pattern="[0-9]{10,16}" 
       title="Please enter a valid phone number (between 10 and 16 digits)" value="${phone}"> 
     <div class="contact_new_btns">
+
+      <button type="submit" class="button_delete" 
+        onclick="showConfirmationDeleteContact(true,'${msg_del}');">Delete
+      </button> 
+
       <button type="submit" class="button_dark" 
         onclick="editExistingContact();
           showConfirmationContact(true,'${msg}');">Save
@@ -193,8 +199,12 @@ function editContact(name, surname, mail, phone) {
 `;
 }
 
+function deleteContact() {
+  contacts.splice(pickedContact,1);
+  backend.saveContacts("contacts", JSON.stringify(contacts));
+}
+
 function showConfirmationContact(a, msg) {
-    console.log(msg);
     let confirm_msg = document.getElementById('confirm_msg');
     confirm_msg.innerHTML = msg;
     let contact_confirmation = document.getElementById(
@@ -206,6 +216,20 @@ function showConfirmationContact(a, msg) {
     if (!a) {
         contact_confirmation.style.visibility = "hidden";
     }
+}
+
+function showConfirmationDeleteContact(a, msg) {
+  let confirm_msg_delete = document.getElementById('confirm_msg_delete');
+  confirm_msg_delete.innerHTML = msg;
+  let contact_delete = document.getElementById(
+      "contact_delete"
+  );
+  if (a) {
+      contact_delete.style.visibility = "visible";
+  }
+  if (!a) {
+      contact_delete.style.visibility = "hidden";
+  }
 }
 
 function resetList() {

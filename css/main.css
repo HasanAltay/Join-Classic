@@ -717,6 +717,11 @@
   padding: 5px;
   padding-left: 20px;
   padding-right: 20px;
+  max-width: 130px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .assigns {
@@ -839,10 +844,19 @@
 .contacts_name_email {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+.contacts_name_email span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .contacts_name_email a {
   font-size: 13px;
   color: #29ABE2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .contacts_initials {
@@ -1087,6 +1101,32 @@
 }
 .contact_new_edit_close_btn:active {
   transform: scale(0.9);
+}
+
+.button_delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  background-color: red;
+  border-radius: 8px;
+  border: none;
+  height: 50px;
+  padding: 4px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+}
+.button_delete:hover {
+  background-color: rgb(145, 5, 5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.button_delete:active {
+  background-color: #091931;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 600px) {
@@ -1458,7 +1498,7 @@
 .confirmation div {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 @media (max-width: 600px) {
@@ -2395,6 +2435,11 @@ body {
   font-weight: 700;
   font-size: 52px;
   color: #29abe2;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .sum_greeting {
@@ -2403,6 +2448,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 520px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .sum_mobile_subtitle {
