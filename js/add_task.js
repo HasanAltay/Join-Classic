@@ -116,7 +116,7 @@ function setContacts(initials, color, i, name, surname) {
 
         // Sets the placeholder text back if all contacts were removed
         if (pickedContacts.length === 0) { 
-            assign_contacts_placeholder.innerHTML = "Select contact to assign";
+            assign_contacts_placeholder.innerHTML = "Select contacts to assign";
             placeholder = true;
         }
         !assignsOpenClose();
