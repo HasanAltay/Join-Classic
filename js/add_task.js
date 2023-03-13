@@ -87,7 +87,7 @@ function setContacts(initials, color, i, name, surname) {
         return; // Exit the function if the contact has already been picked
     }
 
-    if (pickedContacts.length >= 7) {
+    if (pickedContacts.length >= 6) {
         return; // Exit the function if there are already 7 picked contacts
     }
 
@@ -96,16 +96,15 @@ function setContacts(initials, color, i, name, surname) {
     pickedContact.classList.add("picked_contacts");
     pickedContact.style.backgroundColor = color;
     pickedContact.textContent = initials;
-    
+
     // Create and position the "x" icon
     let deleteIcon = document.createElement("img");
     deleteIcon.src = "./img/delete.png";
     deleteIcon.classList.add("delete_icon");
     pickedContact.appendChild(deleteIcon);
-    
+
     assign_contacts_placeholder.appendChild(pickedContact);
     pickedContacts.push([initials, color, name, surname]);
-    
 
     // Add event listener to remove contact when clicked
     pickedContact.addEventListener("click", () => {
@@ -115,7 +114,7 @@ function setContacts(initials, color, i, name, surname) {
         ); // Remove the contact from the array
 
         // Sets the placeholder text back if all contacts were removed
-        if (pickedContacts.length === 0) { 
+        if (pickedContacts.length === 0) {
             assign_contacts_placeholder.innerHTML = "Select contacts to assign";
             placeholder = true;
         }
@@ -178,9 +177,9 @@ function setCategoryOption(category, color) {
     setCategory.push(category, color);
 }
 
-function SetPriority(num, set) {
+function SetPriority(picked) {
     event.preventDefault();
-    setPriority = set;
+    // setPriority = set;
     let urgent = document.getElementById("urgent");
     let medium = document.getElementById("medium");
     let low = document.getElementById("low");
@@ -188,39 +187,33 @@ function SetPriority(num, set) {
     let medium_img = document.getElementById("medium_img");
     let low_img = document.getElementById("low_img");
 
-    if (num == 1) {
+    if (picked == "urgent") {
         urgent.style.backgroundColor = "#FF3D00";
         medium.style.backgroundColor = "#FFFFFF";
         low.style.backgroundColor = "#FFFFFF";
-
         urgent.style.color = "#FFFFFF";
         medium.style.color = "#000000";
         low.style.color = "#000000";
-
         urgent_img.style.filter = "brightness(0) invert(1)";
         medium_img.style.filter = "unset";
         low_img.style.filter = "unset";
-    } else if (num == 2) {
+    } else if (picked == "medium") {
         urgent.style.backgroundColor = "#FFFFFF";
         medium.style.backgroundColor = "#FFA800";
         low.style.backgroundColor = "#FFFFFF";
-
         urgent.style.color = "#000000";
         medium.style.color = "#FFFFFF";
         low.style.color = "#000000";
-
         urgent_img.style.filter = "unset";
         medium_img.style.filter = "brightness(0) invert(1)";
         low_img.style.filter = "unset";
-    } else if (num == 3) {
+    } else if (picked == "low") {
         urgent.style.backgroundColor = "#FFFFFF";
         medium.style.backgroundColor = "#FFFFFF";
         low.style.backgroundColor = "#7AE229";
-
         urgent.style.color = "#000000";
         medium.style.color = "#000000";
         low.style.color = "#FFFFFF";
-
         urgent_img.style.filter = "unset";
         medium_img.style.filter = "unset";
         low_img.style.filter = "brightness(0) invert(1)";
@@ -253,7 +246,7 @@ function clearForm(formId) {
     NavClick(3);
 }
 
-// open and close for contacts assigns dropdown 
+// open and close for contacts assigns dropdown
 function assignsOpenClose() {
     const assignsContent = document.getElementById("assign_dropdown_list");
     if (assignOpen == false) {
@@ -265,7 +258,7 @@ function assignsOpenClose() {
     }
 }
 
-// open and close for categories dropdown 
+// open and close for categories dropdown
 function categoriesOpenClose() {
     const categoriesContent = document.getElementById("category_dropdown");
     if (categoryOpen == false) {

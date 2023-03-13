@@ -75,17 +75,25 @@ async function initBackend() {
 
 function eventListeners() {
     initBackend(); // backend for add Tasks Data
-    // counts the letters in add task textarea
-    const textarea = document.getElementById("textarea");
+    letterCountTextarea("textarea"); // letter count at add_task & task_edit textarea
+    noOlderDate(); // no older dates at input date
+}
+
+function letterCountTextarea(textareaId) {
+    const textarea = document.getElementById(textareaId);
+    const text = textarea.value;
+    const letterCount = text.length;
+    const countDisplay = document.getElementById("current");
+    countDisplay.innerText = letterCount;
+
     textarea.addEventListener("input", function () {
-        const textarea = document.getElementById("textarea");
         const text = textarea.value;
         const letterCount = text.length;
-        const countDisplay = document.getElementById("current");
         countDisplay.innerText = letterCount;
     });
-    
-    // no older dates at input date
+}
+
+function noOlderDate() {
     // Get the current date and format it as yyyy-MM-dd
     var today = new Date().toISOString().slice(0, 10);
     // Set the value of the "today" variable as the min attribute of the input element

@@ -91,7 +91,7 @@ function initBoard() {
     loadWrappersFromServer();
 }
 
-// loads the taks from database.json in backend folder.
+// loading tasks from database.json in backend folder.
 function loadWrappersFromServer() {
     for (let i = 0; i < tasksToServer.length; i++) {
         const wrapper_0 = document.getElementById("wrapper_0");
@@ -107,7 +107,7 @@ function loadWrappersFromServer() {
               ${tasksToServer[i][0][3][0]}
               </span>
               <div class="card_btns">
-                <img src="./img/pen_blue.png" id="edit_${i}" class="edit" onclick="editTask(${i})" alt="Edit Task">
+                <img src="./img/pen_blue.png" id="edit_${i}" class="edit" onclick="editCardNo(${i});" alt="Edit Task">
                 <img src="./img/delete.png" id="delete_${i}" class="delete" onclick="deleteTask(${i})" alt="Delete Task">
               </div>
             </div>
@@ -137,7 +137,7 @@ function loadWrappersFromServer() {
         wrapperNo = i;
         searchTasks();
     }
-    board = tasksToServer.length;
+    board = tasksToServer.length; // shows Tasks in Board at Summary
 }
 
 // inits the assigned contacts from list
@@ -226,8 +226,7 @@ function editCard() {
                 // Add event listener to the delete button inside the card
                 editButton.addEventListener("pointerdown", event => {
                     event.stopPropagation();
-                    showTask();
-                    editCardNo(i);
+                    
                 });
             }
         });
@@ -235,6 +234,7 @@ function editCard() {
 }
 
 function editCardNo(i) {
+    showTask();
     let show_task = document.getElementById("show_task");
     let priority =
         tasksToServer[i][0][4].charAt(0).toUpperCase() +
@@ -270,7 +270,7 @@ function editCardNo(i) {
             <div class="edit_card_assigns" id="edit_assigns">
         </div>
         <div class="edit_card_footer">
-            <button class="task_edit_button" onclick="showEdit();editTask()">
+            <button class="task_edit_button" onclick="showEdit();editTask('${i}')">
                 <img src="./img/pen.png">
             </button>
         </div>
@@ -285,6 +285,7 @@ function editCardNo(i) {
             <a>${assigns[j][2]} ${assigns[j][3]}</a>
         </div>
         `;
+        console.log(tasksToServer[i][0][1])
     }
 }
 
@@ -349,119 +350,162 @@ function consoleLogTasks() {
     );
 }
 
-function editTask() {
+function editTask(i) {
     let edit_task = document.getElementById("edit_task");
     edit_task.innerHTML = `
-    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeEdit()">
-    <form class="task_main" id="add_new_task" onsubmit="createAddTaskJSON()" style="gap:20px">
-    <input
-        type="text"
-        placeholder="Enter a title"
-        name="title"
-        maxlength="33"
-        id="title"
-        title="Enter a title for your new Task!"
-        required
-    />
-
-    <div class="assign_dropdown" type="checkbox" name="categorie">
-        <div class="assign_dropdown_titel" onclick="assignsOpenClose()">
-            <span id="assign_contacts_placeholder"
-                >Select contacts to assign</span
-            ><img src="./img/dd_blue.png" alt="Drop Down Arrow" />
-        </div>
-        <div
-            class="assign_dropdown-content"
-            id="assign_dropdown_list"
-        ></div>
-    </div>
-
-    <input
-        type="date"
-        name="date"
-        id="date"
-        class="task_date"
-        pattern="\d{4}-\d{2}-\d{2}"
-        required
-        min="{{ today }}"
-    />
-
-    <div class="assign_dropdown" type="checkbox" name="categorie">
-        <div class="assign_dropdown_titel" onclick="categoriesOpenClose()">
-            <span id="assign_placeholder">Select task categorie</span>
-            <img src="./img/dd_blue.png" alt="Drop Down Arrow" />
-        </div>
-        <div class="assign_dropdown-content" id="category_dropdown"></div>
-    </div>
-
-    <div class="task_priorities">
-        <button
-            id="urgent"
-            class="pr_urgent"
-            onclick="SetPriority(1,
-    'urgent')"
-        >
-            Urgent<img
-                src="./img/urgent.png"
-                id="urgent_img"
-                alt="Urgent Icon"
-            />
-        </button>
-
-        <button
-            id="medium"
-            class="pr_medium"
-            onclick="SetPriority(2,
-    'medium')"
-        >
-            Medium<img
-                src="./img/medium.png"
-                id="medium_img"
-                alt="Medium Icon"
-            />
-        </button>
-
-        <button
-            id="low"
-            class="pr_low"
-            onclick="SetPriority(3,
-    'low')"
-        >
-            Low<img src="./img/low.png" id="low_img" alt="Low Icon" />
-        </button>
-    </div>
-
-    <div class="task_textarea">
-        <textarea
-            name="textarea"
-            placeholder="Enter a Description"
-            maxlength="130"
+    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeEdit();closeTask();">
+    <form class="task_main" id="add_new_task" onsubmit="saveEditTask(${i})" style="gap:20px">
+        <input
+            value="${tasksToServer[i][0][0]}"
             type="text"
-            id="textarea"
+            placeholder="Enter a title"
+            name="title"
+            maxlength="33"
+            id="title"
+            title="Enter a title for your new Task!"
             required
-        ></textarea>
-        <div id="the-count">
-            <span id="current">0</span>
-            <span id="maximum">/130</span>
+        />
+
+        <div class="assign_dropdown" type="checkbox" name="categorie">
+            <div class="assign_dropdown_titel" onclick="assignsOpenClose()">
+                <span id="assign_contacts_placeholder"
+                    >Select contacts to assign</span
+                ><img src="./img/dd_blue.png" alt="Drop Down Arrow" />
+            </div>
+            <div
+                class="assign_dropdown-content"
+                id="assign_dropdown_list"
+            ></div>
         </div>
-    </div>
 
-    <div class="task_confirmation_btns">
-        <button class="button_dark" type="submit">Save</button>
-    </div>
-</form>
+        <input
+            type="date"
+            name="date"
+            id="date"
+            class="task_date"
+            pattern="\d{4}-\d{2}-\d{2}"
+            required
+            min="{{ today }}"
+            value="${tasksToServer[i][0][2]}"
+        />
 
-<div class="confirmation" id="task_added_confirmation">
-    <span>Task added to Board!</span>
-    <button
-        class="button_dark"
-        onclick="NavRenderBoard(); NavClick(2); showConfirmationAddTask(a=false);"
-    >
-        Confirm
-    </button>
-</div>
-</div>
+        <div class="assign_dropdown" type="checkbox" name="categorie">
+            <div class="assign_dropdown_titel" onclick="categoriesOpenClose()">
+                <span id="assign_placeholder"></span>
+                <img src="./img/dd_blue.png" alt="Drop Down Arrow" />
+            </div>
+            <div class="assign_dropdown-content" id="category_dropdown"></div>
+        </div>
+
+        <div class="task_priorities">
+            <button
+                id="urgent"
+                class="pr_urgent"
+                onclick="SetPriority('urgent')"
+            >
+                Urgent<img
+                    src="./img/urgent.png"
+                    id="urgent_img"
+                    alt="Urgent Icon"
+                />
+            </button>
+
+            <button
+                id="medium"
+                class="pr_medium"
+                onclick="SetPriority('medium')"
+            >
+                Medium<img
+                    src="./img/medium.png"
+                    id="medium_img"
+                    alt="Medium Icon"
+                />
+            </button>
+
+            <button
+                id="low"
+                class="pr_low"
+                onclick="SetPriority('low')"
+            >
+                Low<img src="./img/low.png" id="low_img" alt="Low Icon" />
+            </button>
+        </div>
+
+        <div class="task_textarea">
+            <textarea
+                name="textarea"
+                placeholder="Enter a Description"
+                maxlength="130"
+                type="text"
+                id="textarea"
+                style="max-width:340px;max-height:180px"
+                required
+            >${tasksToServer[i][0][5]}</textarea>
+            <div id="the-count">
+                <span id="current">0</span>
+                <span id="maximum">/130</span>
+            </div>
+        </div>
+
+        <div class="task_confirmation_btns">
+            <button class="button_dark" type="submit">Save</button>
+        </div>
+    </form>
     `;
+loadEditTaskInputs(i);
+loadDropDowns();
+}
+
+function loadDropDowns() {
+    initAssignDropDown();
+    categoryDropdown();
+}
+
+function loadEditTaskInputs(i) {
+    let category = tasksToServer[i][0][3][0];
+    let color = tasksToServer[i][0][3][1];
+    let assignedContacts = tasksToServer[i][0][1];
+    setCategoryOption(category, color)
+
+    letterCountTextarea("textarea");
+    SetPriority(tasksToServer[i][0][4]);
+    for (let i = 0; i < assignedContacts.length; i++) {
+        const list = assignedContacts[i];
+        initials = list[0];
+        color = list[1];
+        names = list[2];
+        surname = list[3];
+
+        // console.log('assigns:',initials, color, i, names, surname);
+        // console.log('Server:',tasksToServer);
+
+        setContacts(initials, color, i, names, surname);
+    }
+}
+
+function saveEditTask(i) {
+    event.preventDefault();
+    let title = document.getElementById("title").value;
+    let textarea = document.getElementById("textarea").value;
+    let date = document.getElementById("date").value;
+    let setPriority = tasksToServer[i][0][4];
+
+    tasks.push([
+        title,
+        pickedContacts,
+        date,
+        setCategory,
+        setPriority,
+        textarea,
+        progress,
+    ]);
+    tasksToServer[i] = tasks;
+    console.log(tasksToServer);
+
+    // Write the updated tasks array back to the backend
+    // backend.setItem("tasks", JSON.stringify(tasksToServer));
+    // initBackend();
+    // NavRenderBoard();
 }
 
 // drag and drop functionality for cards in board
