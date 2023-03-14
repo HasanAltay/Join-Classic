@@ -151,7 +151,7 @@ function addContact() {
         <button class="button_bright" onclick="closeAddContact()">Cancel</button> 
         <button type="submit" class="button_dark" 
           onclick="saveNewContact();
-            showConfirmationContact(true,'${msg}');">Add
+            showConfirmationContact(true,'${msg}');">Add<img src="./img/check.png" alt="Check Icon" />
         </button> 
       </div> 
     </form>
@@ -192,7 +192,7 @@ function editContact(name, surname, mail, phone) {
 
       <button type="submit" class="button_dark" 
         onclick="editExistingContact();
-          showConfirmationContact(true,'${msg}');">Save
+          showConfirmationContact(true,'${msg}');">Save<img src="./img/check.png" alt="Check Icon" />
       </button> 
     </div> 
   </form>

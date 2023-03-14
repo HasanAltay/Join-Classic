@@ -226,7 +226,6 @@ function editCard() {
                 // Add event listener to the delete button inside the card
                 editButton.addEventListener("pointerdown", event => {
                     event.stopPropagation();
-                    
                 });
             }
         });
@@ -285,7 +284,7 @@ function editCardNo(i) {
             <a>${assigns[j][2]} ${assigns[j][3]}</a>
         </div>
         `;
-        console.log(tasksToServer[i][0][1])
+        console.log(tasksToServer[i][0][1]);
     }
 }
 
@@ -297,6 +296,7 @@ function showEdit() {
 function closeEdit() {
     let edit_task = document.getElementById("edit_task");
     edit_task.style.display = "none";
+    resetSetContacts();
 }
 
 function showTask() {
@@ -310,44 +310,44 @@ function closeTask() {
 }
 
 function deletedCardNo(i) {
-    console.log(
-        "%cCard %c%d %cDeleted",
-        "color: red; font-size: 16px",
-        "color: yellow; font-size: 16px",
-        i,
-        "color: red; font-size: 16px;"
-    );
+    // console.log(
+    //     "%cCard %c%d %cDeleted",
+    //     "color: red; font-size: 16px",
+    //     "color: yellow; font-size: 16px",
+    //     i,
+    //     "color: red; font-size: 16px;"
+    // );
 }
 
 function consoleLogTasks() {
-    console.log(
-        "%cTo-Do: %c%d",
-        "color: orange; font-size: 16px",
-        "color: yellow; font-size: 16px",
-        tasksToDo.length,
-        tasksToDo
-    );
-    console.log(
-        "%cIn progress: %c%d",
-        "color: orange; font-size: 16px",
-        "color: yellow; font-size: 16px",
-        tasksInProgress.length,
-        tasksInProgress
-    );
-    console.log(
-        "%cAwaiting Feedback: %c%d",
-        "color: orange; font-size: 16px",
-        "color: yellow; font-size: 16px",
-        awaitingFeedback.length,
-        awaitingFeedback
-    );
-    console.log(
-        "%cDone: %c%d",
-        "color: orange; font-size: 16px",
-        "color: yellow; font-size: 16px",
-        tasksDone.length,
-        tasksDone
-    );
+    // console.log(
+    //     "%cTo-Do: %c%d",
+    //     "color: orange; font-size: 16px",
+    //     "color: yellow; font-size: 16px",
+    //     tasksToDo.length,
+    //     tasksToDo
+    // );
+    // console.log(
+    //     "%cIn progress: %c%d",
+    //     "color: orange; font-size: 16px",
+    //     "color: yellow; font-size: 16px",
+    //     tasksInProgress.length,
+    //     tasksInProgress
+    // );
+    // console.log(
+    //     "%cAwaiting Feedback: %c%d",
+    //     "color: orange; font-size: 16px",
+    //     "color: yellow; font-size: 16px",
+    //     awaitingFeedback.length,
+    //     awaitingFeedback
+    // );
+    // console.log(
+    //     "%cDone: %c%d",
+    //     "color: orange; font-size: 16px",
+    //     "color: yellow; font-size: 16px",
+    //     tasksDone.length,
+    //     tasksDone
+    // );
 }
 
 function editTask(i) {
@@ -368,9 +368,8 @@ function editTask(i) {
 
         <div class="assign_dropdown" type="checkbox" name="categorie">
             <div class="assign_dropdown_titel" onclick="assignsOpenClose()">
-                <span id="assign_contacts_placeholder"
-                    >Select contacts to assign</span
-                ><img src="./img/dd_blue.png" alt="Drop Down Arrow" />
+                <span id="assign_contacts_placeholder"></span>
+                <img src="./img/dd_blue.png" alt="Drop Down Arrow" />
             </div>
             <div
                 class="assign_dropdown-content"
@@ -438,7 +437,7 @@ function editTask(i) {
                 maxlength="130"
                 type="text"
                 id="textarea"
-                style="max-width:340px;max-height:180px"
+                style="max-width:340px;max-height:150px"
                 required
             >${tasksToServer[i][0][5]}</textarea>
             <div id="the-count">
@@ -447,26 +446,39 @@ function editTask(i) {
             </div>
         </div>
 
+        <span class="required_message_board" id="req_msg_assign"></span>
+
         <div class="task_confirmation_btns">
-            <button class="button_dark" type="submit">Save</button>
+            <button class="button_dark" type="submit">Save
+                <img src="./img/check.png" alt="Check Icon" />
+            </button>
         </div>
     </form>
     `;
-loadEditTaskInputs(i);
-loadDropDowns();
+    loadEditTaskInputs(i);
 }
 
-function loadDropDowns() {
-    initAssignDropDown();
-    categoryDropdown();
+// necessary to avoid errors after closing and opening
+// the task edit window again.
+function resetSetContacts() {
+    setCategory = [];
+    setPriority = undefined;
+    setAssignContacts = [];
+    placeholder = true;
+    pickedContacts = [];
+    addedCategory = [];
+    progress = 0;
+    assignOpen = false;
+    categoryOpen = false;
 }
 
 function loadEditTaskInputs(i) {
     let category = tasksToServer[i][0][3][0];
     let color = tasksToServer[i][0][3][1];
     let assignedContacts = tasksToServer[i][0][1];
-    setCategoryOption(category, color)
-
+    setCategoryOption(category, color);
+    initAssignDropDown();
+    categoryDropdown();
     letterCountTextarea("textarea");
     SetPriority(tasksToServer[i][0][4]);
     for (let i = 0; i < assignedContacts.length; i++) {
@@ -475,16 +487,19 @@ function loadEditTaskInputs(i) {
         color = list[1];
         names = list[2];
         surname = list[3];
-
-        // console.log('assigns:',initials, color, i, names, surname);
-        // console.log('Server:',tasksToServer);
-
         setContacts(initials, color, i, names, surname);
     }
 }
 
 function saveEditTask(i) {
     event.preventDefault();
+    let assignContacts = pickedContacts.map(contact => contact[0]);
+    if (assignContacts.length === 0) {
+        document.getElementById('req_msg_assign').innerHTML = `
+        Please select at least one contact.
+        `;
+        return;
+    }
     let title = document.getElementById("title").value;
     let textarea = document.getElementById("textarea").value;
     let date = document.getElementById("date").value;
@@ -500,12 +515,12 @@ function saveEditTask(i) {
         progress,
     ]);
     tasksToServer[i] = tasks;
-    console.log(tasksToServer);
+    console.log(progress);
 
     // Write the updated tasks array back to the backend
-    // backend.setItem("tasks", JSON.stringify(tasksToServer));
-    // initBackend();
-    // NavRenderBoard();
+    backend.setItem("tasks", JSON.stringify(tasksToServer));
+    initBackend();
+    NavRenderBoard();
 }
 
 // drag and drop functionality for cards in board

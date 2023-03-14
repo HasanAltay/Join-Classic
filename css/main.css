@@ -397,9 +397,18 @@
   padding: 2px;
 }
 
+.required_message {
+  position: absolute;
+  bottom: -16px;
+  left: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: red;
+}
+
 @media (max-width: 600px) {
   .task_main {
-    gap: 15px;
+    gap: 20px;
     margin-top: 20px;
     margin-bottom: 100px;
   }
@@ -502,7 +511,7 @@
   width: 400px;
   z-index: 14;
   padding-top: 60px;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
   padding-left: 10px;
   padding-right: 10px;
   box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
@@ -804,6 +813,13 @@
 .priority {
   width: 18px;
   height: 18px;
+}
+
+.required_message_board {
+  font-size: 12px;
+  color: red;
+  font-weight: 500;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
@@ -1485,7 +1501,7 @@
 }
 .button_dark img {
   height: 20px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .button_bright {
@@ -1525,8 +1541,9 @@
 .confirmation {
   visibility: hidden;
   position: fixed;
-  left: 50% 50%;
   top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 320px;
   width: 100%;
   display: flex;
@@ -1542,7 +1559,7 @@
 .confirmation span {
   font-size: 21px;
   font-weight: 700;
-  padding: 20px;
+  padding: 20px 0px 20px 0px;
 }
 .confirmation div {
   display: flex;

@@ -22,9 +22,23 @@ let categoryOpen = false;
 
 function createAddTaskJSON() {
     event.preventDefault();
+    let assignContacts = pickedContacts.map(contact => contact[0]);
+    if (assignContacts.length === 0) {
+        document.getElementById('req_msg_assign').innerHTML = `
+        Please select at least one contact.
+        `;
+        return;
+    }
     let title = document.getElementById("title").value;
     let textarea = document.getElementById("textarea").value;
     let date = document.getElementById("date").value;
+
+    if (addedCategory.length === 0) {
+        document.getElementById('req_msg_category').innerHTML = `
+        Please select a category.
+        `;
+        return;
+    }
 
     tasks = [];
     tasks.push([
