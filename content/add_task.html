@@ -8,6 +8,7 @@
             id="title"
             title="Enter a title for your new Task!"
             required
+            aria-label="Title"
         />
 
         <div class="assign_dropdown" type="checkbox" name="categorie">
@@ -23,7 +24,6 @@
             ></div>
         </div>
         
-
         <input
             type="date"
             name="date"
@@ -32,6 +32,9 @@
             pattern="\d{4}-\d{2}-\d{2}"
             required
             min="{{ today }}"
+            placeholder="Select a deadline"
+            title="Select a deadline"
+            aria-label="Date"
         />
 
         <div class="assign_dropdown" type="checkbox" name="categorie">
@@ -85,6 +88,7 @@
                 type="text"
                 id="textarea"
                 required
+                aria-label="Description"
             ></textarea>
             <div id="the-count">
                 <span id="current">0</span>

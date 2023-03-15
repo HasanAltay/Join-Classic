@@ -705,11 +705,11 @@
   cursor: move;
 }
 .board_tasks .card.dragging {
-  opacity: 0.8;
-  box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
+  box-shadow: rgba(38, 57, 77, 0.295) 0px 20px 30px -10px;
 }
 .board_tasks .card.afterimage {
-  opacity: 0.4;
+  opacity: 0.5;
   border: 2px dotted #29ABE2;
 }
 .board_tasks .card .title {
@@ -722,7 +722,6 @@
 .board_tasks .card .delete {
   cursor: pointer;
   filter: grayscale(1) brightness(150%);
-  z-index: 8;
 }
 .board_tasks .card .delete:hover {
   filter: unset;
@@ -734,7 +733,6 @@
   cursor: pointer;
   filter: grayscale(1) brightness(180%);
   height: 16px;
-  z-index: 8;
 }
 .board_tasks .card .edit:hover {
   filter: unset;
@@ -763,8 +761,7 @@
 .board_tasks .ghost {
   top: 0;
   left: 0;
-  position: absolute;
-  width: 350px;
+  position: fixed;
 }
 
 .wrapper_category {
@@ -2010,7 +2007,7 @@ body {
   }
   html,
   body {
-    background: #d1d1d1;
+    background: #f6f7f8;
     animation-name: bg-color-fade;
     animation-duration: 1600ms;
   }
@@ -2022,7 +2019,7 @@ body {
       background: #2a3647;
     }
     100% {
-      background: #d1d1d1;
+      background: #f6f7f8;
     }
   }
   .pixel {

@@ -12,14 +12,9 @@ function initSortArrays() {
     for (let i = 0; i < tasksToServer.length; i++) {
         const task = tasksToServer[i];
         const wrapper = tasksToServer[i][0][6];
-        sortTasksArraysForBoard(i);
         sortTasksServerToArrays(task, wrapper);
     }
     consoleLogTasks();
-}
-
-function sortTasksArraysForBoard(task) {
-    // console.log('urgent = ',task[3]);
 }
 
 function sortTasksServerToArrays(task, wrapper) {
@@ -50,7 +45,7 @@ function initBoard() {
                   alt="Dark Plus Icon"
               />
           </div>
-          <div class="card-wrapper" id="wrapper_0"></div>
+          <div class="card-wrapper" id="wrapper_0" data-id="0"></div>
       </div>
       <div class="column">
           <div class="column-header">
@@ -61,7 +56,7 @@ function initBoard() {
                   alt="Dark Plus Icon"
               />
           </div>
-          <div class="card-wrapper" id="wrapper_1"></div>
+          <div class="card-wrapper" id="wrapper_1" data-id="1"></div>
       </div>
       <div class="column">
           <div class="column-header">
@@ -72,7 +67,7 @@ function initBoard() {
                   alt="Dark Plus Icon"
               />
           </div>
-          <div class="card-wrapper" id="wrapper_2"></div>
+          <div class="card-wrapper" id="wrapper_2" data-id="2"></div>
       </div>
       <div class="column">
           <div class="column-header">
@@ -83,7 +78,7 @@ function initBoard() {
                   alt="Dark Plus Icon"
               />
           </div>
-          <div class="card-wrapper" id="wrapper_3"></div>
+          <div class="card-wrapper" id="wrapper_3" data-id="3"></div>
       </div>
     </div>
     <div class="ghost"></div>
@@ -99,7 +94,7 @@ function loadWrappersFromServer() {
         const wrapper_2 = document.getElementById("wrapper_2");
         const wrapper_3 = document.getElementById("wrapper_3");
         const card_content = `
-        <div class="card" id="card_${i}">
+        <div class="card" id="card_${i}" data-id="${i}">
           <div class="header">
             <div class="title" id="card_category">
               <span class="wrapper_category" 
@@ -187,429 +182,81 @@ function searchTasks() {
     });
 }
 
-function deleteCard() {
-    // Iterate over all four wrappers and adds the delete button to the event handlers
-    for (let i = 0; i < 4; i++) {
-        let wrapper = document.getElementById("wrapper_" + i);
-        // Iterate over all cards in the wrapper
-        const cards = wrapper.querySelectorAll(".card");
-        cards.forEach(card => {
-            // Find the delete button in the card
-            const deleteButton = card.querySelector(`[id^='delete_']`);
-            if (deleteButton) {
-                // Add event listener to the delete button inside the card
-                deleteButton.addEventListener("pointerdown", event => {
-                    event.stopPropagation();
-                });
-            }
-        });
-    }
-}
-
-function deleteTask(i) {
-    console.log(tasksToServer[i]);
-    tasksToServer.splice(i, 1);
-    backend.setItem("tasks", JSON.stringify(tasksToServer));
-    initBoard();
-}
-
-function editCard() {
-    // Iterate over all four wrappers and adds the edit button to the event handlers
-    for (let i = 0; i < 4; i++) {
-        let wrapper = document.getElementById("wrapper_" + i);
-        // Iterate over all cards in the wrapper
-        const cards = wrapper.querySelectorAll(".card");
-        cards.forEach(card => {
-            // Find the delete button in the card
-            const editButton = card.querySelector(`[id^='edit_']`);
-            if (editButton) {
-                // Add event listener to the delete button inside the card
-                editButton.addEventListener("pointerdown", event => {
-                    event.stopPropagation();
-                });
-            }
-        });
-    }
-}
-
-function editCardNo(i) {
-    showTask();
-    let show_task = document.getElementById("show_task");
-    let priority =
-        tasksToServer[i][0][4].charAt(0).toUpperCase() +
-        tasksToServer[i][0][4].slice(1);
-    show_task.innerHTML = `
-    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeTask()">
-
-    <div class="header">
-      <div class="title" id="card_category">
-        <span class="wrapper_category" 
-        style="background-color:${tasksToServer[i][0][3][1]}">
-        ${tasksToServer[i][0][3][0]}
-        </span>
-      </div>
-    </div>
-    <div class="edit_card_titel">${tasksToServer[i][0][0]}</div>
-    <div class="edit_card_caption" id="card_description">${tasksToServer[i][0][5]}</div>
-
-    <div class="edit_card_details">
-        <div>
-            <b>Due Date:&emsp;</b>
-            <a>${tasksToServer[i][0][2]}</a>
-        </div>
-        <div>
-            <b>Priority:&emsp;</b>
-            <a class="edit_task_priority">${priority}
-                <img class="priority" src="./img/${tasksToServer[i][0][4]}.png">
-            </a>
-        </div>
-        <div>
-            <b>Assigned To: </b>
-        </div>
-            <div class="edit_card_assigns" id="edit_assigns">
-        </div>
-        <div class="edit_card_footer">
-            <button class="task_edit_button" onclick="showEdit();editTask('${i}')">
-                <img src="./img/pen.png">
-            </button>
-        </div>
-    `;
-
-    const assigns = tasksToServer[i][0][1];
-    for (let j = 0; j < assigns.length; j++) {
-        let edit_assigns = document.getElementById(`edit_assigns`);
-        edit_assigns.innerHTML += `
-        <div class="edit_assigns_list">
-            <div class="edit_assigns_circles" style="background-color:${assigns[j][1]}">${assigns[j][0]}</div>
-            <a>${assigns[j][2]} ${assigns[j][3]}</a>
-        </div>
-        `;
-        console.log(tasksToServer[i][0][1]);
-    }
-}
-
-function showEdit() {
-    let edit_task = document.getElementById("edit_task");
-    edit_task.style.display = "block";
-}
-
-function closeEdit() {
-    let edit_task = document.getElementById("edit_task");
-    edit_task.style.display = "none";
-    resetSetContacts();
-}
-
-function showTask() {
-    let show_task = document.getElementById("show_task");
-    show_task.style.display = "block";
-}
-
-function closeTask() {
-    let show_task = document.getElementById("show_task");
-    show_task.style.display = "none";
-}
-
-function deletedCardNo(i) {
-    // console.log(
-    //     "%cCard %c%d %cDeleted",
-    //     "color: red; font-size: 16px",
-    //     "color: yellow; font-size: 16px",
-    //     i,
-    //     "color: red; font-size: 16px;"
-    // );
-}
-
-function consoleLogTasks() {
-    // console.log(
-    //     "%cTo-Do: %c%d",
-    //     "color: orange; font-size: 16px",
-    //     "color: yellow; font-size: 16px",
-    //     tasksToDo.length,
-    //     tasksToDo
-    // );
-    // console.log(
-    //     "%cIn progress: %c%d",
-    //     "color: orange; font-size: 16px",
-    //     "color: yellow; font-size: 16px",
-    //     tasksInProgress.length,
-    //     tasksInProgress
-    // );
-    // console.log(
-    //     "%cAwaiting Feedback: %c%d",
-    //     "color: orange; font-size: 16px",
-    //     "color: yellow; font-size: 16px",
-    //     awaitingFeedback.length,
-    //     awaitingFeedback
-    // );
-    // console.log(
-    //     "%cDone: %c%d",
-    //     "color: orange; font-size: 16px",
-    //     "color: yellow; font-size: 16px",
-    //     tasksDone.length,
-    //     tasksDone
-    // );
-}
-
-function editTask(i) {
-    let edit_task = document.getElementById("edit_task");
-    edit_task.innerHTML = `
-    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeEdit();closeTask();">
-    <form class="task_main" id="add_new_task" onsubmit="saveEditTask(${i})" style="gap:20px">
-        <input
-            value="${tasksToServer[i][0][0]}"
-            type="text"
-            placeholder="Enter a title"
-            name="title"
-            maxlength="33"
-            id="title"
-            title="Enter a title for your new Task!"
-            required
-        />
-
-        <div class="assign_dropdown" type="checkbox" name="categorie">
-            <div class="assign_dropdown_titel" onclick="assignsOpenClose()">
-                <span id="assign_contacts_placeholder"></span>
-                <img src="./img/dd_blue.png" alt="Drop Down Arrow" />
-            </div>
-            <div
-                class="assign_dropdown-content"
-                id="assign_dropdown_list"
-            ></div>
-        </div>
-
-        <input
-            type="date"
-            name="date"
-            id="date"
-            class="task_date"
-            pattern="\d{4}-\d{2}-\d{2}"
-            required
-            min="{{ today }}"
-            value="${tasksToServer[i][0][2]}"
-        />
-
-        <div class="assign_dropdown" type="checkbox" name="categorie">
-            <div class="assign_dropdown_titel" onclick="categoriesOpenClose()">
-                <span id="assign_placeholder"></span>
-                <img src="./img/dd_blue.png" alt="Drop Down Arrow" />
-            </div>
-            <div class="assign_dropdown-content" id="category_dropdown"></div>
-        </div>
-
-        <div class="task_priorities">
-            <button
-                id="urgent"
-                class="pr_urgent"
-                onclick="SetPriority('urgent')"
-            >
-                Urgent<img
-                    src="./img/urgent.png"
-                    id="urgent_img"
-                    alt="Urgent Icon"
-                />
-            </button>
-
-            <button
-                id="medium"
-                class="pr_medium"
-                onclick="SetPriority('medium')"
-            >
-                Medium<img
-                    src="./img/medium.png"
-                    id="medium_img"
-                    alt="Medium Icon"
-                />
-            </button>
-
-            <button
-                id="low"
-                class="pr_low"
-                onclick="SetPriority('low')"
-            >
-                Low<img src="./img/low.png" id="low_img" alt="Low Icon" />
-            </button>
-        </div>
-
-        <div class="task_textarea">
-            <textarea
-                name="textarea"
-                placeholder="Enter a Description"
-                maxlength="130"
-                type="text"
-                id="textarea"
-                style="max-width:340px;max-height:150px"
-                required
-            >${tasksToServer[i][0][5]}</textarea>
-            <div id="the-count">
-                <span id="current">0</span>
-                <span id="maximum">/130</span>
-            </div>
-        </div>
-
-        <span class="required_message_board" id="req_msg_assign"></span>
-
-        <div class="task_confirmation_btns">
-            <button class="button_dark" type="submit">Save
-                <img src="./img/check.png" alt="Check Icon" />
-            </button>
-        </div>
-    </form>
-    `;
-    loadEditTaskInputs(i);
-}
-
-// necessary to avoid errors after closing and opening
-// the task edit window again.
-function resetSetContacts() {
-    setCategory = [];
-    setPriority = undefined;
-    setAssignContacts = [];
-    placeholder = true;
-    pickedContacts = [];
-    addedCategory = [];
-    progress = 0;
-    assignOpen = false;
-    categoryOpen = false;
-}
-
-function loadEditTaskInputs(i) {
-    let category = tasksToServer[i][0][3][0];
-    let color = tasksToServer[i][0][3][1];
-    let assignedContacts = tasksToServer[i][0][1];
-    setCategoryOption(category, color);
-    initAssignDropDown();
-    categoryDropdown();
-    letterCountTextarea("textarea");
-    SetPriority(tasksToServer[i][0][4]);
-    for (let i = 0; i < assignedContacts.length; i++) {
-        const list = assignedContacts[i];
-        initials = list[0];
-        color = list[1];
-        names = list[2];
-        surname = list[3];
-        setContacts(initials, color, i, names, surname);
-    }
-}
-
-function saveEditTask(i) {
-    event.preventDefault();
-    let assignContacts = pickedContacts.map(contact => contact[0]);
-    if (assignContacts.length === 0) {
-        document.getElementById('req_msg_assign').innerHTML = `
-        Please select at least one contact.
-        `;
-        return;
-    }
-    let title = document.getElementById("title").value;
-    let textarea = document.getElementById("textarea").value;
-    let date = document.getElementById("date").value;
-    let setPriority = tasksToServer[i][0][4];
-
-    tasks.push([
-        title,
-        pickedContacts,
-        date,
-        setCategory,
-        setPriority,
-        textarea,
-        progress,
-    ]);
-    tasksToServer[i] = tasks;
-    console.log(progress);
-
-    // Write the updated tasks array back to the backend
-    backend.setItem("tasks", JSON.stringify(tasksToServer));
-    initBackend();
-    NavRenderBoard();
-}
-
 // drag and drop functionality for cards in board
-document.addEventListener("DOMContentLoaded", e => {
+document.addEventListener("DOMContentLoaded", () => {
     const list = document.querySelector(".list-wrapper");
     let pointerDown = false;
     let shiftX = 0;
     let shiftY = 0;
     loadWrappersFromServer();
 
-    // Check if the device is a touch device and log a message
-    const isTouchDevice =
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        navigator.msMaxTouchPoints > 0;
-    if (isTouchDevice) {
-        console.log("This is a touch device");
+    window.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerup", handlePointerUp);
+
+    function handlePointerDown({clientX, clientY, pageX, pageY, target}) {
+        const card = target.closest(".card");
+        if (!card) return;
+
+        const cloneCard = card.cloneNode(true);
+        cloneCard.classList.add("dragging");
+        const ghost = document.querySelector(".ghost");
+        ghost.appendChild(cloneCard);
+
+        shiftX = clientX - card.getBoundingClientRect().left;
+        shiftY = clientY - card.getBoundingClientRect().top;
+
+        ghost.style.cssText = `width: ${
+            card.offsetWidth
+        }px; transform: translateX(${pageX - shiftX}px) translateY(${
+            pageY - shiftY
+        }px)`;
+
+        pointerDown = true;
+        card.classList.add("afterimage");
     }
 
-    window.addEventListener(
-        "pointerdown",
-        ({clientX, clientY, pageX, pageY, target}) => {
-            const card = target.closest(".card");
-            if (!card) return;
-
-            const cloneCard = card.cloneNode(true);
-            cloneCard.classList.add("dragging");
-            const ghost = document.querySelector(".ghost");
-            ghost.appendChild(cloneCard);
-
-            shiftX = clientX - card.getBoundingClientRect().left;
-            shiftY = clientY - card.getBoundingClientRect().top;
-
-            ghost.style.cssText = `width: ${
-                card.offsetWidth
-            }px; transform: translateX(${pageX - shiftX}px) translateY(${
-                pageY - shiftY
-            }px)`;
-
-            pointerDown = true;
-            card.classList.add("afterimage");
+    function handlePointerMove({clientX, clientY, pageX, pageY, target}) {
+        if (!pointerDown) {
+            return;
         }
-    );
 
-    window.addEventListener(
-        "pointermove",
-        ({clientX, clientY, pageX, pageY, target}) => {
-            if (!pointerDown) {
+        const ghost = document.querySelector(".ghost");
+        ghost.hidden = true;
+        const pointedEl = document.elementFromPoint(clientX, clientY);
+        const closestCard = pointedEl.closest(".card");
+        const column = pointedEl.closest(".column");
+        ghost.hidden = false;
+
+        ghost.style.cssText = `width: ${
+            ghost.offsetWidth
+        }px; transform: translateX(${pageX - shiftX}px) translateY(${
+            pageY - shiftY
+        }px)`;
+
+        if (!column) {
+            return;
+        }
+
+        // Copying a card you're holding
+        const placeCard = ghost.firstChild.cloneNode(true);
+        placeCard.classList.replace("dragging", "afterimage");
+        const fromCard = document.querySelector(".afterimage");
+
+        if (closestCard) {
+            if (closestCard.classList.contains("afterimage")) {
                 return;
             }
 
-            const ghost = document.querySelector(".ghost");
-            ghost.hidden = true;
-            const pointedEl = document.elementFromPoint(clientX, clientY);
-            const closestCard = pointedEl.closest(".card");
-            const column = pointedEl.closest(".column");
-            ghost.hidden = false;
-
-            ghost.style.cssText = `width: ${
-                ghost.offsetWidth
-            }px; transform: translateX(${pageX - shiftX}px) translateY(${
-                pageY - shiftY
-            }px)`;
-
-            if (!column) {
-                return;
-            }
-
-            // Copying a card you're holding
-            const placeCard = ghost.firstChild.cloneNode(true);
-            placeCard.classList.replace("dragging", "afterimage");
-            const fromCard = document.querySelector(".afterimage");
-
-            if (closestCard) {
-                if (closestCard.classList.contains("afterimage")) {
-                    return;
-                }
-
-                closestCard.before(placeCard);
-            } else {
-                const cardWrapper = column.querySelector(".card-wrapper");
-                cardWrapper.appendChild(placeCard);
-            }
-
-            fromCard.remove();
+            closestCard.before(placeCard);
+        } else {
+            addCardToColumn(column, placeCard);
         }
-    );
 
-    window.addEventListener("pointerup", e => {
+        removeCard(fromCard);
+    }
+
+    function handlePointerUp(e) {
         if (!pointerDown) {
             return;
         }
@@ -621,8 +268,70 @@ document.addEventListener("DOMContentLoaded", e => {
 
         const activeCard = document.querySelector(".afterimage");
         activeCard.classList.remove("afterimage");
-    });
+    }
+
+    function addCardToColumn(column, card) {
+        const cardWrapper = column.querySelector(".card-wrapper");
+
+            // shows which card is placed in which wrapper
+            const wrapperId = cardWrapper.dataset.id;
+            const cardId = parseInt(card.dataset.id);
+            console.log(`Card_${cardId} placed in Wrapper_${wrapperId}`);
+            chanceWrapperNoFromTask(cardId, wrapperId);
+
+        cardWrapper.appendChild(card);
+    }
+
+    function removeCard(card) {
+        card.remove();
+    }
 });
+
+function chanceWrapperNoFromTask(cardId, wrapperId) {
+    tasks = [];
+    let title = tasksToServer[cardId][0][0];
+    let assigns = tasksToServer[cardId][0][1];
+    let deadline = tasksToServer[cardId][0][2];
+    let category = tasksToServer[cardId][0][3];
+    let priority = tasksToServer[cardId][0][4];
+    let description = tasksToServer[cardId][0][5];
+    let wrapper = wrapperId;
+
+    tasks.push([
+        title,
+        assigns,
+        deadline,
+        category,
+        priority,
+        description,
+        wrapper,
+    ]);
+    tasksToServer[cardId] = tasks;
+
+    // Write the updated tasks array back to the backend
+    backend.setItem("tasks", JSON.stringify(tasksToServer));
+    initSortArrays();
+}
+
+
+// // add event listener to all cards
+// const cards = document.querySelectorAll('.card');
+// cards.forEach(card => {
+//   card.addEventListener('dragstart', dragstart);
+//   card.addEventListener('dragend', dragend);
+// });
+
+// let draggedCard = null;
+
+// function dragstart() {
+//   draggedCard = this;
+// }
+
+// function dragend() {
+//   const wrapperId = this.parentNode.parentNode.id;
+//   const cardId = this.id;
+//   console.log(`Card ${cardId} moved to wrapper ${wrapperId}`);
+// }
 
 // document.addEventListener("DOMContentLoaded", e => {
 //     let pointerDown = false;
@@ -817,3 +526,12 @@ document.addEventListener("DOMContentLoaded", e => {
 //     fromCard.remove();
 //   }, { passive: false });
 // });
+
+// Check if the device is a touch device and log a message
+// const isTouchDevice =
+//     "ontouchstart" in window ||
+//     navigator.maxTouchPoints > 0 ||
+//     navigator.msMaxTouchPoints > 0;
+// if (isTouchDevice) {
+//     console.log("This is a touch device");
+// }
