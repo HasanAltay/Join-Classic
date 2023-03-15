@@ -820,6 +820,30 @@
 }
 
 @media (max-width: 600px) {
+  .board_show_task {
+    border-radius: unset;
+    top: 0;
+    left: 0;
+    transform: unset;
+    height: 100vh;
+    padding: 20px;
+    width: 100vw;
+    z-index: 14;
+  }
+  .board_show_task .edit_card_footer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  .board_edit_task {
+    border-radius: unset;
+    top: 0;
+    left: 0;
+    transform: unset;
+    height: 100vh;
+    width: 100vw;
+    z-index: 14;
+  }
   .board_main {
     padding-top: 20px;
     padding-bottom: 100px;
