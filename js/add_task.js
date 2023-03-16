@@ -9,7 +9,7 @@ let categories = [
 ];
 
 let setCategory = [];
-let setPriority;
+let setPriority = null;
 let setAssignContacts = [];
 let placeholder = true;
 let pickedContacts = [];
@@ -87,9 +87,7 @@ function initAssignDropDown() {
 
 function setContacts(initials, color, i, name, surname) {
     event.preventDefault();
-    let assign_contacts_placeholder = document.getElementById(
-        "assign_contacts_placeholder"
-    );
+    let assign_contacts_placeholder = document.getElementById("assign_contacts_placeholder");
     let pickedContactIds = pickedContacts.map(contact => contact[0]);
 
     if (pickedContacts.length === 0) {
@@ -102,7 +100,7 @@ function setContacts(initials, color, i, name, surname) {
     }
 
     if (pickedContacts.length >= 6) {
-        return; // Exit the function if there are already 7 picked contacts
+        return; // Exit the function if there are already 6 picked contacts
     }
 
     let pickedContact = document.createElement("div");
@@ -111,7 +109,7 @@ function setContacts(initials, color, i, name, surname) {
     pickedContact.style.backgroundColor = color;
     pickedContact.textContent = initials;
 
-    // Create and position the "x" icon
+    // Create and position the "x" remove/delete icon
     let deleteIcon = document.createElement("img");
     deleteIcon.src = "./img/delete.png";
     deleteIcon.classList.add("delete_icon");
@@ -193,7 +191,7 @@ function setCategoryOption(category, color) {
 
 function SetPriority(picked) {
     event.preventDefault();
-    // setPriority = set;
+    setPriority = picked;
     let urgent = document.getElementById("urgent");
     let medium = document.getElementById("medium");
     let low = document.getElementById("low");
@@ -232,6 +230,7 @@ function SetPriority(picked) {
         medium_img.style.filter = "unset";
         low_img.style.filter = "brightness(0) invert(1)";
     }
+    console.log(setPriority);
 }
 
 // shows confirmation menu if task is added

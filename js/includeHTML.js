@@ -1,5 +1,4 @@
 setURL("https://hasanaltay.de/portfolio-web/Join-classic/backend");
-let tasksToServer = [];
 
 async function includeHTML() {
     const templatesContainer = getAllTemplatesContainer();
@@ -67,11 +66,21 @@ fetch("./content/summary.html")
 
 async function initBackend() {
     await downloadFromServer();
-    tasksToServer = JSON.parse(backend.getItem("tasks")) || [];
+    // await loadTaskFromBackend();
     initBoard();
     initLettersFromContacts();
     initSummary();
 }
+
+async function loadTaskFromBackend() {
+    try {
+      const tasksData = backend.getItem("tasks") || "[]";
+      tasksToServer = JSON.parse(tasksData);
+    } catch (err) {
+      console.error("Error while parsing task data:", err);
+      tasksToServer = [];
+    }
+}   
 
 function eventListeners() {
     initBackend(); // backend for add Tasks Data

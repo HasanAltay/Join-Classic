@@ -1,5 +1,7 @@
-let jsonFromServer = {};
-let jsonContactsFromServer = {};
+// let jsonFromServer = {};
+// let jsonContactsFromServer = {};
+let jsonFromServer;
+let jsonContactsFromServer;
 let BASE_SERVER_URL;
 
 const backend = {
@@ -37,14 +39,21 @@ window.onload = async function () {
 };
 
 async function downloadFromServer() {
-    let result = await loadJSONFromServer();
-    let contacts_result = await loadCONTACTSFromServer();
-    jsonFromServer = JSON.parse(result);
-    jsonContactsFromServer = JSON.parse(contacts_result);
-    contacts = [];
-    contacts = JSON.parse(jsonContactsFromServer.contacts);
-    // console.log("mini_backend:", jsonContactsFromServer);
-    // console.log("contacts:",contacts)
+    try {
+        let result = await loadJSONFromServer();
+        jsonFromServer = JSON.parse(result);
+        tasksToServer = [];
+        tasksToServer = JSON.parse(jsonFromServer.tasks);
+        // console.log(loadJSONFromServer())
+
+        let contacts_result = await loadCONTACTSFromServer();
+        jsonContactsFromServer = JSON.parse(contacts_result);
+        contacts = [];
+        contacts = JSON.parse(jsonContactsFromServer.contacts);
+
+    } catch (error) {
+        console.error("Error parsing JSON:", error);
+    }
 }
 
 function setURL(url) {
@@ -59,6 +68,7 @@ async function loadJSONFromServer() {
             "/nocors.php?json=database&noache=" +
             new Date().getTime()
     );
+    // console.log(response);
     return await response.text();
 }
 
