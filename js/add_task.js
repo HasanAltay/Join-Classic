@@ -10,18 +10,22 @@ let categories = [
 
 let setCategory = [];
 let setPriority = null;
-let setAssignContacts = [];
+// let setAssignContacts = [];
 let placeholder = true;
 let pickedContacts = [];
 let addedCategory = [];
-let progress = 0;
 
 // dropdown menus open or close status
 let assignOpen = false;
 let categoryOpen = false;
 
-function createAddTaskJSON() {
+function createAddTaskJSON(pos) {
     event.preventDefault();
+    let title = document.getElementById("title").value;
+    let textarea = document.getElementById("textarea").value;
+    let date = document.getElementById("date").value;
+    let position = pos;
+
     let assignContacts = pickedContacts.map(contact => contact[0]);
     if (assignContacts.length === 0) {
         document.getElementById('req_msg_assign').innerHTML = `
@@ -29,16 +33,15 @@ function createAddTaskJSON() {
         `;
         return;
     }
-    let title = document.getElementById("title").value;
-    let textarea = document.getElementById("textarea").value;
-    let date = document.getElementById("date").value;
 
-    if (addedCategory.length === 0) {
+    if (setCategory.length === 0) {
         document.getElementById('req_msg_category').innerHTML = `
         Please select a category.
         `;
         return;
     }
+
+    document.getElementById('req_msg_category').innerHTML = ``;
 
     tasks = [];
     tasks.push([
@@ -48,7 +51,7 @@ function createAddTaskJSON() {
         setCategory,
         setPriority,
         textarea,
-        progress,
+        position,
     ]);
 
     // Load existing tasks from the backend
@@ -58,26 +61,20 @@ function createAddTaskJSON() {
     // Write the updated tasks array back to the backend
     backend.setItem("tasks", JSON.stringify(existingTasks));
 
-    // Load existing tasks from the backend
-    // let existingTasks = JSON.parse(backend.getItem("tasks")) || [];
-    // existingTasks.push(tasks);
-    // tasksToServer = existingTasks;
-
-    // backend.setItem("tasks", JSON.stringify(tasks));
-    // tasksToServer.push(tasks);
-
     console.log(tasks);
     let a = true;
     showConfirmationAddTask(a);
-    // dropDownOpenClose();
 }
 
 function initAssignDropDown() {
+    tasks = [];
+    let form_ignore = true;
     let assign_dropdown_list = document.getElementById("assign_dropdown_list");
+    assign_dropdown_list.innerHTML = ``;
     for (let i = 0; i < contactsListTasks.length; i++) {
         const list = contactsListTasks[i];
         assign_dropdown_list.innerHTML += `
-            <button onclick="setContacts('${list[0]}','${list[3]}','${i}','${list[1]}','${list[2]}')">
+            <button onclick="setContacts('${list[0]}','${list[3]}','${i}','${list[1]}','${list[2]}','${form_ignore}')">
             <div class="assign_initials" style="background-color:${list[3]}">${list[0]}</div>
             <span class="assign_details_name">${list[1]} ${list[2]}</span>
             </button>
@@ -85,24 +82,22 @@ function initAssignDropDown() {
     }
 }
 
-function setContacts(initials, color, i, name, surname) {
-    event.preventDefault();
+function setContacts(initials, color, i, name, surname, form_ignore) {
+    if (form_ignore) {
+        event.preventDefault();
+    }
     let assign_contacts_placeholder = document.getElementById("assign_contacts_placeholder");
     let pickedContactIds = pickedContacts.map(contact => contact[0]);
-
     if (pickedContacts.length === 0) {
         assign_contacts_placeholder.innerHTML = "";
         placeholder = false;
     }
-
     if (pickedContactIds.includes(initials)) {
         return; // Exit the function if the contact has already been picked
     }
-
     if (pickedContacts.length >= 6) {
         return; // Exit the function if there are already 6 picked contacts
     }
-
     let pickedContact = document.createElement("div");
     pickedContact.setAttribute("id", `user${i}`);
     pickedContact.classList.add("picked_contacts");
@@ -114,7 +109,6 @@ function setContacts(initials, color, i, name, surname) {
     deleteIcon.src = "./img/delete.png";
     deleteIcon.classList.add("delete_icon");
     pickedContact.appendChild(deleteIcon);
-
     assign_contacts_placeholder.appendChild(pickedContact);
     pickedContacts.push([initials, color, name, surname]);
 
@@ -132,6 +126,7 @@ function setContacts(initials, color, i, name, surname) {
         }
         !assignsOpenClose();
     });
+    
 }
 
 function categoryDropdown() {

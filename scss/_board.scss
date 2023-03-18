@@ -435,6 +435,14 @@
   text-align: center;
 }
 
+.add_task_for_wrapper_titel {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 19px;
+  font-weight: bold;
+}
+
 @media (max-width: 600px) {
 
   .board_show_task {

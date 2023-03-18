@@ -17,8 +17,6 @@ function saveNewContact() {
     contacts.push(new_contact);
     backend.saveContacts("contacts", JSON.stringify(contacts));
     console.log("Server:", jsonContactsFromServer.contacts);
-    // downloadFromServer();
-    // initLettersFromContacts();
 }
 
 function editExistingContact() {
@@ -37,7 +35,6 @@ function editExistingContact() {
 }
 
 async function initLettersFromContacts() {
-    // console.log(typeof contacts);
     if (contacts.length > 0) {
         contacts.sort(function (a, b) {
             let nameA = (a.name || "").charAt(0).toLowerCase();
@@ -84,7 +81,7 @@ function initList(contacts) {
             letter_box.innerHTML += /*html*/ `
               <button class="contacts_files" id="files" 
                 onclick="initDetails('${letters}','${name}','${surname}',
-                '${mail}','${phone}','${color}');showDetails()">
+                '${mail}','${phone}','${color}','${i}');showDetails()">
                 <div class="contacts_initials" id="initials" 
                   style="background-color:${color}">${letters}</div>
                 <div class="contacts_name_email" id="name_email">
@@ -98,13 +95,14 @@ function initList(contacts) {
 }
 
 // show detailed contact list informations on right side
-function initDetails(letters, name, surname, mail, phone, color) {
+function initDetails(letters, name, surname, mail, phone, color, i) {
     let contacts_details = document.getElementById("contacts_details");
     contacts_details.innerHTML = `
     <div class="details_header">
       <div class="details_initials" style="background-color:${color}">${letters}</div>
       <span class="details_name">${name} ${surname}<br>
-        <a><img src="./img/plus_blue.png">Add Task</a>
+        <a onclick="addTaskWithContact('${letters}','${color}','${name}','${surname}','${i}')">
+        <img src="./img/plus_blue.png">Add Task</a>
       </span>
     </div>
     <div>
@@ -185,11 +183,9 @@ function editContact(name, surname, mail, phone) {
     <input type="tel" placeholder="Phone" name="phone" id="edit_phone" pattern="[0-9]{10,16}" 
       title="Please enter a valid phone number (between 10 and 16 digits)" value="${phone}"> 
     <div class="contact_new_btns">
-
       <button type="submit" class="button_delete" 
         onclick="showConfirmationDeleteContact(true,'${msg_del}');">Delete
       </button> 
-
       <button type="submit" class="button_dark" 
         onclick="editExistingContact();
           showConfirmationContact(true,'${msg}');">Save<img src="./img/check.png" alt="Check Icon" />
@@ -200,16 +196,14 @@ function editContact(name, surname, mail, phone) {
 }
 
 function deleteContact() {
-  contacts.splice(pickedContact,1);
-  backend.saveContacts("contacts", JSON.stringify(contacts));
+    contacts.splice(pickedContact, 1);
+    backend.saveContacts("contacts", JSON.stringify(contacts));
 }
 
 function showConfirmationContact(a, msg) {
-    let confirm_msg = document.getElementById('confirm_msg');
+    let confirm_msg = document.getElementById("confirm_msg");
     confirm_msg.innerHTML = msg;
-    let contact_confirmation = document.getElementById(
-        "contact_confirmation"
-    );
+    let contact_confirmation = document.getElementById("contact_confirmation");
     if (a) {
         contact_confirmation.style.visibility = "visible";
     }
@@ -219,22 +213,24 @@ function showConfirmationContact(a, msg) {
 }
 
 function showConfirmationDeleteContact(a, msg) {
-  let confirm_msg_delete = document.getElementById('confirm_msg_delete');
-  confirm_msg_delete.innerHTML = msg;
-  let contact_delete = document.getElementById(
-      "contact_delete"
-  );
-  if (a) {
-      contact_delete.style.visibility = "visible";
-  }
-  if (!a) {
-      contact_delete.style.visibility = "hidden";
-  }
+    let confirm_msg_delete = document.getElementById("confirm_msg_delete");
+    confirm_msg_delete.innerHTML = msg;
+    let contact_delete = document.getElementById("contact_delete");
+    if (a) {
+        contact_delete.style.visibility = "visible";
+    }
+    if (!a) {
+        contact_delete.style.visibility = "hidden";
+    }
 }
 
-function resetList() {
-    contacts = [];
-    sortedContacts = [];
+async function addTaskWithContact(letters, color, name, surname, i) {
+    NavClick(3);
+    await NavRenderAddTask();
+    let event = false;
+    pickedContacts = [];
+    tasks = [];
+    setContacts(letters, color, i, name, surname, event);
 }
 
 function showDetails() {

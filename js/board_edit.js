@@ -64,7 +64,6 @@ function loadEditTaskInputs(i) {
 }
 
 async function saveEditTask(i) {
-    event.preventDefault();
     let assignContacts = pickedContacts.map(contact => contact[0]);
     if (assignContacts.length === 0) {
         document.getElementById("req_msg_assign").innerHTML = `
@@ -72,7 +71,6 @@ async function saveEditTask(i) {
       `;
         return;
     }
-
     let title = document.getElementById("title").value;
     let assigns = pickedContacts;
     let deadline = document.getElementById("date").value;
@@ -91,35 +89,12 @@ async function saveEditTask(i) {
         description,
         position,
     ]);
-
-    console.log(tasks, i);
-
     tasksToServer[i] = tasks;
-
-    updateDivContent(title, assigns, deadline, category, priority, description, position);
-    // console.log(tasksToServer);
 
     // Write the updated tasks array back to the backend
     backend.setItem("tasks", JSON.stringify(tasksToServer));
     NavRenderBoard();
 }
-
-function updateDivContent(title, assigns, deadline, category, priority, description, position) {
-    let divContent = document.getElementById("output");
-  
-    let html = `
-      <h2>${title}</h2>
-      <p><strong>Assigned to:</strong> ${assigns.join(", ")}</p>
-      <p><strong>Deadline:</strong> ${deadline}</p>
-      <p><strong>Category:</strong> ${category}</p>
-      <p><strong>Priority:</strong> ${priority}</p>
-      <p><strong>Description:</strong> ${description}</p>
-      <p><strong>Position:</strong> ${position}</p>
-    `;
-  
-    divContent.innerHTML = html;
-}
-  
 
 // saves the position of the cards if moved to another wrapper
 function chanceWrapperNoFromTask(cardId, wrapperId) {
@@ -145,5 +120,4 @@ function chanceWrapperNoFromTask(cardId, wrapperId) {
 
     // Write the updated tasks array back to the backend
     backend.setItem("tasks", JSON.stringify(tasksToServer));
-    // initSortArrays();
 }

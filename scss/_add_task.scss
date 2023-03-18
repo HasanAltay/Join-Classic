@@ -196,8 +196,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 2px;
+        margin: 4px;
         z-index: 15;
+        transition: all 100ms ease-in-out;
+    }
+
+    div[id^="user"] {
+        // styles for div elements with an id that starts with "user"
+        // for example, #user0, #user1, #user2, etc.
+        &:hover {
+        transform: scale(1.2);
+        transition: all 100ms ease-in-out;        
+        }
     }
 
     .assign_category_input {

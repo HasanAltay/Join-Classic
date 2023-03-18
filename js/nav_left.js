@@ -17,6 +17,7 @@ async function NavRenderAddTask() {
     <div data-template="./content/add_task.html" onclick="closeLogout(); closeLogoutMobile();"></div>
     `;
     await includeHTML();
+    initAddTask();
     initAssignDropDown();
     categoryDropdown();
 }

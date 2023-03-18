@@ -179,8 +179,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2px;
+  margin: 4px;
   z-index: 15;
+  transition: all 100ms ease-in-out;
+}
+.task_main div[id^=user]:hover {
+  transform: scale(1.2);
+  transition: all 100ms ease-in-out;
 }
 .task_main .assign_category_input {
   display: flex;
@@ -816,6 +821,14 @@
   color: red;
   font-weight: 500;
   text-align: center;
+}
+
+.add_task_for_wrapper_titel {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 19px;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {

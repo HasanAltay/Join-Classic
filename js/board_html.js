@@ -7,7 +7,7 @@ function initBoard() {
             <a>To Do</a
             ><img
                 src="./img/plus-dark.png"
-                onclick="NavRenderAddTask(); NavClick(3)"
+                onclick="addTaskForWrapper(0);showTaskForWrapper()"
                 alt="Dark Plus Icon"
             />
         </div>
@@ -18,7 +18,7 @@ function initBoard() {
             <a>In progress</a
             ><img
                 src="./img/plus-dark.png"
-                onclick="NavRenderAddTask(); NavClick(3)"
+                onclick="addTaskForWrapper(1);showTaskForWrapper()"
                 alt="Dark Plus Icon"
             />
         </div>
@@ -29,7 +29,7 @@ function initBoard() {
             <a>Await feedback</a
             ><img
                 src="./img/plus-dark.png"
-                onclick="NavRenderAddTask(); NavClick(3)"
+                onclick="addTaskForWrapper(2);showTaskForWrapper()"
                 alt="Dark Plus Icon"
             />
         </div>
@@ -40,7 +40,7 @@ function initBoard() {
             <a>Done</a
             ><img
                 src="./img/plus-dark.png"
-                onclick="NavRenderAddTask(); NavClick(3)"
+                onclick="addTaskForWrapper(3);showTaskForWrapper()"
                 alt="Dark Plus Icon"
             />
         </div>
@@ -222,33 +222,176 @@ async function editTask(i) {
 </form>
 
 <div id="output"></div>
-`; 
-loadEditTaskInputs(i);
+`;
+    loadEditTaskInputs(i);
 }
 
 function showEdit() {
-  let edit_task = document.getElementById("edit_task");
-  // edit_task.innerHTML = ``;
-  edit_task.style.display = "block";
-  let assign_contacts_placeholder = document.getElementById(
-    "assign_contacts_placeholder");
-  assign_contacts_placeholder = "";
+    let edit_task = document.getElementById("edit_task");
+    edit_task.style.display = "block";
+    //   let assign_contacts_placeholder = document.getElementById(
+    //     "assign_contacts_placeholder");
+    //   assign_contacts_placeholder = "";
 }
 
 function closeEdit() {
-  let edit_task = document.getElementById("edit_task");
-  // edit_task.innerHTML = ``;
-  edit_task.style.display = "none";
+    let edit_task = document.getElementById("edit_task");
+    edit_task.style.display = "none";
 }
 
 function showTask() {
-  let show_task = document.getElementById("show_task");
-  show_task.style.display = "block";
-  // show_task.innerHTML = ``;
+    let show_task = document.getElementById("show_task");
+    show_task.style.display = "block";
 }
 
 function closeTask() {
-  let show_task = document.getElementById("show_task");
-  show_task.style.display = "none";
-  // show_task.innerHTML = ``;
+    let show_task = document.getElementById("show_task");
+    show_task.style.display = "none";
+}
+
+function showTaskForWrapper() {
+    let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
+    add_task_for_wrapper.style.display = "block";
+}
+
+function closeTaskForWrapper() {
+    let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
+    add_task_for_wrapper.style.display = "none";
+}
+
+function addTaskForWrapper(pos) {
+    pickedContacts = [];
+    let titel;
+    if (pos == 0) {
+        titel = "To Do";
+    }
+    if (pos == 1) {
+        titel = "In progress";
+    }
+    if (pos == 2) {
+        titel = "Awaiting feedback";
+    }
+    if (pos == 3) {
+        titel = "Done";
+    }
+
+    let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
+    add_task_for_wrapper.innerHTML = `
+
+    <a class="add_task_for_wrapper_titel">${titel}</a>	
+    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeTaskForWrapper()">
+    
+    <form class="task_main" id="add_new_task" onsubmit="createAddTaskJSON(${pos})" style="gap:20px">
+        <input
+            type="text"
+            placeholder="Enter a title"
+            name="title"
+            maxlength="33"
+            id="title"
+            title="Enter a title for your new Task!"
+            required
+            aria-label="Title"
+        />
+
+        <div class="assign_dropdown" type="checkbox" name="categorie">
+            <div class="assign_dropdown_titel" onclick="assignsOpenClose()">
+                <span id="assign_contacts_placeholder">Select contacts to assign</span>
+                <img src="./img/dd_blue.png" alt="Drop Down Arrow">
+            </div>
+            <div class="assign_dropdown-content" id="assign_dropdown_list"></div>
+        </div>
+
+        <input
+            type="date"
+            name="date"
+            id="date"
+            class="task_date"
+            pattern="\d{4}-\d{2}-\d{2}"
+            required
+            min="{{ today }}"
+            placeholder="Select a deadline"
+            title="Select a deadline"
+            aria-label="Date"
+        />
+
+        <div class="assign_dropdown" type="checkbox" name="categorie">
+            <div class="assign_dropdown_titel" onclick="categoriesOpenClose()">
+                <span id="assign_placeholder">Select task categorie</span>
+                <img src="./img/dd_blue.png" alt="Drop Down Arrow">
+            </div>
+            <div class="assign_dropdown-content" id="category_dropdown"></div>
+        </div>
+
+        <div class="task_priorities">
+            <button
+                id="urgent"
+                class="pr_urgent"
+                onclick="SetPriority('urgent')"
+            >
+                Urgent<img
+                    src="./img/urgent.png"
+                    id="urgent_img"
+                    alt="Urgent Icon"
+                />
+            </button>
+
+            <button
+                id="medium"
+                class="pr_medium"
+                onclick="SetPriority('medium')"
+            >
+                Medium<img
+                    src="./img/medium.png"
+                    id="medium_img"
+                    alt="Medium Icon"
+                />
+            </button>
+
+            <button
+                id="low"
+                class="pr_low"
+                onclick="SetPriority('low')"
+            >
+                Low<img src="./img/low.png" id="low_img" alt="Low Icon" />
+            </button>
+        </div>
+
+        <div class="task_textarea">
+            <textarea
+                name="textarea"
+                placeholder="Enter a Description"
+                maxlength="130"
+                type="text"
+                id="textarea"
+                style="max-width:340px;max-height:150px"
+                required
+                aria-label="Description"
+            ></textarea>
+            <div id="the-count">
+                <span id="current">0</span>
+                <span id="maximum">/130</span>
+            </div>
+        </div>
+
+        <span class="required_message_board" id="req_msg_assign"></span>
+
+        <div class="task_confirmation_btns">
+            <button class="button_dark" type="submit">Add Task
+                <img src="./img/plus_white.png" alt="Check Icon" />
+            </button>
+        </div>
+    </form>
+    <div class="confirmation" id="task_added_confirmation">
+    <span>Task added to Board!</span>
+    <button
+        class="button_dark"
+        onclick="NavRenderBoard(); NavClick(2); showConfirmationAddTask(a=false);"
+    >
+        OK
+    </button>
+    </div>
+    `;
+    categoryDropdown();
+    letterCountTextarea("textarea");
+    initAssignDropDown();
 }
