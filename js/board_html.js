@@ -108,7 +108,7 @@ function editCardNo(i) {
         <a>${assigns[j][2]} ${assigns[j][3]}</a>
     </div>
     `;
-        console.log(assigns[j][0], assigns[j][2], assigns[j][3]);
+        // console.log(assigns[j][0], assigns[j][2], assigns[j][3]);
     }
 }
 
@@ -229,9 +229,6 @@ async function editTask(i) {
 function showEdit() {
     let edit_task = document.getElementById("edit_task");
     edit_task.style.display = "block";
-    //   let assign_contacts_placeholder = document.getElementById(
-    //     "assign_contacts_placeholder");
-    //   assign_contacts_placeholder = "";
 }
 
 function closeEdit() {
@@ -277,9 +274,10 @@ function addTaskForWrapper(pos) {
 
     let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
     add_task_for_wrapper.innerHTML = `
-
-    <a class="add_task_for_wrapper_titel">${titel}</a>	
-    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeTaskForWrapper()">
+    <div class="add_task_for_wrapper_header">
+        <a class="add_task_for_wrapper_titel"><img src="./img/plus-light.png">${titel}</a>	
+        <img class="add_task_for_wrapper_close_btn" src="./img/close.png" onclick="closeTaskForWrapper()">
+    </div>
     
     <form class="task_main" id="add_new_task" onsubmit="createAddTaskJSON(${pos})" style="gap:20px">
         <input
