@@ -1522,6 +1522,7 @@
   transition: all 100ms ease-in-out;
   white-space: nowrap;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  margin-right: 50px;
 }
 .button_dark:hover {
   background-color: #29abe2;
@@ -2404,10 +2405,11 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  max-width: 760px;
+  max-width: 800px;
   gap: 25px;
   padding-left: 20px;
   padding-right: 20px;
+  position: relative;
 }
 
 .sum_squares {
@@ -2578,6 +2580,153 @@ body {
 .sum_user_mobile {
   font-weight: 700;
   font-size: 64px;
+  color: #29abe2;
+}
+
+.chat_gpt_answer {
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: white;
+  padding-top: 60px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  bottom: 100px;
+  width: 100%;
+  height: calc(100% - 100px);
+  max-width: 760px;
+  margin-right: 20px;
+  margin-left: 20px;
+  z-index: 99;
+}
+.chat_gpt_answer textarea {
+  position: relative;
+  border-radius: 20px;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  padding: 20px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  border: 0;
+  background-color: transparent;
+  margin-right: 10px;
+  overflow-y: scroll;
+  scrollbar-width: auto;
+  /* Firefox */
+  scrollbar-color: #ffffff #ffffff;
+  /* Chrome, Edge, and Safari */
+}
+.chat_gpt_answer textarea::-moz-placeholder {
+  color: rgb(204, 204, 204);
+}
+.chat_gpt_answer textarea::placeholder {
+  color: rgb(204, 204, 204);
+}
+.chat_gpt_answer textarea:focus-visible {
+  outline: 0px solid #29abe2;
+}
+.chat_gpt_answer textarea::-webkit-scrollbar {
+  width: 10px;
+}
+.chat_gpt_answer textarea::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.chat_gpt_answer textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(42, 54, 71, 0.1725490196);
+  border-radius: 10px;
+  border: 3px solid white;
+}
+.chat_gpt_answer .loading_gif {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  max-width: 70px;
+  min-width: 50px;
+  visibility: hidden;
+  border-radius: 20px;
+}
+.chat_gpt_answer .hide_chat_gpt_answer_btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.chat_gpt {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin-top: 100px;
+}
+.chat_gpt input {
+  border-radius: 10px;
+  border: 0;
+  height: 50px;
+  width: 100%;
+  padding: 20px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 21px;
+  padding-right: 50px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+}
+.chat_gpt input::-moz-placeholder {
+  color: rgb(204, 204, 204);
+}
+.chat_gpt input::placeholder {
+  color: rgb(204, 204, 204);
+}
+.chat_gpt input:focus-visible {
+  outline: 1px solid #29abe2;
+}
+.chat_gpt button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+  border-radius: 10px;
+  background-color: #eff2f5;
+}
+.chat_gpt button:hover {
+  background-color: #29abe2;
+  height: 40px;
+  transition: all 100ms ease-in-out;
+}
+.chat_gpt button:active {
+  transform: scale(0.9);
+}
+.chat_gpt button:hover img {
+  filter: invert(1);
+  transition: all 100ms ease-in-out;
+}
+.chat_gpt button img {
+  width: 16px;
+  height: 16px;
+}
+
+.promt_to_answer {
   color: #29abe2;
 }
 
