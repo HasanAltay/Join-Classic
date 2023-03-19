@@ -856,6 +856,9 @@
 }
 
 @media (max-width: 600px) {
+  .add_task_for_wrapper_titel {
+    border-radius: unset;
+  }
   .board_show_task {
     border-radius: unset;
     top: 0;

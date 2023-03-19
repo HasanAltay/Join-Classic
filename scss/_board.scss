@@ -435,14 +435,6 @@
   text-align: center;
 }
 
-// .add_task_for_wrapper_header {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   height: 100px;
-//   background-color: #2A3647;
-// }
-
 .add_task_for_wrapper_titel {
   display: flex;
   align-items: center;
@@ -478,6 +470,10 @@
 }
 
 @media (max-width: 600px) {
+
+  .add_task_for_wrapper_titel {
+    border-radius: unset;
+  }
 
   .board_show_task {
     border-radius: unset;

@@ -274,11 +274,10 @@ function addTaskForWrapper(pos) {
 
     let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
     add_task_for_wrapper.innerHTML = `
-    <div class="add_task_for_wrapper_header">
-        <a class="add_task_for_wrapper_titel"><img src="./img/plus-light.png">${titel}</a>	
-        <img class="add_task_for_wrapper_close_btn" src="./img/close.png" onclick="closeTaskForWrapper()">
-    </div>
-    
+
+    <a class="add_task_for_wrapper_titel"><img src="./img/plus-light.png">${titel}</a>	
+    <img class="add_task_for_wrapper_close_btn" src="./img/close.png" onclick="closeTaskForWrapper()">
+
     <form class="task_main" id="add_new_task" onsubmit="createAddTaskJSON(${pos})" style="gap:20px">
         <input
             type="text"
