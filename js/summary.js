@@ -5,56 +5,57 @@ let inProgress = 0;
 let awaitFeedback = 0;
 let todo = 0;
 let done = 0;
+let loggedUser = ['Sabine Mustermann']
 
 function initSummary() {
     const sum_frame_squares = document.getElementById("sum_frame_squares");
     sum_frame_squares.innerHTML = /*html*/ `
         <div class="sum_greeting">
             <div class="sum_daytime" id="sum_daytime"></div>
-            <div class="sum_user" id="sum_user">Guest</div>
+            <div class="sum_user" id="sum_user">${loggedUser}</div>
         </div>
-        <div class="sum_middle">
-        <div class="sum_frame_urgent">
-            <img src="./img/urgent_summary.png"/>
-            <div>
-                <span id="sum_urgent">${urgent}</span><br />
-                <a style="font-size: 16px; font-weight: 400">Urgent</a>
+        <div class="sum_middle" onclick="NavRenderBoard();NavClick(2);">
+            <div class="sum_frame_urgent">
+                <img src="./img/urgent_summary.png"/>
+                <div>
+                    <span id="sum_urgent">${urgent}</span><br />
+                    <a style="font-size: 16px; font-weight: 400">Urgent</a>
+                </div>
+            </div>
+            <div class="sum_frame_deadline">
+                <span id="sum_deadline">${deadline}</span>
+                <a>Upcoming Deadline</a>
             </div>
         </div>
-        <div class="sum_frame_deadline">
-            <span id="sum_deadline">${deadline}</span>
-            <a>Upcoming Deadline</a>
-        </div>
-        </div>
-        <div class="sum_squares">
+        <div class="sum_squares" onclick="NavRenderBoard();NavClick(2);">
             <div>
                 <img src="./img/kanban.png">
                 <a id="sum_board">${board}</a>
             </div>
             <span>Tasks in Board</span>
         </div>
-        <div class="sum_squares">
+        <div class="sum_squares" onclick="NavRenderBoard();NavClick(2);">
             <div>
                 <img src="./img/in-progress.png">
                 <a id="sum_progress">${inProgress}</a>
             </div>
             <span>Tasks in Progress</span>
         </div>
-        <div class="sum_squares">
+        <div class="sum_squares" onclick="NavRenderBoard();NavClick(2);">
             <div>
                 <img src="./img/comment.png">
                 <a id="sum_freedback">${awaitFeedback}</a>
             </div>
             <span>Awaiting Feedback</span>
         </div>
-        <div class="sum_squares">
+        <div class="sum_squares" onclick="NavRenderBoard();NavClick(2);">
             <div>
                 <img id="sum_todo_img" src="./img/todo.png" />
                 <a id="sum_todo">${todo}</a>
             </div>
             <span>Tasks To-Do</span>
         </div>
-        <div class="sum_squares">
+        <div class="sum_squares" onclick="NavRenderBoard();NavClick(2);">
             <div>
                 <img id="sum_done_img" src="./img/done.png" />
                 <a id="sum_done">${done}</a>

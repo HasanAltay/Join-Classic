@@ -1,5 +1,4 @@
 let tasks = [];
-
 let categories = [
     ["Sales", "#EE55FF"],
     ["Design", "#E88300"],
@@ -7,13 +6,12 @@ let categories = [
     ["Marketing", "#5000FF"],
     ["Media", "#EFD100"],
 ];
-
 let setCategory = [];
 let setPriority = null;
-// let setAssignContacts = [];
 let placeholder = true;
 let pickedContacts = [];
 let addedCategory = [];
+let new_color = 'brown'; // predefined color if none is selected
 
 // dropdown menus open or close status
 let assignOpen = false;
@@ -21,6 +19,8 @@ let categoryOpen = false;
 
 function createAddTaskJSON(pos) {
     event.preventDefault();
+    document.getElementById('req_msg_assign').innerHTML = ``;
+    document.getElementById('req_msg_category').innerHTML = ``;
     let title = document.getElementById("title").value;
     let textarea = document.getElementById("textarea").value;
     let date = document.getElementById("date").value;
@@ -33,14 +33,12 @@ function createAddTaskJSON(pos) {
         `;
         return;
     }
-
     if (setCategory.length === 0) {
         document.getElementById('req_msg_category').innerHTML = `
         Please select a category.
         `;
         return;
     }
-
     document.getElementById('req_msg_category').innerHTML = ``;
 
     tasks = [];
@@ -60,10 +58,7 @@ function createAddTaskJSON(pos) {
 
     // Write the updated tasks array back to the backend
     backend.setItem("tasks", JSON.stringify(existingTasks));
-
-    console.log(tasks);
-    let a = true;
-    showConfirmationAddTask(a);
+    showConfirmationAddTask(a = true);
 }
 
 function initAssignDropDown() {
@@ -142,38 +137,77 @@ function categoryDropdown() {
     }
     category_dropdown.innerHTML += `
         <div class="assign_category_input">
-            <input type="text" placeholder="Add new category" id="category_name_input" maxlength="12">
-            <div class="color_picker_btn">
-                <input type="color" id="category_color_input" value="#ffffff">
-                <img src="./img/color-wheel.png">
-            </div>
+            <input type="text" placeholder="Add new category" id="category_name_input" maxlength="12" minlength="3">
+            
+            <button class="color_picker_button" id="color_picker_button" onclick="showPickColor()">
+            <img src="./img/eyedropper.png" id="picker_icon">
+                <div class="colors_to_pick" id="colors_to_pick">
+                    <div onclick="pickColor('red')" value="red" style="background-color: red;">Red</div>
+                    <div onclick="pickColor('blue')" value="blue" style="background-color: blue;">Blue</div>
+                    <div onclick="pickColor('green')" value="green" style="background-color: green;">Green</div>
+                    <div onclick="pickColor('magenta')" value="magenta" style="background-color: magenta;">Magenta</div>
+                    <div onclick="pickColor('cyan')" value="cyan" style="background-color: cyan;">Cyan</div>
+                    <div onclick="pickColor('orange')" value="orange" style="background-color: orange;">Orange</div>
+                    <div onclick="pickColor('purple')" value="purple" style="background-color: purple;">Purple</div>
+                    <div onclick="pickColor('brown')" style="background-color: brown;">Brown</div>
+                </div>  
+            </button>
+
             <button onclick="addCategory()" id="category_btn_input">Add</button>
         </div>
     `;
 }
 
+function pickColor(color) {
+    closePickColor();
+    event.preventDefault();
+    const color_picker_button = document.getElementById('color_picker_button');
+    const picker_icon = document.getElementById('picker_icon');
+    color_picker_button.style.backgroundColor = color;
+    new_color = color;
+    picker_icon.style.filter = "invert(1)";
+}
+
+function showPickColor() {
+    event.preventDefault();
+    let colors_to_pick = document.getElementById('colors_to_pick');
+    colors_to_pick.style.visibility = 'visible';
+}
+
+function closePickColor() {
+    event.preventDefault();
+    let colors_to_pick = document.getElementById('colors_to_pick');
+    colors_to_pick.style.visibility = 'hidden';
+}
+
 // adds new category to select from dropdown list
 function addCategory() {
     event.preventDefault();
-    let new_input = document.getElementById("category_name_input");
-    let color_input = document.getElementById("category_color_input");
-    categories.push([new_input.value, color_input.value]);
+    let category_name = document.getElementById("category_name_input");
+    if (category_name.value == '') {
+        return;
+    }
+    let new_input = category_name.value.charAt(0).toUpperCase() + category_name.value.slice(1);
+    const new_category = [new_input, new_color];
 
-    setCategory = [];
-    setCategory.push(new_input.value, color_input.value);
+    // Check if a new category has already been added
+    if (categories.length > 5) {
+        categories.splice(-1, 1, new_category);
+    } else {
+        categories.push(new_category);
+    }
 
     let category_dropdown = document.getElementById("category_dropdown");
     category_dropdown.innerHTML = "";
     categoryDropdown();
 
     // Clear the input fields
-    category_name_input.value = "";
-    category_color_input.value = "#000000";
+    category_name.value = "";
+    new_color = "brown";
 }
 
 function setCategoryOption(category, color) {
     event.preventDefault();
-    // console.log(category, color);
     let assign_placeholder = document.getElementById("assign_placeholder");
     assign_placeholder.innerHTML = `
         <div style="background-color:${color}" class="assign_set_category">
@@ -272,8 +306,10 @@ function categoriesOpenClose() {
     if (categoryOpen == false) {
         categoriesContent.style.visibility = "visible";
         categoryOpen = true;
+        
     } else if (categoryOpen == true) {
         categoriesContent.style.visibility = "hidden";
         categoryOpen = false;
+        closePickColor();
     }
 }
