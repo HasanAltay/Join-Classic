@@ -2,7 +2,7 @@
 //   show_chat_gpt_answer();
 
 //   const prompt = document.getElementById('prompt').value;
-//   const apiKey = "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";
+//   const apiKey = "";
 //   const data = {
 //     prompt: prompt,
 //     temperature: 0.5,

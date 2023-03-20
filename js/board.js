@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("pointerup", handlePointerUp);
 
-    function handlePointerDown({clientX, clientY, pageX, pageY, target}) {
+    function handlePointerDown({clientX, clientY, pageX, pageY, target}) { 
         const card = target.closest(".card");
         if (!card) return;
         const cloneCard = card.cloneNode(true);
@@ -183,40 +183,3 @@ document.addEventListener("DOMContentLoaded", () => {
         card.remove();
     }
 });
-
-
-
-
-// let wrapperNo;
-// let tasksToDo = [];
-// let tasksInProgress = [];
-// let awaitingFeedback = [];
-// let tasksDone = [];
-
-// function initSortArrays() {
-//     tasksToDo = [];
-//     tasksInProgress = [];
-//     awaitingFeedback = [];
-//     tasksDone = [];
-//     for (let i = 0; i < tasksToServer.length; i++) {
-//         const task = tasksToServer[i];
-//         const wrapper = tasksToServer[i][0][6];
-//         sortTasksServerToArrays(task, wrapper);
-//     }
-//     consoleLogTasks();
-// }
-
-// function sortTasksServerToArrays(task, wrapper) {
-//     if (wrapper == 0) {
-//         tasksToDo.push(task);
-//     }
-//     if (wrapper == 1) {
-//         tasksInProgress.push(task);
-//     }
-//     if (wrapper == 2) {
-//         awaitingFeedback.push(task);
-//     }
-//     if (wrapper == 3) {
-//         tasksDone.push(task);
-//     }
-// }
