@@ -8,6 +8,7 @@
   width: 100%;
   max-width: 455px;
   max-height: 600px;
+  min-width: 280px;
 }
 .task_main .dropdown_button {
   display: flex;
@@ -130,6 +131,10 @@
 .task_main .assign_dropdown-content button:hover {
   background-color: #d2e3ff;
 }
+.task_main .assign_dropdown-content button:focus {
+  background-color: #2a3647;
+  color: white;
+}
 .task_main .assign_dropdown-content button .assign_initials {
   display: flex;
   align-items: center;
@@ -143,6 +148,7 @@
   min-height: 20px;
   border-radius: 50%;
   color: white;
+  border: 1px solid white;
 }
 .task_main .assign_dropdown-content button .assign_details_name {
   font-size: 16px;
@@ -184,10 +190,17 @@
   z-index: 21;
   transition: all 100ms ease-in-out;
 }
+.task_main div[id^=user] {
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+}
 .task_main div[id^=user]:hover {
   transform: scale(1.2);
   transition: all 100ms ease-in-out;
-  cursor: pointer;
+}
+.task_main div[id^=user]:active {
+  filter: invert(1);
+  transform: scale(1);
 }
 .task_main .assign_category_input {
   display: flex;
@@ -373,6 +386,8 @@
   font-size: 16px;
   cursor: pointer;
   min-height: 50px;
+  width: 100%;
+  max-width: 425px;
 }
 .task_main .task_date::-webkit-calendar-picker-indicator {
   cursor: pointer;
@@ -448,6 +463,7 @@
   }
   .task_main .task_priorities button {
     font-size: 14px;
+    flex-wrap: wrap;
   }
   .task_confirmation_btns {
     justify-content: center !important;
@@ -777,7 +793,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 35px;
+  width: 40px;
 }
 .board_tasks .card .body {
   font-size: 14px;
@@ -805,7 +821,7 @@
   padding: 5px;
   padding-left: 20px;
   padding-right: 20px;
-  max-width: 130px;
+  max-width: 125px;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;

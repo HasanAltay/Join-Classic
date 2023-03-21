@@ -1,4 +1,7 @@
 function deleteCard() {
+    // Check if the device supports touch events
+    const isTouchDevice = 'ontouchstart' in window;
+
     // Iterate over all four wrappers and adds the delete button to the event handlers
     for (let i = 0; i < 4; i++) {
         let wrapper = document.getElementById("wrapper_" + i);
@@ -9,9 +12,17 @@ function deleteCard() {
             const deleteButton = card.querySelector(`[id^='delete_']`);
             if (deleteButton) {
                 // Add event listener to the delete button inside the card
-                deleteButton.addEventListener("pointerdown", event => {
-                    event.stopPropagation();
-                });
+                if (isTouchDevice) {
+                    // Use touchstart event listener for touch devices
+                    deleteButton.addEventListener("touchstart", event => {
+                        event.stopPropagation();
+                    });
+                } else {
+                    // Use pointerdown event listener for non-touch devices
+                    deleteButton.addEventListener("pointerdown", event => {
+                        event.stopPropagation();
+                    });
+                }
             }
         });
     }
@@ -25,19 +36,30 @@ function deleteTask(i) {
 }
 
 function editCard() {
+    // Check if the device supports touch events
+    const isTouchDevice = 'ontouchstart' in window;
+
     // Iterate over all four wrappers and adds the edit button to the event handlers
     for (let i = 0; i < 4; i++) {
         let wrapper = document.getElementById("wrapper_" + i);
         // Iterate over all cards in the wrapper
         const cards = wrapper.querySelectorAll(".card");
         cards.forEach(card => {
-            // Find the delete button in the card
+            // Find the edit button in the card
             const editButton = card.querySelector(`[id^='edit_']`);
             if (editButton) {
-                // Add event listener to the delete button inside the card
-                editButton.addEventListener("pointerdown", event => {
-                    event.stopPropagation();
-                });
+                // Add event listener to the edit button inside the card
+                if (isTouchDevice) {
+                    // Use touchstart event listener for touch devices
+                    editButton.addEventListener("touchstart", event => {
+                        event.stopPropagation();
+                    });
+                } else {
+                    // Use pointerdown event listener for non-touch devices
+                    editButton.addEventListener("pointerdown", event => {
+                        event.stopPropagation();
+                    });
+                }
             }
         });
     }
@@ -63,7 +85,8 @@ function loadEditTaskInputs(i) {
 }
 
 function saveEditTask(i) {
-    if (!validateAssignContacts()) {
+    event.preventDefault();
+    if (!validateAssignContacts() || !validateCategory() || !validatePriority()) {
         return;
     }
     let saveEditedTasks = createEditedTask(i);

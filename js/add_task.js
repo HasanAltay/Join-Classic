@@ -20,13 +20,14 @@ let categoryOpen = false;
 function createAddTaskJSON(pos) {
     event.preventDefault();
     AddNewTask = createTask(pos);
-    document.getElementById('req_msg_assign').innerHTML = ``;
-    document.getElementById('req_msg_category').innerHTML = ``;
+    let required_msg = document.querySelector('.required_message_board');
+    required_msg.innerHTML = ``;
 
-    if (!validateAssignContacts() || !validateCategory()) {
+    if (!validateAssignContacts() || !validateCategory() || !validatePriority()) {
         return;
       }
-    document.getElementById('req_msg_category').innerHTML = ``;
+
+    required_msg.innerHTML = ``;
     tasks = [];
     tasks.push(AddNewTask);
     // Load existing tasks from the backend
@@ -39,8 +40,8 @@ function createAddTaskJSON(pos) {
 
 function createTask(pos) {
     let title = document.getElementById("title").value;
-    let textarea = document.getElementById("textarea").value;
-    let date = document.getElementById("date").value;
+    let textarea = document.querySelector('.textarea').value;
+    let date = document.querySelector('.task_date').value;
     let position = pos;
     return [
         title,
@@ -57,8 +58,9 @@ function createTask(pos) {
 function validateAssignContacts() {
     let assignContacts = pickedContacts.map(contact => contact[0]);
     if (assignContacts.length === 0) {
-      document.getElementById('req_msg_assign').innerHTML = `
-        Please select at least one contact.
+        let required_msg = document.querySelector('.required_message_board');
+        required_msg.innerHTML = `
+        Please select at least one contact!
       `;
       return false;
     }
@@ -68,8 +70,21 @@ function validateAssignContacts() {
   // check if a category is selected. otherwise give a warning.
   function validateCategory() {
     if (setCategory.length === 0) {
-      document.getElementById('req_msg_category').innerHTML = `
-        Please select a category.
+        let required_msg = document.querySelector('.required_message_board');
+        required_msg.innerHTML = `
+        Please select a category!
+      `;
+      return false;
+    }
+    return true;
+  }
+
+  
+  function validatePriority() {
+    if (setPriority == null) {
+        let required_msg = document.querySelector('.required_message_board');
+        required_msg.innerHTML = `
+        Please select a priority!
       `;
       return false;
     }
@@ -295,6 +310,12 @@ function onFormSubmit() {
 function clearForm(formId) {
     const form = document.getElementById(formId);
     form.reset();
+    setPriority = null;
+    setCategory = [];
+    placeholder = true;
+    pickedContacts = [];
+    addedCategory = [];
+    new_color = 'brown';
     NavRenderAddTask();
     NavClick(3);
 }
@@ -309,6 +330,12 @@ function assignsOpenClose() {
         assignsContent.style.visibility = "hidden";
         assignOpen = false;
     }
+}
+
+function assignsClose() {
+    const assignsContent = document.getElementById("assign_dropdown_list");
+    assignsContent.style.visibility = "hidden";
+    assignOpen = false;
 }
 
 // open and close for categories dropdown

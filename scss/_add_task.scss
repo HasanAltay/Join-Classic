@@ -8,6 +8,7 @@
     width: 100%;
     max-width: 455px;
     max-height: 600px;
+    min-width: 280px;
 
     .dropdown_button {
         display: flex;
@@ -141,6 +142,11 @@
                 background-color: #d2e3ff;
             }
 
+            &:focus {
+                background-color: #2a3647;
+                color: white;
+            }
+
             .assign_initials {
                 display: flex;
                 align-items: center;
@@ -154,6 +160,7 @@
                 min-height: 20px;
                 border-radius: 50%;
                 color: white;
+                border: 1px solid white;
             }
             .assign_details_name {
                 font-size: 16px;
@@ -201,13 +208,19 @@
         transition: all 100ms ease-in-out;
     }
 
+    // styles for div elements with an id that starts with "user"
+    // for example, #user0, #user1, #user2, etc.
     div[id^="user"] {
-        // styles for div elements with an id that starts with "user"
-        // for example, #user0, #user1, #user2, etc.
+        transition: all 100ms ease-in-out;
+        cursor: pointer; 
+
         &:hover {
         transform: scale(1.2);
         transition: all 100ms ease-in-out;
-        cursor: pointer;        
+        }
+        &:active {
+        filter: invert(1);
+        transform: scale(1);
         }
     }
 
@@ -420,6 +433,8 @@
         font-size: 16px;
         cursor: pointer;
         min-height: 50px;
+        width: 100%;
+        max-width: 425px;
         &::-webkit-calendar-picker-indicator { 
             cursor: pointer;
         }
@@ -497,6 +512,7 @@
 
         .task_priorities button {
             font-size: 14px;
+            flex-wrap: wrap;
         }
     }
 

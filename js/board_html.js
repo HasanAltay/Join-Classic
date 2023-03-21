@@ -198,6 +198,7 @@ async function editTask(i) {
             placeholder="Enter a Description"
             maxlength="130"
             type="text"
+            class="textarea"
             id="textarea_board_1"
             style="max-width:340px;max-height:150px"
             required
@@ -209,7 +210,7 @@ async function editTask(i) {
         </div>
     </div>
 
-    <span class="required_message_board" id="req_msg_assign"></span>
+    <span class="required_message_board"></span>
 
     <div class="task_confirmation_btns">
         <button class="button_dark" type="submit">Save
@@ -355,6 +356,7 @@ function addTaskForWrapper(pos) {
                 placeholder="Enter a Description"
                 maxlength="130"
                 type="text"
+                class="textarea"
                 id="textarea_board_2"
                 style="max-width:340px;max-height:150px"
                 required
@@ -366,7 +368,7 @@ function addTaskForWrapper(pos) {
             </div>
         </div>
 
-        <span class="required_message_board" id="req_msg_assign"></span>
+        <span class="required_message_board"></span>
 
         <div class="task_confirmation_btns">
             <button class="button_dark" type="submit">Add Task
@@ -374,15 +376,6 @@ function addTaskForWrapper(pos) {
             </button>
         </div>
     </form>
-    <div class="confirmation" id="task_added_confirmation">
-    <span>Task added to Board!</span>
-    <button
-        class="button_dark"
-        onclick="NavRenderBoard(); NavClick(2); showConfirmationAddTask(a=false);"
-    >
-        OK
-    </button>
-    </div>
     `;
     noOlderDate('date_board_2');
     letterCountTextarea('textarea_board_2','count_board_2');

@@ -113,20 +113,23 @@ function searchTasks() {
 // drag and drop functionality for cards in board
 document.addEventListener("DOMContentLoaded", () => {
     const list = document.querySelector(".list-wrapper");
+    loadWrappersFromServer();
+    
     let pointerDown = false;
     let shiftX = 0;
     let shiftY = 0;
-    let isTouchDevice = 'ontouchstart' in document.documentElement;
-    loadWrappersFromServer();
+
+    const isTouchDevice = 'ontouchstart' in window;
+    
     if (isTouchDevice) {
         window.addEventListener("touchstart", handlePointerDown);
         window.addEventListener("touchmove", handlePointerMove);
         window.addEventListener("touchend", handlePointerUp);
-        } else {
+    } else {
         window.addEventListener("pointerdown", handlePointerDown);
         window.addEventListener("pointermove", handlePointerMove);
         window.addEventListener("pointerup", handlePointerUp);
-        }
+    }
 
     function handlePointerDown(event) {
         const {clientX, clientY, pageX, pageY, target} = isTouchDevice ? event.touches[0] : event;
@@ -159,11 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const closestCard = pointedEl.closest(".card");
         const column = pointedEl.closest(".column");
         ghost.hidden = false;
-        ghost.style.cssText = `width: ${
-            ghost.offsetWidth
-        }px; transform: translateX(${pageX - shiftX}px) translateY(${
-            pageY - shiftY
-        }px)`;
+        ghost.style.cssText = `width: ${ghost.offsetWidth}px; 
+            transform: translateX(${pageX - shiftX}px) translateY(${pageY - shiftY}px)`;
         if (!column) {
             return;
         }

@@ -89,6 +89,7 @@ init_add_task.innerHTML = `
         name="textarea"
         placeholder="Enter a Description"
         maxlength="130"
+        class="textarea"
         type="text"
         id="textarea_add_task"
         required
@@ -100,6 +101,8 @@ init_add_task.innerHTML = `
     </div>
 </div>
 
+<span class="required_message_board"></span>
+
 <div class="task_confirmation_btns">
     <button class="button_bright" onclick="clearForm('add_new_task')">
         Clear
@@ -109,16 +112,6 @@ init_add_task.innerHTML = `
     </button>
 </div>
 </form>
-
-<div class="confirmation" id="task_added_confirmation">
-<span>Task added to Board!</span>
-<button
-    class="button_dark"
-    onclick="NavRenderBoard(); NavClick(2); showConfirmationAddTask(a=false);"
->
-    OK
-</button>
-</div>
 `;
 noOlderDate('date_add_task');
 letterCountTextarea('textarea_add_task','count_add_task');
