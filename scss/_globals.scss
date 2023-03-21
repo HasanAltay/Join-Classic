@@ -294,7 +294,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .global_main_format {
         padding-left: unset;
         padding-top: 80px;

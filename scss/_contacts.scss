@@ -77,10 +77,10 @@
 .contacts_initials {
   text-align: center;
   border-radius: 100%;
-  height: 40px;
-  width: 40px;
-  min-height: 40px;
-  min-width: 40px;
+  height: 35px;
+  width: 35px;
+  min-height: 35px;
+  min-width: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,10 +89,9 @@
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
-  margin-right: 20px;
+  margin-right: 10px;
   margin-left: 10px;
-  border: 2px solid rgb(255, 255, 255);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.16);
+  border: 1px solid white;
 }
 
 .contacts_files {
@@ -137,8 +136,6 @@
   max-width: 500px;
   min-width: 400px;
   height: calc(100vh - 280px);
-  // padding-left: 40px;
-  // padding-right: 40px;
   display: flex;
   flex-direction: column;
   background-color: #F6F7F9;
@@ -360,22 +357,19 @@
   }
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .contacts_details {
     display: none;
     position: fixed;
     height: calc(100vh - 159px);
     min-width: unset;
     min-height: unset;
-    // height: 100vh;
     top: 79px;
-    // top: 0;
     left: 0;
     padding-left: 30px;
     padding-right: 20px;
     padding-top: 20px;
     margin-bottom: 100px;
-
 
     b {
       font-size: 14px;
@@ -447,15 +441,11 @@
   }
 
   .contact_new {
-    // top: 0;
-    // left: 0;
     max-width: unset;
-    // height: calc(100vh - 160px);
     height: 100vh;
     border-radius: unset;
     max-height: unset;
     box-shadow: unset;
-    // min-height: 550px;
   }
 
   .contact_new_top {
@@ -471,5 +461,4 @@
     flex-direction: column;
     padding: 20px;
   }
-
 }

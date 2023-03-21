@@ -136,7 +136,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .nav_top_bar {
         span {
             display: none;

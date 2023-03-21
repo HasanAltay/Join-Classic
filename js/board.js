@@ -116,12 +116,20 @@ document.addEventListener("DOMContentLoaded", () => {
     let pointerDown = false;
     let shiftX = 0;
     let shiftY = 0;
+    let isTouchDevice = 'ontouchstart' in document.documentElement;
     loadWrappersFromServer();
-    window.addEventListener("pointerdown", handlePointerDown);
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointerup", handlePointerUp);
+    if (isTouchDevice) {
+        window.addEventListener("touchstart", handlePointerDown);
+        window.addEventListener("touchmove", handlePointerMove);
+        window.addEventListener("touchend", handlePointerUp);
+        } else {
+        window.addEventListener("pointerdown", handlePointerDown);
+        window.addEventListener("pointermove", handlePointerMove);
+        window.addEventListener("pointerup", handlePointerUp);
+        }
 
-    function handlePointerDown({clientX, clientY, pageX, pageY, target}) {
+    function handlePointerDown(event) {
+        const {clientX, clientY, pageX, pageY, target} = isTouchDevice ? event.touches[0] : event;
         const card = target.closest(".card");
         if (!card) return;
         const cloneCard = card.cloneNode(true);
@@ -130,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ghost.appendChild(cloneCard);
         shiftX = clientX - card.getBoundingClientRect().left;
         shiftY = clientY - card.getBoundingClientRect().top;
-
+    
         ghost.style.cssText = `width: ${
             card.offsetWidth
         }px; transform: translateX(${pageX - shiftX}px) translateY(${
@@ -140,10 +148,11 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.add("afterimage");
     }
 
-    function handlePointerMove({clientX, clientY, pageX, pageY, target}) {
+    function handlePointerMove(event) {
         if (!pointerDown) {
             return;
         }
+        const {clientX, clientY, pageX, pageY, target} = isTouchDevice ? event.touches[0] : event;
         const ghost = document.querySelector(".ghost");
         ghost.hidden = true;
         const pointedEl = document.elementFromPoint(clientX, clientY);
@@ -159,22 +168,22 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Copying a card you're holding
-        const placeCard = ghost.firstChild.cloneNode(true);
-        placeCard.classList.replace("dragging", "afterimage");
-        const fromCard = document.querySelector(".afterimage");
-        if (closestCard) {
-            if (closestCard.classList.contains("afterimage")) {
-                return;
-            }
-            closestCard.before(placeCard);
-        } else {
-            addCardToColumn(column, placeCard);
+    // Copying a card you're holding
+    const placeCard = ghost.firstChild.cloneNode(true);
+    placeCard.classList.replace("dragging", "afterimage");
+    const fromCard = document.querySelector(".afterimage");
+    if (closestCard) {
+        if (closestCard.classList.contains("afterimage")) {
+            return;
         }
-        removeCard(fromCard);
+        closestCard.before(placeCard);
+    } else {
+        addCardToColumn(column, placeCard);
     }
+    removeCard(fromCard);
+}
 
-    function handlePointerUp(e) {
+    function handlePointerUp(event) {
         if (!pointerDown) {
             return;
         }

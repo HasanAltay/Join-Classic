@@ -542,13 +542,13 @@ body {
   }
 }
 
-@media (max-width: 375px) {
+@media only screen and (max-width: 375px) {
   .login_access {
     transform: scale(75%);
   }
 }
 
-@media (max-height: 667px) {
+@media only screen and (max-height: 667px) {
   .login_join {
     bottom: -400px;
     right: unset;
@@ -556,7 +556,7 @@ body {
   }
 }
 
-@media (max-height: 512px) {
+@media only screen and (max-height: 512px) {
   .login_join {
     bottom: -400px;
     right: unset;
@@ -568,19 +568,19 @@ body {
   }
 }
 
-@media (max-width: 280px) and (min-height: 653px) {
+@media only screen and (max-width: 280px) and (min-height: 653px) {
   .login_access {
     transform: scale(53%);
   }
 }
 
-@media (max-height: 667px) and (min-width: 375px) {
+@media only screen and (max-height: 667px) and (min-width: 375px) {
   .login_access {
     transform: scale(73%);
   }
 }
 
-@media (width: 1024px) and (height: 600px) {
+@media only screen and (width: 1024px) and (height: 600px) {
   .login_access {
     transform: scale(95%);
   }

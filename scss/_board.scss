@@ -468,7 +468,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
 
   .add_task_for_wrapper_titel {
     border-radius: unset;
