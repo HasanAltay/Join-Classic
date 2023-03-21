@@ -19,30 +19,30 @@ let categoryOpen = false;
 
 function createAddTaskJSON(pos) {
     event.preventDefault();
+    AddNewTask = createTask(pos);
     document.getElementById('req_msg_assign').innerHTML = ``;
     document.getElementById('req_msg_category').innerHTML = ``;
+
+    if (!validateAssignContacts() || !validateCategory()) {
+        return;
+      }
+    document.getElementById('req_msg_category').innerHTML = ``;
+    tasks = [];
+    tasks.push(AddNewTask);
+    // Load existing tasks from the backend
+    let existingTasks = JSON.parse(backend.getItem("tasks")) || [];
+    existingTasks.push(tasks);
+    // Write the updated tasks array back to the backend
+    backend.setItem("tasks", JSON.stringify(existingTasks));
+    showConfirmationAddTask(a = true);
+}
+
+function createTask(pos) {
     let title = document.getElementById("title").value;
     let textarea = document.getElementById("textarea").value;
     let date = document.getElementById("date").value;
     let position = pos;
-
-    let assignContacts = pickedContacts.map(contact => contact[0]);
-    if (assignContacts.length === 0) {
-        document.getElementById('req_msg_assign').innerHTML = `
-        Please select at least one contact.
-        `;
-        return;
-    }
-    if (setCategory.length === 0) {
-        document.getElementById('req_msg_category').innerHTML = `
-        Please select a category.
-        `;
-        return;
-    }
-    document.getElementById('req_msg_category').innerHTML = ``;
-
-    tasks = [];
-    tasks.push([
+    return [
         title,
         pickedContacts,
         date,
@@ -50,16 +50,31 @@ function createAddTaskJSON(pos) {
         setPriority,
         textarea,
         position,
-    ]);
-
-    // Load existing tasks from the backend
-    let existingTasks = JSON.parse(backend.getItem("tasks")) || [];
-    existingTasks.push(tasks);
-
-    // Write the updated tasks array back to the backend
-    backend.setItem("tasks", JSON.stringify(existingTasks));
-    showConfirmationAddTask(a = true);
+    ];
 }
+
+// check if at least one contact is added. otherwise give a warning.
+function validateAssignContacts() {
+    let assignContacts = pickedContacts.map(contact => contact[0]);
+    if (assignContacts.length === 0) {
+      document.getElementById('req_msg_assign').innerHTML = `
+        Please select at least one contact.
+      `;
+      return false;
+    }
+    return true;
+  }
+  
+  // check if a category is selected. otherwise give a warning.
+  function validateCategory() {
+    if (setCategory.length === 0) {
+      document.getElementById('req_msg_category').innerHTML = `
+        Please select a category.
+      `;
+      return false;
+    }
+    return true;
+  }
 
 function initAssignDropDown() {
     tasks = [];
@@ -69,10 +84,10 @@ function initAssignDropDown() {
     for (let i = 0; i < contactsListTasks.length; i++) {
         const list = contactsListTasks[i];
         assign_dropdown_list.innerHTML += `
-            <button onclick="setContacts('${list[0]}','${list[3]}','${i}','${list[1]}','${list[2]}','${form_ignore}')">
-            <div class="assign_initials" style="background-color:${list[3]}">${list[0]}</div>
-            <span class="assign_details_name">${list[1]} ${list[2]}</span>
-            </button>
+        <button onclick="setContacts('${list[0]}','${list[3]}','${i}','${list[1]}','${list[2]}','${form_ignore}')">
+        <div class="assign_initials" style="background-color:${list[3]}">${list[0]}</div>
+        <span class="assign_details_name">${list[1]} ${list[2]}</span>
+        </button>
         `;
     }
 }
@@ -121,7 +136,6 @@ function setContacts(initials, color, i, name, surname, form_ignore) {
         }
         !assignsOpenClose();
     });
-    
 }
 
 function categoryDropdown() {
@@ -136,25 +150,23 @@ function categoryDropdown() {
         `;
     }
     category_dropdown.innerHTML += `
-        <div class="assign_category_input">
-            <input type="text" placeholder="Add new category" id="category_name_input" maxlength="12" minlength="3">
-            
-            <button class="color_picker_button" id="color_picker_button" onclick="showPickColor()">
-            <img src="./img/eyedropper.png" id="picker_icon">
-                <div class="colors_to_pick" id="colors_to_pick">
-                    <div onclick="pickColor('red')" value="red" style="background-color: red;">Red</div>
-                    <div onclick="pickColor('blue')" value="blue" style="background-color: blue;">Blue</div>
-                    <div onclick="pickColor('green')" value="green" style="background-color: green;">Green</div>
-                    <div onclick="pickColor('magenta')" value="magenta" style="background-color: magenta;">Magenta</div>
-                    <div onclick="pickColor('cyan')" value="cyan" style="background-color: cyan;">Cyan</div>
-                    <div onclick="pickColor('orange')" value="orange" style="background-color: orange;">Orange</div>
-                    <div onclick="pickColor('purple')" value="purple" style="background-color: purple;">Purple</div>
-                    <div onclick="pickColor('brown')" style="background-color: brown;">Brown</div>
-                </div>  
-            </button>
-
-            <button onclick="addCategory()" id="category_btn_input">Add</button>
-        </div>
+    <div class="assign_category_input">
+        <input type="text" placeholder="Add new category" id="category_name_input" maxlength="12" minlength="3">
+        <button class="color_picker_button" id="color_picker_button" onclick="showPickColor()">
+        <img src="./img/eyedropper.png" id="picker_icon">
+            <div class="colors_to_pick" id="colors_to_pick">
+                <div onclick="pickColor('red')" value="red" style="background-color: red;">Red</div>
+                <div onclick="pickColor('blue')" value="blue" style="background-color: blue;">Blue</div>
+                <div onclick="pickColor('green')" value="green" style="background-color: green;">Green</div>
+                <div onclick="pickColor('magenta')" value="magenta" style="background-color: magenta;">Magenta</div>
+                <div onclick="pickColor('cyan')" value="cyan" style="background-color: cyan;">Cyan</div>
+                <div onclick="pickColor('orange')" value="orange" style="background-color: orange;">Orange</div>
+                <div onclick="pickColor('purple')" value="purple" style="background-color: purple;">Purple</div>
+                <div onclick="pickColor('brown')" style="background-color: brown;">Brown</div>
+            </div>  
+        </button>
+        <button onclick="addCategory()" id="category_btn_input">Add</button>
+    </div>
     `;
 }
 
@@ -259,7 +271,6 @@ function SetPriority(picked) {
         medium_img.style.filter = "unset";
         low_img.style.filter = "brightness(0) invert(1)";
     }
-    console.log(setPriority);
 }
 
 // shows confirmation menu if task is added

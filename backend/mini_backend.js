@@ -44,7 +44,6 @@ async function downloadFromServer() {
         jsonFromServer = JSON.parse(result);
         tasksToServer = [];
         tasksToServer = JSON.parse(jsonFromServer.tasks);
-        // console.log(loadJSONFromServer())
 
         let contacts_result = await loadCONTACTSFromServer();
         jsonContactsFromServer = JSON.parse(contacts_result);

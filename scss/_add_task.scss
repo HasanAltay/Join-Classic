@@ -177,6 +177,8 @@
     #assign_contacts_placeholder {
         display: flex;
         max-width: 425px;
+        width: 100%;
+        gap: 4px;
     }
 
     .picked_contacts {
@@ -195,7 +197,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 4px;
         z-index: 21;
         transition: all 100ms ease-in-out;
     }
@@ -205,7 +206,8 @@
         // for example, #user0, #user1, #user2, etc.
         &:hover {
         transform: scale(1.2);
-        transition: all 100ms ease-in-out;        
+        transition: all 100ms ease-in-out;
+        cursor: pointer;        
         }
     }
 

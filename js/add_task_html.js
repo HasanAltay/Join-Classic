@@ -1,7 +1,7 @@
 function initAddTask() {
 pickedContacts = [];
 addedCategory = [];
-let init_add_task = document.getElementById('init_add_task');
+const init_add_task = document.getElementById('init_add_task');
 init_add_task.innerHTML = `
 <form class="task_main" id="add_new_task" onsubmit="createAddTaskJSON(0)">
 <input
@@ -31,11 +31,11 @@ init_add_task.innerHTML = `
 <input
     type="date"
     name="date"
-    id="date"
+    id="date_add_task"
     class="task_date"
     pattern="\d{4}-\d{2}-\d{2}"
     required
-    min="{{ today }}"
+    min="{{today}}"
     placeholder="Select a deadline"
     title="Select a deadline"
     aria-label="Date"
@@ -90,13 +90,13 @@ init_add_task.innerHTML = `
         placeholder="Enter a Description"
         maxlength="130"
         type="text"
-        id="textarea"
+        id="textarea_add_task"
         required
         aria-label="Description"
     ></textarea>
     <div id="the-count">
-        <span id="current">0</span>
-        <span id="maximum">/130</span>
+        <span id="count_add_task">0</span>
+        <span>/130</span>
     </div>
 </div>
 
@@ -120,6 +120,6 @@ init_add_task.innerHTML = `
 </button>
 </div>
 `;
-
-
+noOlderDate('date_add_task');
+letterCountTextarea('textarea_add_task','count_add_task');
 }

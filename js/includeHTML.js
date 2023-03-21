@@ -5,7 +5,7 @@ async function includeHTML() {
     if (templatesContainer.length == 0) return; // there are no templates container
     await asyncForEach(templatesContainer, includeTemplate);
     await includeHTML(); // included templates can have nested data-templates
-    eventListeners();
+    initBackend();
 }
 
 function getAllTemplatesContainer() {
@@ -66,7 +66,6 @@ fetch("./content/summary.html")
 
 async function initBackend() {
     await downloadFromServer();
-    // await loadTaskFromBackend();
     initBoard();
     initLettersFromContacts();
     initSummary();
@@ -82,19 +81,12 @@ async function loadTaskFromBackend() {
     }
 }   
 
-function eventListeners() {
-    initBackend(); // backend for add Tasks Data
-    letterCountTextarea("textarea"); // letter count at add_task & task_edit textarea
-    noOlderDate(); // no older dates at input date
-}
-
-function letterCountTextarea(textareaId) {
-    const textarea = document.getElementById(textareaId);
+function letterCountTextarea(id, count) {
+    const textarea = document.getElementById(id);
     const text = textarea.value;
     const letterCount = text.length;
-    const countDisplay = document.getElementById("current");
+    const countDisplay = document.getElementById(count);
     countDisplay.innerText = letterCount;
-
     textarea.addEventListener("input", function () {
         const text = textarea.value;
         const letterCount = text.length;
@@ -102,9 +94,9 @@ function letterCountTextarea(textareaId) {
     });
 }
 
-function noOlderDate() {
+function noOlderDate(id) {
     // Get the current date and format it as yyyy-MM-dd
     var today = new Date().toISOString().slice(0, 10);
     // Set the value of the "today" variable as the min attribute of the input element
-    document.getElementById("date").min = today;
+    document.getElementById(id).min = today;
 }

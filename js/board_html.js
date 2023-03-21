@@ -1,54 +1,54 @@
 function initBoard() {
     const board_tasks = document.getElementById("board_tasks");
     board_tasks.innerHTML = `
-  <div class="list-wrapper" id="list_wrapper">
-    <div class="column">
-        <div class="column-header">
-            <a>To Do</a
-            ><img
-                src="./img/plus-dark.png"
-                onclick="addTaskForWrapper(0);showTaskForWrapper()"
-                alt="Dark Plus Icon"
-            />
+    <div class="list-wrapper" id="list_wrapper">
+        <div class="column">
+            <div class="column-header">
+                <a>To Do</a
+                ><img
+                    src="./img/plus-dark.png"
+                    onclick="addTaskForWrapper(0);showTaskForWrapper()"
+                    alt="Dark Plus Icon"
+                />
+            </div>
+            <div class="card-wrapper" id="wrapper_0" data-id="0"></div>
         </div>
-        <div class="card-wrapper" id="wrapper_0" data-id="0"></div>
-    </div>
-    <div class="column">
-        <div class="column-header">
-            <a>In progress</a
-            ><img
-                src="./img/plus-dark.png"
-                onclick="addTaskForWrapper(1);showTaskForWrapper()"
-                alt="Dark Plus Icon"
-            />
+        <div class="column">
+            <div class="column-header">
+                <a>In progress</a
+                ><img
+                    src="./img/plus-dark.png"
+                    onclick="addTaskForWrapper(1);showTaskForWrapper()"
+                    alt="Dark Plus Icon"
+                />
+            </div>
+            <div class="card-wrapper" id="wrapper_1" data-id="1"></div>
         </div>
-        <div class="card-wrapper" id="wrapper_1" data-id="1"></div>
-    </div>
-    <div class="column">
-        <div class="column-header">
-            <a>Await feedback</a
-            ><img
-                src="./img/plus-dark.png"
-                onclick="addTaskForWrapper(2);showTaskForWrapper()"
-                alt="Dark Plus Icon"
-            />
+        <div class="column">
+            <div class="column-header">
+                <a>Await feedback</a
+                ><img
+                    src="./img/plus-dark.png"
+                    onclick="addTaskForWrapper(2);showTaskForWrapper()"
+                    alt="Dark Plus Icon"
+                />
+            </div>
+            <div class="card-wrapper" id="wrapper_2" data-id="2"></div>
         </div>
-        <div class="card-wrapper" id="wrapper_2" data-id="2"></div>
-    </div>
-    <div class="column">
-        <div class="column-header">
-            <a>Done</a
-            ><img
-                src="./img/plus-dark.png"
-                onclick="addTaskForWrapper(3);showTaskForWrapper()"
-                alt="Dark Plus Icon"
-            />
+        <div class="column">
+            <div class="column-header">
+                <a>Done</a
+                ><img
+                    src="./img/plus-dark.png"
+                    onclick="addTaskForWrapper(3);showTaskForWrapper()"
+                    alt="Dark Plus Icon"
+                />
+            </div>
+            <div class="card-wrapper" id="wrapper_3" data-id="3"></div>
         </div>
-        <div class="card-wrapper" id="wrapper_3" data-id="3"></div>
     </div>
-  </div>
-  <div class="ghost"></div>
-`;
+    <div class="ghost"></div>
+    `;
     loadWrappersFromServer();
     deleteCard();
     countCardsInWrappers();
@@ -63,20 +63,18 @@ function editCardNo(i) {
         tasksToServer[i][0][4].charAt(0).toUpperCase() +
         tasksToServer[i][0][4].slice(1);
     show_task.innerHTML = `
-<img class="show_task_close_btn" src="./img/cancel.png" onclick="closeTask()">
-
-<div class="header">
-  <div class="title" id="card_category">
-    <span class="wrapper_category" 
-    style="background-color:${tasksToServer[i][0][3][1]}">
-    ${tasksToServer[i][0][3][0]}
-    </span>
-  </div>
-</div>
-<div class="edit_card_titel">${tasksToServer[i][0][0]}</div>
-<div class="edit_card_caption" id="card_description">${tasksToServer[i][0][5]}</div>
-
-<div class="edit_card_details">
+    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeTask()">
+    <div class="header">
+        <div class="title" id="card_category">
+            <span class="wrapper_category" 
+            style="background-color:${tasksToServer[i][0][3][1]}">
+            ${tasksToServer[i][0][3][0]}
+            </span>
+        </div>
+    </div>
+    <div class="edit_card_titel">${tasksToServer[i][0][0]}</div>
+    <div class="edit_card_caption" id="card_description">${tasksToServer[i][0][5]}</div>
+    <div class="edit_card_details">
     <div>
         <b>Due Date:&emsp;</b>
         <a>${tasksToServer[i][0][2]}</a>
@@ -97,25 +95,24 @@ function editCardNo(i) {
             <img src="./img/pen.png">
         </button>
     </div>
-`;
+    `;
     let edit_assigns = document.getElementById(`edit_assigns`);
-    // edit_assigns.innerHTML = ``;
     const assigns = tasksToServer[i][0][1];
     for (let j = 0; j < assigns.length; j++) {
         edit_assigns.innerHTML += `
     <div class="edit_assigns_list">
-        <div class="edit_assigns_circles" style="background-color:${assigns[j][1]}">${assigns[j][0]}</div>
+        <div class="edit_assigns_circles" 
+            style="background-color:${assigns[j][1]}">${assigns[j][0]}</div>
         <a>${assigns[j][2]} ${assigns[j][3]}</a>
     </div>
     `;
-        // console.log(assigns[j][0], assigns[j][2], assigns[j][3]);
     }
 }
 
+// task editing options menue.
 async function editTask(i) {
     await loadTaskFromBackend();
     let edit_task = document.getElementById("edit_task");
-    // edit_task.innerHTML = ``;
     edit_task.innerHTML = `
 <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeEdit();closeTask();">
 <form class="task_main" id="add_new_task" onsubmit="saveEditTask(${i})" style="gap:20px">
@@ -142,7 +139,7 @@ async function editTask(i) {
     <input
         type="date"
         name="date"
-        id="date"
+        id="date_board_1"
         class="task_date"
         pattern="\d{4}-\d{2}-\d{2}"
         required
@@ -201,14 +198,14 @@ async function editTask(i) {
             placeholder="Enter a Description"
             maxlength="130"
             type="text"
-            id="textarea"
+            id="textarea_board_1"
             style="max-width:340px;max-height:150px"
             required
             aria-label="Description"
         >${tasksToServer[i][0][5]}</textarea>
         <div id="the-count">
-            <span id="current">0</span>
-            <span id="maximum">/130</span>
+            <span id="count_board_1">0</span>
+            <span>/130</span>
         </div>
     </div>
 
@@ -220,10 +217,10 @@ async function editTask(i) {
         </button>
     </div>
 </form>
-
-<div id="output"></div>
 `;
-    loadEditTaskInputs(i);
+noOlderDate('date_board_1');
+letterCountTextarea('textarea_board_1','count_board_1');
+loadEditTaskInputs(i);
 }
 
 function showEdit() {
@@ -256,6 +253,7 @@ function closeTaskForWrapper() {
     add_task_for_wrapper.style.display = "none";
 }
 
+// task to put in the selected wrapper.
 function addTaskForWrapper(pos) {
     pickedContacts = [];
     let titel;
@@ -271,10 +269,8 @@ function addTaskForWrapper(pos) {
     if (pos == 3) {
         titel = "Done";
     }
-
     let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
     add_task_for_wrapper.innerHTML = `
-
     <a class="add_task_for_wrapper_titel"><img src="./img/plus-light.png">${titel}</a>	
     <img class="add_task_for_wrapper_close_btn" src="./img/close.png" onclick="closeTaskForWrapper()">
 
@@ -301,7 +297,7 @@ function addTaskForWrapper(pos) {
         <input
             type="date"
             name="date"
-            id="date"
+            id="date_board_2"
             class="task_date"
             pattern="\d{4}-\d{2}-\d{2}"
             required
@@ -359,14 +355,14 @@ function addTaskForWrapper(pos) {
                 placeholder="Enter a Description"
                 maxlength="130"
                 type="text"
-                id="textarea"
+                id="textarea_board_2"
                 style="max-width:340px;max-height:150px"
                 required
                 aria-label="Description"
             ></textarea>
             <div id="the-count">
-                <span id="current">0</span>
-                <span id="maximum">/130</span>
+                <span id="count_board_2">0</span>
+                <span>/130</span>
             </div>
         </div>
 
@@ -388,7 +384,8 @@ function addTaskForWrapper(pos) {
     </button>
     </div>
     `;
+    noOlderDate('date_board_2');
+    letterCountTextarea('textarea_board_2','count_board_2');
     categoryDropdown();
-    letterCountTextarea("textarea");
     initAssignDropDown();
 }

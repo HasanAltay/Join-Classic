@@ -49,7 +49,6 @@ function loadEditTaskInputs(i) {
     let color = tasksToServer[i][0][3][1];
     setCategoryOption(category, color);
     categoryDropdown();
-    letterCountTextarea("textarea");
     SetPriority(tasksToServer[i][0][4]);
     let assignedContacts = tasksToServer[i][0][1];
     for (let i = 0; i < assignedContacts.length; i++) {
@@ -63,14 +62,21 @@ function loadEditTaskInputs(i) {
     initAssignDropDown();
 }
 
-async function saveEditTask(i) {
-    let assignContacts = pickedContacts.map(contact => contact[0]);
-    if (assignContacts.length === 0) {
-        document.getElementById("req_msg_assign").innerHTML = `
-      Please select at least one contact.
-      `;
+function saveEditTask(i) {
+    if (!validateAssignContacts()) {
         return;
     }
+    let saveEditedTasks = createEditedTask(i);
+    tasks = [];
+    tasks.push(saveEditedTasks);
+    tasksToServer[i] = tasks;
+    // Write the updated tasks array back to the backend
+    backend.setItem("tasks", JSON.stringify(tasksToServer));
+    NavRenderBoard();
+    loadWrappersFromServer(); //load again
+}
+
+function createEditedTask(i) {
     let title = document.getElementById("title").value;
     let assigns = pickedContacts;
     let deadline = document.getElementById("date").value;
@@ -78,9 +84,7 @@ async function saveEditTask(i) {
     let category = setCategory;
     let description = document.getElementById("textarea").value;
     let position = tasksToServer[i][0][6];
-
-    tasks = [];
-    tasks.push([
+    return [
         title,
         assigns,
         deadline,
@@ -88,12 +92,7 @@ async function saveEditTask(i) {
         priority,
         description,
         position,
-    ]);
-    tasksToServer[i] = tasks;
-
-    // Write the updated tasks array back to the backend
-    backend.setItem("tasks", JSON.stringify(tasksToServer));
-    NavRenderBoard();
+    ];
 }
 
 // saves the position of the cards if moved to another wrapper

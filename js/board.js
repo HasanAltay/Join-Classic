@@ -26,7 +26,7 @@ function loadWrappersFromServer() {
           <div class="caption" id="card_description">${tasksToServer[i][0][5]}</div>
           <div class="wrapper_footer" id="card_footer">
             <div class="assigns" id="wrapper_assigns_${i}"></div>
-              <img class="priority" src="./img/${tasksToServer[i][0][4]}.png">
+              <img class="priority" src="./img/${tasksToServer[i][0][4]}.png" style="margin-bottom: 10px;">
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@ function loadWrappersFromServer() {
             wrapper_3.innerHTML += card_content;
         }
         initAssignsForCard(i);
-        // wrapperNo = i; 
+        // wrapperNo = i;
     }
     board = tasksToServer.length; // shows Tasks in Board at Summary
     consoleLogTasksToServer();
@@ -53,16 +53,32 @@ function loadWrappersFromServer() {
 // loading the assigned contacts of the tasks to the cards
 function initAssignsForCard(i) {
     const assigns = tasksToServer[i][0][1];
-    for (let j = 0; j < assigns.length; j++) {
+    const assignSpacing = 30; // horizontal spacing for overlapping between assigns
+    const maxContacts = 3; // maximum number of contacts to display
+    const numContacts = Math.min(assigns.length, maxContacts); // get the smaller of the two values
+    
+    for (let j = 0; j < numContacts; j++) {
         let wrapper_assigns = document.getElementById(`wrapper_assigns_${i}`);
         wrapper_assigns.innerHTML += `
-    <div class="wrapper_assigns" style="background-color:${assigns[j][1]}">
-    ${assigns[j][0]}
-    </div>
-    `;
+            <div class="wrapper_assigns" style="background-color:${
+                assigns[j][1]
+            }; left:${j * assignSpacing}px;">
+                ${assigns[j][0]}
+            </div>
+        `;
     }
-
+    
+    // if there are more than 3 contacts, display the number of remaining contacts in a separate div
+    if (assigns.length > maxContacts) {
+        let wrapper_assigns = document.getElementById(`wrapper_assigns_${i}`);
+        wrapper_assigns.innerHTML += `
+            <div class="wrapper_assigns" style="background-color:#6F72FF; left:${maxContacts * assignSpacing}px;">
+                +${assigns.length - maxContacts}
+            </div>
+        `;
+    }
 }
+
 
 function searchTasks() {
     const searchInput = document.querySelector(".board_search_bar input");
@@ -105,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("pointerup", handlePointerUp);
 
-    function handlePointerDown({clientX, clientY, pageX, pageY, target}) { 
+    function handlePointerDown({clientX, clientY, pageX, pageY, target}) {
         const card = target.closest(".card");
         if (!card) return;
         const cloneCard = card.cloneNode(true);
@@ -171,11 +187,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function addCardToColumn(column, card) {
         const cardWrapper = column.querySelector(".card-wrapper");
-            // shows which card is placed in which wrapper
-            const wrapperId = cardWrapper.dataset.id;
-            const cardId = parseInt(card.dataset.id);
-            console.log(`Card_${cardId} placed in Wrapper_${wrapperId}`);
-            chanceWrapperNoFromTask(cardId, wrapperId);
+        // shows which card is placed in which wrapper
+        const wrapperId = cardWrapper.dataset.id;
+        const cardId = parseInt(card.dataset.id);
+        console.log(`Card_${cardId} placed in Wrapper_${wrapperId}`);
+        chanceWrapperNoFromTask(cardId, wrapperId);
         cardWrapper.appendChild(card);
     }
 
