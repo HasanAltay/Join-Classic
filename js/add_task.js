@@ -301,11 +301,6 @@ function showConfirmationAddTask(a) {
     }
 }
 
-// function onFormSubmit() {
-//     event.preventDefault();
-//     // your Javascript code here
-// }
-
 // clears the input fields of the form and refreshes hole section
 function clearForm(formId) {
     const form = document.getElementById(formId);
@@ -322,20 +317,14 @@ function clearForm(formId) {
 
 // open and close for contacts assigns dropdown
 function assignsOpenClose() {
-    const assignsContent = document.getElementById("assign_dropdown_list");
+    let assignsContent = document.getElementById("assign_dropdown_list");
     if (assignOpen == false) {
         assignsContent.style.visibility = "visible";
         assignOpen = true;
-    } else if (assignOpen == true) {
+    } else {
         assignsContent.style.visibility = "hidden";
         assignOpen = false;
     }
-}
-
-function assignsClose() {
-    const assignsContent = document.getElementById("assign_dropdown_list");
-    assignsContent.style.visibility = "hidden";
-    assignOpen = false;
 }
 
 // open and close for categories dropdown
@@ -344,8 +333,7 @@ function categoriesOpenClose() {
     if (categoryOpen == false) {
         categoriesContent.style.visibility = "visible";
         categoryOpen = true;
-        
-    } else if (categoryOpen == true) {
+    } else {
         categoriesContent.style.visibility = "hidden";
         categoryOpen = false;
         closePickColor();

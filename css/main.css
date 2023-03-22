@@ -1012,13 +1012,7 @@
 
 .contacts_letters {
   padding: 20px 20px 20px 35px;
-  border-bottom: 2px solid rgb(236, 230, 230);
-}
-
-.contacts_names_list {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  border-bottom: 2px solid rgb(243, 237, 237);
 }
 
 .contacts_name_email {
@@ -1090,15 +1084,13 @@
   max-width: 500px;
   height: calc(100vh - 280px);
   padding-left: 40px;
-  padding-right: 40px;
+  padding-right: 20px;
   width: 100%;
 }
 
 .contacts_details {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  min-width: 400px;
   height: calc(100vh - 280px);
   display: flex;
   flex-direction: column;
@@ -1148,8 +1140,10 @@
 
 .details_name {
   font-weight: 700;
-  font-size: 3vw;
+  font-size: 28px;
   white-space: nowrap;
+  min-width: 290px;
+  width: 100%;
 }
 
 .details_initials {
@@ -1174,7 +1168,7 @@
 .new_contact_pos {
   position: absolute;
   bottom: 5px;
-  right: 5px;
+  right: 0;
   z-index: 2;
 }
 
@@ -1196,12 +1190,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 380px;
-  min-width: 360px;
+  max-width: 400px;
+  min-width: 400px;
   height: calc(100vh - 280px);
   z-index: 14;
   border-radius: 20px;
-  min-height: 500px;
+  min-height: 670px;
   max-height: 700px;
   box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
 }
@@ -1209,7 +1203,6 @@
 .contact_profile_container {
   position: absolute;
   bottom: -55px;
-  left: auto;
   width: 130px;
   height: 130px;
   min-width: 130px;
@@ -1227,7 +1220,7 @@
 }
 
 .contact_new_top {
-  background-color: #32314B;
+  background-color: #29ABE2;
   height: 35%;
   border-radius: 20px 20px 0px 0px;
   color: white;
@@ -1239,8 +1232,8 @@
   position: relative;
 }
 .contact_new_top .contacts_logo {
-  width: 40px;
-  height: 49px;
+  width: 30px;
+  height: 39px;
 }
 .contact_new_top span {
   font-weight: 700;
@@ -1249,7 +1242,7 @@
 .contact_new_top a {
   font-weight: 300;
   font-size: 16px;
-  color: #29ABE2;
+  color: #ffffff;
 }
 
 .contact_new_bottom {
@@ -2328,9 +2321,9 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
-  width: 200px;
+  width: 190px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 10px;
   height: 100vh;
   z-index: 8;
   background-color: #F6F7F9;
@@ -2341,22 +2334,30 @@ body {
   float: right;
   color: #091931;
   cursor: pointer;
+  border-radius: 10px;
   width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   height: 46px;
-  transition: all 125ms ease-in-out;
+  transition: all 100ms ease-in-out;
+  padding-left: 20px;
 }
 
 .nav_btn:hover {
-  background-color: rgba(104, 164, 232, 0.25);
-  transition: all 125ms ease-in-out;
-  border-radius: 10px;
+  background-color: #29ABE2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 100ms ease-in-out;
   color: #091931;
+  color: white;
+}
+
+.nav_btn:hover img {
+  transition: all 100ms ease-in-out;
+  filter: brightness(100%);
 }
 
 .nav_btn a {
-  width: 80px;
+  white-space: nowrap;
 }
 
 .nav_btn_picked {
@@ -2365,32 +2366,34 @@ body {
   cursor: pointer;
   width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
+  padding-left: 20px;
   height: 46px;
   background-color: #2F3449;
   border-radius: 10px;
   color: white;
   filter: brightness(105%);
-  transition: all 125ms ease-in-out;
+  transition: all 100ms ease-in-out;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 .nav_btn_picked img {
   height: 20px;
   display: flex;
   align-items: center;
   justify-content: left;
-  margin-right: 20px;
+  margin-right: 15px;
   filter: brightness(100%);
 }
 .nav_btn_picked a {
-  width: 80px;
+  white-space: nowrap;
 }
 
 .nav_btn img {
   display: flex;
   align-items: center;
   justify-content: left;
-  margin-right: 20px;
+  margin-right: 15px;
   height: 20px;
   filter: brightness(40%);
 }
