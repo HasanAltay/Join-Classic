@@ -481,6 +481,7 @@
   max-height: 50px;
   position: relative;
   margin-bottom: 70px;
+  width: 100%;
 }
 .board_search_bar div {
   position: relative;
@@ -935,17 +936,25 @@
     padding-bottom: 100px;
   }
   .board_search_bar {
-    margin-left: 20px;
-    margin-right: 20px;
+    max-width: unset;
+    margin-bottom: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
   }
-  .board_search_bar .mobile {
-    display: flex;
+  .board_search_bar input {
+    max-width: unset;
   }
-  .board_search_bar .mobile img {
-    margin-left: unset !important;
-  }
-  .board_search_bar .desktop {
+  .board_search_bar button {
     display: none;
+  }
+  .board_search_bar div {
+    position: relative;
+    width: 100%;
+  }
+  .board_search_bar div .search_img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
   .list-wrapper {
     justify-content: center;
