@@ -301,10 +301,10 @@ function showConfirmationAddTask(a) {
     }
 }
 
-function onFormSubmit() {
-    event.preventDefault();
-    // your Javascript code here
-}
+// function onFormSubmit() {
+//     event.preventDefault();
+//     // your Javascript code here
+// }
 
 // clears the input fields of the form and refreshes hole section
 function clearForm(formId) {

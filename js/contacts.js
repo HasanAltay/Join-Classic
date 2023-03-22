@@ -4,6 +4,7 @@ let contactsListTasks = [];
 let pickedContact;
 
 function saveNewContact() {
+    event.preventDefault();
     const add_name = document.getElementById("add_name").value;
     const add_surname = document.getElementById("add_surname").value;
     const add_mail = document.getElementById("add_mail").value;
@@ -16,10 +17,11 @@ function saveNewContact() {
     };
     contacts.push(new_contact);
     backend.saveContacts("contacts", JSON.stringify(contacts));
-    console.log("Server:", jsonContactsFromServer.contacts);
+    showConfirmationContact(true,"New Contact added!");
 }
 
 function editExistingContact() {
+    event.preventDefault();
     const edit_name = document.getElementById("edit_name").value;
     const edit_surname = document.getElementById("edit_surname").value;
     const edit_mail = document.getElementById("edit_mail").value;
@@ -32,6 +34,7 @@ function editExistingContact() {
     };
     contacts[pickedContact] = edited_contact;
     backend.saveContacts("contacts", JSON.stringify(contacts));
+    showConfirmationContact(true,"Your change is saved!");
 }
 
 async function initLettersFromContacts() {
@@ -106,8 +109,8 @@ function initDetails(letters, name, surname, mail, phone, color, i) {
       </span>
     </div>
     <div>
-      <span class="contacts_h2">Contact Information<a onclick="showEditContact()">
-        <img src="./img/pen_blue.png">Edit Contact</a><br><br>
+      <span class="contacts_h2">Contact Information<a onclick="showEditContact('${name}','${surname}','${mail}','${phone}')">
+        <img src="./img/pen_blue.png">Edit Contact</a>
       </span>
     </div>
     <div>
@@ -123,40 +126,39 @@ function initDetails(letters, name, surname, mail, phone, color, i) {
     </button>
     <img class="mobile_arrow" src="./img/left_arrow.png" onclick="closeDetails()">
   `;
-    addContact();
-    editContact(name, surname, mail, phone);
-    // console.log(contacts);
 }
 
-// adds new contact to the list
+// adds a new contact to the contacts-list
 function addContact() {
-    let msg = "New Contact added!";
     let contact_new = document.getElementById("contact_new");
     contact_new.innerHTML = `
     <div class="contact_new_top">
       <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeAddContact()"> 
       <img class="contacts_logo" src="./img/logo_topbar.png"> 
       <span>Add contact</span> 
-      <a>Tasks are better with a team!</a> 
+      <a>Tasks are better with a team!</a>
+      <div class="contact_profile_container"></div>   
     </div> 
-    <form class="contact_new_bottom" id="add_contact" onsubmit="onFormSubmit();"> 
-      <input type="text" placeholder="Name" name="name" maxlength="36" id="add_name"> 
-      <input type="text" placeholder="Surname" name="surname" maxlength="36" id="add_surname"> 
-      <input type="email" placeholder="Email" name="mail" maxlength="36" id="add_mail"> 
-      <input type="tel" placeholder="Phone" name="phone" id="add_phone" 
-        pattern="[0-9]{10,16}" title="Please enter a valid phone number (between 10 and 16 digits)"> 
+
+    <form class="contact_new_bottom" id="add_contact" onsubmit="saveNewContact()">
+
+      <input type="text" placeholder="First name (*)" maxlength="12" id="add_name" required> 
+      <input type="text" placeholder="Last name" maxlength="12" id="add_surname"> 
+      <input type="email" placeholder="Email (*)" maxlength="28" id="add_mail" required> 
+      <input type="tel" placeholder="Phone" maxlength="21" id="add_phone" 
+        title="Please enter a valid phone number (between 10 and 16 digits)">
+
       <div class="contact_new_btns"> 
         <button class="button_bright" onclick="closeAddContact()">Cancel</button> 
-        <button type="submit" class="button_dark" 
-          onclick="saveNewContact();
-            showConfirmationContact(true,'${msg}');">Add<img src="./img/check.png" alt="Check Icon" />
+        <button type="submit" class="button_dark">Add<img src="./img/check.png" alt="Check Icon" />
         </button> 
-      </div> 
+      </div>
+
     </form>
   `;
 }
 
-// edit existing contact from the list
+// edit existing contact from the contacts-list
 function editContact(name, surname, mail, phone) {
     // finds the position of the picked contact for editing
     const firstLetter = name.charAt(0).toUpperCase();
@@ -167,32 +169,43 @@ function editContact(name, surname, mail, phone) {
             pickedContact = contacts.indexOf(contact);
         }
     }
-    let msg = "Your change is saved!";
-    let msg_del = "Do you really want to delete this contact?";
-    let contact_edit = document.getElementById("contact_edit");
-    contact_edit.innerHTML = `
+  let contact_edit = document.getElementById("contact_edit");
+  contact_edit.innerHTML = `
   <div class="contact_new_top">
     <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeEditContact()">
     <img class="contacts_logo" src="./img/logo_topbar.png">    
-    <span>Edit contact</span>  
-  </div> 
-  <form class="contact_new_bottom" id="edit_contact" onsubmit="onFormSubmit();"> 
-    <input type="text" placeholder="Name" name="name" maxlength="36" id="edit_name" value="${name}"> 
-    <input type="text" placeholder="Surname" name="surname" maxlength="36" id="edit_surname" value="${surname}"> 
-    <input type="email" placeholder="Email" name="mail" maxlength="36" id="edit_mail" value="${mail}"> 
-    <input type="tel" placeholder="Phone" name="phone" id="edit_phone" pattern="[0-9]{10,16}" 
-      title="Please enter a valid phone number (between 10 and 16 digits)" value="${phone}"> 
+    <span>Edit contact</span>
+    <a>Tasks are better with a team!</a>
+    <div class="contact_profile_container"></div>   
+  </div>
+
+  <form class="contact_new_bottom" id="edit_contact" onsubmit="editExistingContact()">
+
+    <input type="text" placeholder="First name (*)" maxlength="12" id="edit_name" value="${name}" required> 
+    <input type="text" placeholder="Last name" maxlength="12" id="edit_surname" value="${surname}"> 
+    <input type="email" placeholder="Email (*)" maxlength="28" id="edit_mail" value="${mail}" required> 
+    <input type="tel" placeholder="Phone" maxlength="21" id="edit_phone"
+    title="Please enter a valid phone number (between 10 and 16 digits)" value="${phone}">
+
     <div class="contact_new_btns">
-      <button type="submit" class="button_delete" 
-        onclick="showConfirmationDeleteContact(true,'${msg_del}');">Delete
+
+      <button class="button_delete" type="button"
+        onclick="showConfirmationDeleteContact(true);">
+        <img class="contacts_trash_icon" src="./img/trash.png" alt="Trash Icon">
       </button> 
-      <button type="submit" class="button_dark" 
-        onclick="editExistingContact();
-          showConfirmationContact(true,'${msg}');">Save<img src="./img/check.png" alt="Check Icon" />
+
+      <button type="submit" class="button_dark">Save
+        <img src="./img/check.png" alt="Check Icon">
       </button> 
     </div> 
+    
   </form>
 `;
+}
+
+function removeSpaces(input) {
+  // Replace any spaces in the input value with an empty string
+  input.value = input.value.replace(/\s/g, '');
 }
 
 function deleteContact() {
@@ -212,9 +225,9 @@ function showConfirmationContact(a, msg) {
     }
 }
 
-function showConfirmationDeleteContact(a, msg) {
+function showConfirmationDeleteContact(a) {
     let confirm_msg_delete = document.getElementById("confirm_msg_delete");
-    confirm_msg_delete.innerHTML = msg;
+    confirm_msg_delete.innerHTML = "Do you really want to delete this contact?";
     let contact_delete = document.getElementById("contact_delete");
     if (a) {
         contact_delete.style.visibility = "visible";
@@ -244,8 +257,10 @@ function closeDetails() {
 }
 
 function showAddContact() {
+    addContact();
     let contact_new = document.getElementById("contact_new");
     contact_new.style.display = "block";
+    document.getElementById("add_name").focus();
 }
 
 function closeAddContact() {
@@ -253,9 +268,11 @@ function closeAddContact() {
     contact_new.style.display = "none";
 }
 
-function showEditContact() {
+function showEditContact(name, surname, mail, phone) {
+    editContact(name, surname, mail, phone);
     let contact_edit = document.getElementById("contact_edit");
     contact_edit.style.display = "block";
+    document.getElementById("edit_name").focus();
 }
 
 function closeEditContact() {

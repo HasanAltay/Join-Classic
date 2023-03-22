@@ -4,7 +4,11 @@
             <div class="contacts_letter_box" id="letter_box"></div>
         </div>
         <div class="details_main">
-            <div id="contacts_details" class="contacts_details"></div>
+            <div id="contacts_details" class="contacts_details">
+                <button class="button_dark new_contact_pos" onclick="showAddContact()">Add contact
+                    <img src="./img/add_contact.png">
+                </button>
+            </div>
             <div class="contact_new" id="contact_new"></div>
             <div class="contact_new" id="contact_edit"></div>
         </div>
@@ -33,7 +37,7 @@
               class="button_delete"
               onclick="NavRenderContacts(); NavClick(4); showConfirmationDeleteContact(false); deleteContact()"
           >
-              Confirm
+              Yes
           </button>
       </div>
     </div>
