@@ -99,15 +99,16 @@
         padding: 10px 0px 10px 10px;
         max-height: 320px;
         overflow-y: scroll;
-        scrollbar-width: auto;
         z-index: 20;
 
         /* Firefox */
-        scrollbar-color: #ffffff #ffffff;
+        scrollbar-width: thin;
+        scrollbar-color: #2a3647 #f6f7f9;
 
             /* Chrome, Edge, and Safari */
         &::-webkit-scrollbar {
             width: 10px;
+            background-color: #ffffff;
         }
 
         &::-webkit-scrollbar-track {
@@ -117,7 +118,7 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: #2a36472c;
+            background-color: #2a3647;
             border-radius: 10px;
             border: 3px solid white;
         }

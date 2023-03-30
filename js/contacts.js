@@ -142,9 +142,9 @@ function addContact() {
 
     <form class="contact_new_bottom" id="add_contact" onsubmit="saveNewContact()">
 
-      <input type="text" placeholder="First name (*)" maxlength="12" id="add_name" required> 
+      <input type="text" placeholder="First name (*)" maxlength="12" id="add_name" name="firstname" required> 
       <input type="text" placeholder="Last name" maxlength="12" id="add_surname"> 
-      <input type="email" placeholder="Email (*)" maxlength="28" id="add_mail" required> 
+      <input type="email" placeholder="Email (*)" maxlength="28" id="add_mail" name="email" required> 
       <input type="tel" placeholder="Phone" maxlength="21" id="add_phone" 
         title="Please enter a valid phone number (between 10 and 16 digits)">
 

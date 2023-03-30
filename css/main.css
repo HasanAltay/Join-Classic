@@ -94,14 +94,15 @@
   padding: 10px 0px 10px 10px;
   max-height: 320px;
   overflow-y: scroll;
-  scrollbar-width: auto;
   z-index: 20;
   /* Firefox */
-  scrollbar-color: #ffffff #ffffff;
+  scrollbar-width: thin;
+  scrollbar-color: #2a3647 #f6f7f9;
   /* Chrome, Edge, and Safari */
 }
 .task_main .assign_dropdown-content::-webkit-scrollbar {
   width: 10px;
+  background-color: #ffffff;
 }
 .task_main .assign_dropdown-content::-webkit-scrollbar-track {
   background-color: #ffffff;
@@ -109,7 +110,7 @@
   margin-bottom: 10px;
 }
 .task_main .assign_dropdown-content::-webkit-scrollbar-thumb {
-  background-color: rgba(42, 54, 71, 0.1725490196);
+  background-color: #2a3647;
   border-radius: 10px;
   border: 3px solid white;
 }
@@ -987,7 +988,7 @@
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
   min-height: 500px;
   /* Firefox */
-  scrollbar-color: #ffffff #ffffff;
+  scrollbar-color: #ffffff #F3EDED;
   /* Chrome, Edge, and Safari */
 }
 .contacts_list::-webkit-scrollbar {
@@ -999,7 +1000,7 @@
   margin-bottom: 10px;
 }
 .contacts_list::-webkit-scrollbar-thumb {
-  background-color: rgba(42, 54, 71, 0.1725490196);
+  background-color: #F3EDED;
   border-radius: 10px;
   border: 3px solid white;
 }
@@ -1435,13 +1436,14 @@
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;
-  scrollbar-width: auto;
   /* Firefox */
-  scrollbar-color: #ffffff #ffffff;
+  scrollbar-width: auto;
+  scrollbar-color: #2a3647 #f6f7f9;
   /* Chrome, Edge, and Safari */
 }
 .global_main_format::-webkit-scrollbar {
-  width: 15px;
+  width: 16px;
+  background-color: #f6f7f9;
 }
 .global_main_format::-webkit-scrollbar-track {
   background-color: #f6f7f9;
@@ -1451,7 +1453,6 @@
   background-color: #2a3647;
   border-radius: 10px;
   border: 3px solid #f6f7f9;
-  margin-top: 90px;
 }
 
 .font61-700 {

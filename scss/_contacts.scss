@@ -18,7 +18,7 @@
   min-height: 500px;
 
   /* Firefox */
-  scrollbar-color: #ffffff #ffffff;
+  scrollbar-color: #ffffff #F3EDED;
 
 	/* Chrome, Edge, and Safari */
   &::-webkit-scrollbar {
@@ -32,7 +32,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #2a36472c;
+    background-color: #F3EDED;
     border-radius: 10px;
     border: 3px solid white;
   }
