@@ -1,4 +1,5 @@
 setURL("https://hasanaltay.de/portfolio-web/Join-classic/backend");
+let today; // var for noOlderDate();
 
 async function includeHTML() {
     const templatesContainer = getAllTemplatesContainer();
@@ -94,14 +95,12 @@ function letterCountTextarea(id, count) {
     });
 }
 
-let today;
-
 function noOlderDate(id) {
     // Get the current date and format it as yyyy-MM-dd
     today = new Date().toISOString().slice(0, 10);
     // Set the value of the "today" variable as the min attribute of the input element
     document.getElementById(id).min = today;
+    // Set today as standard value of the input element
     document.getElementById(id).value = today;
-    console.log(today);
 }
 
