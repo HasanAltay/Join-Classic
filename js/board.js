@@ -47,7 +47,6 @@ function loadWrappersFromServer() {
         // wrapperNo = i;
     }
     board = tasksToServer.length; // shows Tasks in Board at Summary
-    consoleLogTasksToServer();
 }
 
 // loading the assigned contacts of the tasks to the cards

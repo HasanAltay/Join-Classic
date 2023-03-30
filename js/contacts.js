@@ -105,12 +105,12 @@ function initDetails(letters, name, surname, mail, phone, color, i) {
       <div class="details_initials" style="background-color:${color}">${letters}</div>
       <span class="details_name">${name} ${surname}<br>
         <a onclick="addTaskWithContact('${letters}','${color}','${name}','${surname}','${i}')">
-        <img src="./img/plus_blue.png">Add Task</a>
+        <img src="./img/plus_blue.png" alt="Plus Icon">Add Task</a>
       </span>
     </div>
     <div>
       <span class="contacts_h2">Contact Information<a onclick="showEditContact('${name}','${surname}','${mail}','${phone}')">
-        <img src="./img/pen_blue.png">Edit Contact</a>
+        <img src="./img/pen_blue.png" alt="Pen Icon">Edit Contact</a>
       </span>
     </div>
     <div>
@@ -122,9 +122,9 @@ function initDetails(letters, name, surname, mail, phone, color, i) {
       <a href="tel:${phone}">${phone}</a>
     </div>
     <button class="button_dark new_contact_pos" onclick="showAddContact()">Add contact
-      <img src="./img/add_contact.png">
+      <img src="./img/add_contact.png" alt="Hook Icon">
     </button>
-    <img class="mobile_arrow" src="./img/left_arrow.png" onclick="closeDetails()">
+    <img class="mobile_arrow" src="./img/left_arrow.png" onclick="closeDetails()" alt="Arrow">
   `;
 }
 
@@ -133,8 +133,8 @@ function addContact() {
     let contact_new = document.getElementById("contact_new");
     contact_new.innerHTML = `
     <div class="contact_new_top">
-      <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeAddContact()"> 
-      <img class="contacts_logo" src="./img/logo_topbar.png"> 
+      <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeAddContact()" alt="Close"> 
+      <img class="contacts_logo" src="./img/logo_topbar.png" alt="Join Logo"> 
       <span>Add contact</span> 
       <a>Tasks are better with a team!</a>
       <div class="contact_profile_container"></div>   
@@ -172,8 +172,8 @@ function editContact(name, surname, mail, phone) {
   let contact_edit = document.getElementById("contact_edit");
   contact_edit.innerHTML = `
   <div class="contact_new_top">
-    <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeEditContact()">
-    <img class="contacts_logo" src="./img/logo_topbar.png">    
+    <img class="contact_new_edit_close_btn" src="./img/close.png" onclick="closeEditContact()" alt="Close">
+    <img class="contacts_logo" src="./img/logo_topbar.png" alt="Join Logo">    
     <span>Edit contact</span>
     <a>Tasks are better with a team!</a>
     <div class="contact_profile_container"></div>   

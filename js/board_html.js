@@ -82,7 +82,7 @@ function editCardNo(i) {
     <div>
         <b>Priority:&emsp;</b>
         <a class="edit_task_priority">${priority}
-            <img class="priority" src="./img/${tasksToServer[i][0][4]}.png">
+            <img class="priority" src="./img/${tasksToServer[i][0][4]}.png" alt="Priority">
         </a>
     </div>
     <div>
@@ -92,7 +92,7 @@ function editCardNo(i) {
     </div>
     <div class="edit_card_footer">
         <button class="task_edit_button" onclick="showEdit();editTask('${i}')">
-            <img src="./img/pen.png">
+            <img src="./img/pen.png" alt="Pen">
         </button>
     </div>
     `;
@@ -114,7 +114,7 @@ async function editTask(i) {
     await loadTaskFromBackend();
     let edit_task = document.getElementById("edit_task");
     edit_task.innerHTML = `
-<img class="show_task_close_btn" src="./img/cancel.png" onclick="closeEdit();closeTask();">
+<img class="show_task_close_btn" src="./img/cancel.png" onclick="closeEdit();closeTask();" alt="Close">
 <form class="task_main" id="add_new_task" onsubmit="saveEditTask(${i})" style="gap:20px">
     <input
         value="${tasksToServer[i][0][0]}"
@@ -274,7 +274,7 @@ function addTaskForWrapper(pos) {
     let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
     add_task_for_wrapper.innerHTML = `
     <a class="add_task_for_wrapper_titel">${titel}</a>	
-    <img class="add_task_for_wrapper_close_btn" src="./img/close.png" onclick="closeTaskForWrapper()">
+    <img class="add_task_for_wrapper_close_btn" src="./img/close.png" onclick="closeTaskForWrapper()" alt="Close">
 
     <form class="task_main" id="add_new_task" onsubmit="createAddTaskJSON(${pos})" style="gap:20px">
         <input

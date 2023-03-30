@@ -6,10 +6,10 @@ function login() {
                 <div class="login_pos_rel">
                 <input placeholder="Email" id="email_login" type="email" 
                     class="login_input" name="email" required autocomplete="email" value="sabine@mustermann.de">
-                <img src="./img/mail.png" class="login_mail_png">
+                <img src="./img/mail.png" class="login_mail_png" alt="Mail Icon">
                 <input placeholder="Password" id="password_login" type="password" 
                     class="login_input" name="password" required autocomplete="current-password" value="sabine123" disabled>
-                <img src="./img/secure.png" class="login_secure_png">  
+                <img src="./img/secure.png" class="login_secure_png" alt="Secure Icon">  
                 </div>
                 <div class="login_forgot">
                 <input type="checkbox" id="confirm"><label for="confirm">Remember me</label>
@@ -29,7 +29,7 @@ function login() {
 function forgotPassword() {
     document.getElementById("login_access").innerHTML = /*html*/ `
         <div class="c-pointer scale-105 login_arrow_left" onclick="login()">
-            <img src="./img/left_arrow_blue.png">
+            <img src="./img/left_arrow_blue.png" alt="Arrow">
         </div>
         <span class="font61-700 txt-cr">i forgot my password</span><br>
         <div class="login_blue_line"></div>
@@ -39,7 +39,7 @@ function forgotPassword() {
         <form onsubmit="resetPassword()">
             <div class="ai-center jc-center d-flex fd-col pos-rel">
                 <input placeholder="Email" id="email_forgot" type="email" class="login_input" name="email_forgot" required disabled>
-                <img src="./img/mail.png" class="login_mail_png">
+                <img src="./img/mail.png" class="login_mail_png" alt="Mail Icon">
                 <button class="button_dark" type="submit" name="sendmail">Send me the email</button>
             </div>
         </form>
@@ -56,11 +56,11 @@ function signUp() {
         <form onsubmit="registerUser()">
             <div class="login_pos_rel">
                 <input placeholder="Name" id="username" type="text" class="login_input" disabled>
-                <img src="./img/name.png" class="sign_name_png">
+                <img src="./img/name.png" class="sign_name_png" alt="Name Icon">
                 <input placeholder="Email" id="email" type="email" class="login_input" required disabled>
-                <img src="./img/mail.png" class="sign_mail_png">
+                <img src="./img/mail.png" class="sign_mail_png" alt="Mail Icon">
                 <input placeholder="Password" id="password" type="password" class="login_input" required disabled>
-                <img src="./img/secure.png" class="sign_secure_png">
+                <img src="./img/secure.png" class="sign_secure_png" alt="Secure Icon">
                 <div>
                     <button type="submit" class="button_dark" disabled>Sign up</button>
                 </div>
@@ -72,7 +72,7 @@ function signUp() {
 function resetPassword() {
     document.getElementById("login_access").innerHTML = /*html*/ `
         <div class="c-pointer scale-105 login_arrow_left" onclick="forgotPassword()">
-            <img src="./img/left_arrow_blue.png">
+            <img src="./img/left_arrow_blue.png" alt="Arrow">
         </div>
         <span class="font61-700 txt-cr">Reset your password</span><br>
         <div class="login_blue_line"></div>
