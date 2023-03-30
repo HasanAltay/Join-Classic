@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // shows which card is placed in which wrapper
         const wrapperId = cardWrapper.dataset.id;
         const cardId = parseInt(card.dataset.id);
-        console.log(`Card_${cardId} placed in Wrapper_${wrapperId}`);
+        // console.log(`Card_${cardId} placed in Wrapper_${wrapperId}`);
         chanceWrapperNoFromTask(cardId, wrapperId);
         cardWrapper.appendChild(card);
     }

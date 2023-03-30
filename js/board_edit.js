@@ -29,7 +29,6 @@ function deleteCard() {
 }
 
 function deleteTask(i) {
-    console.log(tasksToServer[i]);
     tasksToServer.splice(i, 1);
     backend.setItem("tasks", JSON.stringify(tasksToServer));
     initBoard();

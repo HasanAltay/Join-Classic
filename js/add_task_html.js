@@ -13,6 +13,7 @@ init_add_task.innerHTML = `
     title="Enter a title for your new Task!"
     required
     aria-label="Title"
+    autofocus
 />
 
 <div class="assign_dropdown" type="checkbox" name="categorie">

@@ -57,13 +57,13 @@ function initBoard() {
 }
 
 function editCardNo(i) {
-    showTask();
+    showTaskPreview();
     let show_task = document.getElementById("show_task");
     let priority =
         tasksToServer[i][0][4].charAt(0).toUpperCase() +
         tasksToServer[i][0][4].slice(1);
     show_task.innerHTML = `
-    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeTask()">
+    <img class="show_task_close_btn" src="./img/cancel.png" onclick="closeTaskPreview()">
     <div class="header">
         <div class="title" id="card_category">
             <span class="wrapper_category" 
@@ -91,7 +91,7 @@ function editCardNo(i) {
         <div class="edit_card_assigns" id="edit_assigns">
     </div>
     <div class="edit_card_footer">
-        <button class="task_edit_button" onclick="showEdit();editTask('${i}')">
+        <button class="task_edit_button" onclick="showEditTask();editTask('${i}')">
             <img src="./img/pen.png" alt="Pen">
         </button>
     </div>
@@ -114,7 +114,7 @@ async function editTask(i) {
     await loadTaskFromBackend();
     let edit_task = document.getElementById("edit_task");
     edit_task.innerHTML = `
-<img class="show_task_close_btn" src="./img/cancel.png" onclick="closeEdit();closeTask();" alt="Close">
+<img class="show_task_close_btn" src="./img/cancel.png" onclick="closeEditTask();" alt="Close">
 <form class="task_main" id="add_new_task" onsubmit="saveEditTask(${i})" style="gap:20px">
     <input
         value="${tasksToServer[i][0][0]}"
@@ -139,7 +139,7 @@ async function editTask(i) {
     <input
         type="date"
         name="date"
-        id="date_board_1"
+        id="date"
         class="task_date"
         pattern="\d{4}-\d{2}-\d{2}"
         value=""
@@ -200,13 +200,13 @@ async function editTask(i) {
             maxlength="130"
             type="text"
             class="textarea"
-            id="textarea_board_1"
+            id="textarea"
             style="max-width:340px;max-height:150px"
             required
             aria-label="Description"
         >${tasksToServer[i][0][5]}</textarea>
         <div id="the-count">
-            <span id="count_board_1">0</span>
+            <span id="count">0</span>
             <span>/130</span>
         </div>
     </div>
@@ -220,39 +220,9 @@ async function editTask(i) {
     </div>
 </form>
 `;
-noOlderDate('date_board_1');
-letterCountTextarea('textarea_board_1','count_board_1');
+noOlderDate('date');
+letterCountTextarea('textarea','count');
 loadEditTaskInputs(i);
-}
-
-function showEdit() {
-    let edit_task = document.getElementById("edit_task");
-    edit_task.style.display = "block";
-}
-
-function closeEdit() {
-    let edit_task = document.getElementById("edit_task");
-    edit_task.style.display = "none";
-}
-
-function showTask() {
-    let show_task = document.getElementById("show_task");
-    show_task.style.display = "block";
-}
-
-function closeTask() {
-    let show_task = document.getElementById("show_task");
-    show_task.style.display = "none";
-}
-
-function showTaskForWrapper() {
-    let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
-    add_task_for_wrapper.style.display = "block";
-}
-
-function closeTaskForWrapper() {
-    let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
-    add_task_for_wrapper.style.display = "none";
 }
 
 // task to put in the selected wrapper.
@@ -273,7 +243,7 @@ function addTaskForWrapper(pos) {
     }
     let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
     add_task_for_wrapper.innerHTML = `
-    <a class="add_task_for_wrapper_titel">${titel}</a>	
+    <a class="add_task_for_wrapper_titel">${titel}</a>
     <img class="add_task_for_wrapper_close_btn" src="./img/close.png" onclick="closeTaskForWrapper()" alt="Close">
 
     <form class="task_main" id="add_new_task" onsubmit="createAddTaskJSON(${pos})" style="gap:20px">
@@ -286,6 +256,7 @@ function addTaskForWrapper(pos) {
             title="Enter a title for your new Task!"
             required
             aria-label="Title"
+            autofocus
         />
 
         <div class="assign_dropdown" type="checkbox" name="categorie">
@@ -299,7 +270,7 @@ function addTaskForWrapper(pos) {
         <input
             type="date"
             name="date"
-            id="date_board_2"
+            id="date"
             class="task_date"
             pattern="\d{4}-\d{2}-\d{2}"
             value=""
@@ -359,13 +330,13 @@ function addTaskForWrapper(pos) {
                 maxlength="130"
                 type="text"
                 class="textarea"
-                id="textarea_board_2"
+                id="textarea"
                 style="max-width:340px;max-height:150px"
                 required
                 aria-label="Description"
             ></textarea>
             <div id="the-count">
-                <span id="count_board_2">0</span>
+                <span id="count">0</span>
                 <span>/130</span>
             </div>
         </div>
@@ -379,8 +350,45 @@ function addTaskForWrapper(pos) {
         </div>
     </form>
     `;
-    noOlderDate('date_board_2');
-    letterCountTextarea('textarea_board_2','count_board_2');
+    noOlderDate('date');
+    letterCountTextarea('textarea','count');
     categoryDropdown();
     initAssignDropDown();
+}
+
+function showEditTask() {
+    let edit_task = document.getElementById("edit_task");
+    edit_task.style.display = "block";
+    closeTaskForWrapper();
+}
+
+function showTaskForWrapper() {
+    let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
+    add_task_for_wrapper.style.display = "block";
+    closeEditTask();
+}
+
+function showTaskPreview() {
+    let show_task = document.getElementById("show_task");
+    show_task.style.display = "block";
+}
+
+function closeTaskPreview() {
+    let show_task = document.getElementById("show_task");
+    show_task.style.display = "none";
+        show_task.innerHTML = ``;
+}
+
+function closeEditTask() {
+    let edit_task = document.getElementById("edit_task");
+    edit_task.style.display = "none";
+        edit_task.innerHTML = ``;
+    closeTaskPreview();
+}
+
+function closeTaskForWrapper() {
+    let add_task_for_wrapper = document.getElementById("add_task_for_wrapper");
+    add_task_for_wrapper.style.display = "none";
+        add_task_for_wrapper.innerHTML = ``;
+    closeTaskPreview();
 }
