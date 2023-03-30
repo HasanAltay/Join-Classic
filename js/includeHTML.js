@@ -94,9 +94,14 @@ function letterCountTextarea(id, count) {
     });
 }
 
+let today;
+
 function noOlderDate(id) {
     // Get the current date and format it as yyyy-MM-dd
-    var today = new Date().toISOString().slice(0, 10);
+    today = new Date().toISOString().slice(0, 10);
     // Set the value of the "today" variable as the min attribute of the input element
     document.getElementById(id).min = today;
+    document.getElementById(id).value = today;
+    console.log(today);
 }
+

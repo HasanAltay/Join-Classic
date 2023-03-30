@@ -97,7 +97,7 @@
   z-index: 20;
   /* Firefox */
   scrollbar-width: thin;
-  scrollbar-color: #2a3647 #f6f7f9;
+  scrollbar-color: #F3EDED #f6f7f9;
   /* Chrome, Edge, and Safari */
 }
 .task_main .assign_dropdown-content::-webkit-scrollbar {
@@ -383,12 +383,18 @@
   background-color: #29abe2;
 }
 .task_main .task_date {
+  display: flex;
   font-weight: 400;
   font-size: 16px;
   cursor: pointer;
   min-height: 50px;
+  height: 50px;
   width: 100%;
   max-width: 425px;
+  background-color: white;
+}
+.task_main .task_date::-webkit-datetime-edit-text {
+  color: black;
 }
 .task_main .task_date::-webkit-calendar-picker-indicator {
   cursor: pointer;
@@ -983,16 +989,17 @@
   height: calc(100vh - 280px);
   border-radius: 10px;
   overflow-y: scroll;
-  scrollbar-width: auto;
   padding: 10px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
   min-height: 500px;
   /* Firefox */
   scrollbar-color: #ffffff #F3EDED;
+  scrollbar-width: thin;
   /* Chrome, Edge, and Safari */
 }
 .contacts_list::-webkit-scrollbar {
   width: 10px;
+  background-color: #ffffff;
 }
 .contacts_list::-webkit-scrollbar-track {
   background-color: #ffffff;

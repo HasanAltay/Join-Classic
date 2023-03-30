@@ -103,7 +103,7 @@
 
         /* Firefox */
         scrollbar-width: thin;
-        scrollbar-color: #2a3647 #f6f7f9;
+        scrollbar-color: #F3EDED #f6f7f9;
 
             /* Chrome, Edge, and Safari */
         &::-webkit-scrollbar {
@@ -430,12 +430,20 @@
     }
 
     .task_date {
+        display: flex;
         font-weight: 400;
         font-size: 16px;
         cursor: pointer;
         min-height: 50px;
+        height: 50px;
         width: 100%;
         max-width: 425px;
+        background-color: white;
+
+        &::-webkit-datetime-edit-text {
+            color: black;
+        }
+
         &::-webkit-calendar-picker-indicator { 
             cursor: pointer;
         }

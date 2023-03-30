@@ -142,6 +142,7 @@ async function editTask(i) {
         id="date_board_1"
         class="task_date"
         pattern="\d{4}-\d{2}-\d{2}"
+        value=""
         required
         min="{{ today }}"
         value="${tasksToServer[i][0][2]}"
@@ -301,6 +302,7 @@ function addTaskForWrapper(pos) {
             id="date_board_2"
             class="task_date"
             pattern="\d{4}-\d{2}-\d{2}"
+            value=""
             required
             min="{{ today }}"
             placeholder="Select a deadline"

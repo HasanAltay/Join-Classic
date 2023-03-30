@@ -34,13 +34,13 @@ init_add_task.innerHTML = `
     id="date_add_task"
     class="task_date"
     pattern="\d{4}-\d{2}-\d{2}"
+    value=""
     required
     min="{{today}}"
     placeholder="Select a deadline"
     title="Select a deadline"
     aria-label="Date"
 />
-
 <div class="assign_dropdown" type="checkbox" name="categorie">
     <span class="required_message" id="req_msg_category"></span>
     <div class="assign_dropdown_titel" onclick="categoriesOpenClose()">
