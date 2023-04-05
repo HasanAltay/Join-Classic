@@ -1,62 +1,65 @@
-// async function getChatGPTResponse() {
-//   show_chat_gpt_answer();
+// const API_KEY = ''
 
-//   const prompt = document.getElementById('prompt').value;
-//   const apiKey = "";
-//   const data = {
-//     prompt: prompt,
-//     temperature: 0.5,
-//     max_tokens: 1024,
-//     top_p: 1,
-//     frequency_penalty: 0,
-//     presence_penalty: 0
-//   };
-//   const headers = {
-//     'Content-Type': 'application/json',
-//     'Authorization': `Bearer ${apiKey}`
+// async function getMessage() {
+//   showScreen();
+//   showLoading();
+//   console.log('clicked');
+//   const prompt_message = document.getElementById('prompt').value;
+//   const output = document.getElementById('output');
+
+//   const options = {
+//     method: 'POST',
+//     headers: {
+//       'Authorization': `Bearer ${API_KEY}`,
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       model: "gpt-3.5-turbo",
+//       messages: [{role: "user", content: prompt_message}],
+//       max_tokens: 400
+//     })
 //   };
 
-//   // Show loading screen
-//   const loading_gif = document.getElementById('loading_gif');
-//   loading_gif.style.visibility = 'visible';
-  
-//   document.getElementById('output').innerHTML += prompt;
-//   document.getElementById("prompt").value = "";
+//   output.innerHTML += `
+//   <i>
+//     <a style="color: blue">You</a>:&nbsp;
+//     <div style="font-weight:bold; color:grey; margin:5px 0px 5px 0px">
+//       ${prompt_message}
+//     </div>
+//   </i>
+//   `;
 
 //   try {
-//     const response = await fetch('https://api.openai.com/v1/engines/ada/completion', {
-//       method: 'POST',
-//       headers: headers,
-//       body: JSON.stringify(data)
-//     });
+//     const response = await fetch('https://api.openai.com/v1/chat/completions', options);
+//     const data = await response.json();
+//     console.log(data);
+//     output.innerHTML += data.choices[0].message.content
 
-//     const responseJson = await response.json();
-//     console.log(responseJson);
-
-//     if (responseJson.choices && responseJson.choices.length > 0) {
-//       const chatGPTResponse = responseJson.choices[0].text.trim();
-//       console.log(chatGPTResponse);
-//       document.getElementById('output').value += chatGPTResponse;
-//       return chatGPTResponse;
-//     } else {
-//       console.log("Error: responseJson.choices is undefined or empty");
-//       return "Error: responseJson.choices is undefined or empty";
-//     }
 //   } catch (error) {
-//     console.log("Error: " + error);
-//     return "Error: " + error;
+//     console.log(error);
+
 //   } finally {
-//     // Hide loading screen
-//     loading_gif.style.visibility = 'hidden';
+//     hideLoading();
+//     document.getElementById("prompt").value = "";
 //   }
 // }
 
-// function show_chat_gpt_answer() {
+// function showLoading() {
+//   const loading_gif = document.getElementById('loading_gif');
+//   loading_gif.style.visibility = 'visible';
+// }
+
+// function hideLoading() {
+//   const loading_gif = document.getElementById('loading_gif');
+//   loading_gif.style.visibility = 'hidden';
+// }
+
+// function showScreen() {
 //   let chat_gpt_answer = document.getElementById("chat_gpt_answer");
 //   chat_gpt_answer.style.visibility = "visible";
 // }
 
-// function hide_chat_gpt_answer() {
+// function hideScreen() {
 //   let chat_gpt_answer = document.getElementById("chat_gpt_answer");
 //   chat_gpt_answer.style.visibility = "hidden";
 // }

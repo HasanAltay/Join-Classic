@@ -62,16 +62,17 @@ function initSummary() {
             </div>
             <span>Tasks Done</span>
         </div>
+
         <!-- <div class="chat_gpt">
-            <input type="text" id="prompt" name="prompt" placeholder="Ask me" onclick="show_chat_gpt_answer()">
-            <button type="button" onclick="getChatGPTResponse()">
+            <input type="text" id="prompt" name="prompt" placeholder="Ask me" onclick="showScreen()">
+            <button type="button" id="submit_btn" onclick="getMessage()">
                 <img id="sum_done_img" src="./img/send.png" alt="Send">
             </button>  
         </div>
         <div class="chat_gpt_answer" id="chat_gpt_answer">
-            <img class="hide_chat_gpt_answer_btn" src="./img/cancel.png" onclick="hide_chat_gpt_answer()">
-            <textarea id="output" name="output"></textarea>
-            <img class="loading_gif" id="loading_gif" src="./img/loading.gif" alt="Loading"> 
+            <span id="output" name="output"></span>
+            <img class="loading_gif" id="loading_gif" src="./img/loading.gif" alt="Loading">
+            <img class="hide_chat_gpt_answer_btn" src="./img/cancel.png" onclick="hideScreen()"> 
         </div> -->
     `;
     getTime();

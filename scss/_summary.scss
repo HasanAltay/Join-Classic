@@ -234,33 +234,39 @@
     align-items: center;
     position: absolute;
     background-color: white;
-    padding-top: 60px;
-    padding-bottom: 10px;
-    border-radius: 20px;
+    border-radius: 30px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     bottom: 100px;
     width: 100%;
-    height: calc(100% - 100px);
-    max-width: 760px;
+    max-width: 700px;
     margin-right: 20px;
     margin-left: 20px;
-    z-index: 99;
-    textarea {
+    z-index: 10;
+    padding: 5px;
+    i {
+        display: flex;
+        align-items: baseline;
+    }
+
+    span {
         position: relative;
         border-radius: 20px;
         width: 100%;
         min-width: 100%;
-        height: 100%;
-        max-height: 100%;
-        min-height: 100%;
+        padding-top: 60px;
+        padding-bottom: 20px;
+        max-height: calc(100vh - 300px);
+        min-height: 200px;
         padding: 20px;
         font-family: "Inter";
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
+        font-size: 12px;
         border: 0;
         background-color: transparent;
         margin-right: 10px;
+        display: flex;
+        flex-direction: column;
 
         &::placeholder {
             color: rgb(204, 204, 204);
